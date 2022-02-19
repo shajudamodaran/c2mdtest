@@ -1,0 +1,39 @@
+.cards_col {
+  width: 401px;
+  border: 1px solid #ebebeb;
+  border-radius: 8px;
+  height: 162px;
+  .card {
+    margin: auto;
+    font-family: 5px;
+    word-spacing: 2px;
+    padding: 20px 10px 10px 10px;
+  }
+  .card_head {
+    font: normal normal medium 23px/29px IBM Plex Sans;
+    letter-spacing: 0px;
+    color: #162d43;
+    opacity: 1;
+    font-weight: 500;
+  }
+  .card_content {
+    width: 250px;
+    margin-top: 8px;
+    font: normal normal normal 15px/26px IBM Plex Sans;
+    letter-spacing: 0px;
+    color: #162d43;
+    opacity: 0.6;
+  }
+  @media screen and (max-width: 900px) {
+    .card{
+      //height: 15rem;
+      //margin-left: -3rem;
+    }
+  }
+
+  @media (orientation: landscape) and (max-width: 767px) {
+    .card {
+      height: 3rem;
+    }
+  }
+}

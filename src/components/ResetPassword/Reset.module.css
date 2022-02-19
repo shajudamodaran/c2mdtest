@@ -1,0 +1,270 @@
+body {
+  background-image: url("../../assets/signin/bg.svg");
+}
+
+.reset_form_align {
+  max-width: 520px;
+  width: 100%;
+  padding: 9% 60px 11%;
+  text-align: center;
+  font-family: "IBM Plex Sans";
+  border-radius: 3px;
+}
+
+.reset_form_align .reset_header_align {
+  text-align: center;
+  font-size: 24px;
+  color: #143d71;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.reset_form_align .reset_PhoneInput :global .react-tel-input .form-control {
+  position: relative;
+  font-size: 14px;
+  letter-spacing: 0.01rem;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-left: 48px;
+  margin-left: 0;
+  background: #f2f7fa !important;
+  border: none;
+  border-radius: 3px;
+  line-height: 25px;
+  height: 50px;
+  width: 100%;
+  outline: none;
+}
+
+.reset_form_align .reset_PhoneInput :global .react-tel-input .flag-dropdown {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  padding: 0;
+  background-color: #f2f7fa !important;
+  border: none !important;
+  border-radius: 3px;
+}
+
+.reset_form_align .reset_PhoneInput :global .form-control:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.reset_form_align .reset_PhoneInput :global .react-tel-input .selected-flag:focus,
+.reset_form_align .reset_PhoneInput :global .react-tel-input .selected-flag:hover {
+  background-color: #f2f7fa !important;
+}
+
+.reset_form_align .reset_PhoneInput :global .react-tel-input .country-list .country {
+  padding: 7px 9px;
+  text-align: left;
+}
+
+.reset_form_align .reset_mobile_input_field {
+  width: 100%;
+  height: 52px;
+  background: #f2f7fa;
+  color: #162d43;
+  border: none;
+  opacity: 1;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 3px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.reset_form_align .reset_mobile_input_field .forgot_country_code {
+  background: #f2f7fa;
+  color: #162d43;
+  border: none;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.38px;
+  background-size: 12px;
+}
+
+.reset_form_align .reset_input_field {
+  padding: 0 15px;
+  width: 100%;
+  height: 50px;
+  background: #f2f7fa;
+  color: #162d43;
+  border: none;
+  opacity: 1;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 3px;
+}
+
+.reset_form_align .reset_input_field:focus {
+  outline: none;
+}
+
+.reset_form_align .reset_input_field::-webkit-input-placeholder {
+  /* Edge */
+  color: #b0bfc8;
+  font-weight: 400;
+}
+
+.reset_form_align .reset_input_field:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #b0bfc8;
+  font-weight: 400;
+}
+
+.reset_form_align .reset_input_field::-ms-input-placeholder {
+  color: #b0bfc8;
+  font-weight: 400;
+}
+
+.reset_form_align .reset_input_field::placeholder {
+  color: #b0bfc8;
+  font-weight: 400;
+}
+
+.reset_form_align .reset_error_msg {
+  color: red;
+  text-align: left;
+  font-size: 13px;
+  padding-top: 3px;
+}
+
+.reset_form_align .reset_form_label {
+  font-size: 14px;
+  color: #162d43;
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.reset_form_align .reset_form_label label {
+  font-size: 14px;
+  color: #121212;
+}
+
+.reset_form_align .reset_form_label input:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.reset_form_align .reset_form_label .signin_radiowrp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.reset_form_align .reset_form_label .signin_radiowrp span {
+  margin-right: 15px;
+  font-size: 14px;
+  color: #121212;
+}
+
+.reset_form_align .reset_form_label .signin_radiowrp :global .form-check-inline {
+  margin: 0;
+  padding: 0;
+}
+
+.reset_form_align .reset_form_label .signin_radiowrp [type="radio"]:checked,
+.reset_form_align .reset_form_label .signin_radiowrp [type="radio"]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+
+.reset_form_align .reset_form_label .signin_radiowrp [type="radio"]:checked + label,
+.reset_form_align .reset_form_label .signin_radiowrp [type="radio"]:not(:checked) + label {
+  position: relative;
+  padding-left: 22px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.reset_form_align .reset_form_label .signin_radiowrp [type="radio"]:checked + label:before,
+.reset_form_align .reset_form_label .signin_radiowrp [type="radio"]:not(:checked) + label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 17px;
+  height: 17px;
+  border: 2px solid #d9dfef;
+  border-radius: 100%;
+  background: #fff;
+}
+
+.reset_form_align .reset_form_label .signin_radiowrp [type="radio"]:checked + label:before {
+  border: 2px solid #208ce1;
+}
+
+.reset_form_align .reset_form_label .signin_radiowrp [type="radio"]:checked + label:after,
+.reset_form_align .reset_form_label .signin_radiowrp [type="radio"]:not(:checked) + label:after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background: #208ce1;
+  position: absolute;
+  top: 5px;
+  left: 4px;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.reset_form_align .reset_form_label .signin_radiowrp [type="radio"]:not(:checked) + label:after {
+  opacity: 0;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+
+.reset_form_align .reset_form_label .signin_radiowrp [type="radio"]:checked + label:after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+.reset_form_align .reset_form_label .signin_radioeach {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.reset_form_align .reset_text {
+  text-align: center;
+  font-size: 16px;
+  color: #121212;
+  max-width: 375px;
+  margin: 0 auto 20px;
+  font-weight: 500;
+}
+
+.reset_form_align .signup_continue_btn {
+  width: 100%;
+  height: 50px;
+  color: white;
+  background: #208ce1;
+  border-radius: 5px;
+  border: 1px solid #208ce1;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 20px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.reset_form_align .signup_continue_btn:hover {
+  background: transparent;
+  color: #162d43;
+}
+
+@media screen and (max-width: 575px) {
+  .reset_form_align {
+    padding: 9% 0;
+  }
+  .reset_form_align .reset_header_align {
+    text-align: center;
+  }
+}
+/*# sourceMappingURL=Reset.module.css.map */

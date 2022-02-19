@@ -1,0 +1,158 @@
+.booking_summary_accordion_align {
+  background: #F2F7FA 0% 0% no-repeat padding-box;
+  border-radius: 7px;
+}
+
+.booking_summary_accordion_align :global .accordion-item {
+  border: 0;
+  border-radius: 7px;
+  background: #F2F7FA;
+}
+
+.booking_summary_accordion_align :global .accordion-item .accordion-button {
+  background: #F2F7FA;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  display: block;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+
+.booking_summary_accordion_align :global .accordion-item .accordion-button.collapsed {
+  background: transparent;
+}
+
+.booking_summary_accordion_align :global .accordion-item .accordion-button::after {
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+}
+
+.booking_summary_accordion_align :global .accordion-item .col-3, .booking_summary_accordion_align :global .accordion-item .col-9 {
+  padding-right: 0;
+}
+
+.booking_summary_accordion_align .booking_summary_header .booking_summary_span_heading img {
+  width: 85px;
+  height: auto;
+  max-width: 100%;
+  border-radius: 8px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.booking_summary_accordion_align .booking_summary_header .booking_summary_span_heading h4 {
+  font-weight: bold;
+  font-size: 22px;
+  letter-spacing: 0px;
+  color: #162D43;
+  opacity: 1;
+}
+
+.booking_summary_accordion_align .booking_summary_header .booking_summary_span_heading .booking_summary_first_para {
+  font-weight: normal;
+  font-size: 15px;
+  letter-spacing: 0.15px;
+  color: #011D29;
+  margin: 0 0 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.booking_summary_accordion_align .booking_summary_header .booking_summary_span_heading .booking_summary_first_para span {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.booking_summary_accordion_align .booking_summary_header .booking_summary_span_heading .booking_summary_first_para span:nth-child(1) {
+  margin-right: 10px;
+  padding-right: 10px;
+  border-right: 1px solid #ccc;
+}
+
+.booking_summary_accordion_align .booking_summary_header .booking_summary_span_heading .booking_summary_first_para span:nth-child(2) {
+  width: 50%;
+}
+
+.booking_summary_accordion_align .booking_summary_header .booking_summary_span_heading .booking_summary_second_para {
+  letter-spacing: 0px;
+  color: #162D43;
+  font-weight: 600;
+  font-size: 16px;
+  margin: 0;
+}
+
+.booking_summary_accordion_align .booking_summary_body {
+  background: #F2F7FA 0% 0% no-repeat padding-box;
+  border-radius: 0px 0px 7px 7px;
+  font-weight: normal;
+  font-size: 17px;
+  letter-spacing: 0px;
+  color: #162D43;
+}
+
+.booking_summary_accordion_align .booking_summary_body p {
+  margin-bottom: 5px;
+}
+
+.booking_summary_accordion_align .booking_summary_body .booking_summary_left_aligned {
+  text-align: left;
+}
+
+.booking_summary_accordion_align .booking_summary_body .booking_summary_right_aligned {
+  float: right;
+}
+
+.booking_summary_accordion_align .booking_summary_body .booking_summary_top_border {
+  border-top: 1px solid #DEDEDE;
+  padding-top: 15px;
+  margin-top: 12px;
+}
+
+.booking_summary_accordion_align .booking_summary_body .booking_summary_top_border .booking_summary_left_total {
+  text-align: left;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.booking_summary_accordion_align .booking_summary_body .booking_summary_top_border .booking_summary_right_total {
+  float: right;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.accordion_disable :global .accordion-item .accordion-button::after {
+  display: none;
+}
+
+@media screen and (max-width: 575px) {
+  .booking_summary_accordion_align :global .accordion-item .accordion-button::after {
+    right: 5px;
+    background-size: 15px !important;
+  }
+  .booking_summary_accordion_align :global .accordion-item .accordion-button, .booking_summary_accordion_align :global .accordion-item .accordion-body {
+    padding: 1rem 15px;
+  }
+  .booking_summary_accordion_align .booking_summary_header .booking_summary_span_heading h4 {
+    font-size: 18px;
+  }
+  .booking_summary_accordion_align .booking_summary_header .booking_summary_span_heading .booking_summary_first_para, .booking_summary_accordion_align .booking_summary_header .booking_summary_span_heading .booking_summary_second_para {
+    font-size: 13px;
+  }
+  .booking_summary_accordion_align .booking_summary_header .booking_summary_span_heading .booking_summary_second_para {
+    padding-right: 30px;
+  }
+  .booking_summary_accordion_align .booking_summary_right_total, .booking_summary_accordion_align .booking_summary_body p {
+    font-size: 16px !important;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .booking_summary_accordion_align :global .accordion-item .accordion-button:after {
+    bottom: 5px;
+  }
+}
+/*# sourceMappingURL=DoctorDetails.module.css.map */

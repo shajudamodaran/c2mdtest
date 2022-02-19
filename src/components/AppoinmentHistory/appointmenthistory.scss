@@ -1,0 +1,131 @@
+.appontment-history-container{
+   width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    height: 100%;
+    padding: .8rem;
+    
+
+    .pagination-container{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        margin-top: 1rem;
+    }
+  
+
+    .header{
+      
+        border-bottom: 1px solid #E8EBED;
+        width: 100%;
+        padding: 0px .5rem;
+        padding-top: .5rem;
+        padding-bottom: 1.5rem;
+
+        font-size: 19.5px;
+        font-weight: 500;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+       
+    }
+}
+
+.filter-button{
+
+    padding: .5rem 1rem;
+    font-size: 16px;
+    font-weight: normal;
+    background-color: #F4F6F8;
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    cursor: pointer;
+
+    .icon{
+
+        height: 35px;
+        width: 35px;
+        border-radius: 100px;
+        background-color: #ffffff;
+        margin-right: .9rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      
+
+    }
+
+}
+
+.appoinment-table{
+    width: 100%;
+    margin-top: 1rem;
+    border-collapse:collapse;
+    font-size: 13px;
+
+    tr:nth-child(even) {
+        background-color: #F5F7FB;
+
+        .more-btn{
+            background-color:#ffffff ;
+         }
+    }
+
+    .more-btn{
+        padding: .5rem .9rem;
+        background-color:#F4F6F8 ;
+        border: 0px;
+        outline: 0px;
+        border-radius: 5px;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+     }
+
+    th{
+        text-align: start;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #F5F7FB;
+        height: 50px;
+        padding: .2rem 1rem;
+        border-spacing: 0;
+        width: fit-content  ;
+        flex-wrap: nowrap;
+
+        white-space: nowrap;
+        overflow: hidden;
+      
+    }
+
+    td{
+        text-align: start;
+        font-size: 14px;
+        height: 50px;
+        padding: .5rem 1rem;
+        border-spacing: 0;
+        cursor: pointer;
+        font-weight: 400;
+
+       
+      
+    }
+
+   
+}
+

@@ -1,0 +1,60 @@
+.book_appointment_div {
+  max-width: 525px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  -webkit-box-shadow: 0px 3px 50px #00000014;
+          box-shadow: 0px 3px 50px #00000014;
+  border-radius: 10px;
+  opacity: 1;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.book_appointment_div .book_appointment_form_align {
+  max-width: 520px;
+  width: 100%;
+  padding: 9% 40px 40px 40px;
+  text-align: left;
+  border-radius: 3px;
+}
+
+.book_appointment_div .book_appointment_form_align .book_appointment_previous_icon {
+  position: relative;
+  top: -2px;
+  cursor: pointer;
+}
+
+.book_appointment_div .book_appointment_form_align .book_appointment_previous_step {
+  color: #162d43;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  opacity: 1;
+  margin-left: 15px;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.book_appointment_div .book_appointment_form_align .book_appointment_form_pages {
+  float: right;
+  color: #162d43;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  opacity: 1;
+}
+
+.book_appointment_div .book_appointment_form_align .book_appointment_progress_bar {
+  margin-top: 15px;
+}
+
+@media screen and (max-width: 575px) {
+  .book_appointment_div {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    margin-top: 20px;
+  }
+  .book_appointment_div .book_appointment_form_align {
+    padding: 0;
+  }
+}
+/*# sourceMappingURL=BookAppointmentQBox.module.css.map */

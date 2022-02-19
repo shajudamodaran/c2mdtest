@@ -1,0 +1,291 @@
+.symptoms_main_heading {
+  margin-top: 35.82px;
+  margin-bottom: 35px;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 0px;
+  color: #162D43;
+  opacity: 1;
+}
+
+.error {
+  color: #ff6262;
+  font-size: 14px;
+}
+
+.inputError {
+  margin-bottom: 5px !important;
+  border: 1px solid #ff6262 !important;
+  border-radius: 8px;
+}
+
+.add_medicine_medicine_details {
+  margin-top: 16.5px;
+  width: 100%;
+  background: #EFF8FF;
+  border-radius: 8px;
+  opacity: 1;
+  padding: 25px 26.75px 10px 25px;
+}
+
+.add_medicine_medicine_details :global .form-group:last-child input {
+  margin: 0 !important;
+}
+
+.add_medicine_medicine_details .add_medicine_align_contents {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.add_medicine_medicine_details .add_medicine_align_contents .add_medicine_align_col1, .add_medicine_medicine_details .add_medicine_align_contents .add_medicine_align_col2 {
+  width: 50%;
+}
+
+.add_medicine_medicine_details .add_medicine_align_contents .add_medicine_align_col1 {
+  margin-right: 8px;
+}
+
+.add_medicine_medicine_details .add_medicine_align_contents .add_medicine_align_col2 {
+  margin-left: 8px;
+}
+
+.add_medicine_medicine_details .add_medicine_label {
+  color: #162D43;
+  font-weight: normal;
+  font-size: 15px;
+  letter-spacing: 0px;
+  text-transform: capitalize;
+  opacity: 1;
+  margin-bottom: 9px;
+  display: block;
+}
+
+.add_medicine_medicine_details .add_medicine_input_field {
+  font-weight: 500;
+  font-size: 17px;
+  letter-spacing: 0px;
+  color: #162D43;
+  opacity: 1;
+  width: 100%;
+  height: 60px;
+  border: 1px solid #A3C1DE;
+  border-radius: 7px;
+  padding: 0 15px;
+  margin-bottom: 20px;
+}
+
+.add_medicine_medicine_details .add_medicine_input_field::-webkit-input-placeholder {
+  /* Edge */
+  color: #5D7082 !important;
+}
+
+.add_medicine_medicine_details .add_medicine_input_field:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #5D7082 !important;
+}
+
+.add_medicine_medicine_details .add_medicine_input_field::-ms-input-placeholder {
+  color: #5D7082 !important;
+}
+
+.add_medicine_medicine_details .add_medicine_input_field::placeholder {
+  color: #5D7082 !important;
+}
+
+.add_medicine_medicine_details .add_medicine_select_field {
+  font-weight: normal;
+  font-size: 17px;
+  letter-spacing: 0px;
+  opacity: 1;
+  width: 100%;
+  height: 60px;
+  border: 1px solid #A3C1DE;
+  border-radius: 7px;
+  padding: 0 15px;
+  margin-bottom: 20px;
+}
+
+.add_medicine_medicine_details .add_medicine_frequency_select_field {
+  font-weight: normal;
+  font-size: 17px;
+  letter-spacing: 0px;
+  opacity: 1;
+  width: 100%;
+  height: 60px;
+  border: 1px solid #A3C1DE;
+  border-radius: 7px;
+  padding-left: 18px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 575px) {
+  .add_medicine_medicine_details {
+    padding: 20px 15px 5px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .add_medicine_medicine_details .add_medicine_align_contents {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .add_medicine_medicine_details .add_medicine_align_contents .add_medicine_align_col1, .add_medicine_medicine_details .add_medicine_align_contents .add_medicine_align_col2 {
+    width: 100%;
+  }
+  .add_medicine_medicine_details .add_medicine_align_contents .add_medicine_align_col1 {
+    margin-right: 0;
+  }
+  .add_medicine_medicine_details .add_medicine_align_contents .add_medicine_align_col2 {
+    margin-left: 0;
+  }
+}
+
+.period_accordion_accordion_align {
+  border-radius: 7px;
+  margin-top: 20.43px;
+}
+
+.period_accordion_accordion_align :global .accordion-item {
+  border: 0;
+  border-radius: 7px !important;
+  margin-bottom: 16px;
+  width: 90%;
+}
+
+.period_accordion_accordion_align .medication_accordion_repeat {
+  position: relative;
+}
+
+.period_accordion_accordion_align .medication_accordion_repeat img {
+  position: absolute;
+  top: 15px;
+  right: -42px;
+  cursor: pointer;
+}
+
+.period_accordion_accordion_align :global .accordion-button {
+  background: #eff8ff;
+  border-radius: 0 !important;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  height: 60px;
+  border-radius: 0 !important;
+  border-top-left-radius: 7px !important;
+  border-top-right-radius: 7px !important;
+}
+
+.period_accordion_accordion_align :global .accordion-button span {
+  font-weight: 500;
+}
+
+.period_accordion_accordion_align :global .accordion-button.collapsed {
+  background: #f5f5f5;
+  border-radius: 7px !important;
+}
+
+.period_accordion_accordion_align :global .accordion-button.collapsed span {
+  font-weight: 400;
+}
+
+.period_accordion_accordion_align :global .accordion-collapse {
+  background: #eff8ff;
+  border-bottom-left-radius: 7px !important;
+  border-bottom-right-radius: 7px !important;
+}
+
+.period_accordion_accordion_align .period_accordion_main_heading {
+  font-size: 18px;
+  letter-spacing: 0px;
+  color: #162d43;
+}
+
+.period_accordion_accordion_align .period_accordion_body_para {
+  font-weight: normal;
+  font-size: 17px;
+  letter-spacing: 0px;
+  color: #162d43;
+  text-transform: capitalize;
+}
+
+.period_accordion_accordion_align .period_accordion_label {
+  font-weight: normal;
+  font-size: 15px;
+  letter-spacing: 0px;
+  text-transform: capitalize;
+  opacity: 1;
+  margin-bottom: 9px;
+  color: #162d43;
+}
+
+.period_accordion_accordion_align .period_accordion_input_field {
+  font-weight: 500;
+  font-size: 17px;
+  letter-spacing: 0px;
+  color: #162d43;
+  opacity: 1;
+  width: 100%;
+  height: 55px;
+  border: 1px solid #add4f3;
+  border-radius: 7px;
+  padding-left: 18px;
+  margin-bottom: 20px;
+}
+
+.period_accordion_accordion_align .period_accordion_select_field {
+  font-weight: 500;
+  font-size: 17px;
+  letter-spacing: 0px;
+  color: #162d43;
+  opacity: 1;
+  width: 100%;
+  height: 55px;
+  border: 1px solid #add4f3;
+  border-radius: 7px;
+  padding-left: 18px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+}
+
+.period_accordion_accordion_align :global .accordion-body {
+  padding: 0 25px 25px;
+}
+
+::-webkit-input-placeholder {
+  color: #c9c9c9;
+  opacity: 1;
+  font-weight: normal;
+}
+
+:-ms-input-placeholder {
+  color: #c9c9c9;
+  opacity: 1;
+  font-weight: normal;
+}
+
+::-ms-input-placeholder {
+  color: #c9c9c9;
+  opacity: 1;
+  font-weight: normal;
+}
+
+::placeholder {
+  color: #c9c9c9;
+  opacity: 1;
+  font-weight: normal;
+}
+
+@media screen and (max-width: 575px) {
+  .period_accordion_accordion_align :global .accordion-body {
+    padding: 0 15px 20px;
+  }
+  .period_accordion_accordion_align :global .accordion-button {
+    padding: 1rem 15px;
+  }
+}
+/*# sourceMappingURL=Allergies.module.css.map */

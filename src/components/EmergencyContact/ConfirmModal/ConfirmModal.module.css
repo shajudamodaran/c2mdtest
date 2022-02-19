@@ -1,0 +1,101 @@
+.DeleteConfirmmodal {
+  padding-right: 0 !important;
+}
+
+.DeleteConfirmmodal .DeleteText {
+  text-align: center;
+  font-size: 16px;
+  letter-spacing: 0.18px;
+  color: #8c9194;
+  opacity: 1;
+}
+
+.DeleteConfirmmodal :global .modal-dialog {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: calc(100% - 1rem);
+}
+
+@media (min-width: 576px) {
+  .DeleteConfirmmodal :global .modal-dialog .modal-dialog-centered {
+    min-height: calc(100% - 3.5rem);
+  }
+}
+
+.DeleteConfirmmodal .cancelBtn {
+  border: 2px solid #c5cbcf;
+  border-radius: 7px;
+  opacity: 1;
+  background-color: #fff;
+  color: #536471;
+  text-transform: capitalize;
+  opacity: 1;
+  margin-right: 15px;
+  padding-left: 46px;
+  padding-right: 46px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+.DeleteConfirmmodal .DeleteBtn {
+  background-color: #208CE1;
+  border-radius: 7px;
+  opacity: 1;
+  color: #ffffff;
+  text-transform: capitalize;
+  opacity: 1;
+  border-color: #208CE1;
+  padding-left: 46px;
+  padding-right: 46px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+.DeleteConfirmmodal .HeaderText {
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0px;
+  color: #162d43;
+  opacity: 1;
+  font-size: 28px;
+}
+
+.DeleteConfirmmodal .modalCloseicon {
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.DeleteConfirmmodal .headerIcon {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+  margin-top: 25px;
+}
+
+.DeleteConfirmmodal .BottomSection {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 575px) {
+  .DeleteConfirmmodal .cancelBtn,
+  .DeleteConfirmmodal .DeleteBtn {
+    padding: 10px 30px;
+  }
+}
+/*# sourceMappingURL=ConfirmModal.module.css.map */

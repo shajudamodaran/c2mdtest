@@ -1,0 +1,247 @@
+.Main {
+  margin: 80px 0 100px;
+}
+
+.Main .border_line {
+  width: 43px;
+  height: 5px;
+  margin: 0;
+  background: transparent;
+}
+
+.Main :global .col-sm-6:last-child {
+  text-align: right;
+}
+
+.Main :global .col-md-7, .Main :global .col-md-5 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.card {
+  border: 0;
+}
+
+.card :global .card-body {
+  padding: 0;
+}
+
+hr {
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 5px solid #208ce1;
+  width: 2rem;
+  opacity: 1;
+  margin-left: 1rem;
+}
+
+.number {
+  color: chocolate;
+  margin-bottom: 15px;
+}
+
+.main_image {
+  border-radius: 10px;
+  max-width: 100%;
+}
+
+.MainNumbers {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding-bottom: 35px;
+}
+
+.MainNumbers .coleach {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 25%;
+          flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.MainNumbers .coleach:last-child .sub_image {
+  display: none;
+}
+
+.title {
+  font-size: 45px;
+  color: #000000;
+  font-weight: 700;
+  line-height: 60px;
+  margin: 15px 0 22px;
+  max-width: 500px;
+}
+
+.content {
+  color: #011D29;
+  font-size: 18px;
+  line-height: 30px;
+  padding-right: 65px;
+}
+
+.sub_title1 {
+  color: #011d29;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.sub_content {
+  margin-top: 5px;
+  font-size: 16px;
+  line-height: 20px;
+  max-width: 217px;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.sub_content_wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.sub_content_wrap .sub_content_left {
+  width: 65%;
+}
+
+.sub_content_wrap .sub_content_right {
+  width: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  height: 80px;
+}
+
+.button {
+  border-radius: 6px;
+  height: 50px;
+  max-width: 195px;
+  width: 100%;
+  font-size: 18px;
+  border: 1px solid #208CE1;
+  background: #208CE1;
+  margin-top: 30px;
+  font-family: "DM Sans";
+}
+
+.button:focus, .button:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.sub_title {
+  color: #011d29;
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 1199px) {
+  .Main {
+    margin: 80px 0 30px;
+  }
+  .title {
+    font-size: 35px;
+    line-height: 40px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .MainNumbers .coleach {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .MainNumbers .coleach:nth-child(2) .sub_image {
+    display: none;
+  }
+  .Main {
+    margin: 30px 0;
+  }
+  .content {
+    font-size: 16px;
+    line-height: 25px;
+    margin-bottom: 25px;
+  }
+  .button {
+    margin: 0 0 30px;
+    font-size: 16px;
+  }
+  br {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .MainNumbers {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding-bottom: 15px;
+  }
+  .MainNumbers .coleach {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+    max-width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-bottom: 1px solid #e0dede;
+    padding: 20px 0 0;
+  }
+  .MainNumbers .coleach:last-child {
+    border-bottom: 0;
+  }
+  .MainNumbers .coleach .sub_image {
+    display: none;
+  }
+  .title {
+    font-size: 30px;
+    line-height: 40px;
+    margin: 10px 0 22px;
+  }
+  .sub_title {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  .sub_title1 {
+    margin-bottom: 5px;
+  }
+  .sub_content_wrap .sub_content_left {
+    width: 100%;
+  }
+  .sub_content_wrap .sub_content_right {
+    display: none;
+  }
+  .sub_content {
+    max-width: inherit;
+    margin-bottom: 20px;
+  }
+  .number {
+    padding-right: 25px;
+  }
+  .content {
+    padding-right: 0;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .Main :global .col-md-6 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+/*# sourceMappingURL=Title.module.css.map */

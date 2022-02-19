@@ -1,0 +1,112 @@
+body {
+  background-image: url("../../assets/signin/bg.svg");
+}
+
+.reset_form_align {
+  max-width: 520px;
+  width: 100%;
+  padding: 9% 60px 11%;
+  border-radius: 3px;
+  font-family: "IBM Plex Sans";
+}
+
+.reset_form_align .reset_header_align {
+  text-align: center;
+  font-size: 30px;
+  color: #162D43;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.reset_form_align .reset_input_field {
+  padding: 0 15px;
+  width: 100%;
+  height: 50px;
+  background: #f2f7fa;
+  color: #162D43;
+  border: none;
+  opacity: 1;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 3px;
+}
+
+.reset_form_align .reset_input_field:focus {
+  outline: none;
+}
+
+.reset_form_align .reset_input_field::-webkit-input-placeholder {
+  /* Edge */
+  color: #B0BFC8;
+  font-weight: 400;
+}
+
+.reset_form_align .reset_input_field:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #B0BFC8;
+  font-weight: 400;
+}
+
+.reset_form_align .reset_input_field::-ms-input-placeholder {
+  color: #B0BFC8;
+  font-weight: 400;
+}
+
+.reset_form_align .reset_input_field::placeholder {
+  color: #B0BFC8;
+  font-weight: 400;
+}
+
+.reset_form_align .reset_form_error_msg {
+  color: red;
+  text-align: left;
+  font-size: 13px;
+}
+
+.reset_form_align .reset_form_label {
+  font-size: 14px;
+  color: #162d43;
+  margin-bottom: 4px;
+}
+
+.reset_form_align .reset_text {
+  text-align: center;
+  font-size: 14px;
+  color: #121212;
+}
+
+.reset_form_align .signup_continue_btn {
+  width: 100%;
+  height: 50px;
+  color: white;
+  background: #208ce1;
+  border-radius: 5px;
+  border: 1px solid #208ce1;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 20px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.reset_form_align .signup_continue_btn:hover {
+  background: transparent;
+  color: #162d43;
+}
+
+.reset_form_align .signin_password_para {
+  font-size: 12px;
+  color: #000;
+  opacity: 0.4;
+}
+
+@media screen and (max-width: 575px) {
+  .reset_form_align {
+    padding: 0;
+  }
+  .reset_form_align .reset_header_align {
+    font-size: 24px;
+    text-align: left;
+  }
+}
+/*# sourceMappingURL=Confirm.module.css.map */

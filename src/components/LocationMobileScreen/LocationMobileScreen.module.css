@@ -1,0 +1,127 @@
+.filter_mobile_location_content {
+  font-size: 13px;
+  font-weight: normal;
+  letter-spacing: 0px;
+  color: #011D29;
+  text-transform: capitalize;
+  overflow-y: auto;
+  opacity: 1;
+  background: #FFFFFF 0% 0% no-repeat;
+  padding: 20px 15px;
+  overflow-y: auto;
+  height: 600px;
+  margin-right: 15px;
+}
+
+.filter_mobile_location_content::-webkit-scrollbar-track {
+  -webkit-box-shadow: none;
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.filter_mobile_location_content::-webkit-scrollbar {
+  width: 4px;
+  background-color: transparent;
+}
+
+.filter_mobile_location_content::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: none;
+  background-color: #208CE1;
+}
+
+.filter_mobile_location_content .checkboxList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 15px;
+}
+
+.filter_mobile_location_content .checkboxList:last-child {
+  margin-bottom: 0;
+}
+
+.filter_mobile_location_content .checkboxList input[type="checkbox"] {
+  margin-right: 8px;
+  width: 18px;
+  height: 18px;
+  background: transparent;
+  border: 1px solid #DFDFDF;
+  border-radius: 2px;
+}
+
+.filter_mobile_location_content .checkboxList input {
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.filter_mobile_location_content .checkboxList input:checked + label {
+  font-weight: 600;
+}
+
+.filter_mobile_location_content .checkboxList input:checked + label:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 4px;
+  left: 7px;
+  width: 5px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.filter_mobile_location_content .checkboxList input:checked + label:before {
+  background-color: #208CE1;
+  border: 1px solid #208CE1;
+}
+
+.filter_mobile_location_content .checkboxList label {
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0px;
+  color: #162D43;
+  position: relative;
+  cursor: pointer;
+}
+
+.filter_mobile_location_content .checkboxList label:before {
+  content: '';
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 1px solid #DFDFDF;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  position: relative;
+  top: -1px;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 2px;
+}
+
+.filter_mobile_location_content label {
+  cursor: pointer;
+  width: calc(100% - 26px);
+  font-size: 14px;
+}
+
+.filter_mobile_location_content input[type="checkbox"] {
+  margin-right: 8px;
+  width: 18px;
+  height: 17px;
+  background: transparent 0% 0% no-repeat padding-box;
+  border: 1px solid #DFDFDF;
+  border-radius: 2px;
+}
+/*# sourceMappingURL=LocationMobileScreen.module.css.map */

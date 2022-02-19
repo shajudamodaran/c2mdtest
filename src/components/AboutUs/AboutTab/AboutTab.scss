@@ -1,0 +1,39 @@
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: #208ce1;
+  background-color: #fff;
+  border-color: none;
+  font: normal normal medium 16px/66px IBM Plex Sans;
+  border: 0;
+
+}
+
+.nav-tabs {
+  border-bottom: none;
+  justify-content: center;
+  font: normal normal medium 16px/66px IBM Plex Sans; 
+  word-spacing: 10px;
+}
+
+.nav-tabs .nav-link:hover {
+  color: gray;
+}
+
+.nav-link {
+  color: rgb(153, 138, 138);
+}
+
+.nav-item {
+  word-spacing: 10;
+  letter-spacing: 2px;
+}
+
+hr{
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 5px solid #208ce1;
+  width: 2rem;
+  opacity: 1;
+  margin-left: 1rem;
+}

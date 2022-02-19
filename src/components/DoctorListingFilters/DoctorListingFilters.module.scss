@@ -1,0 +1,495 @@
+.doctor_listing_details_div {
+  opacity: 1;
+  background: white !important;
+  min-height: 72px;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 14px;
+  font-style: normal;
+  margin-bottom: 9px;
+  position: relative;
+  display: flex;
+  margin-right: 8px;
+  .ActiveIndex {
+    color: #d1d1d1;
+  }
+  .doctor_listing_byname {
+    width: 116px;
+    height: 42px;
+    background: #ecf4f8;
+    border-radius: 4px;
+    opacity: 1;
+    color: #011d29;
+    letter-spacing: 0.14px;
+    font-weight: 600;
+    // padding: 10px;
+    margin-right: 10px;
+    display: flex;
+    border: 1px solid #ecf4f8;
+    cursor: pointer;
+    padding: 0px;
+    &:hover {
+      background: transparent;
+    }
+    img {
+      width: 12px;
+    }
+    .filterNamelabel {
+      color: #011d29;
+      width: 85px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 500;
+      font-size: 14px;
+      text-transform: capitalize;
+    }
+    .filterNamelabelBox {
+      padding: 10px;
+      width: 116px;
+      position: relative;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding-right: 25px;
+      img {
+        width: 12px;
+        position: absolute;
+        right: 10px;
+        top: 17px;
+      }
+    }
+
+    .doctor_listing_lang_img {
+      width: 12px;
+    }
+  }
+  .doctor_listing_byname:hover {
+    border: 1px solid #208ce1;
+  }
+  .doctor_listing_gender {
+    width: 106px;
+  }
+  .doctor_listing_hospital {
+    width: 113px;
+  }
+  .doctor_listing_location {
+    width: 117px;
+  }
+  .doctor_listing_language {
+    width: 120px;
+  }
+  .resetText {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    span {
+      color: #a7a7a7;
+      cursor: pointer;
+      transition: all 0.5s ease;
+      font-size: 14px;
+      &:hover {
+        color: #bbbbbb;
+      }
+    }
+    img {
+      width: 18px;
+      padding-right: 5px;
+    }
+  }
+
+  .doctor_listing_byname_content {
+    padding: 12px;
+    top: 65px;
+    position: absolute;
+    right: 0;
+    margin: auto;
+    max-width: 930px;
+    width: 100%;
+    min-height: 64px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 15px #00000033;
+    border-radius: 4px;
+    opacity: 1;
+    left: 0;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    .doctor_listing_search_by_name {
+      padding-left: 11px;
+      border: 1px solid #e3e3e3;
+      width: 255px;
+      height: 40px;
+      text-align: left;
+      font-size: 14px;
+      font-weight: normal;
+      // font-family: "DM Sans";
+      letter-spacing: 0.14px;
+      color: #c6c3c3;
+      opacity: 1;
+      border-radius: 4px;
+      &:focus {
+        outline: none;
+      }
+    }
+    ul {
+      list-style-type: none;
+      display: flex;
+      padding-left: 10px;
+      width: 650px;
+      margin: 0;
+      li {
+        padding: 0 7px;
+        font-weight: 500;
+        font-size: 14px;
+        color: #011d29;
+      }
+    }
+    img {
+      width: 20px;
+    }
+  }
+  .doctor_listing_gender_content {
+    width: 106px;
+    background: white;
+    position: absolute;
+    color: #011d29;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0px;
+    opacity: 1;
+    border-radius: 4px;
+    box-shadow: 0px 3px 15px #00000033;
+    top: 65px;
+    // margin-left: -9px;
+    z-index: 10;
+    .doctor_listing_gender_content_male {
+      padding: 15px;
+      border-bottom: 1px solid #e5e4e4;
+      display: flex;
+      align-items: center;
+      input {
+        margin-right: 8px;
+      }
+    }
+    .doctor_listing_gender_content_female {
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      input {
+        margin-right: 8px;
+      }
+    }
+    [type="radio"]:checked,
+    [type="radio"]:not(:checked) {
+      position: absolute;
+      left: -9999px;
+    }
+    [type="radio"]:checked + label,
+    [type="radio"]:not(:checked) + label {
+      position: relative;
+      padding-left: 25px;
+      cursor: pointer;
+      line-height: 20px;
+      display: inline-block;
+      // margin-right: 15px;
+    }
+    [type="radio"]:checked + label:before,
+    [type="radio"]:not(:checked) + label:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 17px;
+      height: 17px;
+      border: 2px solid #d9dfef;
+      border-radius: 100%;
+      background: #fff;
+    }
+    [type="radio"]:checked + label:before {
+      border: 2px solid #208ce1;
+    }
+    [type="radio"]:checked + label:after,
+    [type="radio"]:not(:checked) + label:after {
+      content: "";
+      width: 9px;
+      height: 9px;
+      background: #208ce1;
+      position: absolute;
+      top: 5px;
+      left: 4px;
+      border-radius: 100%;
+      -webkit-transition: all 0.2s ease;
+      transition: all 0.2s ease;
+    }
+    [type="radio"]:not(:checked) + label:after {
+      opacity: 0;
+      -webkit-transform: scale(0);
+      transform: scale(0);
+    }
+    [type="radio"]:checked + label:after {
+      opacity: 1;
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+  }
+
+  .doctor_listing_hospital_content {
+    padding: 20px 15px;
+    position: absolute;
+    max-width: 277px;
+    width: 100%;
+    max-height: 177px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 15px #00000033;
+    border-radius: 4px;
+    opacity: 1;
+    top: 65px;
+    // margin-left: -10px;
+
+    font-size: 13px;
+    font-weight: normal;
+    letter-spacing: 0px;
+    color: #011d29;
+    text-transform: capitalize;
+    overflow-y: auto;
+    .checkboxList {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    label {
+      cursor: pointer;
+      // padding-bottom: 15px;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 8px;
+      width: 18px;
+      height: 17px;
+      background: transparent 0% 0% no-repeat padding-box;
+      border: 1px solid #dfdfdf;
+      border-radius: 2px;
+    }
+  }
+  .doctor_listing_location_content {
+    padding: 20px 15px;
+    position: absolute;
+    width: 179px;
+    max-height: 114px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 15px #00000033;
+    border-radius: 4px;
+    opacity: 1;
+    top: 65px;
+    // margin-left: -10px;
+    font-size: 13px;
+    font-weight: normal;
+    letter-spacing: 0px;
+    color: #011d29;
+    text-transform: capitalize;
+    overflow-y: auto;
+    z-index: 2;
+    .checkboxList {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    label {
+      cursor: pointer;
+      // padding-bottom: 15px;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 8px;
+      width: 18px;
+      height: 17px;
+      background: transparent 0% 0% no-repeat padding-box;
+      border: 1px solid #dfdfdf;
+      border-radius: 2px;
+    }
+  }
+
+  .doctor_listing_language_content {
+    padding: 20px 15px;
+    position: absolute;
+    width: 178px;
+    max-height: 114px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 15px #00000033;
+    border-radius: 4px;
+    opacity: 1;
+    top: 65px;
+    // margin-left: -10px;
+
+    font-size: 13px;
+    font-weight: normal;
+    letter-spacing: 0px;
+    color: #011d29;
+    text-transform: capitalize;
+    overflow-y: auto;
+    z-index: 2;
+    .checkboxList {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    label {
+      cursor: pointer;
+      // padding-bottom: 15px;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 8px;
+      width: 18px;
+      height: 17px;
+      background: transparent 0% 0% no-repeat padding-box;
+      border: 1px solid #dfdfdf;
+      border-radius: 2px;
+    }
+  }
+}
+
+.doctor_listing_hospital_content::-webkit-scrollbar {
+  width: 4px;
+  height: 8px;
+  color: white;
+  border-radius: 4px;
+}
+
+.doctor_listing_hospital_content::-webkit-scrollbar-thumb {
+  background-color: #208ce1;
+}
+
+.doctor_listing_location_content::-webkit-scrollbar {
+  width: 4px;
+  height: 8px;
+  color: white;
+  border-radius: 4px;
+}
+
+.doctor_listing_location_content::-webkit-scrollbar-thumb {
+  background-color: #208ce1;
+}
+
+.doctor_listing_language_content::-webkit-scrollbar {
+  width: 4px;
+  height: 8px;
+  color: white;
+  border-radius: 4px;
+}
+
+.doctor_listing_language_content::-webkit-scrollbar-thumb {
+  background-color: #208ce1;
+}
+
+@media screen and (max-width: 1399px) {
+  .doctor_listing_details_div {
+    .doctor_listing_byname_content {
+      max-width: 785px;
+      ul {
+        li {
+          padding: 0 4.5px;
+        }
+      }
+    }
+    .resetText {
+      span {
+        font-size: 12px;
+      }
+    }
+    .doctor_listing_language {
+      width: 110px;
+    }
+  }
+}
+@media screen and (max-width: 1199px) {
+  .doctor_listing_details_div {
+    flex-wrap: wrap;
+    // display: none;
+    .doctor_listing_byname,
+    .doctor_listing_byname {
+      width: 32%;
+      margin-bottom: 5px;
+      margin-right: 5px;
+    }
+    .resetText {
+      width: 33%;
+      justify-content: flex-start;
+    }
+    .doctor_listing_byname {
+      .filterNamelabelBox {
+        width: 100%;
+      }
+      span {
+        width: 100%;
+      }
+    }
+    .doctor_listing_byname_content {
+      .doctor_listing_search_by_name {
+        width: 135px;
+      }
+      ul {
+        padding-left: 5px;
+        li {
+          padding: 0 3px;
+          font-size: 12px;
+        }
+      }
+    }
+    .doctor_listing_hospital_content {
+      max-width: 200px;
+    }
+    .doctor_listing_language_content,
+    .doctor_listing_location_content {
+      top: 107px;
+    }
+  }
+}
+@media screen and (max-width: 991px) {
+  .doctor_listing_details_div {
+    flex-wrap: wrap;
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .doctor_listing_details_div {
+    .doctor_listing_byname_content {
+      flex-direction: column;
+      img {
+        display: none;
+      }
+      ul {
+        padding-left: 0 !important;
+        margin-top: 5px !important;
+        flex-wrap: wrap !important;
+        width: 100% !important;
+      }
+    }
+    .doctor_listing_search_by_name {
+      width: 100% !important;
+    }
+  }
+}
+@media screen and (max-width: 575px) {
+  .doctor_listing_details_div {
+    .doctor_listing_byname,
+    .doctor_listing_byname {
+      width: 48%;
+    }
+    .resetText {
+      width: 48%;
+    }
+  }
+}

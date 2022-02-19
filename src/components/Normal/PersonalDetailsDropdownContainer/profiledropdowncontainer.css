@@ -1,0 +1,44 @@
+.profile-drop-container{
+    position: relative;
+    width: 100%;
+    margin-top: 1.5rem;
+    border: 1px solid rgb(194, 194, 194);
+    border-radius: 3px;
+    padding: .4rem .5rem;
+   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+.drop-switch{
+    background-color: rgb(255, 255, 255);
+    width: fit-content;
+    padding:.4rem .5rem ;
+    border: 1px solid rgb(194, 194, 194);
+    border-radius: 3px;
+    margin-top: -25px;
+    margin-left: -9px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+.drop-body-active{
+   
+    padding: 10px 15px;
+    margin-top: 10px;
+    transition-duration: .5s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+}
+
+.drop-body-hidden{
+    position: relative;
+    height: 0;
+    overflow: hidden ;
+    padding: 0;
+   
+}

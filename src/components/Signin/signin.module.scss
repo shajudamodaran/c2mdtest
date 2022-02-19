@@ -1,0 +1,423 @@
+body {
+  background-image: url("../../assets/signin/bg.svg");
+}
+.signin_form_align {
+  max-width: 520px;
+  width: 100%;
+  padding: 9% 70px 7%;
+  font-family: "IBM Plex Sans";
+  border-radius: 3px;
+  .signin_header_align {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .siginin_mobile {
+    :global .react-tel-input .form-control {
+      position: relative;
+      font-size: 14px;
+      letter-spacing: 0.01rem;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      padding-left: 48px;
+      margin-left: 0;
+      background: #f2f7fa !important;
+      border: none;
+      border-radius: 3px;
+      line-height: 25px;
+      height: 50px;
+      width: 100%;
+      outline: none;
+    }
+    :global .react-tel-input .flag-dropdown {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      padding: 0;
+      background-color: #f2f7fa !important;
+      border: none !important;
+      border-radius: 3px;
+    }
+    :global .form-control:focus {
+      box-shadow: none;
+    }
+    :global .react-tel-input {
+      .selected-flag:focus,
+      .selected-flag:hover {
+        background-color: #f2f7fa !important;
+      }
+    }
+  }
+  .signin_input_field {
+    padding: 0 15px;
+    width: 100%;
+    height: 50px;
+    background: #f2f7fa;
+    color: #162d43;
+    border: none;
+    opacity: 1;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 3px;
+    display: flex;
+    .signinPasswordInput {
+      flex: 1;
+      background: #f2f7fa;
+      border: none;
+      &::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        color: #b0bfc8;
+        font-weight: 400;
+      }
+      &::-moz-placeholder {
+        /* Firefox 19+ */
+        color: #b0bfc8;
+        font-weight: 400;
+      }
+      &:-ms-input-placeholder {
+        /* IE 10+ */
+        color: #b0bfc8;
+        font-weight: 400;
+      }
+      &:-moz-placeholder {
+        /* Firefox 18- */
+        color: #b0bfc8;
+        font-weight: 400;
+      }
+    }
+    .signinPasswordImg {
+      max-width: 20px;
+    }
+    &:focus {
+      outline: none;
+    }
+    &::-webkit-input-placeholder {
+      /* Edge */
+      color: #b0bfc8;
+      font-weight: 400;
+    }
+
+    &:-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: #b0bfc8;
+      font-weight: 400;
+    }
+
+    &::placeholder {
+      color: #b0bfc8;
+      font-weight: 400;
+    }
+    .signin_mobile_input {
+      background: #f2f7fa;
+      border: none;
+      border-left: outset;
+      padding: 0 16px;
+      width: 100%;
+      // height: 50px;
+      background: #f2f7fa;
+      color: #162d43;
+      border: none;
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .signin_country_code {
+      background: #f2f7fa;
+      color: #162d43;
+      border: none;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.38px;
+      background-size: 12px;
+    }
+  }
+  .pswrd_input {
+    .signin_input_field {
+      display: flex;
+      position: relative;
+      padding: 0;
+      input {
+        padding: 0 45px 0 16px;
+      }
+      .signinPasswordImg {
+        position: absolute;
+        right: 16px;
+        top: 17px;
+        cursor: pointer;
+      }
+    }
+  }
+  .mob_flag_wrp {
+    margin-bottom: 15px;
+    .signin_input_field {
+      padding: 0;
+    }
+  }
+  .signin_google_button {
+    width: 100%;
+    box-shadow: none !important;
+    border: 1px solid #dae8f5 !important;
+    border-radius: 3px !important;
+    height: 50px;
+    padding-left: 25px !important;
+    &:hover{border: 1px solid #208ce1 !important;
+      background: #f1f7fd !important;
+      color: #208ce1 !important;
+      div{
+      background: #f1f7fd !important;
+        
+      }
+    }
+    span {
+      display: flex;
+      justify-content: center;
+      width: 80%;
+      color: #99aec2;
+      font-size: 15px;
+      font-weight: 500;
+      margin-left: -20px;
+      font-family: "IBM Plex Sans";
+    }
+  }
+
+  .signin_continue_btn {
+    width: 100%;
+    height: 50px;
+    color: #162d43;
+    background: white;
+    opacity: 1;
+    border-radius: 3px;
+    opacity: 1;
+    font-size: 16px;
+    font-weight: 500;
+    border: 1px solid #dae8f5;
+    margin-right: 8px;
+    transition: all 0.5s ease;
+    &:hover {
+      background: #208ce1;
+      color: #fff;
+    }
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .signin_continue_btn1 {
+    width: 100%;
+    height: 50px;
+    color: white;
+    border: 1px solid #bac9d4;
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 8px;
+    background: #bac9d4;
+    &:hover {
+      background: transparent;
+      color: #208ce1;
+      border: 1px solid #208ce1;
+    }
+    &:focus {
+      box-shadow: none;
+    }
+  }
+  .signin_continue_btn1_active {
+    background-color: #208ce1;
+    opacity: 1;
+  }
+  .signin_checkbox_text {
+    font-size: 15px;
+    font-weight: normal;
+    color: #6684a1;
+    text-align: center;
+    a {
+      color: #208ce1;
+      text-decoration: underline;
+      transition: all 0.5s;
+      margin-left: 5px;
+      &:hover {
+        color: #162d43;
+      }
+    }
+  }
+
+  .signin_form_label {
+    font-size: 14px;
+    color: #162d43;
+    width: 100%;
+    margin-bottom: 4px;
+    label {
+      font-size: 14px;
+      color: #121212;
+    }
+    input:focus {
+      box-shadow: none;
+    }
+    .signin_radiowrp {
+      display: flex;
+      span {
+        margin-right: 15px;
+        font-size: 14px;
+        color: #121212;
+      }
+      :global .form-check-inline {
+        margin: 0;
+        padding: 0;
+      }
+      [type="radio"]:checked,
+      [type="radio"]:not(:checked) {
+        position: absolute;
+        left: -9999px;
+      }
+      [type="radio"]:checked + label,
+      [type="radio"]:not(:checked) + label {
+        position: relative;
+        padding-left: 22px;
+        cursor: pointer;
+        line-height: 20px;
+        display: inline-block;
+        margin-right: 15px;
+      }
+      [type="radio"]:checked + label:before,
+      [type="radio"]:not(:checked) + label:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 1px;
+        width: 17px;
+        height: 17px;
+        border: 2px solid #d9dfef;
+        border-radius: 100%;
+        background: #fff;
+      }
+      [type="radio"]:checked + label:before {
+        border: 2px solid #208ce1;
+      }
+      [type="radio"]:checked + label:after,
+      [type="radio"]:not(:checked) + label:after {
+        content: "";
+        width: 9px;
+        height: 9px;
+        background: #208ce1;
+        position: absolute;
+        top: 5px;
+        left: 4px;
+        border-radius: 100%;
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+      }
+      [type="radio"]:not(:checked) + label:after {
+        opacity: 0;
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+      [type="radio"]:checked + label:after {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+    }
+    .signin_radioeach {
+      display: flex;
+    }
+  }
+  .signin_text_option {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #b7c6d5;
+  }
+  .signin_text_option::after,
+  .signin_text_option::before {
+    background-color: #e6eff8;
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 45%;
+    margin: 0 5px;
+  }
+  .signin_password_para {
+    font-size: 12px;
+    color: #aeaeae;
+    margin: 5px 0 0;
+  }
+  .signin_password_forgot {
+    color: black;
+    font-size: 14px;
+    text-align: right;
+    margin-bottom: 25px;
+    margin-top: -9px;
+    cursor: pointer;
+    transition: all 0.5s;
+    &:hover {
+      color: #208ce1;
+    }
+  }
+  .signin_error_msg {
+    color: red;
+    text-align: left;
+    font-size: 13px;
+    padding-top: 3px;
+  }
+  .signin_error_msg1 {
+    color: red;
+    text-align: left;
+    font-size: 13px;
+    padding-top: 3px;
+  }
+  .signin_btn_wrp {
+    display: flex;
+  }
+  .errorMsg {
+    color: red;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+}
+:global .is-invalid {
+  border: 1px solid red !important;
+}
+@media screen and (max-width: 575px) {
+  .signin_form_align {
+    padding: 0;
+    .signin_header_align {
+      text-align: center;
+    }
+    // .signin_btn_wrp {
+    //  flex-direction: column;
+    // }
+    .signin_text_option::after,
+    .signin_text_option::before {
+      width: 43%;
+    }
+    .signin_password_forgot {
+      margin-bottom: 15px;
+      margin-top: 5px;
+    }
+    .signin_continue_btn,
+    .signin_continue_btn1 {
+      font-size: 15px;
+    }
+    .signin_continue_btn {
+      margin-right: 5px;
+    }
+    .signin_continue_btn1 {
+      margin-left: 5px;
+    }
+    .signin_google_button {
+      max-width: 100%;
+      margin: auto;
+      justify-content: center;
+      display: flex !important;
+    }
+  }
+}
+@media screen and (max-width: 380px) {
+  .pswrd_input {
+    .signin_input_field {
+      .signinPasswordImg {
+        right: 10px !important;
+      }
+    }
+  }
+}

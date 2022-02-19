@@ -1,0 +1,110 @@
+.termsofUse {
+  font-family: "IBM Plex Sans";
+  padding-bottom: 80px;
+}
+
+.termsofUse a {
+  text-decoration: none;
+  padding-left: 5px;
+}
+
+.termsofUse p {
+  font-size: 18px;
+  color: #162D43;
+  text-align: justify;
+}
+
+.termsofUse .headings {
+  letter-spacing: 0px;
+  color: #162d43;
+  opacity: 1;
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.termsofUse .content {
+  text-align: left;
+  letter-spacing: 0px;
+  color: #162d43;
+  opacity: 1;
+  text-align: justify;
+}
+
+.termsofUse .ReportSubText {
+  padding-left: 10px;
+}
+
+.termsofUse .subContent_main {
+  margin-top: 20px;
+}
+
+.termsofUse .subContent_main .subContent {
+  padding-bottom: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  text-align: justify;
+}
+
+.termsofUse .subContent_main .subContent span {
+  margin-left: 10px;
+  font-size: 18px;
+  color: #162D43;
+}
+
+.termsofUse .btn_wrapper {
+  margin-top: 41px;
+  margin-bottom: 41px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.termsofUse .btn_wrapper .btn_1 {
+  margin-right: 10px;
+  background-color: #ebf1f8;
+  border-color: #ebf1f8 !important;
+  color: #7b8a98;
+  border-radius: 5px;
+  opacity: 1;
+  font-size: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-family: "IBM Plex Sans";
+}
+
+.termsofUse .btn_wrapper .active_btn1 {
+  background-color: #1485d8;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+}
+
+@media screen and (max-width: 767px) {
+  .termsofUse {
+    padding-bottom: 30px;
+  }
+  .termsofUse .btn_wrapper {
+    margin: 25px 0;
+  }
+  .termsofUse .btn_wrapper .btn_1 {
+    font-size: 13px;
+  }
+  .termsofUse .headings {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .termsofUse p {
+    font-size: 14px;
+  }
+  .termsofUse .subContent_main .subContent span {
+    font-size: 14px;
+  }
+}
+/*# sourceMappingURL=TermsofUse.module.css.map */

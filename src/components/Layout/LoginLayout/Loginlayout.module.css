@@ -1,0 +1,11 @@
+.LoginLayout_body {
+  padding-top: 80px;
+}
+
+@media screen and (max-width: 991px) {
+  .LoginLayout_body {
+    padding-top: 68px;
+    min-height: calc(100vh - 350px);
+  }
+}
+/*# sourceMappingURL=Loginlayout.module.css.map */

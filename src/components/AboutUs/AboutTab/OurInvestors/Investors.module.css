@@ -1,0 +1,77 @@
+.who_main {
+  background-color: #FAFAFC;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 30vh;
+}
+
+.who_main hr {
+  margin-top: -0.9rem;
+  overflow: visible;
+  border: none;
+  color: #888888;
+  background-color: #888888;
+  height: 2px;
+  width: 30%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  margin-left: 35%;
+}
+
+.who_main .meet_title {
+  text-align: center;
+  font: normal normal 400 39px/40px IBM Plex Sans;
+  color: #162d43;
+  margin-top: 2rem;
+}
+
+.who_main .meet_title span {
+  color: #208ce1;
+}
+
+.who_main .meet_content {
+  font-size: 14px;
+  text-align: center;
+  color: #162d43;
+  opacity: 1;
+  width: 680px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-left: 20rem;
+  margin-right: 20rem;
+  margin-top: 1rem;
+  line-height: 1.8;
+}
+
+.who_main .meet_row {
+  margin-top: 2rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.who_main .meet_card {
+  width: 160px;
+  height: 70px;
+  border: 0;
+}
+
+.who_main .meet_card_title {
+  font: normal normal medium 24px/30px IBM Plex Sans;
+  color: #162d43;
+  opacity: 1;
+  text-align: center;
+}
+
+.who_main .meet_card_text {
+  text-align: center;
+  font: normal normal normal 15px/30px IBM Plex Sans;
+  color: #162d43;
+  opacity: 0.6;
+}
+/*# sourceMappingURL=Investors.module.css.map */

@@ -1,0 +1,117 @@
+.doctor_listing_modal_align {
+  max-width: 610px;
+  width: 100%;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  -webkit-box-shadow: -3px 3px 6px #0000001A;
+          box-shadow: -3px 3px 6px #0000001A;
+  opacity: 1;
+  border: none;
+  left: inherit;
+  right: -100%;
+  top: 100px;
+  -webkit-transition: all 0.9s;
+  transition: all 0.9s;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.doctor_listing_modal_align .doctor_listing_heading {
+  text-align: left;
+  font-weight: bold;
+  font-size: 24px;
+  letter-spacing: 0.24px;
+  color: #000000;
+  opacity: 1;
+  border: none;
+}
+
+.doctor_listing_modal_align :global .modal-content {
+  border: 0 !important;
+  padding: 0 20px;
+}
+
+.doctor_listing_modal_align :global .modal-dialog {
+  max-width: inherit;
+}
+
+.doctor_listing_modal_align :global .modal-title {
+  font-weight: 800;
+}
+
+.doctor_listing_modal_align :global .btn-close {
+  opacity: 1;
+  background-size: 12px;
+  position: absolute;
+  top: 0;
+  right: 20px;
+}
+
+.doctor_listing_modal_align :global select {
+  max-width: 100% !important;
+}
+
+.doctor_listing_modal_align :global .row {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+}
+
+.doctor_listing_modal_align :global .row .col-sm-12 {
+  width: 100% !important;
+}
+
+:global .modal-open .book_modal {
+  right: 0;
+}
+
+:global .modal-open {
+  padding: 0 !important;
+}
+
+@media screen and (max-width: 991px) {
+  .doctor_listing_modal_align {
+    top: 0;
+    z-index: 10000;
+    width: 100%;
+    max-width: inherit;
+  }
+  .doctor_listing_modal_align :global .btn-close {
+    right: 3px;
+    top: 9px;
+    margin: 0;
+  }
+  .doctor_listing_modal_align :global .modal-content {
+    padding: 0;
+  }
+  .doctor_listing_modal_align :global .modal-body {
+    padding: 60px 0 0;
+  }
+  .doctor_listing_modal_align :global .modal-dialog {
+    margin: 0;
+  }
+  .doctor_listing_modal_align .doctor_listing_heading {
+    -webkit-box-shadow: 0px 3px 6px #0000000d;
+            box-shadow: 0px 3px 6px #0000000d;
+    position: fixed;
+    width: 100%;
+    background: #fff;
+    z-index: 10000;
+  }
+  .doctor_listing_modal_align :global .modal-title {
+    font-weight: 600;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .doctor_listing_modal_align {
+    width: 100%;
+  }
+  .doctor_listing_modal_align :global .btn-close {
+    right: 5px;
+    margin: 0;
+  }
+}
+/*# sourceMappingURL=BookAppointment.module.css.map */

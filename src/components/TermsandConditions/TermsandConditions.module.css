@@ -1,0 +1,67 @@
+.TermsandConditions_Main .TermsandConditions_Top {
+  padding-top: 59px;
+  padding-bottom: 59px;
+  background-image: url("../../assets/terms_bg.svg");
+  color: #ffffff;
+}
+
+.TermsandConditions_Main .TermsandConditions_Top .Top_Head {
+  font-size: 50px;
+  color: #ffffff;
+  opacity: 1;
+  font-weight: 600;
+  margin-bottom: 0px;
+}
+
+.TermsandConditions_Main .TermsandConditions_Tabs_main {
+  border-bottom: 2px solid #e7edf2;
+  background: #FCFDFE;
+}
+
+.TermsandConditions_Main .TermsandConditions_Tabs_main .TermsandConditions_Tabs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  opacity: 1;
+  padding-top: 21px;
+  padding-bottom: 21px;
+}
+
+.TermsandConditions_Main .TermsandConditions_Tabs_main .TermsandConditions_Tabs .Tab {
+  color: #8da2b5;
+  opacity: 1;
+  cursor: pointer;
+  margin: 0 45px 0 0;
+  font-size: 18px;
+  font-weight: 500;
+  position: relative;
+}
+
+.TermsandConditions_Main .TermsandConditions_Tabs_main .TermsandConditions_Tabs .activeClass {
+  color: #208ce1;
+  cursor: pointer;
+}
+
+.TermsandConditions_Main .TermsandConditions_Tabs_main .TermsandConditions_Tabs .activeClass:after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background: #000;
+  bottom: -22px;
+  left: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .TermsandConditions_Main .TermsandConditions_Top {
+    height: 220px;
+    padding: 40px 0;
+  }
+  .TermsandConditions_Main .TermsandConditions_Top .Top_Head {
+    font-size: 30px;
+  }
+  .TermsandConditions_Main .Tab {
+    margin: 0 25px 0 0 !important;
+  }
+}
+/*# sourceMappingURL=TermsandConditions.module.css.map */

@@ -1,0 +1,296 @@
+.upload_reports_main_heading {
+  margin-top: 35.82px;
+  margin-bottom: 35px;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 0px;
+  color: #162d43;
+  opacity: 1;
+}
+.ShowErrormsg {
+  text-align: center;
+  color: red;
+}
+.upload_reports_Delete_icon {
+  cursor: pointer;
+}
+.imageFormat {
+  // padding-left: 10px;
+  font-size: 13px;
+  color: #6f7d8a;
+}
+.noFiles{
+  :global .accordion-header{
+     .accordion-button{
+      cursor: auto;
+      &::after{
+          display: none;
+      }
+    }
+    }
+}
+.upload_reports_accordion_align {
+  margin-top: 21px;
+  :global .accordion-item {
+    border: 0;
+    background: #f5f5f5;
+    border-radius: 7px;
+    margin-bottom: 15px;
+    .accordion-button {
+      background: #eff8ff;
+      box-shadow: none;
+      border-top-left-radius: 7px;
+      border-top-right-radius: 7px;
+      &.collapsed {
+        padding: 0 20px;
+        background: transparent;
+        min-height: 60px;
+      }
+    }
+    .accordion-body {
+      padding: 0;
+      background: #eff8ff;
+      max-height: 140px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      &::-webkit-scrollbar-track {
+        -webkit-box-shadow: none;
+        border-radius: 10px;
+        background-color: transparent;
+      }
+
+      &::-webkit-scrollbar {
+        width: 3px;
+        background-color: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: none;
+        background-color: #90b7d5;
+      }
+    }
+  }
+
+  .upload_reports_location_heading {
+    // margin-top: 21.17px;
+    // padding: 19px 23px 16px 22px;
+    // width: 100%;
+    // height: 65px;
+    // background: #EFF8FF;
+    // border-radius: 4px;
+    // opacity: 1;
+    // top: 65px;
+    // font-size: 13px;
+    // font-weight: normal;
+    // letter-spacing: 0px;
+    // color: #011D29;
+    // text-transform: capitalize;
+    .upload_reports_upload_icon {
+      margin-right: 20px;
+    }
+    .upload_reports_dropdown_heading {
+      font-size: 18px;
+      letter-spacing: 0px;
+      color: #6f7d8a;
+      opacity: 1;
+      .reportsText {
+        padding-left: 5px;
+      }
+    }
+  }
+
+  .upload_reports_location_content_selected {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 14px 23px 16px 22px;
+    width: 100%;
+    opacity: 1;
+    top: 65px;
+    font-size: 13px;
+    font-weight: normal;
+    letter-spacing: 0px;
+    color: #011d29;
+    text-transform: capitalize;
+    cursor: pointer;
+    &.active{
+      background: #d8eeff;
+
+    }
+    .upload_reports_count {
+      margin-right: 15px;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0px;
+      color: #162d43;
+      opacity: 0.25;
+    }
+
+    .upload_reports_dropdown_content {
+      margin-left: 10px;
+      font-weight: normal;
+      font-size: 16px;
+      letter-spacing: 0px;
+      color: #162d43;
+      opacity: 1;
+      width: 75%;
+      span {
+        display: block;
+      }
+      .upload_reports_description {
+        font-weight: normal;
+        font-size: 12px;
+        letter-spacing: 0px;
+        color: #162d43;
+        opacity: 0.66;
+      }
+    }
+
+    figure {
+      display: flex;
+      justify-content: flex-end;
+      width: 7%;
+      margin: 0;
+    }
+  }
+  .upload_reports_location_content_unselected {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 14px 23px 16px 22px;
+    width: 100%;
+    opacity: 1;
+    top: 65px;
+    font-size: 13px;
+    font-weight: normal;
+    letter-spacing: 0px;
+    color: #011d29;
+    text-transform: capitalize;
+    .upload_reports_count {
+      margin-right: 15px;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0px;
+      color: #162d43;
+      opacity: 0.25;
+    }
+
+    .upload_reports_dropdown_content {
+      margin-left: 10px;
+      font-weight: normal;
+      font-size: 16px;
+      letter-spacing: 0px;
+      color: #162d43;
+      opacity: 1;
+      width: 75%;
+      span {
+        display: block;
+      }
+      .upload_reports_description {
+        font-weight: normal;
+        font-size: 12px;
+        letter-spacing: 0px;
+        color: #162d43;
+        opacity: 0.66;
+      }
+    }
+    figure {
+      display: flex;
+      justify-content: flex-end;
+      width: 7%;
+      margin: 0;
+    }
+  }
+
+}
+
+.upload_reports_continue_button {
+  width: 100%;
+  height: 60px;
+  background: #208ce1;
+  border-radius: 7px;
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 0px;
+  color: #ffffff;
+  border: 1px solid #208ce1;
+  margin-top: 29.41px;
+  &:hover {
+    background: transparent;
+    color: #208ce1;
+  }
+}
+.upload_reports_open_files {
+  padding-left: 18px;
+  width: 100%;
+  height: 60px;
+  background: #f5f5f5;
+  border-radius: 7px;
+  opacity: 1;
+  font-weight: normal;
+  font-size: 18px;
+  letter-spacing: 0px;
+  margin-top: 20.55px;
+  color: #6f7d8a;
+  display: flex;
+  align-items: center;
+  border: 2px solid #f5f5f5;
+  img {
+    padding-right: 20px;
+  }
+}
+.upload_reports_open_files:hover {
+  background: #eff8ff;
+  border: 2px solid #208ce1;
+  color: #208ce1;
+}
+.upload_button {
+  border: 1px dashed #ccc;
+  width: 100%;
+  height: 130px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 10px 15px 0;
+  padding: 0 20px;
+  input {
+    display: none;
+  }
+  label {
+    background: #f5f5f5;
+    border-radius: 7px;
+    display: flex;
+    height: 60px;
+    align-items: center;
+    // padding: 0 20px;
+    font-size: 18px;
+    color: #6f7d8a;
+    cursor: pointer;
+    // margin-top: 25px;
+    img {
+      margin-right: 20px;
+    }
+  }
+}
+@media screen and (max-width: 575px) {
+  .upload_reports_accordion_align {
+    .upload_reports_location_content_selected,
+    .upload_reports_location_content_unselected {
+      padding: 1rem 15px;
+    }
+    .upload_reports_location_heading {
+      .upload_reports_upload_icon {
+        margin-right: 10px;
+      }
+      .upload_reports_dropdown_heading {
+        font-size: 16px;
+      }
+    }
+  }
+  .upload_reports_continue_button {
+    height: 55px;
+    font-size: 17px;
+  }
+}

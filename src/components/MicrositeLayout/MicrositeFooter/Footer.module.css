@@ -1,0 +1,64 @@
+.Footer {
+  background-color: #000F31;
+  color: white;
+  padding: 25px 0 20px;
+}
+
+.Footer .Top_text {
+  opacity: 0.76;
+  text-align: right;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 0 8px;
+  font-family: "DM Sans";
+}
+
+.Footer :global .col-md-5 {
+  text-align: right;
+}
+
+.Footer :global .row {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Footer .Top_text_1 {
+  opacity: 0.43;
+  text-align: right;
+  color: #ffffff;
+  letter-spacing: 0.14px;
+  font-size: 14px;
+  margin: 0;
+  font-family: "DM Sans";
+}
+
+.Footer .leftText2 {
+  opacity: 0.47;
+  font-size: 15px;
+  color: #ffffff;
+  margin: 0 0 5px;
+}
+
+.Footer img {
+  max-width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .Footer :global .col-md-3 {
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  .Footer .Top_text_1, .Footer .Top_text {
+    text-align: left;
+  }
+  .Footer .Top_text {
+    font-size: 13px;
+    margin: 0 0 3px;
+  }
+  .Footer .Top_text_1 {
+    font-size: 12px;
+  }
+}
+/*# sourceMappingURL=Footer.module.css.map */

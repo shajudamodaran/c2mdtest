@@ -1,0 +1,328 @@
+.ForPatient {
+  .topsection {
+    .section1 {
+      min-height: 594px;
+      background-image: url("../../assets/ForPatients/lightblue.svg");
+      .section1_content {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        .section1_heading {
+          letter-spacing: 0px;
+          color: #162d43;
+          font-weight: bold;
+          font-size: 45px;
+          font-weight: 700;
+          span {
+            color: #208ce1;
+          }
+          text-align: center;
+        }
+        .section1_button_wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .section1_button {
+            border-radius: 6px;
+            opacity: 1;
+            background-color: #208ce1;
+            border-color: #208ce1;
+            color: white;
+            height: 55px;
+            max-width: 198px;
+            width: 100%;
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.5s ease;
+            &:hover {
+              background-color: #fff;
+              color: #208ce1;
+            }
+          }
+        }
+      }
+    }
+    .section2 {
+      .section2_Img {
+        margin-top: -345px;
+        img {
+          margin-left: auto;
+          margin-right: auto;
+          display: block;
+          width: 100%;
+        }
+      }
+    }
+    .content_wrapper {
+      margin-top: 84px;
+      margin-bottom: 84px;
+      .top_middile_wrapper {
+        margin-bottom: 100px;
+        .top_middile_left {
+          h2 {
+            letter-spacing: 0px;
+            color: #162d43;
+            text-transform: capitalize;
+            font-weight: 600;
+            font-size: 40px;
+            font-weight: 600;
+            span {
+              color: #208ce1;
+            }
+          }
+        }
+        .top_middile_right {
+          p {
+            letter-spacing: 0.08px;
+            color: #162d43;
+            opacity: 0.9;
+          }
+        }
+      }
+
+      .Content_main {
+        margin-bottom: 45px;
+        h1 {
+          color: #208ce1;
+          font-weight: 800;
+        }
+        h5 {
+          letter-spacing: 0px;
+          color: #162d43;
+          opacity: 0.9;
+          font-weight: 600;
+          font-size: 20px;
+        }
+        p {
+          letter-spacing: 0.08px;
+          color: #162d43;
+          opacity: 0.9;
+          opacity: 0.9;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  .middile_section {
+    background-image: url("../../assets/ForPatients/blueBg.svg");
+    min-height: 609px;
+    padding-top: 94px;
+    padding-bottom: 94px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    .imgSection {
+      background-image: url("../../assets/ForPatients/patientImg.png");
+      min-height: 421px;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    .ContentsSection {
+      .heading {
+        letter-spacing: 0px;
+        color: #ffffff;
+        opacity: 1;
+        font-weight: 600;
+        font-size: 40px;
+        margin-bottom: 25px;
+      }
+      .text {
+        letter-spacing: 0px;
+        color: #ffffff;
+        opacity: 0.95;
+        font-size: 16px;
+
+      }
+      .ItemList_wrapper {
+        display: flex;
+        padding-top: 18px;
+        ul {
+          list-style-type: none;
+          padding: 0;
+          width: 50%;
+          li {
+            letter-spacing: 0px;
+            color: #ffffff;
+            opacity: 1;
+            font-size: 15px;
+            font-weight: 500;
+            padding-bottom: 8px;
+            margin-right: 10px;
+            display: flex;
+            align-items: flex-start;
+            img {
+              margin-right: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .bottom_section {
+    padding-top: 100px;
+    padding-bottom: 125px;
+    .bottom_wrapper {
+      .heading {
+        letter-spacing: 0px;
+        color: #162d43;
+        font-weight: 600;
+        font-size: 40px;
+        margin-bottom: 20px;
+        span {
+          color: #208ce1;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1450px) {
+  .ForPatient {
+    .bottom_section {
+      padding-top: 60px;
+      padding-bottom: 80px;
+    }
+  }
+}
+@media screen and (max-width: 991px) {
+  .ForPatient {
+    .topsection {
+      .section1 {
+        min-height: 475px;
+        .section1_content {
+          .section1_heading {
+            font-size: 35px;
+          }
+        }
+       
+      }
+      .section2 {
+        .section2_Img {
+          margin-top: -225px;
+        }
+      }
+      .content_wrapper {
+        margin: 30px 0;
+        .top_middile_wrapper {
+          margin-bottom: 15px;
+          .top_middile_left {
+            h2 {
+              margin-bottom: 25px;
+              font-size: 30px;
+            }
+          }
+        }
+        .Content_main {
+          margin-bottom: 20px;
+        }
+      }
+    }
+    .middile_section { 
+      padding:30px 0 50px;
+      :global .row {
+        flex-direction: column-reverse;
+      }
+      .ContentsSection {
+        .heading {
+          font-size: 30px;
+          margin-top: 30px;
+        }
+      }
+    }
+    .bottom_section {
+      padding: 55px 0 80px;
+      .bottom_wrapper {
+        .heading {
+          font-size: 30px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 767px) {
+  .ForPatient {
+    .topsection {
+      .section1 {
+        min-height: 380px;
+      }
+      .section2 {
+        .section2_Img {
+          margin-top: -155px;
+        }
+      }
+    
+    }
+    .middile_section { 
+      padding:30px 0 35px;
+    }
+  }
+}
+@media screen and (max-width: 575px) {
+  .ForPatient {
+    .middile_section {
+      .imgSection {
+        min-height: 245px;
+        background-position: center;
+        background-size: cover;
+        border-radius: 15px;
+      }
+    }
+    .topsection {
+      .section1 {
+        min-height: 300px;
+        .section1_content {
+          .section1_heading {
+            font-size: 25px;
+            br {
+              display: none;
+            }
+          }
+          .section1_button_wrapper {
+            .section1_button {
+              height: 45px;
+              font-size: 15px;
+            }
+          }
+        }
+       
+      }
+      .section2 {
+        .section2_Img {
+          margin-top: -105px;
+        }
+      }
+      .content_wrapper {
+        .top_middile_wrapper {
+          .top_middile_left {
+            h2 {
+              font-size: 25px;
+              margin-bottom: 15px;
+            }
+          }
+        }
+        .Content_main {
+          h5 {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+    .middile_section { 
+      .ContentsSection {
+        .heading {
+          font-size: 25px;
+          margin-top: 0;
+        }
+      }
+    }
+    .bottom_section {
+      padding: 35px 0 50px;
+      .bottom_wrapper {
+        .heading {
+          font-size: 25px;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+

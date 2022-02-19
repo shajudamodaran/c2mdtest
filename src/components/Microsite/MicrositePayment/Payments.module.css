@@ -1,0 +1,18 @@
+.main {
+  background-image: url("../../../assets/microsite/contact-background.svg");
+  padding: 140px 0 120px;
+}
+
+.main img {
+  max-width: 100%;
+}
+
+@media screen and (max-width: 991px) {
+  .main {
+    padding: 45px 0;
+  }
+  .main img {
+    max-width: 90%;
+  }
+}
+/*# sourceMappingURL=Payments.module.css.map */

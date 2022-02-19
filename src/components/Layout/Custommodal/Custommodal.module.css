@@ -1,0 +1,72 @@
+.DeleteConfirmmodal .DeleteText {
+  text-align: center;
+  font-size: 16px;
+  letter-spacing: 0.18px;
+  color: #8c9194;
+  opacity: 1;
+}
+
+.DeleteConfirmmodal .cancelBtn {
+  border: 2px solid #c5cbcf;
+  border-radius: 7px;
+  opacity: 1;
+  background-color: #fff;
+  color: #536471;
+  text-transform: capitalize;
+  opacity: 1;
+  margin-right: 15px;
+  padding-left: 46px;
+  padding-right: 46px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+.DeleteConfirmmodal .DeleteBtn {
+  background-color: #f25845;
+  border-radius: 7px;
+  opacity: 1;
+  color: #ffffff;
+  text-transform: capitalize;
+  opacity: 1;
+  border-color: #f25845;
+  padding-left: 46px;
+  padding-right: 46px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+.DeleteConfirmmodal .HeaderText {
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0px;
+  color: #162d43;
+  opacity: 1;
+  font-size: 28px;
+}
+
+.DeleteConfirmmodal .modalCloseicon {
+  float: right;
+  cursor: pointer;
+}
+
+.DeleteConfirmmodal .headerIcon {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  margin-top: 25px;
+}
+
+.DeleteConfirmmodal .BottomSection {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 20px;
+}
+/*# sourceMappingURL=Custommodal.module.css.map */

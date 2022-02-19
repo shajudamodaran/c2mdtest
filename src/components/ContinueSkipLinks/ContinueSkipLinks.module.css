@@ -1,0 +1,46 @@
+.national_id_continue_button {
+  width: 100%;
+  height: 60px;
+  background: #208CE1;
+  border-radius: 7px;
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  border: 1px solid #208CE1;
+  margin-top: 15px;
+}
+
+.national_id_continue_button:hover {
+  background: transparent;
+  color: #208CE1;
+}
+
+.national_id_continue_button:focus, .national_id_continue_button:focus-visible {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.national_id_skip_link {
+  text-decoration: underline;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0px;
+  color: #162D43;
+  opacity: 0.61;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 28px;
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 575px) {
+  .national_id_continue_button {
+    height: 55px;
+    font-size: 17px;
+  }
+  .national_id_skip_link {
+    margin-top: 10px;
+  }
+}
+/*# sourceMappingURL=ContinueSkipLinks.module.css.map */

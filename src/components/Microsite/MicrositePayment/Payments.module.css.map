@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAC;EACJ,gBAAgB,EAAE,uDAAuD;EACzE,OAAO,EAAE,aAAa;CAIvB;;AAND,AAGE,KAHG,CAGH,GAAG,CAAC;EACF,SAAS,EAAE,IAAI;CAChB;;AAEH,MAAM,CAAC,MAAM,MAAM,SAAS,EAAE,KAAK;EACjC,AAAA,KAAK,CAAC;IACJ,OAAO,EAAE,MAAM;GAIhB;EALD,AAEE,KAFG,CAEH,GAAG,CAAC;IACF,SAAS,EAAE,GAAG;GACf",
+    "sources": [
+        "Payments.module.scss"
+    ],
+    "names": [],
+    "file": "Payments.module.css"
+}

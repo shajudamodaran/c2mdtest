@@ -1,0 +1,167 @@
+.Speciality {
+    .shimmer {
+        position: relative; 
+        background: #f6f7f8;
+        background-image: linear-gradient(to right, #f6f7f8 0%, #f2f4f7 10%, #f0f0f2 20%, #f2f4f7 30%, #f6f7f8 40%, #f6f7f8 100%);
+        background-repeat: no-repeat;
+        background-size: 800px 200px; 
+        
+      /* Animation */
+        -webkit-animation-duration: 1s;
+        
+        /* Specifies style for element when animation isn't playing */
+        -webkit-animation-fill-mode: forwards;
+        
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-name: shimmer;
+        -webkit-animation-timing-function: ease-in-out;
+      }
+      
+      @-webkit-keyframes shimmer {
+        0% {
+          background-position: -400px 0;
+        }
+        100% {
+          background-position: 400px 0; 
+        }
+      }
+    display: flex;
+    box-shadow: 0px 3px 15px #0000000f;
+    opacity: 1;
+    max-width: 435px;
+    width: 30%;
+    margin-right: 25px;
+    margin-bottom: 25px;
+    padding: 40px 30px 40px 30px;
+    border-radius: 15px;
+    border: 2px solid #fff;
+    transition: all 0.5s ease;
+    .ImgStyle {
+      padding-right: 20px;
+      .imageBox {
+        max-width: 50px;
+        width: 50px;
+        height: 50px;
+        // background: #f6f7f8;
+        // background-image: linear-gradient(to right, #f6f7f8 0%, #f2f4f7 10%, #f0f0f2 20%, #f2f4f7 30%, #f6f7f8 40%, #f6f7f8 100%);
+        // background-repeat: no-repeat;
+        // background-size: 50px 50px;
+      }
+    }
+    .TextStyle {
+      width: 100%;
+      .head {
+        opacity: 1;
+        margin: 0 0 3px;
+        width: 120px;
+        height: 20px;
+      }
+      .text1 {
+        opacity: 0.6;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+        margin-bottom: 10px;
+        max-width: 250px;
+        width: 100%;
+        height: 10px;
+        margin-top: 7px;
+      }
+      .SpecialityItems {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+        .text2 {
+          opacity: 0.8;
+          margin: 0;
+          max-width: 195px;
+          width: 83%;
+          height: 10px;
+       
+        }
+      }
+    }
+  }
+  .Speciality:hover {
+    cursor: pointer;
+    box-shadow: 0px 3px 15px #0000000f;
+    border: 2px solid #208ce1;
+    opacity: 1;
+    border-radius: 15px;
+  }
+  .mobTextStyle {
+    display: none;
+  }
+  @media screen and (max-width: 1199px) {
+    .Speciality {
+      width: 50%;
+    }
+  }
+  @media screen and (max-width: 991px) {
+    .Speciality {
+      margin-right: 15px;
+      margin-bottom: 15px;
+      padding: 20px;
+      width: 47%;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px 15px;
+      &:nth-child(2n) {
+        margin-right: 0;
+      }
+      .ImgStyle {
+        padding-right: 0;
+        padding-bottom: 15px;
+        .imageBox {
+          margin: auto;
+        }
+      }
+      .TextStyle {
+        .head {
+          display: none;
+        }
+        .text1 {
+          margin-bottom: 6px;
+          -webkit-line-clamp: 2;
+          max-width: inherit;
+          margin: 0 auto 10px;
+        }
+        .text2 {
+          max-width: inherit !important;
+          margin: auto !important;
+        }
+        .SpecialityItems {
+          -webkit-line-clamp: 2;
+        }
+      }
+      .mobTextStyle {
+        display: block;
+        h6 {
+          letter-spacing: 0.18px;
+          color: #162d43;
+          opacity: 1;
+          font-size: 16px !important;
+          font-weight: 600;
+          margin: 0 0 15px;
+          min-height: inherit;
+          position: relative;
+          background: #f6f7f8;
+          background-image: linear-gradient(to right, #f6f7f8 0%, #f2f4f7 10%, #f0f0f2 20%, #f2f4f7 30%, #f6f7f8 40%, #f6f7f8 100%);
+          background-repeat: no-repeat;
+          background-size: 800px 200px;
+          -webkit-animation-duration: 1s;
+          -webkit-animation-fill-mode: forwards;
+          -webkit-animation-iteration-count: infinite;
+          -webkit-animation-name: SpecialityList_shimmer__1tZk8;
+          -webkit-animation-timing-function: ease-in-out;
+          opacity: 1;
+          margin: 0 auto 20px;
+          width: 120px;
+          height: 20px;
+        }
+      }
+    }
+  }
+  

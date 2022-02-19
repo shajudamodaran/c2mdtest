@@ -1,0 +1,85 @@
+.main {
+  border: 0;
+  margin-top: 35px;
+  padding-left: 60px;
+}
+
+.main .card {
+  border: 0;
+}
+
+.main .card :global .card-body {
+  padding: 0;
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 5px solid #208ce1;
+  width: 2rem;
+  opacity: 1;
+  margin-left: 1rem;
+  width: 43px;
+  height: 5px;
+  margin: 0;
+  background: transparent;
+}
+
+.title {
+  font-size: 43px;
+  color: #011d29;
+  font-weight: 600;
+  max-width: 384px;
+  margin: 25px 0 50px;
+}
+
+.title1 {
+  color: #011d29;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.content {
+  color: #011d29;
+  font-size: 18px;
+  max-width: 400px;
+  line-height: 23px;
+  margin-bottom: 25px;
+}
+
+@media screen and (max-width: 991px) {
+  .content, .title {
+    max-width: inherit;
+  }
+  .title {
+    margin: 25px 0;
+    font-size: 35px;
+    display: none;
+  }
+  .main {
+    padding-top: 0;
+    padding-left: 15px;
+  }
+  .main hr {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .main {
+    padding-top: 0;
+  }
+  .title {
+    margin: 10px 0 25px;
+    font-size: 26px;
+  }
+  .title1 {
+    font-size: 18px;
+  }
+  .content {
+    font-size: 16px;
+    line-height: 25px;
+  }
+}
+/*# sourceMappingURL=Content.module.css.map */

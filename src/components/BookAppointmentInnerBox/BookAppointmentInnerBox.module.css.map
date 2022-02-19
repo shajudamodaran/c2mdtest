@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,+BAA+B,CAAA;EAC3B,KAAK,EAAC,OAAO;EACb,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,GAAG;EAChB,cAAc,EAAE,GAAG;EACnB,OAAO,EAAE,CAAC;EACV,WAAW,EAAE,IAAI;EACjB,MAAM,EAAE,OAAO;CAChB",
+    "sources": [
+        "BookAppointmentInnerBox.module.scss"
+    ],
+    "names": [],
+    "file": "BookAppointmentInnerBox.module.css"
+}

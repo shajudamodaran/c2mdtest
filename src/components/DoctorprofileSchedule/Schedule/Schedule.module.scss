@@ -1,0 +1,293 @@
+.Schedule {
+  font-family: "IBM Plex Sans", sans-serif;
+  .Select_wrapper {
+    select {
+      padding: 10px;
+      background-color: #ecf4f8;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      max-width: 406px;
+      width: 100%;
+    }
+    .SubText {
+      font-weight: 500;
+    }
+    :global .dropdown-toggle {
+      background-color: #ecf4f8;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      max-width: 406px;
+      width: 100%;
+      color: #000;
+      text-align: left;
+      height: 45px;
+      position: relative;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-right: 25px;
+      font-size: 14px;
+      color: #000234;
+      &:after {
+        position: absolute;
+        right: 10px;
+        top: 20px;
+      }
+    }
+    .appointmentTypeTxt {
+      letter-spacing: 0px;
+      color: #162d43;
+      opacity: 1;
+      font-weight: 500;
+      font-size: 16px;
+      img {
+        margin-right: 15px;
+      }
+    }
+  }
+  .availableTimeTxt {
+    letter-spacing: 0px;
+    color: #162d43;
+    opacity: 1;
+    font-weight: 500;
+    font-size: 16px;
+    img {
+      margin-right: 15px;
+    }
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+  .errmsg{
+    color:red
+  }
+  .Schedule_Bottom {
+    border: 1px solid #e7edf2;
+    border-radius: 5px;
+    opacity: 1;
+    position: relative;
+    :global .carousel-button-group {
+      position: absolute;
+      top: 75px;
+      width: 100%;
+      div {
+        button {
+          position: relative;
+          &:after {
+            content: "";
+            position: absolute;
+            background: #f5f6f8;
+            width: 1px;
+            height: 95px;
+            top: -35px;
+          }
+        }
+        &:first-child {
+          button {
+            img {
+              transform: rotate(180deg);
+            }
+            &:after {
+              right: 0;
+            }
+          }
+        }
+        &:last-child {
+          button {
+            position: absolute;
+            right: 0;
+            &:after {
+              left: 0;
+            }
+          }
+        }
+        button {
+          border: 0;
+          &:hover {
+            color: #fff;
+            background: none !important;
+          }
+          &:focus {
+            box-shadow: none;
+          }
+        }
+      }
+    }
+    .BottomTop {
+      padding: 10px;
+      background-color: #f5f6f8;
+      display: flex;
+      height: 52px;
+      align-items: center;
+      .left_Text {
+        flex: 1;
+        text-align: left;
+        letter-spacing: 0px;
+        color: #162d43;
+        text-transform: capitalize;
+        opacity: 1;
+        font-weight: 600;
+        font-size: 17px;
+        margin-bottom: 0px;
+        display: flex;
+        align-items: center;
+        img {
+          cursor: pointer;
+          margin-right: 15px;
+        }
+      }
+      .right_Text {
+        flex: 1;
+        text-align: right;
+        letter-spacing: 0px;
+        color: #162d43;
+        text-transform: capitalize;
+        opacity: 1;
+        font-weight: 500;
+        font-size: 12px;
+        margin-bottom: 0px;
+        cursor: pointer;
+        transition: all 0.5s ease;
+        &:hover {
+          color: #8da2b5;
+        }
+        img {
+          padding-left: 11px;
+        }
+      }
+    }
+
+    .SliderItem {
+      border-right: 1px solid #f5f6f8;
+      border-bottom: 1px solid #f5f6f8;
+      opacity: 1;
+      // max-width: 100px;
+      // width: 100px;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 0 0;
+      margin-bottom: 30px;
+
+      .Day_head {
+        color: #8da2b5;
+        text-transform: capitalize;
+        opacity: 1;
+        font-weight: bold;
+        text-align: center;
+        font-size: 28px;
+        margin: 0;
+        position: relative;
+        z-index: 1000;
+        &:hover {
+          color: #208ce1;
+          cursor: pointer;
+          display: block;
+        }
+      }
+      .Day_text {
+        color: #7a7b7e;
+        text-transform: capitalize;
+        opacity: 1;
+        font-size: 14px;
+        text-align: center;
+      }
+    }
+    .SliderItemInner {
+      border-right: 1px solid #f4f5f8;
+      height: 100%;
+      max-height: 395px;
+      overflow-y: auto;
+      &::-webkit-scrollbar-track {
+        -webkit-box-shadow: none;
+        border-radius: 10px;
+        background-color: transparent;
+      }
+
+      &::-webkit-scrollbar {
+        width: 3px;
+        background-color: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: none;
+        background-color: #cccccc;
+      }
+    }
+    .OnlyOnRequest {
+      border: 1px solid #8da2b5;
+      border-radius: 6px;
+      opacity: 1;
+      padding: 30px 10px 30px 10px;
+      margin: 0 10px;
+      text-align: center;
+      margin-bottom: 10px;
+      .textContent {
+        letter-spacing: 0px;
+        color: #208ce1;
+        text-transform: capitalize;
+        opacity: 1;
+        text-align: center;
+        padding: 0px;
+      }
+      .reqst_btn {
+        border-color: #8da2b5;
+        background-color: white;
+        letter-spacing: 0px;
+        color: #8da2b5;
+        opacity: 1;
+        font-size: 13px;
+      }
+      .reqst_btn:hover {
+        background-color: #208ce1;
+        border-color: #208ce1;
+        color: white;
+      }
+    }
+    .TimeSlot_main_wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      padding-left: 15px;
+      padding-right: 15px;
+      // border-right: 1px solid #f4f5f8;
+      .timeSlot_btn {
+        max-width: 100px;
+        width: 100%;
+        margin-bottom: 20px;
+        border-color: #8da2b5;
+        background-color: white;
+        letter-spacing: 0px;
+        color: #8da2b5;
+        opacity: 1;
+        font-size: 15px;
+        &:focus,
+        &:focus-visible {
+          box-shadow: none;
+        }
+      }
+      .timeSlot_btn:hover {
+        background-color: #208ce1;
+        border-color: #208ce1;
+        color: white;
+      }
+
+      .timeSolt_wrapper {
+        opacity: 1;
+        display: flex;
+        flex-direction: column;
+        .noSoltsAvailable {
+          border: 1px solid #8da2b5;
+          padding: 5px;
+          border-radius: 5px;
+          color: #8da2b5;
+          text-align: center;
+        }
+      }
+    }
+    :global .react-multi-carousel-list ul li > div {
+      height: 100%;
+    }
+  }
+}

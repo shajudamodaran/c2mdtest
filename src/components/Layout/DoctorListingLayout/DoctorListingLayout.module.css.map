@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,iBAAiB,CAAC;EAEhB,WAAW,EAAE,IAAI;CAClB;;AAED,MAAM,CAAC,MAAM,MAAM,SAAS,EAAE,KAAK;EACjC,AAAA,iBAAiB,CAAC;IAChB,WAAW,EAAE,IAAI;IACjB,UAAU,EAAE,mBAAmB;GAChC",
+    "sources": [
+        "DoctorListingLayout.module.scss"
+    ],
+    "names": [],
+    "file": "DoctorListingLayout.module.css"
+}

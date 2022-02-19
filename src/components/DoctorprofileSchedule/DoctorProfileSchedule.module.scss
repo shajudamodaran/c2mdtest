@@ -1,0 +1,20 @@
+.DoctorProfileSchedule {
+  display: flex;
+  justify-content: center;
+  padding: 22px 0 50px;
+  background-color: #f5f6f8;
+  min-height: 80vh;
+  .loader {
+    text-align: center !important;
+    color: #208ce1;
+    position: relative;
+    top:65px;
+  }
+}
+@media screen and (max-width:991px) {
+  .DoctorProfileSchedule {
+    background-color: #fff;
+    padding: 22px 0 0;
+  }
+}
+

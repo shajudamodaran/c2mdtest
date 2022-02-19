@@ -1,0 +1,51 @@
+.allergies-card-container{
+    background-color: white;
+    width: 100%;
+    border-radius: 8px;
+    padding: 0.8rem 0.8rem;
+    margin-top: .8rem;
+    font-size: 14px;
+    letter-spacing: -0.18px;
+    font-weight: 500;
+}
+
+.allergies-card-input{
+    outline: 0px;
+    border-radius: 8px;
+    width: 100%;
+    padding: .5rem .8rem;
+    font-size: 14px;
+    letter-spacing: -0.18px;
+    font-weight: 500;
+
+    border-radius: 4px;
+    border: solid 1.5px #e1eaf8;
+    margin-bottom: .8rem;
+}
+
+.allergies-card-input-50{
+
+    outline: 0px;
+    border-radius: 8px;
+    width:48%;
+    padding: .5rem .8rem;
+    font-size: 14px;
+    letter-spacing: -0.18px;
+    font-weight: 500;
+
+    border-radius: 4px;
+    border: solid 1.5px #e1eaf8;
+
+}
+
+.allergies-card-container  .ant-select div {
+
+
+}
+
+.remove-text{
+    font-size: 14px;
+    font-weight: 500;
+    color: #fb1e00;
+    margin-left:.8rem;
+}

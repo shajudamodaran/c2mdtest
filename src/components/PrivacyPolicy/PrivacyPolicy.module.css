@@ -1,0 +1,103 @@
+.PrivacyPolicy_main {
+  margin-top: 30px;
+  padding-bottom: 80px;
+}
+
+.PrivacyPolicy_main p {
+  font-size: 18px;
+  color: #162D43;
+  text-align: justify;
+}
+
+.PrivacyPolicy_main h6 {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.PrivacyPolicy_main a {
+  text-decoration: none;
+  padding-left: 5px;
+}
+
+.PrivacyPolicy_main .headings {
+  letter-spacing: 0px;
+  color: #162d43;
+  opacity: 1;
+  font-size: 20px;
+  margin-top: 28px;
+  font-weight: 600;
+}
+
+.PrivacyPolicy_main .subContent_main {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.PrivacyPolicy_main .subContent_main .subContent {
+  padding-bottom: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  text-align: justify;
+}
+
+.PrivacyPolicy_main .subContent_main .subContent span {
+  margin-left: 10px;
+  font-size: 18px;
+  color: #162D43;
+}
+
+.PrivacyPolicy_main .btn_wrapper {
+  margin-top: 41px;
+  margin-bottom: 41px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.PrivacyPolicy_main .btn_wrapper .btn_1 {
+  margin-right: 10px;
+  background-color: #ebf1f8;
+  border-color: #ebf1f8 !important;
+  color: #7b8a98;
+  border-radius: 5px;
+  opacity: 1;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 8px 20px;
+  font-family: "IBM Plex Sans";
+}
+
+.PrivacyPolicy_main .btn_wrapper .active_btn1 {
+  background-color: #1485d8;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+}
+
+@media screen and (max-width: 767px) {
+  .PrivacyPolicy_main {
+    padding-bottom: 30px;
+  }
+  .PrivacyPolicy_main .btn_wrapper {
+    margin: 25px 0;
+  }
+  .PrivacyPolicy_main .btn_wrapper .btn_1 {
+    font-size: 13px;
+  }
+  .PrivacyPolicy_main .headings {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .PrivacyPolicy_main p {
+    font-size: 14px;
+  }
+  .PrivacyPolicy_main .subContent_main .subContent span {
+    font-size: 14px;
+  }
+}
+/*# sourceMappingURL=PrivacyPolicy.module.css.map */

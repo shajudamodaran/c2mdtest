@@ -1,0 +1,125 @@
+.doctor_listing_topSection {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #f5f6f8;
+  padding: 20px 0 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: left;
+  font-family: "IBM Plex Sans";
+}
+
+.doctor_listing_topSection .doctorListWrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.doctor_listing_topSection .doctor_listing_speciality_div {
+  opacity: 1;
+  background: white !important;
+  width: 358px;
+  height: 922px;
+  border-radius: 8px;
+  margin-right: 21px;
+  padding: 25px 10px 25px 20px;
+}
+
+.doctor_listing_topSection .doctor_listing_speciality_div .doctor_listing_main_heading {
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 0.25px;
+  color: #011d29;
+  opacity: 1;
+  margin-left: 14px;
+  padding-right: 10px;
+}
+
+.doctor_listing_topSection .doctor_listing_scrolling {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 860px;
+  width: 100%;
+  padding-right: 8px;
+}
+
+.doctor_listing_topSection .doctor_listing_scrolling .loader {
+  text-align: center !important;
+  color: #208ce1;
+  position: relative;
+  top: 65px;
+}
+
+.doctor_listing_topSection .doctor_listing_scrolling::-webkit-scrollbar {
+  width: 4px;
+  height: 8px;
+  color: white;
+  border-radius: 4px;
+}
+
+.doctor_listing_topSection .doctor_listing_scrolling::-webkit-scrollbar-thumb {
+  background-color: #e2e2e2;
+}
+
+.doctor_listing_topSection .doctorListFilter {
+  width: calc(100% - 368px);
+}
+
+.doctor_listing_topSection .doctorListFilter .NoDataFound {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  position: relative;
+  top: 15%;
+}
+
+.doctor_listing_topSection .doctorListFilter .NoDataFound .text {
+  color: #011d29;
+  opacity: 0.55;
+  font-size: 20px;
+}
+
+:global .doctor_ListFilter {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 991px) {
+  .doctor_listing_topSection .doctor_listing_speciality_div {
+    display: none;
+  }
+  .doctor_listing_topSection .doctorListWrap {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .doctor_listing_topSection .doctor_listing_speciality_div {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .doctor_listing_topSection .doctor_listing_scrolling {
+    padding-right: 0;
+    overflow-y: auto;
+    height: auto;
+  }
+  .doctor_listing_topSection .doctorListFilter {
+    width: 100%;
+  }
+  :global .doctor_ListFilter {
+    -webkit-transition: none;
+    transition: none;
+  }
+  :global .modal-open .doctor_ListFilter {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .doctor_listing_topSection .doctor_listing_speciality_div {
+    padding: 25px 5px;
+  }
+}
+/*# sourceMappingURL=DoctorListing.module.css.map */

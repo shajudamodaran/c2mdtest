@@ -1,0 +1,283 @@
+.Header {
+  position: fixed;
+  width: 100%;
+  z-index: 10000;
+  background-color: white !important;
+  top: 0;
+  -webkit-box-shadow: 0px 3px 6px #0000000d;
+          box-shadow: 0px 3px 6px #0000000d;
+}
+
+.Header .navbar_bg {
+  background-color: white !important;
+  height: 80px;
+}
+
+@media (max-width: 991px) {
+  .Header .navbar_bg {
+    height: 67px;
+  }
+}
+
+.Header .navbar_bg .iconWrapper span {
+  margin-top: 4px;
+}
+
+.Header .navbar_bg .iconWrapper img {
+  margin-left: 10px;
+}
+
+.Header .logoImg {
+  opacity: 1;
+  max-width: 165px;
+}
+
+.Header .navbar-light .navbar-nav .nav-link {
+  font-size: 16px;
+}
+
+.Header :global .btn-outline-secondary {
+  color: #162d43;
+  font-weight: 500;
+  margin-left: 25px;
+  height: 39px;
+  margin-right: 10px;
+}
+
+.Header :global .btn-outline-secondary:hover {
+  background-color: #208ce1;
+  border-color: #208ce1;
+  color: #fff;
+}
+
+.Header :global .btn-outline-secondary:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.Header .iconWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.Header .iconWrapper img {
+  max-width: 125px;
+}
+
+.Header .mobiconWrapper {
+  display: none;
+}
+
+:global .navbar-light .navbar-nav .nav-link {
+  color: #162d43;
+  font-weight: 500;
+}
+
+:global .navbar-light .navbar-nav .nav-link.active, :global .navbar-light .navbar-nav .nav-link:hover {
+  color: #208ce1;
+}
+
+:global .navbar-toggler {
+  border: 0;
+  padding: 0;
+}
+
+:global .navbar-toggler:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+:global .nav-open .navbar-light {
+  display: block;
+  position: fixed;
+  z-index: 10000;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  width: 90%;
+  max-width: 374px;
+}
+
+:global .nav-open .navbar-light .navbar-toggler .navbar-toggler-icon {
+  background-image: url("../../../assets/icon-close.svg");
+  background-size: 22px;
+}
+
+.fix-header .Header .navbar {
+  position: fixed;
+}
+
+:global .nav-open {
+  position: relative;
+}
+
+:global .nav-open:after {
+  content: "";
+  position: fixed;
+  width: 100vw;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
+:global .navbar-nav a {
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-right: 22px;
+}
+
+:global .navbar-nav a.active {
+  color: #208ce1;
+}
+
+:global .navbar-nav a:last-child {
+  margin-right: 0;
+}
+
+@media screen and (max-width: 1450px) {
+  :global .navbar-nav a {
+    font-size: 14px;
+  }
+  :global .navbar-brand img {
+    max-width: 120px;
+  }
+  :global .navbar-light .navbar-nav .nav-link {
+    margin-right: 15px;
+  }
+  .Header :global .btn-outline-secondary {
+    padding: 0 10px;
+    height: 30px;
+    font-size: 14px;
+    margin-left: 0;
+    margin-right: 5px;
+  }
+  .Header .iconWrapper img {
+    max-width: 100px;
+  }
+  .Header :global .btn-outline-secondary {
+    max-width: 150px;
+    font-size: 13px;
+  }
+  .Header .navbar-light .navbar-nav .nav-link {
+    font-size: 14px;
+  }
+  :global .navbar-collapse img {
+    max-width: 25%;
+  }
+}
+
+:global .navbar-toggler .navbar-toggler-icon {
+  background-image: url("../../../assets/toggle-icon.svg");
+}
+
+@media screen and (max-width: 1199px) {
+  :global .navbar-light .navbar-nav .nav-link {
+    font-size: 14px;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+  .Header :global .btn-outline-secondary {
+    max-width: 115px;
+    font-size: 13px;
+    padding: 5px 7px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  :global .navbar-brand img {
+    max-width: 120px !important;
+  }
+  :global .navbar-nav a {
+    margin-right: 15px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  :global .navbar-nav {
+    margin-top: 50px;
+    padding: 0 15px;
+  }
+  :global .navbar-nav a {
+    padding-bottom: 10px;
+    font-size: 17px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+  .Header .navbar_bg {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .Header :global .btn-outline-secondary {
+    margin: 20px 15px 0;
+    max-width: 150px;
+    width: 100%;
+    font-size: 15px;
+    height: 40px;
+  }
+  .Header .iconWrapper img {
+    margin: 0 10px 0 0 !important;
+  }
+  .Header .iconWrapper {
+    display: none;
+  }
+  .Header .mobiconWrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 100px 15px 0;
+  }
+  .Header .mobiconWrapper span {
+    font-size: 16px;
+    font-weight: 500;
+    color: #0c1e4e;
+  }
+  .Header .mobiconWrapper img {
+    visibility: visible;
+    opacity: 1;
+    max-width: 100%;
+    margin-left: 15px;
+  }
+  :global .navbar-brand img {
+    max-width: 100px !important;
+  }
+  :global .navbar-collapse {
+    position: fixed;
+    top: 67px;
+    left: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    height: 100%;
+    width: 90%;
+  }
+  :global .navbar-collapse.collapsing {
+    height: 100%;
+    left: -75%;
+    -webkit-transition: height 0s ease;
+    transition: height 0s ease;
+  }
+  :global .navbar-collapse.show {
+    height: 100%;
+    left: 0;
+    -webkit-transition: left 600ms ease-in-out;
+    transition: left 600ms ease-in-out;
+  }
+  :global .navbar-toggler.collapsed ~ .navbar-collapse {
+    -webkit-transition: left 1ms ease-in;
+    transition: left 1ms ease-in;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .Header .mobiconWrapper img {
+    margin-left: 10px;
+  }
+}
+/*# sourceMappingURL=Header.module.css.map */

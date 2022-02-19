@@ -1,0 +1,289 @@
+.book_appointment_topSection {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #fff url("../../assets/siginup_bg.svg");
+  border-radius: 0;
+  padding: 30px 15px 40px;
+  min-height: calc(100vh - 65px);
+  height: auto;
+  font-family: "IBM Plex Sans";
+}
+
+.book_appointment_topSection .book_appointment_header_align {
+  text-align: center;
+  font-size: 30px;
+  color: #208CE1;
+  font-weight: 600;
+}
+
+.book_appointment_topSection .book_appointment_div {
+  max-width: 525px;
+  width: 100%;
+  background: #FFFFFF;
+  -webkit-box-shadow: 0px 3px 50px #00000014;
+          box-shadow: 0px 3px 50px #00000014;
+  border-radius: 10px;
+  opacity: 1;
+  margin: auto;
+  margin-top: 1%;
+}
+
+.book_appointment_topSection .book_appointment_div .book_appointment_form_align {
+  max-width: 520px;
+  width: 100%;
+  padding: 6% 40px 40px 40px;
+  text-align: left;
+  border-radius: 3px;
+  margin: auto;
+}
+
+.book_appointment_topSection .book_appointment_div .book_appointment_form_align .book_appointment_previous_icon {
+  width: 6px;
+  height: 12px;
+}
+
+.book_appointment_topSection .book_appointment_div .book_appointment_form_align .book_appointment_form_pages {
+  float: right;
+  color: #162D43;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  opacity: 1;
+}
+
+.book_appointment_topSection .book_appointment_div .book_appointment_form_align .book_appointment_progress_bar {
+  margin-top: 15px;
+}
+
+.book_appointment_topSection .book_appointment_div .book_appointment_form_align .book_appointment_emergency_type {
+  width: 100%;
+  height: 60px;
+  background: #F5F5F5;
+  border-radius: 7px;
+  opacity: 1;
+  margin-bottom: 20px;
+  border: 1.5px solid #F5F5F5;
+  text-align: left;
+  padding: 15px 20px;
+  font-size: 18px;
+  color: #162D43;
+}
+
+.book_appointment_topSection .book_appointment_div .book_appointment_form_align .book_appointment_emergency_type:hover {
+  border: 1.5px solid #208CE1;
+  background: #F1F7FD;
+  color: #208CE1;
+}
+
+.book_appointment_topSection .book_appointment_div .book_appointment_form_align .book_appointment_important_read {
+  border-radius: 7px;
+  opacity: 1;
+  margin-top: 15px;
+}
+
+.book_appointment_topSection .book_appointment_div .book_appointment_form_align .book_appointment_important_read img {
+  max-width: 21px;
+  height: 19px;
+  margin-right: 25.02px;
+}
+
+.book_appointment_topSection .book_appointment_div .book_appointment_form_align .book_appointment_important_read .book_appointment_warning_heading {
+  text-align: left;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 0px;
+  color: #162D43;
+  text-transform: uppercase;
+}
+
+.book_appointment_topSection .book_appointment_div .book_appointment_form_align .book_appointment_important_read .book_appointment_body_heading {
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0px;
+  color: #54626E;
+  opacity: 1;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.book_appointment_topSection .book_appointment_div .book_appointment_form_align .book_appointment_important_read .book_appointment_body_details {
+  font-weight: normal;
+  font-size: 13px;
+  letter-spacing: 0px;
+  color: #8C9194;
+  margin: 0;
+}
+
+.book_appointment_topSection .book_appointment_div .book_appointment_form_align .book_appointment_important_read .book_appointment_body_details li {
+  margin-bottom: 10px;
+}
+
+.book_appointment_topSection .book_appointment_div .book_appointment_form_align .book_appointment_important_read .book_appointment_second_heading {
+  font-weight: normal;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #162D43;
+  opacity: 1;
+  display: block;
+}
+
+.book_appointment_topSection .book_appointment_div .book_appointment_form_align .book_appointment_person_input {
+  position: relative;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 7px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #F5F5F5;
+  border: 2px solid #F5F5F5;
+  height: 60px;
+  cursor: pointer;
+}
+
+.book_appointment_topSection .book_appointment_div .book_appointment_form_align .book_appointment_person_input .book_appointment_person_img {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  background: #e2e2e2;
+  width: 58px;
+  height: 58px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+}
+
+.book_appointment_topSection .book_appointment_div .book_appointment_form_align .book_appointment_person_input:hover {
+  background: #EFF8FF;
+  border: 2px solid #208CE1;
+}
+
+.book_appointment_topSection .book_appointment_div .book_appointment_form_align .book_appointment_person_input:hover .book_appointment_person_img {
+  height: 56px;
+  top: 0;
+  left: 0;
+  background: #daecf8;
+}
+
+.book_appointment_topSection .book_appointment_div .book_appointment_form_align .book_appointment_person_input button:focus, .book_appointment_topSection .book_appointment_div .book_appointment_form_align .book_appointment_person_input button:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.book_appointment_topSection .book_appointment_div .book_appointment_form_align .book_appointment_person_input .book_appointment_person_input_box {
+  text-align: left;
+  width: 100%;
+  height: 60px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  font-weight: normal;
+  padding-left: 72px;
+  letter-spacing: 0px;
+  color: #162D43;
+  opacity: 1;
+  padding-right: 45px;
+}
+
+.book_appointment_topSection .book_appointment_div .book_appointment_form_align .book_appointment_person_input .book_appointment_pencil_icon_image {
+  float: right;
+  max-width: 16px;
+  height: 16px;
+  position: absolute;
+  right: 15px;
+  cursor: pointer;
+}
+
+.book_appointment_topSection .book_appointment_div .book_appointment_form_align .book_appointment_person_input .book_appointment_arrow_icon_image {
+  float: right;
+  max-width: 20px;
+  height: 14px;
+  position: absolute;
+  right: 15px;
+  cursor: pointer;
+}
+
+.book_appointment_topSection :global .progress {
+  background-color: #E8E8E8;
+  border-radius: 50px;
+  height: 5px;
+}
+
+.book_appointment_topSection :global .bg-success {
+  background-color: #70DB7E !important;
+}
+
+.book_appointment_previous_step {
+  color: #162D43;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  opacity: 1;
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+.book_appointment_main_heading {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 0px;
+  color: #162D43;
+  opacity: 1;
+}
+
+.book_appointment_continue_button {
+  width: 100%;
+  height: 60px;
+  background: #208CE1;
+  border-radius: 7px;
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  border: 1px solid #208CE1;
+}
+
+.book_appointment_continue_button:hover {
+  background: transparent;
+  color: #208CE1;
+}
+
+.book_appointment_continue_button:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+@media screen and (max-width: 991px) {
+  .book_appointment_topSection {
+    min-height: inherit;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .book_appointment_topSection {
+    background: #fff;
+    min-height: inherit;
+    margin-bottom: 80px;
+  }
+  .book_appointment_topSection .book_appointment_header_align {
+    font-size: 25px;
+  }
+  .book_appointment_topSection .book_appointment_div .book_appointment_form_align {
+    padding: 6% 20px 30px;
+  }
+}
+/*# sourceMappingURL=BookAppointmentQuestionare.module.css.map */

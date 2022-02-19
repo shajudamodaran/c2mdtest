@@ -1,0 +1,171 @@
+.partner_with_us {
+  background: #FAFAFC;
+}
+
+.partner_with_us .top_section {
+  background-image: url("../../assets/terms_bg.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 255px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.partner_with_us .top_section .top_content_wrapper {
+  opacity: 1;
+  color: white;
+}
+
+.partner_with_us .top_section .top_content_wrapper h2 {
+  color: white;
+  font-size: 40px;
+  font-weight: 600;
+  opacity: 1;
+  margin-bottom: 15px;
+}
+
+.partner_with_us .top_section .top_content_wrapper p {
+  max-width: 630px;
+}
+
+.partner_with_us .bottom_section {
+  padding-bottom: 100px;
+}
+
+.partner_with_us .bottom_section .select_wrapper {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.partner_with_us .bottom_section .select_wrapper .select_main {
+  border: 1px solid #E8E8F5;
+  border-radius: 7px;
+  opacity: 1;
+  background-color: #ffffff;
+  height: 55px;
+  max-width: 245px;
+  width: 100%;
+  font-size: 17px;
+  color: #162D43;
+}
+
+.partner_with_us .bottom_section .content_wrapper .content_main {
+  padding: 15px 15px 15px 15px;
+  -webkit-box-shadow: 0px 3px 20px #0000000f;
+          box-shadow: 0px 3px 20px #0000000f;
+  border: 1px solid #f2f2f9;
+  border-radius: 7px;
+  opacity: 1;
+  max-width: 319px;
+  min-height: 168px;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+.partner_with_us .bottom_section .content_wrapper .content_main .content_Bottom {
+  margin-top: 41px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.partner_with_us .bottom_section .content_wrapper .content_main .content_Bottom img {
+  cursor: pointer;
+}
+
+.partner_with_us .bottom_section .content_wrapper .content_main .content_Bottom p {
+  font-size: 15px;
+  color: #556D86;
+  font-weight: 500;
+  margin: 0;
+}
+
+.partner_with_us .bottom_section .content_wrapper .content_main .content_Bottom .img_arrow {
+  -webkit-filter: grayscale(1);
+  -webkit-transition: all .8s ease-in-out;
+  opacity: 0.2;
+}
+
+.partner_with_us .bottom_section .content_wrapper .content_main .content_Top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.partner_with_us .bottom_section .content_wrapper .content_main .content_Top .img_logo {
+  -webkit-filter: grayscale(1);
+  -webkit-transition: all .8s ease-in-out;
+  opacity: 0.4;
+}
+
+.partner_with_us .bottom_section .content_wrapper .content_main:hover .img_logo, .partner_with_us .bottom_section .content_wrapper .content_main:hover .img_arrow {
+  filter: none;
+  -webkit-filter: grayscale(0);
+  -webkit-transform: scale(1.01);
+  opacity: 1;
+}
+
+@media screen and (max-width: 575px) {
+  .partner_with_us .bottom_section {
+    padding-bottom: 0;
+  }
+  .partner_with_us .bottom_section .select_wrapper {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 20px 0;
+  }
+  .partner_with_us .bottom_section .select_wrapper select {
+    max-width: inherit !important;
+  }
+  .partner_with_us .top_section .top_content_wrapper h2 {
+    font-size: 30px;
+    padding-top: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .partner_with_us .content_wrapper :global .col-lg-3 {
+    width: 100% !important;
+  }
+  .partner_with_us .content_wrapper .content_main {
+    max-width: inherit !important;
+    margin-bottom: 18px !important;
+    min-height: inherit !important;
+  }
+  .partner_with_us .content_wrapper .content_main .content_Bottom {
+    margin-top: 10px !important;
+  }
+  .partner_with_us .content_wrapper .content_main:hover {
+    border: 1px solid #CCEAFF;
+  }
+}
+/*# sourceMappingURL=Partner.module.css.map */

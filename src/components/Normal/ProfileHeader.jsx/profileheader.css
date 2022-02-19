@@ -1,0 +1,10 @@
+.profile-header-container{
+    background-color: #2F334A;
+    width: 100vw;
+    padding: 2% 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color:white
+}

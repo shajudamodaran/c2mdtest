@@ -1,0 +1,18 @@
+.forDoctor .topSection {
+  background-image: url("../../assets/ForDoctor/fordocrorbg.svg");
+  height: 690px;
+  background-color: #d9f4ff;
+}
+
+.forDoctor .topSection .topleft {
+  background-image: url("../../assets/ForDoctor/lap.png");
+}
+
+.forDoctor .topSection .topRight .joinusBtn {
+  background-color: #208ce1;
+  border-color: #208ce1;
+  color: white;
+  opacity: 1;
+  padding: 13px 60px 13px 60px;
+}
+/*# sourceMappingURL=ForDoctor.module.css.map */

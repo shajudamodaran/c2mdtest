@@ -1,0 +1,447 @@
+.doctor_listing_profile_details {
+  background: white !important;
+  border-radius: 8px;
+  margin-bottom: 21px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  border: 2px solid #fff;
+  border-radius: 8px;
+}
+
+.doctor_listing_profile_details:hover {
+  border: 2px solid #208ce1;
+  border-radius: 8px;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row {
+  padding: 25px 25px 35px;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align {
+  text-align: right;
+  padding-top: 10px;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .mobverifytext {
+  display: none;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctorProfDesc {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctorProfDesc span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #011d29;
+  padding-right: 8px;
+  padding-left: 8px;
+  border-right: 1px solid #e5e4e4;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctorProfDesc span:nth-child(1) {
+  width: 100%;
+  padding-left: 0;
+  border-right: 0;
+  margin-bottom: 3px;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctorProfDesc span:nth-child(2) {
+  width: auto;
+  padding-left: 0;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctorProfDesc span:nth-child(3), .doctor_listing_profile_details .doctor_listing_profile_details_row .doctorProfDesc span:last-child {
+  padding-right: 0;
+  border-right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctorProfDesc span img {
+  margin-right: 5px;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctorListTimerColmob {
+  display: none;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctorListTimerCol {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-left: 35px;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row h3 {
+  text-align: left;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 0.2px;
+  color: #011d29;
+  opacity: 1;
+  margin-bottom: 5px;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row img {
+  max-width: 100%;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctorImage {
+  border-radius: 8px;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row p {
+  color: #2a3445;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.14px;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row p span {
+  color: #011d29;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row p .doctor_listing_border_align {
+  border-right: 1px solid #e5e4e4;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row p .doctor_listing_location_icon {
+  margin-right: 10px;
+  width: 10px;
+  height: 14px;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_horizontal_line {
+  border-bottom: 1px solid #e5e4e4;
+  padding: 10px 0 0;
+  margin-bottom: 10px;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_content {
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.13px;
+  color: #011d29;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_content span {
+  font-weight: normal;
+  color: #73787a;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_hospital_icon {
+  max-width: 135px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  height: 40px;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_timer_icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  position: relative;
+  top: -1px;
+  z-index: 1;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_timer_text {
+  text-align: left;
+  font-size: 14px;
+  letter-spacing: 0px;
+  color: #011d29;
+  opacity: 1;
+  margin-right: 10px;
+  font-family: "DM Sans", sans-serif;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_appointment_btn {
+  background: #208ce1;
+  color: white;
+  max-width: 236px;
+  width: 100%;
+  height: 49px;
+  font-size: 15px;
+  letter-spacing: 0.15px;
+  color: #ffffff;
+  opacity: 1;
+  border: 1px solid #208ce1;
+  margin: 10px 0 20px;
+  font-family: "DM Sans", sans-serif;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_appointment_btn:hover {
+  background: #e1f2ff;
+  color: #208ce1;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_appointment_btn:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_view_btn {
+  color: #011d29;
+  max-width: 236px;
+  width: 100%;
+  height: 49px;
+  border: 1px solid #208ce1;
+  font-size: 15px;
+  letter-spacing: 0.15px;
+  opacity: 1;
+  font-family: "DM Sans", sans-serif;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_view_btn:hover {
+  background: #e1f2ff;
+  color: #208ce1;
+}
+
+.doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_view_btn:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+@media screen and (max-width: 1450px) {
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctorProfDesc span {
+    font-size: 13px;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctorListTimerCol {
+    margin-left: 5px;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctorListTimerCol div:first-child img {
+    max-width: 15px;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_timer_icon {
+    margin-right: 5px;
+    top: 0;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_timer_text {
+    margin-right: 6px;
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .doctor_listing_profile_details .doctor_listing_profile_details_row :global .doc-list-fcol {
+    width: 25%;
+    padding-right: 0;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row :global .doc-list-mcol {
+    width: 75%;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align {
+    width: 100%;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_appointment_btn {
+    margin: 0 10px 0 0 !important;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctorListTimerCol {
+    margin-bottom: 15px;
+    margin-left: 26%;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .doctor_listing_profile_details {
+    margin-bottom: 12px;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row {
+    padding: 25px 25px;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row :global .doc-list-mcol {
+    padding-right: 15px;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctorListTimerColmob {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-ordinal-group: 5;
+        -ms-flex-order: 4;
+            order: 4;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    margin-bottom: 5px;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctorListTimerColmob div {
+    margin-right: 10px;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctorListTimerColmob div:last-child {
+    margin-right: 0;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctorListTimerColmob img {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    position: relative;
+    top: -1px;
+    z-index: 1;
+    max-width: 100%;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctorListTimerColmob span {
+    font-size: 13px;
+    letter-spacing: 0px;
+    color: #011d29;
+    opacity: 1;
+    font-weight: 500;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align {
+    text-align: left;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctorListTimerCol {
+    display: none;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row h3 {
+    font-size: 17px;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctorListTimerCol {
+    margin-left: 0;
+    margin-top: 0;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_content {
+    display: none;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctorProfDesc {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+            order: 3;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctorProfDesc span:nth-child(1) {
+    width: 100%;
+    border-right: 0;
+    margin-bottom: 3px;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctorProfDesc span:nth-child(2) {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    padding-left: 0;
+    width: auto;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctorProfDesc span:nth-child(3) {
+    width: auto;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row :global .doc-list-mcol {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding-right: 0;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row :global .doc-list-mcol h3 {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+    margin: 5px 0;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_hospital_icon {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_horizontal_line {
+    -webkit-box-ordinal-group: 5;
+        -ms-flex-order: 4;
+            order: 4;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .mobverifytext {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 12px;
+    margin: 7px 0 0;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .mobverifytext img {
+    padding-right: 5px;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .mainverifytext {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_appointment_btn,
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_view_btn {
+    max-width: 190px;
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .doctor_listing_profile_details {
+    padding: 0 15px;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row {
+    padding: 15px 0;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctorProfDesc span:nth-child(2) {
+    width: auto;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctorProfDesc span:nth-child(3) {
+    width: auto;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_appointment_btn,
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_view_btn {
+    max-width: 100%;
+    height: 50px;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_appointment_btn {
+    margin-bottom: 0 !important;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctorProfDesc {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctorProfDesc span {
+    border-right: 0;
+    padding: 0;
+    -webkit-line-clamp: inherit;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100% !important;
+  }
+  .doctor_listing_profile_details .doctor_listing_profile_details_row .doctorProfDesc span:nth-child(2) {
+    margin-bottom: 4px;
+  }
+}
+/*# sourceMappingURL=DoctorListingDetails.module.css.map */

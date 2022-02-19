@@ -1,0 +1,130 @@
+.Treatment {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-shadow: 0px 3px 15px #0000000f;
+          box-shadow: 0px 3px 15px #0000000f;
+  opacity: 1;
+  max-width: 435px;
+  width: 30%;
+  margin-right: 25px;
+  margin-bottom: 25px;
+  padding: 30px 30px 30px 30px;
+  border-radius: 15px;
+  border: 2px solid #fff;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.Treatment .ImgStyle {
+  padding-right: 20px;
+}
+
+.Treatment .ImgStyle img {
+  max-width: 50px;
+}
+
+.Treatment .TextStyle .head {
+  letter-spacing: 0.18px;
+  color: #162d43;
+  opacity: 1;
+  font-size: 18px !important;
+  font-weight: 600;
+  margin: 0 0 3px;
+}
+
+.Treatment .TextStyle .text1 {
+  letter-spacing: 0.14px;
+  color: #162d43;
+  opacity: 0.6;
+  font-size: 14px;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.Treatment .TextStyle .text2 {
+  font-size: 14px;
+  letter-spacing: 0.14px;
+  color: #162d43;
+  opacity: 0.8;
+  font-weight: 500;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.Treatment:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0px 3px 15px #0000000f;
+          box-shadow: 0px 3px 15px #0000000f;
+  border: 2px solid #208ce1;
+  opacity: 1;
+  border-radius: 15px;
+}
+
+.mobhead {
+  display: none;
+}
+
+.mobhead h6 {
+  letter-spacing: 0.18px;
+  color: #162d43;
+  opacity: 1;
+  font-size: 16px !important;
+  font-weight: 600;
+  margin: 0 0 20px;
+}
+
+@media screen and (max-width: 1199px) {
+  .Treatment {
+    width: 46%;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .Treatment {
+    margin-bottom: 15px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    text-align: center;
+    margin-right: 15px;
+    width: 48%;
+    padding: 20px 15px;
+  }
+  .Treatment:nth-child(2n) {
+    margin-right: 0;
+  }
+  .Treatment .ImgStyle img {
+    margin-bottom: 15px;
+  }
+  .Treatment .TextStyle .head {
+    display: none;
+  }
+  .Treatment .TextStyle .text1, .Treatment .TextStyle .text2 {
+    -webkit-line-clamp: 2;
+  }
+  .mobhead {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .mobhead h6 {
+    min-height: 40px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .Treatment {
+    width: 47.4%;
+  }
+}
+/*# sourceMappingURL=Treatment.module.css.map */

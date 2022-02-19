@@ -1,0 +1,146 @@
+.doctor_mobile_span_heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.doctor_mobile_span_heading .doctorProfileImg {
+  width: 105px;
+}
+
+.doctor_mobile_span_heading .doctorProfileImg img {
+  max-width: 100%;
+  border-radius: 8px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.doctor_mobile_span_heading .doctorProfiledesc {
+  padding-left: 15px;
+  width: calc(100% - 120px);
+}
+
+.doctor_mobile_span_heading .doctorProfiledesc .doctorProfilelogo {
+  max-width: 124px;
+  margin-bottom: 10px;
+}
+
+.doctor_mobile_span_heading h4 {
+  font-weight: bold;
+  font-size: 17px;
+  letter-spacing: 0px;
+  color: #162D43;
+  opacity: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 4px;
+}
+
+.doctor_mobile_span_heading .cat_det {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.doctor_mobile_span_heading .doctor_mobile_first_para {
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.15px;
+  color: #011D29;
+  margin: 0 0 3px;
+}
+
+.doctor_mobile_span_heading .doctor_mobile_first_para span:nth-child(1) {
+  margin-right: 10px;
+  padding-right: 10px;
+  border-right: 1px solid #ccc;
+}
+
+.doctor_mobile_span_heading .doctor_mobile_first_para:nth-child(2) span {
+  border-right: 0;
+}
+
+.doctor_mobile_span_heading .doctor_mobile_second_para {
+  width: 100%;
+  letter-spacing: 0px;
+  color: #162D43;
+  font-weight: 600;
+  font-size: 13px;
+  margin: 0;
+}
+
+.doctor_mobile_span_heading .doctor_mobile_second_para .doctor_mobile_location_icon {
+  margin-right: 10px;
+  width: 10px;
+  height: 14px;
+}
+
+.doctor_mobile_span_heading .doctor_mobile_tick_icon {
+  margin-left: 5px;
+}
+
+.doctorProfileProfsdesc {
+  color: #162D43;
+  font-weight: 500;
+  font-size: 13px;
+  padding: 15px 0;
+}
+
+.doctor_mobile_last_para {
+  letter-spacing: 0px;
+  color: #162D43;
+  font-weight: 500;
+  font-size: 13px;
+  margin: 0 !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.doctor_mobile_last_para img {
+  margin-right: 10px;
+  position: relative;
+  top: 3px;
+}
+
+.doctor_mobile_last_para .doctor_mobile_lang {
+  border-right: 1px solid #ccc;
+  margin-right: 15px;
+  padding-right: 15px;
+}
+
+@media screen and (max-width: 480px) {
+  .doctor_mobile_last_para {
+    font-size: 14px;
+  }
+  .doctor_mobile_last_para .doctor_mobile_lang {
+    margin-right: 10px;
+    padding-right: 10px;
+    width: auto;
+  }
+  .doctor_mobile_last_para span:nth-child(3) {
+    width: auto;
+  }
+  .doctor_mobile_span_heading h4 {
+    font-size: 17px;
+  }
+  .cat_det {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .doctor_mobile_first_para {
+    margin: 0 !important;
+  }
+  .doctor_mobile_first_para span {
+    border-right: 0 !important;
+  }
+}
+/*# sourceMappingURL=DoctorProfileMobileScreen.module.css.map */

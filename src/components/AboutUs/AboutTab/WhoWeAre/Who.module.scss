@@ -1,0 +1,50 @@
+.who_main {
+  background-color: #fafafc;
+  width: 100%;
+  justify-content: center;
+height: 40vh;
+  hr {
+    margin-top: -0.9rem;
+    overflow: visible;
+    border: none;
+    color: #888888;
+    background-color: #888888;
+    height: 2px;
+    width: 30%;
+    justify-content: center;
+    text-align: center;
+    margin-left: 35%;
+  }
+  .who_row{
+    margin-top: 4rem;
+
+  }
+  .p1{
+    letter-spacing: 0px;
+    opacity: 1;
+    font-size: 30px;    
+    width: 450px;
+    margin-top: 1rem;
+    font-weight: 500;  
+  }
+  .p2{
+    color: #2B3B4B;
+  }
+  .who_title{
+    color: #162D43;
+    font: normal normal 600 40px/55px IBM Plex Sans;
+    span{
+      color: #208CE1;
+    }
+  }
+  .who_content{
+    font: IBM Plex Sans;
+    color: #162D43;
+    opacity: 1;
+    font-size: 14px;
+    line-height: 1.8;
+    width: 650px;
+  
+  }
+
+}

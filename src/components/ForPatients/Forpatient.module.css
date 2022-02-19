@@ -1,0 +1,308 @@
+.ForPatient .topsection .section1 {
+  min-height: 594px;
+  background-image: url("../../assets/ForPatients/lightblue.svg");
+}
+
+.ForPatient .topsection .section1 .section1_content {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.ForPatient .topsection .section1 .section1_content .section1_heading {
+  letter-spacing: 0px;
+  color: #162d43;
+  font-weight: bold;
+  font-size: 45px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.ForPatient .topsection .section1 .section1_content .section1_heading span {
+  color: #208ce1;
+}
+
+.ForPatient .topsection .section1 .section1_content .section1_button_wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.ForPatient .topsection .section1 .section1_content .section1_button_wrapper .section1_button {
+  border-radius: 6px;
+  opacity: 1;
+  background-color: #208ce1;
+  border-color: #208ce1;
+  color: white;
+  height: 55px;
+  max-width: 198px;
+  width: 100%;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.ForPatient .topsection .section1 .section1_content .section1_button_wrapper .section1_button:hover {
+  background-color: #fff;
+  color: #208ce1;
+}
+
+.ForPatient .topsection .section2 .section2_Img {
+  margin-top: -345px;
+}
+
+.ForPatient .topsection .section2 .section2_Img img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 100%;
+}
+
+.ForPatient .topsection .content_wrapper {
+  margin-top: 84px;
+  margin-bottom: 84px;
+}
+
+.ForPatient .topsection .content_wrapper .top_middile_wrapper {
+  margin-bottom: 100px;
+}
+
+.ForPatient .topsection .content_wrapper .top_middile_wrapper .top_middile_left h2 {
+  letter-spacing: 0px;
+  color: #162d43;
+  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.ForPatient .topsection .content_wrapper .top_middile_wrapper .top_middile_left h2 span {
+  color: #208ce1;
+}
+
+.ForPatient .topsection .content_wrapper .top_middile_wrapper .top_middile_right p {
+  letter-spacing: 0.08px;
+  color: #162d43;
+  opacity: 0.9;
+}
+
+.ForPatient .topsection .content_wrapper .Content_main {
+  margin-bottom: 45px;
+}
+
+.ForPatient .topsection .content_wrapper .Content_main h1 {
+  color: #208ce1;
+  font-weight: 800;
+}
+
+.ForPatient .topsection .content_wrapper .Content_main h5 {
+  letter-spacing: 0px;
+  color: #162d43;
+  opacity: 0.9;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.ForPatient .topsection .content_wrapper .Content_main p {
+  letter-spacing: 0.08px;
+  color: #162d43;
+  opacity: 0.9;
+  opacity: 0.9;
+  font-size: 16px;
+}
+
+.ForPatient .middile_section {
+  background-image: url("../../assets/ForPatients/blueBg.svg");
+  min-height: 609px;
+  padding-top: 94px;
+  padding-bottom: 94px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.ForPatient .middile_section .imgSection {
+  background-image: url("../../assets/ForPatients/patientImg.png");
+  min-height: 421px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.ForPatient .middile_section .ContentsSection .heading {
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+  font-weight: 600;
+  font-size: 40px;
+  margin-bottom: 25px;
+}
+
+.ForPatient .middile_section .ContentsSection .text {
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 0.95;
+  font-size: 16px;
+}
+
+.ForPatient .middile_section .ContentsSection .ItemList_wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 18px;
+}
+
+.ForPatient .middile_section .ContentsSection .ItemList_wrapper ul {
+  list-style-type: none;
+  padding: 0;
+  width: 50%;
+}
+
+.ForPatient .middile_section .ContentsSection .ItemList_wrapper ul li {
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+  font-size: 15px;
+  font-weight: 500;
+  padding-bottom: 8px;
+  margin-right: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.ForPatient .middile_section .ContentsSection .ItemList_wrapper ul li img {
+  margin-right: 10px;
+}
+
+.ForPatient .bottom_section {
+  padding-top: 100px;
+  padding-bottom: 125px;
+}
+
+.ForPatient .bottom_section .bottom_wrapper .heading {
+  letter-spacing: 0px;
+  color: #162d43;
+  font-weight: 600;
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.ForPatient .bottom_section .bottom_wrapper .heading span {
+  color: #208ce1;
+}
+
+@media screen and (max-width: 1450px) {
+  .ForPatient .bottom_section {
+    padding-top: 60px;
+    padding-bottom: 80px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .ForPatient .topsection .section1 {
+    min-height: 475px;
+  }
+  .ForPatient .topsection .section1 .section1_content .section1_heading {
+    font-size: 35px;
+  }
+  .ForPatient .topsection .section2 .section2_Img {
+    margin-top: -225px;
+  }
+  .ForPatient .topsection .content_wrapper {
+    margin: 30px 0;
+  }
+  .ForPatient .topsection .content_wrapper .top_middile_wrapper {
+    margin-bottom: 15px;
+  }
+  .ForPatient .topsection .content_wrapper .top_middile_wrapper .top_middile_left h2 {
+    margin-bottom: 25px;
+    font-size: 30px;
+  }
+  .ForPatient .topsection .content_wrapper .Content_main {
+    margin-bottom: 20px;
+  }
+  .ForPatient .middile_section {
+    padding: 30px 0 50px;
+  }
+  .ForPatient .middile_section :global .row {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+  .ForPatient .middile_section .ContentsSection .heading {
+    font-size: 30px;
+    margin-top: 30px;
+  }
+  .ForPatient .bottom_section {
+    padding: 55px 0 80px;
+  }
+  .ForPatient .bottom_section .bottom_wrapper .heading {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .ForPatient .topsection .section1 {
+    min-height: 380px;
+  }
+  .ForPatient .topsection .section2 .section2_Img {
+    margin-top: -155px;
+  }
+  .ForPatient .middile_section {
+    padding: 30px 0 35px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .ForPatient .middile_section .imgSection {
+    min-height: 245px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 15px;
+  }
+  .ForPatient .topsection .section1 {
+    min-height: 300px;
+  }
+  .ForPatient .topsection .section1 .section1_content .section1_heading {
+    font-size: 25px;
+  }
+  .ForPatient .topsection .section1 .section1_content .section1_heading br {
+    display: none;
+  }
+  .ForPatient .topsection .section1 .section1_content .section1_button_wrapper .section1_button {
+    height: 45px;
+    font-size: 15px;
+  }
+  .ForPatient .topsection .section2 .section2_Img {
+    margin-top: -105px;
+  }
+  .ForPatient .topsection .content_wrapper .top_middile_wrapper .top_middile_left h2 {
+    font-size: 25px;
+    margin-bottom: 15px;
+  }
+  .ForPatient .topsection .content_wrapper .Content_main h5 {
+    font-size: 18px;
+  }
+  .ForPatient .middile_section .ContentsSection .heading {
+    font-size: 25px;
+    margin-top: 0;
+  }
+  .ForPatient .bottom_section {
+    padding: 35px 0 50px;
+  }
+  .ForPatient .bottom_section .bottom_wrapper .heading {
+    font-size: 25px;
+    margin-bottom: 0;
+  }
+}
+/*# sourceMappingURL=Forpatient.module.css.map */

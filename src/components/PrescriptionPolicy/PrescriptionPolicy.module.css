@@ -1,0 +1,59 @@
+.PrescriptionPolicy .TopSection {
+  background-image: url("../../assets/terms_bg.svg");
+  height: 229px;
+  color: #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.PrescriptionPolicy .TopSection .Top_Head {
+  color: white;
+  font-size: 50px;
+  font-weight: 600;
+}
+
+.PrescriptionPolicy .bottomSection {
+  margin-top: 25px;
+  margin-bottom: 90px;
+}
+
+.PrescriptionPolicy .bottomSection .Contents_wrapper .Contents .heading {
+  padding-top: 20px;
+  padding-bottom: 3px;
+  color: #162d43;
+  opacity: 1;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.PrescriptionPolicy .bottomSection .Contents_wrapper .Contents a {
+  padding-left: 5px;
+  text-decoration: none;
+}
+
+.PrescriptionPolicy p {
+  font-size: 18px;
+  color: #162D43;
+}
+
+@media screen and (max-width: 991px) {
+  .PrescriptionPolicy .TopSection .Top_Head {
+    font-size: 30px;
+  }
+  .PrescriptionPolicy .bottomSection {
+    margin-top: 25px;
+    margin-bottom: 50px;
+  }
+  .PrescriptionPolicy .bottomSection .Contents_wrapper .Contents .heading {
+    font-size: 18px;
+    padding-top: 5px;
+  }
+  .PrescriptionPolicy p {
+    font-size: 14px;
+  }
+}
+/*# sourceMappingURL=PrescriptionPolicy.module.css.map */

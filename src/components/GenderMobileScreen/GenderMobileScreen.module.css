@@ -1,0 +1,81 @@
+.doctor_listing_gender_content {
+  color: #011D29;
+  font-size: 15px;
+  letter-spacing: 0px;
+  opacity: 1;
+  background: white;
+}
+
+.doctor_listing_gender_content .doctor_listing_gender_content_male {
+  padding: 27px 15px;
+  border-bottom: 1px solid #E5E4E4;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.doctor_listing_gender_content .doctor_listing_gender_content_male input {
+  margin-right: 10px;
+}
+
+.doctor_listing_gender_content [type="radio"]:checked,
+.doctor_listing_gender_content [type="radio"]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+
+.doctor_listing_gender_content [type="radio"]:checked + label,
+.doctor_listing_gender_content [type="radio"]:not(:checked) + label {
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+}
+
+.doctor_listing_gender_content [type="radio"]:checked + label:before,
+.doctor_listing_gender_content [type="radio"]:not(:checked) + label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 17px;
+  height: 17px;
+  border: 2px solid #d9dfef;
+  border-radius: 100%;
+  background: #fff;
+}
+
+.doctor_listing_gender_content [type="radio"]:checked + label:before {
+  border: 2px solid #208ce1;
+}
+
+.doctor_listing_gender_content [type="radio"]:checked + label:after,
+.doctor_listing_gender_content [type="radio"]:not(:checked) + label:after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background: #208ce1;
+  position: absolute;
+  top: 5px;
+  left: 4px;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.doctor_listing_gender_content [type="radio"]:not(:checked) + label:after {
+  opacity: 0;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+
+.doctor_listing_gender_content [type="radio"]:checked + label:after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+/*# sourceMappingURL=GenderMobileScreen.module.css.map */

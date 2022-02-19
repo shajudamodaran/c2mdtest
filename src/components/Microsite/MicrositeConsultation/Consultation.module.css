@@ -1,0 +1,108 @@
+.main {
+  background-color: #f5f7fa;
+  padding: 70px 0 80px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.main span {
+  color: #208ce1;
+}
+
+.main :global .card {
+  border-radius: 6px;
+  border: 0;
+  min-height: 305px;
+  padding: 30px;
+}
+
+.title {
+  margin-bottom: 30px;
+  font-size: 40px;
+  font-weight: 600;
+  text-align: center;
+  color: #011D29;
+}
+
+.head {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #011D29;
+}
+
+.list {
+  margin: 0;
+  padding-left: 15px;
+}
+
+.list li {
+  list-style: url("../../../assets/microsite/arrow_blue.svg");
+  font-size: 19px;
+  margin-bottom: 15px;
+  color: #011D29;
+  padding-left: 10px;
+}
+
+.mob_card_title {
+  display: none;
+}
+
+@media screen and (max-width: 991px) {
+  .main {
+    padding: 35px 0 20px;
+  }
+  .main :global .card {
+    margin-bottom: 15px;
+    min-height: inherit;
+  }
+  .title {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .main :global .card {
+    padding: 20px 15px;
+  }
+  .main :global .card .col-md-2 img {
+    margin-bottom: 15px;
+  }
+  .title {
+    text-align: left;
+    font-size: 25px;
+  }
+  .head {
+    font-size: 18px;
+  }
+  .list li {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+  .list li img {
+    display: none;
+  }
+  .card_title_img {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .mob_card_title {
+    display: block;
+    padding-left: 25px;
+  }
+  .main_card_title {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .main :global .card {
+    padding: 20px 15px;
+  }
+}
+/*# sourceMappingURL=Consultation.module.css.map */

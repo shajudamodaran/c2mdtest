@@ -1,0 +1,5 @@
+export default {
+    API_KEY: '47372891',
+    SESSION_ID: '1_MX40NzM3Mjg5MX5-MTYzNjM2MDIzNTIxNn4xcTFJbzZRMlh5ZEV1aDV6bUg4Ujl3eFB-fg',
+    TOKEN: 'a1b5323ad7eb57f74f5fe74ad416032debe07c14'
+  };

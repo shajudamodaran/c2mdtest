@@ -1,0 +1,29 @@
+.accordion {
+  border-bottom: 1px solid #e9e9e9;
+  opacity: 1;
+  .accordion_item {
+    .accordion_title {
+      display: flex;
+      font-size: 15px;
+      padding-bottom: 20px;
+      padding-top: 20px;
+      cursor: pointer;
+      align-items: center;
+      .title {
+        flex: 1;
+        font-weight: 600;
+        font-size: 16px;
+        font-weight: 700;
+      }
+     
+      .Icon {
+        font-size: 20px;
+      }
+    }
+    .accordion_content {
+      color: #162D43;
+      font-size: 16px;
+      padding-bottom: 30px;
+    }
+  }
+}

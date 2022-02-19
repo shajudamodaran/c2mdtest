@@ -1,0 +1,51 @@
+body {
+  background-image: url("../../assets/signin/bg.svg");
+
+}
+.change_form_align {
+  max-width: 520px;
+  width: 100%;
+  padding: 15% 50px 11%;
+  border-radius: 3px;
+  font-family: "IBM Plex Sans";
+  text-align: center;
+  .change_header_align {
+    text-align: center;
+    font-size: 30px;
+    color: #162D43;
+    font-weight: 600;
+    margin: 20px 0 15px;
+  }
+
+  .change_form_label {
+    font-size: 16px;
+    color: #162d43;
+    text-align: center;
+    margin-top: 0.5rem;
+    margin-bottom: 25px;
+  }
+  
+ 
+  .change_checkbox_text {
+    font-size: 15px;
+    font-weight: normal;
+    a {
+      color: #208ce1;
+      text-decoration: underline;
+      font-weight: 500;
+      transition: all 0.5s;
+      &:hover {
+          color: #162d43;
+      }
+    }
+  }
+}
+@media screen and (max-width: 575px) {
+  .change_form_align {
+    padding: 0;
+    .change_header_align  {
+      font-size: 24px;
+    }
+  } 
+}
+
