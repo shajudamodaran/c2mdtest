@@ -56,7 +56,14 @@ function App() {
             <ScrollToTop />
             <ToastContainer style={{ zIndex: 20000 }} limit={1} />
             <Switch>
-              <Route exact path="/" component={MobileDashboardPage} />
+              {/* <Route exact path="/" component={MobileDashboardPage} /> */}
+
+              <Route
+                exact
+                path="/"
+                component={DoctorListingPage}
+              />
+
               <Route exact path="/speciality" component={SpecialityPage} />
               <Route
                 exact

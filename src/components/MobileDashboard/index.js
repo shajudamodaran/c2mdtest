@@ -3,7 +3,7 @@ import { TittleCard } from '../../components/Styled/TittleCard'
 import DashButton from '../../components/Normal/DashButton/DashButton';
 import './mobiledashboard.css'
 import './customstyle.css'
-import { fetch_dashboardData } from "../../actions/DashboardActions";
+import { fetch_dashboardData, uploadReports } from "../../actions/DashboardActions";
 import { useDispatch, useSelector } from "react-redux";
 import RecentActivityListItem from "../Normal/RecentActivityListCard/RecentActivityListItem";
 import Footer from '../../components/Footer'
@@ -51,6 +51,8 @@ function MobileDashboard() {
         //     webkitRelativePath: "",
         // }
     ])
+
+    let [localReports, setLocalReports] = useState([])
 
 
     let dispatch = useDispatch()
@@ -118,17 +120,20 @@ function MobileDashboard() {
 
     useEffect(() => {
 
-        if(consultationToday)
-        {
-            consultationToday.reports.length>0?
+        if (consultationToday) {
+            consultationToday.reports.length > 0 ?
 
-            setReports([... consultationToday.reports]):console.log("No reports")
+                setReports([...consultationToday.reports]) : console.log("No reports")
+
         }
 
-      
-     
+
     }, [consultationToday])
-    
+
+
+
+
+
 
     let sideNavList = [
         {
@@ -192,13 +197,15 @@ function MobileDashboard() {
 
         console.log(e.target.files);
 
-        setReports([...reports,{filename:e.target.files[0].name,filecontent:e.target.files[0]}])
+        setLocalReports([...localReports, { filename: e.target.files[0].name, filecontent: e.target.files[0] }])
+
+        uploadReportsHandler(e)
 
     }
 
 
     let downloadFile = (file) => {
-       
+
         window.open(
             file, "_blank");
 
@@ -220,25 +227,44 @@ function MobileDashboard() {
 
 
 
-    let logoutFunction=()=>{
-        
+    let logoutFunction = () => {
+
         dispatch(
             logoutAction(userData, dashboardData)
         );
 
-       
 
-        if(logoutDetails?.info)
+
+        if (logoutDetails?.info) {
+            window.open("https://www.connect2mydoctor.com/", "_self")
+
+
+        }
+        else {
+
+            window.open("https://www.connect2mydoctor.com/", "_self")
+
+        }
+    }
+
+
+    let uploadReportsHandler = (e) => {
+
+        let formData = new FormData();
+        formData.append("appintmentId",consultationToday?.appointmentId)
+
+
+        if (e.target.files[0]) 
         {
-            window.open("https://www.connect2mydoctor.com/","_self")
-
-
+            formData.append(`file_${e.target.files[0].name}`, e.target.files[0])
         }
-        else{
 
-            window.open("https://www.connect2mydoctor.com/","_self")
+        dispatch(
+            uploadReports({ formData, userData, dashboardData })
+        );
 
-        }
+
+
     }
 
     return (
@@ -413,7 +439,7 @@ function MobileDashboard() {
                                                                             }}>
 
                                                                                 <span>Reports :</span>
-                                                                                {reports.length>0 ? <button className="report_upload_button">Upload</button>: null}
+                                                                                {localReports.length > 0 ? <button onClick={uploadReportsHandler} className="report_upload_button">Upload</button> : null}
 
 
                                                                             </div>
@@ -504,7 +530,7 @@ function MobileDashboard() {
                                                                     </div>
 
                                                                     <div className="col-md-6 col-sm-12 col-12 p-0 m-0 text-center" onClick={() => { isWithinMinutes(consultationDetails.appointmentDate, consultationToday.appointmentTimes) ? handlePageChange("/meet_dr") : console.log(""); }}>
-                                                                        <DashButton text="Join Now"  active={isWithinMinutes(consultationDetails.appointmentDate, consultationToday.appointmentTimes)} />
+                                                                        <DashButton text="Join Now" active={isWithinMinutes(consultationDetails.appointmentDate, consultationToday.appointmentTimes)} />
                                                                     </div>
 
                                                                 </div> : null
