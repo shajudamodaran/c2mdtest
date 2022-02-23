@@ -114,18 +114,29 @@ function MobileDashboard() {
 
     let reduxData = useSelector(state => state)
 
+    let consultations = reduxData.consultationDetails.appointmentDetail ? reduxData.consultationDetails.appointmentDetail : []
 
-    let consultationToday = reduxData.consultationDetails.appointmentDetail ? reduxData.consultationDetails.appointmentDetail[0] : null
+
+    let consultationToday = consultations.length > 1 ? consultations[consultations.length - 1] : null
     let consultationDetails = reduxData.consultationDetails
 
     useEffect(() => {
 
         if (consultationToday) {
-            consultationToday.reports.length > 0 ?
+            if (consultationToday.reports) {
+                if (consultationToday) {
+                    consultationToday.reports.length > 0 ?
 
-                setReports([...consultationToday.reports]) : console.log("No reports")
+                        setReports([...consultationToday.reports]) : console.log("No reports")
+
+                }
+
+            }
+
 
         }
+
+
 
 
     }, [consultationToday])
@@ -251,11 +262,10 @@ function MobileDashboard() {
     let uploadReportsHandler = (e) => {
 
         let formData = new FormData();
-        formData.append("appintmentId",consultationToday?.appointmentId)
+        formData.append("appintmentId", consultationToday?.appointmentId)
 
 
-        if (e.target.files[0]) 
-        {
+        if (e.target.files[0]) {
             formData.append(`file_${e.target.files[0].name}`, e.target.files[0])
         }
 

@@ -10,20 +10,20 @@ if (formatTime.search(/\+/g) != null) {
   formatTime = formatTime.replace(/\-/g, "%2D")
 }//replace(/\+/g,' ') browserTimeZone: GMT${formatTime}
 
-export const fetch_clientDetails = (userData) => async (dispatch) => {
+export const fetch_clientDetails = (clinicId) => async (dispatch) => {
   let params = {
     requestType: "1036",
     token: "C2MDVerificationToken",
     data: {
-      browserTimeZone: 'GMT${formatTime}',
+      browserTimeZone: `GMT${formatTime}`,
       currency: "INR",
       accessCountry: "IN",
       todayRate: "",
-      clinicId: userData.clinicId,
+      clinicId: clinicId,
     },
   };
-  if (userData.clinicId != "") {
-    params.data.clinicId = userData.clinicId;
+  if (clinicId != "") {
+    params.data.clinicId = clinicId;
   }
 
   const response = await loginedApi.post("getclinicdetails", params);
@@ -31,7 +31,6 @@ export const fetch_clientDetails = (userData) => async (dispatch) => {
   await localStorage.setItem("ClinicDetails", JSON.stringify(response.data.data));
   dispatch({ type: FETCH_CLIENTDETAILS, payload: response.data.data });
 };
-
 
 
 export const check_consultation = (userData) => async (dispatch) => {
