@@ -6,13 +6,14 @@ function AppointmentHistoryModalContent() {
 
     let appointmentHistoryRedux = useSelector(state => state.appointmentHistory.selectedAppointment)
 
-    
+
     let downloadFile = (file) => {
-       
+
         window.open(
             file, "_blank");
-
     }
+
+    console.log(appointmentHistoryRedux?.[0].appointmentDate);
 
     return (
         <div className='ahmc-container'>
@@ -50,7 +51,7 @@ function AppointmentHistoryModalContent() {
 
                     <div className="step-text">
 
-                        <div className="date">{appointmentHistoryRedux?.[0].appointmentbookedDate}</div>
+                        <div className="date">{appointmentHistoryRedux?.[0].appointmentDate}</div>
 
                         <div className="c-row">For - <div className="date">{appointmentHistoryRedux?.[0].doctorName}</div></div>
 
@@ -60,21 +61,21 @@ function AppointmentHistoryModalContent() {
 
                         <ul>
                             {
-                                appointmentHistoryRedux?.[0].reportDetails.length>0?
+                                appointmentHistoryRedux?.[0].reportDetails.length > 0 ?
 
-                                appointmentHistoryRedux?.[0].reportDetails.map((element)=>{
+                                    appointmentHistoryRedux?.[0].reportDetails.map((element) => {
 
-                                  
-                                    return(
-                                        <li onClick={()=>{downloadFile(element.filecontent)}}>{element.filename}</li>
-                                    )
 
-                                })
+                                        return (
+                                            <li onClick={() => { downloadFile(element.filecontent) }}>{element.filename}</li>
+                                        )
 
-                                :null
+                                    })
+
+                                    : null
                             }
-                           
-                           
+
+
                         </ul>
 
                         <div className="row">Other documents</div>

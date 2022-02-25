@@ -19,6 +19,7 @@ import { Tooltip, Button } from 'antd';
 import { check_consultation, fetch_clientDetails } from "../../actions/MicrositeAction";
 import { isWithinMinutes } from "../../Helpers/dateFunctions";
 import { logoutAction } from "../../actions/LoginAction";
+import loginedApi from "../../apis";
 
 
 
@@ -53,6 +54,8 @@ function MobileDashboard() {
     ])
 
     let [localReports, setLocalReports] = useState([])
+
+    // let [consultationToday, setConsultationToday] = useState(null)
 
 
     let dispatch = useDispatch()
@@ -117,7 +120,8 @@ function MobileDashboard() {
     let consultations = reduxData.consultationDetails.appointmentDetail ? reduxData.consultationDetails.appointmentDetail : []
 
 
-    let consultationToday = consultations.length > 1 ? consultations[consultations.length - 1] : null
+    let consultationToday = consultations.length > 0 ? consultations[consultations.length - 1] : null
+
     let consultationDetails = reduxData.consultationDetails
 
     useEffect(() => {
@@ -143,6 +147,7 @@ function MobileDashboard() {
 
 
 
+    console.log(consultationToday);
 
 
 
@@ -227,9 +232,23 @@ function MobileDashboard() {
 
         setInterval(function () {
 
-            dispatch(
-                check_consultation(userData, dashboardData)
-            );
+
+          call201().then((res)=>{
+
+           if(res.data.appointmentId)
+           {
+                console.log(res.data);
+           }
+           else{
+              call65().then((res_65)=>{
+
+                console.log(res_65);
+
+              })
+           }
+
+          })
+
 
 
         }, 15000);
@@ -273,13 +292,65 @@ function MobileDashboard() {
             uploadReports({ formData, userData, dashboardData })
         );
 
+    }
 
+    let openPrescription = () => {
+        window.open(consultationToday.prescription, "_blank")
+    }
+
+
+    let call201 = async () => {
+
+        let paramAppoint =
+        {
+            "requestType": "201",
+            "token": "C2MDVerificationToken",
+            "data": {
+                "userId": userData?.userId, 
+                "userType": "Patient", 
+                "browserTimeZone": "GMT+05:30",
+                "Ipaddress": "192.168.1.34",
+                "useragent": "RMX1992",
+                "Os": "Android Version 11"
+            }
+        }
+
+        const response = await loginedApi.post("consultation", paramAppoint);
+
+        return response.data
 
     }
 
-    let openPrescription =()=>{
-        window.open( consultationToday.prescription, "_blank")
+    let call65 = async () => {
+
+        let today= moment(new Date()).format("DD-MMM-YYYY")
+
+        let paramAppoint =
+        {
+          "requestType": "65",
+          "token": "C2MDVerificationToken",
+          "data":
+          {
+            "patientId": userData.userId,
+            "patientEmail": "mail.sobinjose@gmail.com",
+            "patientMobile": "+91 9846809893",
+            "browserTimeZone": "GMT%2B05:30",
+            "dayOfAppointment": today,
+            "appointmentNavigation": "start",
+            "currency": "INR",
+            "accessCountry": "IN",
+            "todayRate": "74.45000",
+            "Ipaddress": {},
+            "useragent": "Mozilla/5.0 (Linux; Android 8.0.0; Nexus 6P Build/OPP3.170518.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.81 Mobile Safari/537.36", "Browser": "Chrome-95.0.4638.69", "Os": "Win32"
+          }
+        }
+      
+        const response = await loginedApi.post("appointments", today);
+
+        return response.data
+
     }
+
 
     return (
 
@@ -527,7 +598,7 @@ function MobileDashboard() {
                                                                     <div className="col-md-12 col-sm-12 col-12 p-0 m-0 text-center">
                                                                         {
                                                                             consultationToday.prescription ?
-                                                                                <DashButton action={ consultationToday.prescription} onClick={openPrescription} text="Download Prescription" active />
+                                                                                <DashButton action={consultationToday.prescription} onClick={openPrescription} text="Download Prescription" active />
                                                                                 : <DashButton text="Download Prescription " inactive />
                                                                         }
 
@@ -592,7 +663,7 @@ function MobileDashboard() {
 
 
                                                 <div className="dash-card-body d-flex flex-column justify-content-start">
-                                                  
+
 
                                                     {
                                                         reduxData.login.patientDashboard ?
@@ -714,7 +785,7 @@ function MobileDashboard() {
 
 
                                                 <div className="dash-card-body d-flex flex-column justify-content-start">
-                                                 
+
 
                                                     {
                                                         reduxData.login.patientDashboard ?
