@@ -9,6 +9,7 @@ import MeetPage from "../pages/MeetPage/MeetPage";
 
 import { MeetPage_Dr } from "../pages/MeetPage_Dr/MeetPage_Dr";
 import { MeetPage_Pt } from "../pages/MeetPage_Pt/MeetPage_Pt";
+import Homepage from "./HomePage/Homepage";
 const Login = React.lazy(() => import("../pages/login"));
 const SpecialityPage = React.lazy(() => import("../pages/SpecialityListing"));
 const SignupPage = React.lazy(() => import("../pages/Signup"));
@@ -61,8 +62,9 @@ function App() {
               <Route
                 exact
                 path="/"
-                component={DoctorListingPage}
+                component={Homepage}
               />
+
 
               <Route exact path="/speciality" component={SpecialityPage} />
               <Route

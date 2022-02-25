@@ -31,7 +31,7 @@ function AppointmentHistoryModalContent() {
 
                         <div className="date">{appointmentHistoryRedux?.[0].appointmentDate}</div>
 
-                        <div className="c-row">For - <div className="date">{appointmentHistoryRedux?.[0].doctorName}</div></div>
+                        <div className="c-row">Patient Name - <div className="date">{appointmentHistoryRedux?.[0].patientName}</div></div>
 
                         <div className="c-row">No further input from your provider</div>
 
@@ -51,6 +51,8 @@ function AppointmentHistoryModalContent() {
                     <div className="step-text">
 
                         <div className="date">{appointmentHistoryRedux?.[0].appointmentbookedDate}</div>
+
+                        <div className="c-row">For - <div className="date">{appointmentHistoryRedux?.[0].doctorName}</div></div>
 
                         <div className="c-row">Patient Name - <div className="date">{appointmentHistoryRedux?.[0].patientName}</div></div>
 

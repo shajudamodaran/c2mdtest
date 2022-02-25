@@ -277,6 +277,10 @@ function MobileDashboard() {
 
     }
 
+    let openPrescription =()=>{
+        window.open( consultationToday.prescription, "_blank")
+    }
+
     return (
 
         <>
@@ -520,10 +524,10 @@ function MobileDashboard() {
 
                                                                 <div className="row p-0 m-0 w-100">
 
-                                                                    <div className="col-md-12 col-sm-12 col-12 p-0 m-0 text-center" onClick={() => { handlePageChange("/meet_dr") }}>
+                                                                    <div className="col-md-12 col-sm-12 col-12 p-0 m-0 text-center">
                                                                         {
                                                                             consultationToday.prescription ?
-                                                                                <DashButton text="Download Prescription" active />
+                                                                                <DashButton action={ consultationToday.prescription} onClick={openPrescription} text="Download Prescription" active />
                                                                                 : <DashButton text="Download Prescription " inactive />
                                                                         }
 

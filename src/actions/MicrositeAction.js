@@ -10,7 +10,7 @@ if (formatTime.search(/\+/g) != null) {
   formatTime = formatTime.replace(/\-/g, "%2D")
 }//replace(/\+/g,' ') browserTimeZone: GMT${formatTime}
 
-export const fetch_clientDetails = (clinicId) => async (dispatch) => {
+export const fetch_clientDetails = (userData) => async (dispatch) => {
   let params = {
     requestType: "1036",
     token: "C2MDVerificationToken",
@@ -19,11 +19,11 @@ export const fetch_clientDetails = (clinicId) => async (dispatch) => {
       currency: "INR",
       accessCountry: "IN",
       todayRate: "",
-      clinicId: clinicId,
+      clinicId: userData?.clinicId,
     },
   };
-  if (clinicId != "") {
-    params.data.clinicId = clinicId;
+  if (userData.clinicId != "") {
+    params.data.clinicId = userData.clinicId;
   }
 
   const response = await loginedApi.post("getclinicdetails", params);
@@ -31,6 +31,7 @@ export const fetch_clientDetails = (clinicId) => async (dispatch) => {
   await localStorage.setItem("ClinicDetails", JSON.stringify(response.data.data));
   dispatch({ type: FETCH_CLIENTDETAILS, payload: response.data.data });
 };
+
 
 
 export const check_consultation = (userData) => async (dispatch) => {
@@ -60,7 +61,7 @@ let today= moment(new Date()).format("DD-MMM-YYYY")
       "patientEmail": "mail.sobinjose@gmail.com",
       "patientMobile": "+91 9846809893",
       "browserTimeZone": "GMT%2B05:30",
-      "dayOfAppointment": "21-Feb-2022",
+      "dayOfAppointment": today,
       "appointmentNavigation": "start",
       "currency": "INR",
       "accessCountry": "IN",

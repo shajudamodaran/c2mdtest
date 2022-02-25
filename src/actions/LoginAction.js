@@ -45,10 +45,10 @@ export const loginAction =
           } else if (history?.location?.state?.redirection) {
             history.push(history?.location?.state?.redirection);
           } else {
-            history.push("/");
+            history.push("/dashboard");
           }
         } else {
-          history.push("/");
+          history.push("/dashboard");
         }
       }
       return res.data.data;

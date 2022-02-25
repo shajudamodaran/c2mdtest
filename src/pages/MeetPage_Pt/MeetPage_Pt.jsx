@@ -8,6 +8,7 @@ import { Popover, Button, Upload } from 'antd';
 import { useSelector } from 'react-redux';
 import PrescribeMedicine from '../../components/PrescribeMedicine/PrescribeMedicine';
 import ConsultationModal from '../../components/Modals/ConsultationModal';
+import loginedApi from '../../apis';
 const { OTSession, OTPublisher, OTStreams, OTSubscriber, createSession } = require('opentok-react');
 
 
@@ -71,559 +72,6 @@ let AppintmentDetails = ({ setSuperSubMenu }) => {
         </div>
     )
 }
-
-let AppintmentHistory = ({ setSuperSubMenu }) => {
-
-    return (
-        <div className="super-sub-menu-container">
-            <div className="d-flex flex-row justify-content-start align-items-center back-button-supersubmenu">
-
-                <div style={{ cursor: "pointer" }} onClick={() => { setSuperSubMenu(null) }}>
-                    <ArrowLeft /> Appoinment History
-                </div>
-
-            </div>
-
-            <div className="white-container mt-3">
-
-                <div className="d-flex flex-row align-items-center" style={{ fontWeight: 500 }}>
-                    <VolumeIcon />
-                    29 Nov 2021 12:00PM
-                </div>
-
-
-            </div>
-
-            <div className="white-container ">
-
-                <div className="d-flex flex-row align-items-center" style={{ fontWeight: 500 }}>
-                    <VolumeIcon />
-                    29 Nov 2021 12:00PM
-                </div>
-
-
-            </div>
-
-            <div className="white-container ">
-
-                <div className="d-flex flex-row align-items-center" style={{ fontWeight: 500 }}>
-                    <VolumeIcon />
-                    29 Nov 2021 12:00PM
-                </div>
-
-
-            </div>
-
-            <div className="white-container ">
-
-                <div className="d-flex flex-row align-items-center" style={{ fontWeight: 500 }}>
-                    <VolumeIcon />
-                    29 Nov 2021 12:00PM
-                </div>
-
-
-            </div>
-
-
-        </div>
-    )
-}
-
-let LifeStyle = ({ setSuperSubMenu }) => {
-
-    const { Option } = Select;
-
-    return (
-        <div className="super-sub-menu-container">
-            <div className="d-flex flex-row justify-content-start align-items-center back-button-supersubmenu">
-
-                <div style={{ cursor: "pointer" }} onClick={() => { setSuperSubMenu(null) }}>
-                    <ArrowLeft /> Lifestyle
-                </div>
-
-            </div>
-
-            <div className="white-container mt-3">
-
-                <div className="lifestyle-item">
-                    <span>High Blood Pressure</span>
-                    <div>
-                        <Select style={{ width: 90, fontSize: "13px" }}>
-                            <Option value={true}>Yes</Option>
-                            <Option value={false}>No</Option>
-
-                        </Select>
-
-                    </div>
-                </div>
-
-                <div className="lifestyle-item">
-                    <span>Consume Alcohol</span>
-                    <div>
-                        <Select style={{ width: 90, fontSize: "13px" }}>
-                            <Option value={true}>Yes</Option>
-                            <Option value={false}>No</Option>
-
-                        </Select>
-
-                    </div>
-                </div>
-
-                <div className="lifestyle-item">
-                    <span>Smoke/Use Tobacco</span>
-                    <div>
-                        <Select style={{ width: 90, fontSize: "13px" }}>
-                            <Option value={true}>Yes</Option>
-                            <Option value={false}>No</Option>
-
-                        </Select>
-
-                    </div>
-                </div>
-
-                <div className="lifestyle-item">
-                    <span>Exercise</span>
-                    <div>
-                        <Select style={{ width: 90, fontSize: "13px" }}>
-                            <Option value={true}>Yes</Option>
-                            <Option value={false}>No</Option>
-
-                        </Select>
-
-                    </div>
-                </div>
-
-                <div className="lifestyle-item">
-                    <span>Take Medication</span>
-                    <div>
-                        <Select style={{ width: 90, fontSize: "13px" }}>
-                            <Option value={true}>Yes</Option>
-                            <Option value={false}>No</Option>
-
-                        </Select>
-
-                    </div>
-                </div>
-
-                <div className="lifestyle-item">
-                    <span>Get 8 hours of sleep</span>
-                    <div>
-                        <Select style={{ width: 90, fontSize: "13px" }}>
-                            <Option value={true}>Yes</Option>
-                            <Option value={false}>No</Option>
-
-                        </Select>
-
-                    </div>
-                </div>
-
-                <div className="lifestyle-item">
-                    <span>Have Chronic condition</span>
-                    <div>
-                        <Select style={{ width: 90, fontSize: "13px" }}>
-                            <Option value={true}>Yes</Option>
-                            <Option value={false}>No</Option>
-
-                        </Select>
-
-                    </div>
-                </div>
-
-                <div className="lifestyle-item">
-                    <span>Overseas travel last 2 months</span>
-                    <div>
-                        <Select style={{ width: 90, fontSize: "13px" }}>
-                            <Option value={true}>Yes</Option>
-                            <Option value={false}>No</Option>
-
-                        </Select>
-
-                    </div>
-                </div>
-
-            </div>
-
-
-        </div>
-    )
-}
-
-let CurrentMedication = ({ setSuperSubMenu }) => {
-
-    const { Option } = Select;
-
-    return (
-        <div className="super-sub-menu-container">
-            <div className="d-flex flex-row justify-content-start align-items-center back-button-supersubmenu">
-
-                <div style={{ cursor: "pointer" }} onClick={() => { setSuperSubMenu(null) }}>
-                    <ArrowLeft /> Current Medication
-                </div>
-
-            </div>
-
-            <div className="white-container mt-3">
-
-                <div className="d-flex flex-column align-items-center mt-0 ">
-
-                    <div className="medicines-list">
-                        <NoDataIcon />
-                        <span className="title">No Medication added</span>
-                        <span className="caption">Click button to add Medication</span>
-                    </div>
-
-                    <Upload {...props} className="p-0 d-flex flex-row align-items-center" showUploadList={false}>
-                        <button className="medicines-list-add-btn"><AddIcon /> Add Medication</button>
-                    </Upload>
-
-                </div>
-
-            </div>
-
-
-        </div>
-    )
-}
-
-
-let Alergies = ({ setSuperSubMenu }) => {
-
-    const { Option } = Select;
-
-    return (
-        <div className="super-sub-menu-container">
-            <div className="d-flex flex-row justify-content-start align-items-center back-button-supersubmenu">
-
-                <div style={{ cursor: "pointer" }} onClick={() => { setSuperSubMenu(null) }}>
-                    <ArrowLeft /> Allergies
-                </div>
-
-            </div>
-
-            <div className="white-container mt-3">
-
-                <div className="d-flex flex-column align-items-center mt-0 ">
-
-                    <div className="medicines-list">
-                        <NoDataIcon />
-                        <span className="title">No items added</span>
-                        <span className="caption">Click button to add Allergies</span>
-                    </div>
-
-                    <Upload {...props} className="p-0 d-flex flex-row align-items-center" showUploadList={false}>
-                        <button className="medicines-list-add-btn"><AddIcon /> Add Allergies</button>
-                    </Upload>
-
-                </div>
-
-            </div>
-
-
-        </div>
-    )
-}
-
-let PreExistingCondition = ({ setSuperSubMenu }) => {
-
-    const { Option } = Select;
-
-    return (
-        <div className="super-sub-menu-container">
-            <div className="d-flex flex-row justify-content-start align-items-center back-button-supersubmenu">
-
-                <div style={{ cursor: "pointer" }} onClick={() => { setSuperSubMenu(null) }}>
-                    <ArrowLeft /> Pre Existing Condition
-                </div>
-
-            </div>
-
-            <div className="white-container mt-3">
-
-                <table className="pre-existing-table">
-                    <tr>
-                        <th>Condition</th>
-                        <th>Status</th>
-                        <th>In family</th>
-                    </tr>
-
-                    <tr>
-                        <td>Anemia</td>
-                        <td>
-                            <Select style={{ width: 90, fontSize: "13px" }} placeholder="Status">
-                                <Option value={true}>Yes</Option>
-                                <Option value={false}>No</Option>
-
-                            </Select>
-                        </td>
-
-                        <td>
-                            <Select style={{ width: 90, fontSize: "13px" }} placeholder="In Family">
-                                <Option value={true}>Yes</Option>
-                                <Option value={false}>No</Option>
-
-                            </Select>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Asthma</td>
-                        <td>
-                            <Select style={{ width: 90, fontSize: "13px" }} placeholder="Status">
-                                <Option value={true}>Yes</Option>
-                                <Option value={false}>No</Option>
-
-                            </Select>
-                        </td>
-
-                        <td>
-                            <Select style={{ width: 90, fontSize: "13px" }} placeholder="In Family">
-                                <Option value={true}>Yes</Option>
-                                <Option value={false}>No</Option>
-
-                            </Select>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Diabetes</td>
-                        <td>
-                            <Select style={{ width: 90, fontSize: "13px" }} placeholder="Status">
-                                <Option value={true}>Yes</Option>
-                                <Option value={false}>No</Option>
-
-                            </Select>
-                        </td>
-
-                        <td>
-                            <Select style={{ width: 90, fontSize: "13px" }} placeholder="In Family">
-                                <Option value={true}>Yes</Option>
-                                <Option value={false}>No</Option>
-
-                            </Select>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Cholestrol</td>
-                        <td>
-                            <Select style={{ width: 90, fontSize: "13px" }} placeholder="Status">
-                                <Option value={true}>Yes</Option>
-                                <Option value={false}>No</Option>
-
-                            </Select>
-                        </td>
-
-                        <td>
-                            <Select style={{ width: 90, fontSize: "13px" }} placeholder="In Family">
-                                <Option value={true}>Yes</Option>
-                                <Option value={false}>No</Option>
-
-                            </Select>
-                        </td>
-                    </tr>
-
-
-                    <tr>
-                        <td>Thyroid Diseas</td>
-                        <td>
-                            <Select style={{ width: 90, fontSize: "13px" }} placeholder="Status">
-                                <Option value={true}>Yes</Option>
-                                <Option value={false}>No</Option>
-
-                            </Select>
-                        </td>
-
-                        <td>
-                            <Select style={{ width: 90, fontSize: "13px" }} placeholder="In Family">
-                                <Option value={true}>Yes</Option>
-                                <Option value={false}>No</Option>
-
-                            </Select>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Heart Diseas</td>
-                        <td>
-                            <Select style={{ width: 90, fontSize: "13px" }} placeholder="Status">
-                                <Option value={true}>Yes</Option>
-                                <Option value={false}>No</Option>
-
-                            </Select>
-                        </td>
-
-                        <td>
-                            <Select style={{ width: 90, fontSize: "13px" }} placeholder="In Family">
-                                <Option value={true}>Yes</Option>
-                                <Option value={false}>No</Option>
-
-                            </Select>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Stroke</td>
-                        <td>
-                            <Select style={{ width: 90, fontSize: "13px" }} placeholder="Status">
-                                <Option value={true}>Yes</Option>
-                                <Option value={false}>No</Option>
-
-                            </Select>
-                        </td>
-
-                        <td>
-                            <Select style={{ width: 90, fontSize: "13px" }} placeholder="In Family">
-                                <Option value={true}>Yes</Option>
-                                <Option value={false}>No</Option>
-
-                            </Select>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Galucoma</td>
-                        <td>
-                            <Select style={{ width: 90, fontSize: "13px" }} placeholder="Status">
-                                <Option value={true}>Yes</Option>
-                                <Option value={false}>No</Option>
-
-                            </Select>
-                        </td>
-
-                        <td>
-                            <Select style={{ width: 90, fontSize: "13px" }} placeholder="In Family">
-                                <Option value={true}>Yes</Option>
-                                <Option value={false}>No</Option>
-
-                            </Select>
-                        </td>
-                    </tr>
-                </table>
-
-            </div>
-
-
-        </div>
-    )
-}
-
-
-
-let Symptomes = ({ setSuperSubMenu }) => {
-
-    const { Option } = Select;
-
-    return (
-        <div className="super-sub-menu-container">
-            <div className="d-flex flex-row justify-content-start align-items-center back-button-supersubmenu">
-
-                <div style={{ cursor: "pointer" }} onClick={() => { setSuperSubMenu(null) }}>
-                    <ArrowLeft /> Symptoms
-                </div>
-
-            </div>
-
-
-            <Upload {...props} className="p-0 d-flex flex-row align-items-center" showUploadList={false}>
-                <button className="medicines-list-add-btn"><AddIcon /> Add Symptoms</button>
-            </Upload>
-
-
-        </div>
-    )
-}
-
-
-let MedicalCondition = ({ setSuperSubMenu }) => {
-
-    const { Option } = Select;
-
-    return (
-        <div className="super-sub-menu-container">
-            <div className="d-flex flex-row justify-content-start align-items-center back-button-supersubmenu">
-
-                <div style={{ cursor: "pointer" }} onClick={() => { setSuperSubMenu(null) }}>
-                    <ArrowLeft /> Medical Condition
-                </div>
-
-            </div>
-
-            <Select style={{ width: "100%", fontSize: "13px", marginTop: "1rem" }} placeholder="Select Condition to add">
-                <Option value={true}>Yes</Option>
-                <Option value={false}>No</Option>
-
-            </Select>
-
-            <div className="white-container mt-3">
-
-                <div className="d-flex flex-column align-items-center mt-0 ">
-
-                    <div className="medicines-list">
-                        <NoDataIcon />
-                        <span className="title">No Items added</span>
-                        <span className="caption">Select a condition to add</span>
-                    </div>
-
-
-
-                </div>
-
-            </div>
-
-
-        </div>
-    )
-}
-
-let Surgery = ({ setSuperSubMenu }) => {
-
-    const { Option } = Select;
-
-    return (
-        <div className="super-sub-menu-container">
-            <div className="d-flex flex-row justify-content-start align-items-center back-button-supersubmenu">
-
-                <div style={{ cursor: "pointer" }} onClick={() => { setSuperSubMenu(null) }}>
-                    <ArrowLeft /> Surgery Details
-                </div>
-
-            </div>
-
-            <Upload {...props} className="p-0 d-flex flex-row align-items-center" showUploadList={false}>
-                <button className="medicines-list-add-btn"><AddIcon /> Add Surgery</button>
-            </Upload>
-
-
-        </div>
-    )
-}
-
-//second implement
-
-let AddPrescription = ({ setSuperSubMenu }) => {
-
-    const { Option } = Select;
-
-    return (
-        <div className="super-sub-menu-container">
-            <div className="d-flex flex-row justify-content-start align-items-center back-button-supersubmenu">
-
-                <div style={{ cursor: "pointer", fontWeight: "bold" }} onClick={() => { setSuperSubMenu(null) }}>
-                    <ArrowLeft /> Prescribe Medicine
-                </div>
-
-            </div>
-
-            <PrescribeMedicine />
-
-
-
-
-
-        </div>
-    )
-}
-
 
 let ViewNotes = ({ setSuperSubMenu, context }) => {
 
@@ -786,6 +234,8 @@ export const MeetPage_Pt = () => {
     let [message, setMessage] = useState(false)
     let [patientInfoActive, setPatientInfoActive] = useState(null)
 
+    let [consultation,setConsultation]=useState(null)
+
     let reduxData = useSelector(state => state)
     let userdata = reduxData.login ? reduxData.login.user : null;
 
@@ -796,6 +246,28 @@ export const MeetPage_Pt = () => {
         preferredFrameRate: 15,
         showControls: false
     };
+
+    useEffect(() => {
+
+        getConsultationDetails()
+     
+    }, [])
+    
+
+    useEffect(() => {
+
+       if(consultation)
+       {
+        setMeetCred({
+            apiKey: consultation.apiKey,
+            sessionId: consultation.sessionId,
+            token: consultation.tokenId
+        })
+       }
+    
+    }, [consultation])
+    
+
     const subscriberEventHandlers = {
         videoDisabled: event => {
             console.log('Subscriber video disabled!');
@@ -891,6 +363,38 @@ export const MeetPage_Pt = () => {
     };
 
 
+    let getConsultationDetails= async()=>{
+
+        let paramAppoint =
+        {
+            "requestType": "400",
+            "token": "C2MDVerificationToken",
+            "data": {
+                "currency":"INR",
+                "userType":"Patient",
+                "browserTimeZone":"GMT+05:30",
+                 "Ipaddress": "192.168.1.34",
+                "useragent": "RMX1992",
+                "Os": "Android Version 11",
+                "todayRate":"1",
+                "consultationId":"38618873"
+            }
+        }
+      
+      
+        const response = await loginedApi.post("consultation", paramAppoint);
+        //localStorage.setItem("ClinicDetails",response.data.data);
+      
+        console.log(response);
+      
+        if (response.data.data) {
+      
+         setConsultation(response.data.data);
+        }
+
+    }
+
+
 
     let [isTopMenu, setTopMenu] = useState(true)
 
@@ -979,15 +483,15 @@ export const MeetPage_Pt = () => {
                             <ul>
                                 <li>
                                     <div className="d-flex flex-column align-items-start">
-                                        <span className="top-menu-headding">Patient</span>
-                                        <span className="top-menu-caption">John David CJ</span>
+                                        <span className="top-menu-headding">Doctor</span>
+                                        <span className="top-menu-caption">{consultation?.doctorDetails.doctorName}</span>
                                     </div>
 
                                 </li>
                                 <li>
 
                                     <div className="d-flex flex-column align-items-start">
-                                        <span className="top-menu-headding">Reason for visit</span>
+                                        <span className="top-menu-headding">{consultation?.reasonforvisit}</span>
                                         <span className="top-menu-caption">General Consultation</span>
 
                                     </div>
@@ -1042,29 +546,29 @@ export const MeetPage_Pt = () => {
                         {
                             meetCred.apiKey ?
 
-                                // <OTSession ref={subsessionRef} apiKey={meetCred.apiKey} sessionId={meetCred.sessionId} token={meetCred.token} eventHandlers={sessionEventssubscriber}>
+                                <OTSession ref={subsessionRef} apiKey={meetCred.apiKey} sessionId={meetCred.sessionId} token={meetCred.token} eventHandlers={sessionEventssubscriber}>
 
 
-                                //     <OTStreams>
-                                //         <OTSubscriber
-                                //             properties={subscriberPropertiess}
-                                //             eventHandlers={subscriberEventHandlers}
-                                //         />
-                                //     </OTStreams>
+                                    <OTStreams>
+                                        <OTSubscriber
+                                            properties={subscriberPropertiess}
+                                            eventHandlers={subscriberEventHandlers}
+                                        />
+                                    </OTStreams>
 
-                                // </OTSession>
+                                </OTSession>
 
-                                <div className="user-profile2">
-                                    <div className="user-profile2-container">
-                                        <img src={userdata.profileImage} className="user2-avatar" />
+                                // <div className="user-profile2">
+                                //     <div className="user-profile2-container">
+                                //         <img src={consultation?.doctorDetails.doctorImage} className="user2-avatar" />
 
-                                        <div className="user-profile2-footer">
-                                            {userdata.profileName}
-                                            {/* <ThreeDotVerticalWhiteIcon /> */}
-                                        </div>
+                                //         <div className="user-profile2-footer">
+                                //         {consultation?.doctorDetails.doctorName}
+                                //             {/* <ThreeDotVerticalWhiteIcon /> */}
+                                //         </div>
 
-                                    </div>
-                                </div>
+                                //     </div>
+                                // </div>
                                 :
                                 <div className="user-profile2">
                                     <div className="user-profile2-container">

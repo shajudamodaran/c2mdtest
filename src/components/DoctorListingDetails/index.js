@@ -146,7 +146,7 @@ function DoctorListingDetails({ Details }) {
             }}
           ></p>
 
-          {Details.clinicLogo !== "" &&
+          {/* {Details.clinicLogo !== "" &&
             Details.clinicLogo !== undefined &&
             Details.clinicLogo !== null && (
               <img
@@ -154,7 +154,7 @@ function DoctorListingDetails({ Details }) {
                 className={Style.doctor_listing_hospital_icon}
                 alt="hospital"
               />
-            )}
+            )} */}
           <div className={Style.doctorListTimerColmob}>
             <div className={Style.doctorListTimerCol}>
               <div>
