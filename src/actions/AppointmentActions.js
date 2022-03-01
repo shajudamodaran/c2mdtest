@@ -7,19 +7,19 @@ let platform = window.navigator.platform;
 let userAgent = window.navigator.userAgent;
 
 
-export const fetchAppointmentHistory = (patientId) => async (dispatch) => {
+export const fetchAppointmentHistory = (patientData) => async (dispatch) => {
     const res = await loginedApi.post("getappointmenthistory", {
 
         token: "C2MDVerificationToken",
         version: "2.0",
         data: {
-            browserTimeZone: "GMT%2B05:30",
-            patientId:patientId, //"48315460",
-            Ipaddress: "192.168.1.43",
-            appname: "C2MD Patient",
-            Os: "iOS14.4",
-            useragent: "Simulator iPhone13,4 - CDD71058-AA65-40EB-8B50-61115DDD07C4",
-            accessCountry: "IN"
+            browserTimeZone: patientData?.browserTimeZone,
+            patientId:patientData?.patientId, //"48315460",
+            Ipaddress: patientData?.Ipaddress,
+            appname: patientData?.appname,
+            Os: patientData?.Os,
+            useragent: patientData?.useragent,
+            accessCountry: patientData?.accessCountry
         },
         "requestType": 58,
     });
@@ -35,19 +35,19 @@ export const fetchAppointmentHistory = (patientId) => async (dispatch) => {
 };
 
 
-export const fetchSelectedAppointmentDetails = ({ appointmentId,userType,userId }) => async (dispatch) => {
+export const fetchSelectedAppointmentDetails = ({ appointmentId,userData}) => async (dispatch) => {
 
-    console.log("Click ok");
+
     const res = await loginedApi.post("appointments",
         {
             "requestType": "77",
             "token": "C2MDVerificationToken",
             "data": {
                 "appointmentId": appointmentId,
-                "userType": userType,
+                "userType": userData?.userType,
                 "browserTimeZone": "GMT+05:30",
-                "userId": userId,
-                "currency": "INR"
+                "userId": userData?.userId,
+                "currency": userData?.today_rate.currency
             }
         }
     );

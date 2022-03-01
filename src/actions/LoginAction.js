@@ -68,7 +68,7 @@ export const checkUser =
       }
     };
 
-export const logoutAction = (userData) => async (dispatch) => {
+export const logoutAction = (userData, patientData) => async (dispatch) => {
 
   let params = {
     "token": "token",
@@ -76,11 +76,12 @@ export const logoutAction = (userData) => async (dispatch) => {
     "data":
     {
       "browserTimeZone": "GMT%2B05:30",
-      "userId": "34276524",
-      "Ipaddress": "192.168.1.43",
-      "appname": "C2MD Patient",
-      "Os": "iOS14.4",
-      "useragent": "Simulator iPhone13,4 - CDD71058-AA65-40EB-8B50-61115DDD07C4", "accessCountry": "IN"
+      "userId": userData?.userId,
+      "Ipaddress": patientData?.ipAddress,
+      "appname": patientData?.appname,
+      "Os": patientData?.Os,
+      "useragent": patientData?.useragent,
+      "accessCountry": patientData?.accessCountry
     },
     "requestType": 4
   }
@@ -92,7 +93,7 @@ export const logoutAction = (userData) => async (dispatch) => {
   });
 
 
-  dispatch({ type: LOG_OUT_ACTION, payload:res?.data.data });
+  dispatch({ type: LOG_OUT_ACTION, payload: res?.data.data });
   localStorage.removeItem("userData");
 
 

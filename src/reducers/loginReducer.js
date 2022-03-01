@@ -10,6 +10,7 @@ import {
 const INITIAL_STATE = {
   login: false,
   user: {},
+  countryData: null,
   patientDashboard:null,
   logout:null
 };

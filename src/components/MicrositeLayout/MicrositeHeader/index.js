@@ -15,7 +15,12 @@ function MicrositeHeader({ clientDetails }) {
     body.classList.toggle("nav-open");
   };
   const dispatch = useDispatch();
+  
   const userData = useSelector((state) => state.login);
+  const patientData = useSelector(
+    (state) => state.login.patientDashboard
+);
+
   const history = useHistory();
   const logout = () => {
     // if (width < 992) {

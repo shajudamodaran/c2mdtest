@@ -16,7 +16,12 @@ function Header({ showFilter, setShowFilter, searchDoctor, setSearchDoctor }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const { width } = useDimensions();
+
   const userData = useSelector((state) => state.login);
+  const patientData = useSelector(
+    (state) => state.login.patientDashboard
+);
+
   const [expanded, setExpanded] = useState(false);
   window.onscroll = () => sampleFunction();
   const location = useLocation();
@@ -62,7 +67,7 @@ function Header({ showFilter, setShowFilter, searchDoctor, setSearchDoctor }) {
       document.body.classList.remove("nav-open");
       setExpanded(!expanded);
     }
-    dispatch(logoutAction());
+    dispatch(logoutAction(userData,patientData));
     history.push("/");
   };
 

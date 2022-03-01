@@ -17,6 +17,7 @@ function DoctorProfileSchedule() {
   const { width } = useDimensions();
   let { doctorid } = useParams();
   const dispatch = useDispatch();
+  
   const doctorDetail = useSelector(
     (state) => state.doctorDetail.doctor_Details
   );

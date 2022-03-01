@@ -112,7 +112,7 @@ function MobileDashboard() {
 
 
     let loadInitialData = () => {
-        dispatch(fetch_dashboardData())
+        dispatch(fetch_dashboardData(userData,dashboardData))
     }
 
     let reduxData = useSelector(state => state)
@@ -307,7 +307,7 @@ function MobileDashboard() {
             "token": "C2MDVerificationToken",
             "data": {
                 "userId": userData?.userId, 
-                "userType": "Patient", 
+                "userType": userData?.userType, 
                 "browserTimeZone": "GMT+05:30",
                 "Ipaddress": "192.168.1.34",
                 "useragent": "RMX1992",
@@ -331,9 +331,9 @@ function MobileDashboard() {
           "token": "C2MDVerificationToken",
           "data":
           {
-            "patientId": userData.userId,
-            "patientEmail": "mail.sobinjose@gmail.com",
-            "patientMobile": "+91 9846809893",
+            "patientId": userData?.userId,
+            "patientEmail": userData?.userName,
+            "patientMobile": userData?.mobileNumber,
             "browserTimeZone": "GMT%2B05:30",
             "dayOfAppointment": today,
             "appointmentNavigation": "start",

@@ -1,24 +1,30 @@
+import moment from "moment";
 import loginedApi from "../apis";
 import { check_consultation } from "./MicrositeAction";
 import { DASHBOARD_DATA_PATIENT } from "./type";
 
 
 
-export const fetch_dashboardData = () => async (dispatch) => {
+export const fetch_dashboardData = (userData,dashboardData) => async (dispatch) => {
+
+  let today= moment(new Date()).format("DD-MMM-YYYY")
+
+
   let data = {
 
-    patientId: "48315460",
-    patientEmail: "mail.sobinjose@gmail.com",
-    patientMobile: "+91 9846809893",
-    browserTimeZone: "GMT+05:30",
-    dayOfAppointment: "16-Nov-2021",
-    appointmentNavigation: "start",
-    currency: "INR",
-    accessCountry: "IN",
-    todayRate: "74.45000",
-    Ipaddress: "111.92.118.253", useragent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36",
-    Browser: "Chrome-95.0.4638.69",
-    Os: "Windows"
+    patientId:dashboardData?.patientId,
+    patientEmail: dashboardData?.patientEmail,
+    patientMobile:userData?.mobileNumber,
+    browserTimeZone: dashboardData?.browserTimeZone,
+    dayOfAppointment: today,
+    appointmentNavigation:dashboardData?.appointmentNavigation,
+    currency: dashboardData?.currency,
+    accessCountry: dashboardData?.accessCountry,
+    todayRate:dashboardData?.todayRate,
+    Ipaddress: dashboardData?.Ipaddress, 
+    useragent: dashboardData?.useragent,
+    Browser: dashboardData?.Browser,
+    Os: dashboardData?.Os
   }
 
   const response = await loginedApi.post("profile", {

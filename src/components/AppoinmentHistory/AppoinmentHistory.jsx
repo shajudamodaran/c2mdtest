@@ -18,6 +18,10 @@ function AppoinmentHistory() {
         (state) => state.login.user
     );
 
+    const patientData = useSelector(
+        (state) => state.login.patientDashboard
+    );
+
     console.log(selectedAppointmentHistoryRedux);
 
 
@@ -29,8 +33,7 @@ function AppoinmentHistory() {
         // }))
         dispatch(fetchSelectedAppointmentDetails({
             appointmentId:selectedAppointmentHistoryRedux[0]?.appointmentId,
-            userType:userData.userType,
-            userId:userData.userId
+            userData
 
         }));
 
@@ -42,7 +45,7 @@ function AppoinmentHistory() {
     useEffect(() => {
 
         console.log("Calling appointment history...........");
-        dispatch(fetchAppointmentHistory(userData.userId));
+        dispatch(fetchAppointmentHistory(patientData));
 
     }, [])
 

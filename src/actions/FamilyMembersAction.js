@@ -53,7 +53,7 @@ export const fetch_patient_medicalDetails =
       token: "C2MDVerificationToken",
       data: {
         patientId: date.relationship == "rel-self" ? userID : date.relationship,
-        patientEmail: userdata?.userName,
+        patientEmail: userdata?.userId,
         patientMobile: userdata?.mobileNumber,
         browserTimeZone: "GMT%2B05:30",
         accessCountry: "IN",

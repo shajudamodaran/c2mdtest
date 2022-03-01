@@ -39,27 +39,15 @@ export const check_consultation = (userData) => async (dispatch) => {
 let today= moment(new Date()).format("DD-MMM-YYYY")
 
 
-
-  let params = {
-    "requestType": "201",
-    "token": "C2MDVerificationToken",
-    "data": {
-      "userId": userData.userId, "userType": userData.userType, "browserTimeZone": "GMT+05:30",
-      "Ipaddress": "192.168.1.34",
-      "useragent": "RMX1992",
-      "Os": "Android Version 11"
-    }
-  };
-
   let paramAppoint =
   {
     "requestType": "65",
     "token": "C2MDVerificationToken",
     "data":
     {
-      "patientId": userData.userId,
-      "patientEmail": "mail.sobinjose@gmail.com",
-      "patientMobile": "+91 9846809893",
+      "patientId": userData?.userId,
+      "patientEmail": userData?.userId,
+      "patientMobile": userData?.mobileNumber,
       "browserTimeZone": "GMT%2B05:30",
       "dayOfAppointment": today,
       "appointmentNavigation": "start",
