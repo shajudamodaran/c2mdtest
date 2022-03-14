@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useHistory } from 'react-router';
-import { AddIcon, ArrowLeft, BodyChartIcon, CallOptions, ChatIcon2, CloseIcon, CloseIconRound, DescriptionIcon_V2, DscIcon, EndCallIcon, InviteIcon, InviteIcon2, InviteIcon_V2, MuteIcon, NoDataIcon, NotesIcon, NotesIcon_V2, NoVedioIcon, PatientInfoIcon, PatientInfoIcon_V2, QuestIcon, RecordIcon, RightArrowIcon, RightArrowIconOriginal, ScreenCastIcon, SnapIcon, TestIcon, TestIcon_V2, UploadIcon, VolumeIcon } from '../../assets/Logos/Icons';
+import { AddIcon, ArrowLeft, BodyChartIcon, CallOptions, ChatIcon2, CloseIcon, CloseIconRound, DescriptionIcon_V2, DscIcon, EndCallIcon, IframeIcon, InviteIcon, InviteIcon2, InviteIcon_V2, MuteIcon, NoDataIcon, NotesIcon, NotesIcon_V2, NoVedioIcon, PatientInfoIcon, PatientInfoIcon_V2, QuestIcon, RecordIcon, RightArrowIcon, RightArrowIconOriginal, ScreenCastIcon, SnapIcon, TestIcon, TestIcon_V2, UploadIcon, VolumeIcon } from '../../assets/Logos/Icons';
 import './meetpage.css'
 import Draggable from 'react-draggable'; // The default
 import { Select, Tooltip } from 'antd';
@@ -204,6 +204,7 @@ export const MeetPage_Pt = () => {
     let [superSubMenu, setSuperSubMenu] = useState(null)
     let [activeButton, setActiveButton] = useState(0)
     let [sessionHelper, setSessionHelper] = useState(null)
+    let [isIframe, setIframe] = useState(false)
 
     let [publisherProperties, setpublisherProperties] = useState({
         error: null,
@@ -234,7 +235,7 @@ export const MeetPage_Pt = () => {
     let [message, setMessage] = useState(false)
     let [patientInfoActive, setPatientInfoActive] = useState(null)
 
-    let [consultation,setConsultation]=useState(null)
+    let [consultation, setConsultation] = useState(null)
 
     let reduxData = useSelector(state => state)
     let userdata = reduxData.login ? reduxData.login.user : null;
@@ -250,23 +251,22 @@ export const MeetPage_Pt = () => {
     useEffect(() => {
 
         getConsultationDetails()
-     
+
     }, [])
-    
+
 
     useEffect(() => {
 
-       if(consultation)
-       {
-        setMeetCred({
-            apiKey: consultation.apiKey,
-            sessionId: consultation.sessionId,
-            token: consultation.tokenId
-        })
-       }
-    
+        if (consultation) {
+            setMeetCred({
+                apiKey: consultation.apiKey,
+                sessionId: consultation.sessionId,
+                token: consultation.tokenId
+            })
+        }
+
     }, [consultation])
-    
+
 
     const subscriberEventHandlers = {
         videoDisabled: event => {
@@ -363,33 +363,33 @@ export const MeetPage_Pt = () => {
     };
 
 
-    let getConsultationDetails= async()=>{
+    let getConsultationDetails = async () => {
 
         let paramAppoint =
         {
             "requestType": "400",
             "token": "C2MDVerificationToken",
             "data": {
-                "currency":"INR",
-                "userType":"Patient",
-                "browserTimeZone":"GMT+05:30",
-                 "Ipaddress": "192.168.1.34",
+                "currency": "INR",
+                "userType": "Patient",
+                "browserTimeZone": "GMT+05:30",
+                "Ipaddress": "192.168.1.34",
                 "useragent": "RMX1992",
                 "Os": "Android Version 11",
-                "todayRate":"1",
-                "consultationId":"38618873"
+                "todayRate": "1",
+                "consultationId": "38618873"
             }
         }
-      
-      
+
+
         const response = await loginedApi.post("consultation", paramAppoint);
         //localStorage.setItem("ClinicDetails",response.data.data);
-      
+
         console.log(response);
-      
+
         if (response.data.data) {
-      
-         setConsultation(response.data.data);
+
+            setConsultation(response.data.data);
         }
 
     }
@@ -463,7 +463,21 @@ export const MeetPage_Pt = () => {
     }
 
 
-    console.log(userdata);
+    let handleIframeButtonClick = ({ para_id }) => {
+
+
+        setSuperSubMenu(null)
+
+        setActiveLeft({
+            status: false,
+            page: null
+        })
+
+        setTopMenu(false)
+
+        setIframe(!isIframe)
+
+    }
 
 
 
@@ -475,166 +489,286 @@ export const MeetPage_Pt = () => {
             <div className="meet_body_v2">
 
 
-                <div className="vedio-container-left" >
+                <div className={`iframe-container ${isIframe ? "active" : "null"}`}>
+                    <iframe src="https://www.connect2mydoctor.com/" className='iframe-content' />
+                </div>
 
-                    <div className="top-menu-container" >
-                        <div className={isTopMenu ? "top-menu" : "top-menu-hidden"} onClick={() => { setTopMenu(false) }}>
 
-                            <ul>
-                                <li>
-                                    <div className="d-flex flex-column align-items-start">
-                                        <span className="top-menu-headding">Doctor</span>
-                                        <span className="top-menu-caption">{consultation?.doctorDetails.doctorName}</span>
-                                    </div>
+                {
+                    !isIframe ?
 
-                                </li>
-                                <li>
 
-                                    <div className="d-flex flex-column align-items-start">
-                                        <span className="top-menu-headding">{consultation?.reasonforvisit}</span>
-                                        <span className="top-menu-caption">General Consultation</span>
+                        <div className="vedio-container-left" >
 
-                                    </div>
-                                </li>
+                            <div className="top-menu-container" >
+                                <div className={isTopMenu ? "top-menu" : "top-menu-hidden"} onClick={() => { setTopMenu(false) }}>
 
-                                <li>
+                                    <ul>
+                                        <li>
+                                            <div className="d-flex flex-column align-items-start">
+                                                <span className="top-menu-headding">Doctor</span>
+                                                <span className="top-menu-caption">{consultation?.doctorDetails.doctorName}</span>
+                                            </div>
 
-                                    <div className="d-flex flex-column align-items-start">
-                                        <span className="top-menu-headding">Phone: </span>
-                                        <span className="top-menu-caption">+91 9876543210</span>
-                                    </div>
+                                        </li>
+                                        <li>
 
-                                </li>
+                                            <div className="d-flex flex-column align-items-start">
+                                                <span className="top-menu-headding">{consultation?.reasonforvisit}</span>
+                                                <span className="top-menu-caption">General Consultation</span>
 
-                                <li>
+                                            </div>
+                                        </li>
 
-                                    <div className="d-flex flex-column align-items-start">
-                                        <span className="top-menu-headding">Emergency contact: </span>
-                                        <span className="top-menu-caption">Not Available</span>
-                                    </div>
+                                        <li>
 
-                                </li>
-                            </ul>
+                                            <div className="d-flex flex-column align-items-start">
+                                                <span className="top-menu-headding">Phone: </span>
+                                                <span className="top-menu-caption">+91 9876543210</span>
+                                            </div>
+
+                                        </li>
+
+                                        <li>
+
+                                            <div className="d-flex flex-column align-items-start">
+                                                <span className="top-menu-headding">Emergency contact: </span>
+                                                <span className="top-menu-caption">Not Available</span>
+                                            </div>
+
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+
+                            <div className="streamer" onClick={() => {
+                                setActiveLeft({ ...activeLeft, status: false })
+                                setTopMenu(true)
+                            }}>
+                                {
+                                    !subscriberProperties.vedio ?
+
+                                        <div className="user-profile2">
+
+                                            <div className="user-profile2-container">
+                                                <img src={userdata.profileImage} className="user2-avatar" />
+
+                                                <div className="user-profile2-footer">
+                                                    {userdata.profileName}
+                                                    {/* <ThreeDotVerticalWhiteIcon /> */}
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        : null
+                                }
+
+
+                                {
+                                    meetCred.apiKey ?
+
+                                        <OTSession ref={subsessionRef} apiKey={meetCred.apiKey} sessionId={meetCred.sessionId} token={meetCred.token} eventHandlers={sessionEventssubscriber}>
+
+
+                                            <OTStreams>
+                                                <OTSubscriber
+                                                    properties={subscriberPropertiess}
+                                                    eventHandlers={subscriberEventHandlers}
+                                                />
+                                            </OTStreams>
+
+                                        </OTSession>
+
+                                        // <div className="user-profile2">
+                                        //     <div className="user-profile2-container">
+                                        //         <img src={consultation?.doctorDetails.doctorImage} className="user2-avatar" />
+
+                                        //         <div className="user-profile2-footer">
+                                        //         {consultation?.doctorDetails.doctorName}
+                                        //             {/* <ThreeDotVerticalWhiteIcon /> */}
+                                        //         </div>
+
+                                        //     </div>
+                                        // </div>
+                                        :
+                                        <div className="user-profile2">
+                                            <div className="user-profile2-container">
+                                                <img src={userdata.profileImage} className="user2-avatar" />
+
+                                                <div className="user-profile2-footer">
+                                                    {userdata.profileName}
+                                                    {/* <ThreeDotVerticalWhiteIcon /> */}
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                }
+                            </div>
+
+
+
+                            <div className="user-card">
+
+                                {
+                                    !publisherProperties.video ?
+
+                                        <div className="user-profile">
+                                            <div className="user-profile-container">
+                                                {
+                                                    userdata.profileImage != null ? <img alt="img" src={userdata.profileImage} className="user-avatar" /> : ""
+                                                }
+
+
+                                                <div className="user-profile-footer">
+                                                    {userdata.profileName}
+                                                    {/* <ThreeDotVerticalWhiteIcon /> */}
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        : null
+                                }
+                                {
+                                    meetCred.apiKey ?
+
+                                        <OTSession ref={sessionRef} apiKey={meetCred.apiKey} sessionId={meetCred.sessionId} token={meetCred.token} eventHandlers={sessionEventspublisher}>
+
+                                            <OTPublisher properties={{
+                                                publishAudio: publisherProperties.audio,
+                                                publishVideo: publisherProperties.vedio,
+                                                // videoSource: true ? 'screen' : undefined
+                                            }}
+                                                eventHandlers={publisherEventHandlers}
+                                            />
+
+                                        </OTSession>
+                                        : null
+
+                                }
+
+                            </div>
+
+
+
+
+
+
 
                         </div>
-                    </div>
 
-                    <div className="streamer" onClick={() => {
-                        setActiveLeft({ ...activeLeft, status: false })
-                        setTopMenu(true)
-                    }}>
-                        {
-                            !subscriberProperties.vedio ?
+                        :
 
-                                <div className="user-profile2">
+                        <div className="vedio-container-mobile" >
 
-                                    <div className="user-profile2-container">
-                                        <img src={userdata.profileImage} className="user2-avatar" />
+                            <div className="vedio-mobile">
+                                {
+                                    !subscriberProperties.vedio ?
 
-                                        <div className="user-profile2-footer">
-                                            {userdata.profileName}
-                                            {/* <ThreeDotVerticalWhiteIcon /> */}
+                                        <div className="user-profile2">
+
+                                            <div className="user-profile2-container">
+                                                <img src={userdata.profileImage} className="user2-avatar" />
+
+                                                <div className="user-profile2-footer">
+                                                    {userdata.profileName}
+                                                    {/* <ThreeDotVerticalWhiteIcon /> */}
+                                                </div>
+
+                                            </div>
                                         </div>
 
-                                    </div>
-                                </div>
+                                        : null
+                                }
 
-                                : null
-                        }
+                                {
+                                    meetCred.apiKey ?
 
-
-                        {
-                            meetCred.apiKey ?
-
-                                <OTSession ref={subsessionRef} apiKey={meetCred.apiKey} sessionId={meetCred.sessionId} token={meetCred.token} eventHandlers={sessionEventssubscriber}>
+                                        <OTSession ref={subsessionRef} apiKey={meetCred.apiKey} sessionId={meetCred.sessionId} token={meetCred.token} eventHandlers={sessionEventssubscriber}>
 
 
-                                    <OTStreams>
-                                        <OTSubscriber
-                                            properties={subscriberPropertiess}
-                                            eventHandlers={subscriberEventHandlers}
-                                        />
-                                    </OTStreams>
+                                            <OTStreams>
+                                                <OTSubscriber
+                                                    properties={subscriberPropertiess}
+                                                    eventHandlers={subscriberEventHandlers}
+                                                />
+                                            </OTStreams>
 
-                                </OTSession>
+                                        </OTSession>
 
-                                // <div className="user-profile2">
-                                //     <div className="user-profile2-container">
-                                //         <img src={consultation?.doctorDetails.doctorImage} className="user2-avatar" />
+                                        // <div className="user-profile2">
+                                        //     <div className="user-profile2-container">
+                                        //         <img src={consultation?.doctorDetails.doctorImage} className="user2-avatar" />
 
-                                //         <div className="user-profile2-footer">
-                                //         {consultation?.doctorDetails.doctorName}
-                                //             {/* <ThreeDotVerticalWhiteIcon /> */}
-                                //         </div>
+                                        //         <div className="user-profile2-footer">
+                                        //         {consultation?.doctorDetails.doctorName}
+                                        //             {/* <ThreeDotVerticalWhiteIcon /> */}
+                                        //         </div>
 
-                                //     </div>
-                                // </div>
-                                :
-                                <div className="user-profile2">
-                                    <div className="user-profile2-container">
-                                        <img src={userdata.profileImage} className="user2-avatar" />
+                                        //     </div>
+                                        // </div>
+                                        :
+                                        <div className="user-profile2">
+                                            <div className="user-profile2-container">
+                                                <img src={userdata.profileImage} className="user2-avatar" />
 
-                                        <div className="user-profile2-footer">
-                                            {userdata.profileName}
-                                            {/* <ThreeDotVerticalWhiteIcon /> */}
+                                                <div className="user-profile2-footer">
+                                                    {userdata.profileName}
+                                                    {/* <ThreeDotVerticalWhiteIcon /> */}
+                                                </div>
+
+                                            </div>
                                         </div>
-
-                                    </div>
-                                </div>
-                        }
-                    </div>
+                                }
 
 
+                            </div>
 
-                    <div className="user-card">
+                            <div className="vedio-mobile">
+                                {
+                                    !publisherProperties.video ?
 
-                        {
-                            !publisherProperties.video ?
-
-                                <div className="user-profile">
-                                    <div className="user-profile-container">
-                                        {
-                                            userdata.profileImage != null ? <img alt="img" src={userdata.profileImage} className="user-avatar" /> : ""
-                                        }
+                                        <div className="user-profile-small">
+                                            <div className="user-profile-container-small">
+                                                {
+                                                    userdata.profileImage != null ? <img alt="img" src={userdata.profileImage?userdata.profileImage:"https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg"} className="user-avatar" /> : ""
+                                                }
 
 
-                                        <div className="user-profile-footer">
-                                            {userdata.profileName}
-                                            {/* <ThreeDotVerticalWhiteIcon /> */}
+                                                <div className="user-profile-footer-smal">
+                                                    {userdata.profileName}
+                                                    {/* <ThreeDotVerticalWhiteIcon /> */}
+                                                </div>
+
+                                            </div>
                                         </div>
+                                        :
 
-                                    </div>
-                                </div>
+                                        meetCred.apiKey ?
 
-                                : null
-                        }
-                        {
-                            meetCred.apiKey ?
+                                            <OTSession ref={sessionRef} apiKey={meetCred.apiKey} sessionId={meetCred.sessionId} token={meetCred.token} eventHandlers={sessionEventspublisher}>
 
-                                <OTSession ref={sessionRef} apiKey={meetCred.apiKey} sessionId={meetCred.sessionId} token={meetCred.token} eventHandlers={sessionEventspublisher}>
+                                                <OTPublisher properties={{
+                                                    publishAudio: publisherProperties.audio,
+                                                    publishVideo: publisherProperties.vedio,
+                                                    // videoSource: true ? 'screen' : undefined
+                                                }}
+                                                    eventHandlers={publisherEventHandlers}
+                                                />
 
-                                    <OTPublisher properties={{
-                                        publishAudio: publisherProperties.audio,
-                                        publishVideo: publisherProperties.vedio,
-                                        // videoSource: true ? 'screen' : undefined
-                                    }}
-                                        eventHandlers={publisherEventHandlers}
-                                    />
-
-                                </OTSession>
-                                : null
-
-                        }
-
-                    </div>
+                                            </OTSession>
+                                            :
+                                            <div>No Vedio</div>
 
 
 
+                                }
+                            </div>
 
-
-
-
-                </div>
+                        </div>
+                }
 
                 <div className="vedio-container-right">
                     <div className="left-options-container">
@@ -644,7 +778,7 @@ export const MeetPage_Pt = () => {
                                 <span className='page-name'>{activeLeft.page?.replace(/([A-Z])/g, ' $1').trim()}</span>
                                 <CloseIconRound /></div>
 
-                                {  console.log(activeLeft.page)}
+                            {console.log(activeLeft.page)}
 
                             {
                                 activeLeft.page === leftMenus[0] && activeLeft.status && superSubMenu == null ?
@@ -714,7 +848,7 @@ export const MeetPage_Pt = () => {
 
                                         </div>
 
-                                 
+
 
                                         : activeLeft.page === leftMenus[2] && activeLeft.status && superSubMenu == null ?
 
@@ -788,7 +922,7 @@ export const MeetPage_Pt = () => {
 
                         <button onClick={setVideo} className={publisherProperties.video ? null : "active"}><NoVedioIcon /></button>
                         <button onClick={setAudio} className={publisherProperties.audio ? null : "active"}><MuteIcon /></button>
-                        {/* <button className='end_call_btn' onClick={() => { handlePageChange("/dashboard") }}><EndCallIcon /></button> */}
+                        {/* <button onClick={handleIframeButtonClick} className={!isIframe ? null : "active"} ><IframeIcon/></button> */}
 
 
                     </div>

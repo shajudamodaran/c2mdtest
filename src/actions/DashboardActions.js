@@ -27,6 +27,8 @@ export const fetch_dashboardData = (userData,dashboardData) => async (dispatch) 
     Os: dashboardData?.Os
   }
 
+  console.log(data);
+
   const response = await loginedApi.post("profile", {
     requestType: "51",
     token: "C2MDVerificationToken",
@@ -34,6 +36,8 @@ export const fetch_dashboardData = (userData,dashboardData) => async (dispatch) 
   });
 
   if (response.status === 200) {
+
+    console.log(response);
     dispatch({ type: DASHBOARD_DATA_PATIENT, payload: response.data.data.data });
   }
 
@@ -54,6 +58,8 @@ export const uploadReports = ({formData, userData, dashboardData }) => async (di
   const response = await loginedApi.post("updatereports", {
     body: formData
   },config);
+
+  console.log("File upload result==>",response);
 
   if (response.status === 200) {
   

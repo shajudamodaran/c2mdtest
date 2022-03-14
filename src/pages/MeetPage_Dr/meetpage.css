@@ -33,7 +33,7 @@
 
 .OT_publisher, .OT_subscriber{
    
-    min-height: 100vh !important;
+    height: 100vh !important;
     min-width: 100%;
 }
 

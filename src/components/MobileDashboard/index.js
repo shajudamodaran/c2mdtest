@@ -88,10 +88,18 @@ function MobileDashboard() {
 
         loadInitialData()
 
+       try {
+
         dispatch(
             check_consultation(userData, dashboardData)
         );
 
+           
+       } catch (error) {
+
+        console.log(error);
+           
+       }
         dispatch(
             fetch_clientDetails(userData)
         )
@@ -280,12 +288,14 @@ function MobileDashboard() {
 
     let uploadReportsHandler = (e) => {
 
+       
+
         let formData = new FormData();
         formData.append("appintmentId", consultationToday?.appointmentId)
 
 
         if (e.target.files[0]) {
-            formData.append(`file_${e.target.files[0].name}`, e.target.files[0])
+            formData.append(`file`, e.target.files)
         }
 
         dispatch(
@@ -350,6 +360,8 @@ function MobileDashboard() {
         return response.data
 
     }
+
+
 
 
     return (

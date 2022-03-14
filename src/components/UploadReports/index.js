@@ -10,6 +10,7 @@ import { FileDrop } from "react-file-drop";
 import { fetch_Uploaded_files } from "../../actions/FamilyMembersAction";
 import { toast } from "react-toastify";
 import ConfirmModal from "./ConfirmModal";
+import { getFileTypeFromFileName } from "../../Helpers/FileHelper";
 function UploadReports({
   progressIncrementer,
   appoinment_form,
@@ -77,7 +78,8 @@ function UploadReports({
 
     let imgSize = parseFloat(file?.size / (1024 * 1024)).toFixed(2);
 
-    if (uploads.length <= 4) {
+    if (uploads.length <= 4) 
+    {
       if (imgSize < 5) {
         setError(false);
         const formData = new FormData();
@@ -109,7 +111,8 @@ function UploadReports({
       } else {
         setError(true);
       }
-    } else {
+    } else 
+    {
       if (!toastOpen) {
         toast.error("Only 5 files are allowed to upload", {
           position: toast.POSITION.TOP_CENTER,
@@ -188,6 +191,8 @@ function UploadReports({
     return false;
   }
 
+  console.log(uploadedData);
+
   return (
     <>
       <h3 className={Style.upload_reports_main_heading}>
@@ -204,9 +209,9 @@ function UploadReports({
             defaultActiveKey="1"
             className={`${Style.upload_reports_accordion_align}`}
           >
-            <Accordion.Item eventKey="0" className={`${uploads.length==0&&Style.noFiles}`}>
+            <Accordion.Item eventKey="0" className={`${uploads?.length==0&&Style.noFiles}`}>
               <Accordion.Header>
-                <div className={Style.upload_button}>
+                <div className={Style.upload_button} onClick={()=>{fileInputRef.current.click()}}>
                   <input
                     type="file"
                     id="upload"
@@ -262,7 +267,7 @@ function UploadReports({
                           {index + 1}
                         </span>
                         <img
-                          src={Assets.pdf_icon}
+                          src={getFileTypeFromFileName(item.title)}
                           className={Style.upload_reports_pdf_icon}
                         ></img>
                         <span className={Style.upload_reports_dropdown_content}>
@@ -289,7 +294,7 @@ function UploadReports({
                   })}
               </Accordion.Body>
             </Accordion.Item>
-            <Accordion.Item eventKey="2" className={`${uploadedData.length==0&&Style.noFiles}`}>
+            <Accordion.Item eventKey="2" className={`${uploadedData?.length==0&&Style.noFiles}`}>
               <Accordion.Header>
                 <span className={Style.upload_reports_location_heading}>
                   <img
@@ -316,7 +321,7 @@ function UploadReports({
                             {index + 1}
                           </span>
                           <img
-                            src={Assets.pdf_icon}
+                            src={getFileTypeFromFileName(item.filename)}
                             className={Style.upload_reports_pdf_icon}
                           ></img>
                           <span className={Style.upload_reports_dropdown_content}>

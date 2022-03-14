@@ -17,8 +17,14 @@ import CountryJson from "../../constants/country.json";
 import * as Yup from "yup";
 import { loginwithotp } from "../../actions/LoginAction";
 import { signup_with_Google, checkUser } from "../../actions/SignupAction";
+//
+import { getCountryData } from "../../actions/MicrositeAction";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+
+import SighnupDropDown from "../SignupDropdown/SighnupDropDown";
+
+
 function Signup() {
   const location = useLocation();
 
@@ -28,10 +34,20 @@ function Signup() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchSpeciality());
+    dispatch(getCountryData())
   }, []);
   const speciality = useSelector(
     (state) => state.specialityList.specialityList
   );
+
+  let clinicdata = useSelector(
+    (state) => state.clinicData
+  );
+  let countryData = useSelector(
+    (state) => state.login.countryData
+  );
+  let reduxData = useSelector(state => state)
+
   const [passwordShown, setPasswordShown] = useState(false);
 
   const [ShowError, setShowError] = useState({
@@ -43,17 +59,22 @@ function Signup() {
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
+
   const [errorMsg, setErrorMsg] = useState("");
   const [userType, setUerType] = useState("Patient");
   const buttonSelection = classNames(Style.signup_form_button_type, "col-md-6");
+
   const activeButton = classNames(
     Style.signup_form_button_type,
     "col-md-6",
     Style.active
   );
+
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-  const nameRegExp = /^[a-zA-Z0-9]+$/;
+  const nameRegExp = /^[a-zA-Z0-9 ]+$/;
+
+
   const validationSchema = Yup.object().shape({
     userType: Yup.string(),
     fullName: Yup.string().required(
@@ -92,18 +113,19 @@ function Signup() {
         /[@$!%*#?&]+/,
         "A secure password consists of minimum 8 characters including 1 special character, 1 CAPITAL letter and 1 small letter"
       ),
-    specialityType: Yup.string().when("userType", {
-      is: "Doctor",
-      then: Yup.string().required("Speciality is required."),
-    }),
+    // specialityType: Yup.string().when("userType", {
+    //   is: "Doctor",
+    //   then: Yup.string().nullable().required("You must select your speciality to continue"),
+    // }),
   });
+
 
   const formik = useFormik({
     initialValues: {
       userType: "Patient",
       fullName: "",
       email: "",
-      specialityType: "Ayurveda",
+      specialityType: null,
       mobileNumber: "",
       password: "",
       accessCountry: "0",
@@ -112,15 +134,26 @@ function Signup() {
       code: { name: "India", flag: "🇮🇳", code: "IN", dial_code: "+91" },
     },
     validationSchema,
+
     onSubmit: (values) => {
+      
+      console.log(ShowError)
       if (!ShowError.emailError && !ShowError.mobileError) {
         history.push({
           pathname: "/signup/verify",
           state: { detail: values, userType: userType, page: "signup" },
         });
-      }
+     }
+
     },
+
   });
+
+
+ 
+
+  
+
   const responseGoogle = (response) => {
     let Obj = response.profileObj;
 
@@ -138,12 +171,15 @@ function Signup() {
       });
     }
   };
+
   const handleBlurAction1 = (event, type, fieldName) => {
+
+
+
     let searchKey =
       type == "Mobile"
-        ? `%2B${formik.values.code.dial_code.substring(1)} ${
-            formik.values.mobileNumber
-          }`
+        ? `%2B${formik.values.code.dial_code.substring(1)} ${formik.values.mobileNumber
+        }`
         : formik.values.email;
     formik.handleBlur(event);
     if (formik.values.email !== "") {
@@ -155,6 +191,7 @@ function Signup() {
       )
         .then((res) => {
           if (res?.info === "New User") {
+
           } else {
             setShowError({
               ...ShowError,
@@ -164,78 +201,117 @@ function Signup() {
             });
           }
         })
-        .catch(() => {});
+        .catch(() => { });
     }
   };
+
   const handleBlurAction2 = (event, type, fieldName) => {
+
+
+
     let limit = formik.values?.dial_code?.length;
     let mobNo = formik.values?.mobileNumber?.slice(limit);
-    let searchKey =
-      type == "Mobile"
-        ? `%2B${formik.values?.dial_code} ${mobNo}`
-        : formik.values.email;
 
-    formik.handleBlur(event);
-    if (formik.values.mobileNumber !== "") {
-      dispatch(
-        checkUser({
-          searchtype: type,
-          searchKey: searchKey,
-        })
-      )
-        .then((res) => {
-          if (res?.info === "New User") {
-          } else {
-            setShowError({
-              ...ShowError,
+    
+    if (!formik.values?.mobileNumber?.slice(limit)) {
+      setShowError({
+        ...ShowError,
 
-              mobileError: true,
-              mobileerrorMsg: res?.info,
-            });
-          }
-        })
-        .catch(() => {});
+        mobileError: false,
+        mobileerrorMsg: null
+      });
     }
+    else {
+
+      let searchKey =
+        type == "Mobile"
+          ? `%2B${formik.values?.dial_code} ${mobNo}`
+          : formik.values.email;
+
+      formik.handleBlur(event);
+
+      if (formik.values.mobileNumber !== "") {
+
+        console.log(formik.values?.mobileNumber?.slice(limit));
+
+
+        dispatch(
+          checkUser({
+            searchtype: type,
+            searchKey: searchKey,
+          })
+        )
+          .then((res) => {
+            if (res?.info === "New User") 
+            {
+              setShowError({
+                ...ShowError,
+        
+                mobileError: false,
+                mobileerrorMsg: null
+              });
+            } else {
+              setShowError({
+                ...ShowError,
+
+                mobileError: true,
+                mobileerrorMsg: res?.info,
+              });
+            }
+          })
+          .catch(() => { });
+      }
+
+    }
+
+
   };
-  const handleOnChange = (value, data, event, formattedValue) => {};
+  const handleOnChange = (value, data, event, formattedValue) => {
+
+    console.log(formik.values);
+
+  };
+
   return (
     <SignupLayout>
       <form className={Style.signup_form_align} onSubmit={formik.handleSubmit}>
         <h2 className={Style.signup_header_align}>Create your account</h2>
         <div className={Style.signup_button_type_selection}>
+          {/* {
+            clinicdata ? null :
+              <Button
+                variant="outline-secondary"
+                className={`${buttonSelection}${userType == "Doctor" && activeButton
+                  }`}
+                style={{ "margin-right": "2%" }}
+                onClick={() => {
+                  formik.resetForm();
+                  setUerType("Doctor");
+                  formik.setFieldValue("userType", "Doctor");
+                  setShowError({
+                    emailError: false,
+                    mobileError: false,
+                    mobileerrorMsg: "",
+                    mailerrorMsg: "",
+                  });
+                  history.push('/signin')
+                }}
+              >
+                <img src={Assets.doctor_icon} />
+                I'm a Doctor
+                {userType == "Doctor" && (
+                  <img
+                    src={Assets.signupTick}
+                    alt=""
+                    className={Style.activeTick}
+                  />
+                )}
+              </Button>
+          } */}
           <Button
             variant="outline-secondary"
-            className={`${buttonSelection}${
-              userType == "Doctor" && activeButton
-            }`}
-            style={{ "margin-right": "2%" }}
-            onClick={() => {
-              formik.resetForm();
-              setUerType("Doctor");
-              formik.setFieldValue("userType", "Doctor");
-              setShowError({
-                emailError: false,
-                mobileError: false,
-                mobileerrorMsg: "",
-                mailerrorMsg: "",
-              });
-            }}
-          >
-            <img src={Assets.doctor_icon} />
-            I'm Doctor
-            {userType == "Doctor" && (
-              <img
-                src={Assets.signupTick}
-                alt=""
-                className={Style.activeTick}
-              />
-            )}
-          </Button>
-          <Button
-            variant="outline-secondary"
-            className={`${buttonSelection}${
-              userType == "Patient" && activeButton
-            }`}
+            className={`${buttonSelection}${userType == "Patient" && activeButton
+              }`}
             onClick={() => {
               formik.resetForm();
               setUerType("Patient");
@@ -264,7 +340,7 @@ function Signup() {
           {/* <Button variant="outline-secondary" className={Style.signup_google_btn} type="submit">
         Sign up with google
       </Button> */}
-          <div className={Style.btn_google}>
+          {/* <div className={Style.btn_google}>
             <GoogleLogin
               clientId="4919873164-em3btdice5bkpojvdgu0kenvgtl3or77.apps.googleusercontent.com"
               buttonText="Sign up with google"
@@ -274,13 +350,13 @@ function Signup() {
               className={Style.gBtn}
               disabled={false}
             />
-          </div>
+          </div> */}
         </div>
         {errorMsg != "" && <p className={Style.errors}>{errorMsg}</p>}
-        <div>
+        {/* <div>
           <p></p>
           <p className={Style.signup_text_option}>Or</p>
-        </div>
+        </div> */}
         <div className={Style.form_group}>
           <label className={Style.signup_form_label}>Full Name</label>
           <br />
@@ -301,10 +377,9 @@ function Signup() {
               className={
                 Style.signup_input_field +
                 " " +
-                `${
-                  formik.touched.fullName && formik.errors.fullName
-                    ? "is-invalid"
-                    : ""
+                `${formik.touched.fullName && formik.errors.fullName
+                  ? "is-invalid"
+                  : ""
                 }`
               }
             />
@@ -339,10 +414,9 @@ function Signup() {
               className={
                 Style.signup_input_field +
                 " " +
-                `${
-                  formik.touched.email && formik.errors.email
-                    ? "is-invalid"
-                    : ""
+                `${formik.touched.email && formik.errors.email
+                  ? "is-invalid"
+                  : ""
                 }`
               }
             />
@@ -362,10 +436,9 @@ function Signup() {
               className={
                 "mob-flag-wrp" +
                 " " +
-                `${Style.siginup_mobileInput}${" "}${
-                  formik.touched.mobileNumber && formik.errors.mobileNumber
-                    ? "is-invalid"
-                    : ""
+                `${Style.siginup_mobileInput}${" "}${formik.touched.mobileNumber && formik.errors.mobileNumber
+                  ? "is-invalid"
+                  : ""
                 }`
               }
             >
@@ -392,23 +465,33 @@ function Signup() {
                 name="mobile"
                 autoFormat={false}
                 countryCodeEditable={false}
+
                 onBlur={(event) => {
                   // formik.handleBlur(event);
                   handleBlurAction2(event, "Mobile", "mobileNumber");
                 }}
+
                 onChange={(value, data, event, formattedValue) => {
+
+                  console.log(value,data, event, formattedValue);
+
+
                   formik.setFieldValue("mobileNumber", value);
                   formik.setFieldValue("dial_code", data.dialCode);
+                  // formik.setFieldValue("code",{ name:  data.name, flag: getCountryFlagFromCountryCode(data.countryCode.toUpperCase()), code: data.countryCode.toUpperCase(), dial_code:  data.dialCode })
+
+                  
                   formik.setFieldValue(
                     "countryCode",
                     data.countryCode?.toUpperCase()
                   );
-                  setShowError({
-                    ...ShowError,
+                  // setShowError({
+                  //   ...ShowError,
 
-                    mobileError: false,
-                    mobileerrorMsg: "",
-                  });
+                  //   mobileError: false,
+                  //   mobileerrorMsg: "",
+                  // });
+
                   handleOnChange(value, data, event, formattedValue);
                 }}
               />
@@ -452,10 +535,9 @@ function Signup() {
               className={
                 Style.signup_input_field +
                 " " +
-                `${
-                  formik.touched.password && formik.errors.password
-                    ? "is-invalid"
-                    : ""
+                `${formik.touched.password && formik.errors.password
+                  ? "is-invalid"
+                  : ""
                 }`
               }
             >
@@ -487,22 +569,27 @@ function Signup() {
             <br />
 
             <p>
-              <select
+
+
+              {/* <select
+            
                 name="specialityType"
                 value={formik.values.specialityType}
-                onChange={formik.handleChange}
+                onChange={(e)=>{console.log(e)}}
                 onBlur={formik.handleBlur}
+                placeholder='test'
+                defaultValue={null}
                 className={
                   Style.signup_input_field +
                   " " +
-                  `${
-                    formik.touched.specialityType &&
+                  `${formik.touched.specialityType &&
                     formik.errors.specialityType
-                      ? "is-invalid"
-                      : ""
+                    ? "is-invalid"
+                    : ""
                   }`
                 }
               >
+                <option value="" disabled selected hidden>Select your option</option> 
                 {speciality &&
                   speciality.map((item, index) => {
                     return (
@@ -512,7 +599,16 @@ function Signup() {
                       />
                     );
                   })}
-              </select>
+              </select> */}
+
+              <SighnupDropDown
+                value={formik.values.specialityType}
+                DataItem={speciality}
+                formik={formik}
+                defaultPlaceH="Select speciality"
+              />
+
+
               {formik.touched.specialityType && formik.errors.specialityType ? (
                 <div className={Style.errors}>
                   {formik.errors.specialityType}
@@ -524,7 +620,7 @@ function Signup() {
         <div className="col-md-12">
           <br />
           <Button
-            // onClick={onSubmit}
+            onClick={formik.handleSubmit}
             variant="outline-secondary"
             className={Style.signup_continue_btn}
             type="submit"

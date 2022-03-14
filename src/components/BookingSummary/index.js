@@ -7,6 +7,7 @@ import PatientConsent from "../PatientConsent";
 import { book_slot } from "../../actions/BookAppoinmentAction";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
+import ConfirmModal from "./ConfirmModal";
 
 function BookingSummary({
   progressIncrementer,
@@ -30,11 +31,16 @@ function BookingSummary({
     setModal(false);
   };
   let reportLength = appoinment_form?.reportsArray?.length;
+  let SelectedReportLength = appoinment_form?.selectedFiles?.length;
+
+  let surgeryLength = appoinment_form?.surgerydetails?.length;
 
   const bookingConfirm = useSelector(
     (state) => state.bookAppoinment.bookingConfirmation
   );
   const userData = useSelector((state) => state.login.user);
+
+  let [paymentLoading, setPaymentLoading] = useState(false)
 
   useEffect(() => {
     if (bookingConfirm) {
@@ -42,7 +48,11 @@ function BookingSummary({
     }
   }, [bookingConfirm]);
 
-  const onsubmit = () => {
+  const onsubmit = () => 
+  {
+
+    setPaymentLoading(true)
+
     dispatch(
       book_slot({
         data: appoinment_form,
@@ -51,12 +61,34 @@ function BookingSummary({
         old_appointment: old_appointment,
       })
     ).then((res) => {
+
+
+      setPaymentLoading(false)
+      console.log("book_slot API result ==> ", res);
       // progressIncrementer()
     });
   };
 
+  console.log("Appointment Form:", appoinment_form);
+
+  let getReportsCount = () => {
+
+    let uploaded = reportLength ? reportLength : 0
+    let selected = SelectedReportLength ? SelectedReportLength : 0
+
+    return (uploaded + selected)
+
+  }
+
   return (
     <>
+
+      {/* <ConfirmModal
+        showModal={paymentLoading}
+        setShowModal={() => { setPaymentLoading(true) }}
+        onCancel={() => { setPaymentLoading(false) }}
+
+      /> */}
       <h3 className={Style.booking_summary_main_heading}>Booking summary</h3>
       <label className={`${Style.booking_summary_label} booking_summary_label`}>
         Doctor Details
@@ -66,14 +98,14 @@ function BookingSummary({
         <label className={Style.booking_summary_doctor_details}>
           Patient Details
         </label>
-        <Link
+        {/* <Link
           className={Style.booking_summary_change_link}
           onClick={() => {
             setProgress(2);
           }}
         >
           Change
-        </Link>
+        </Link> */}
       </div>
       <div className={Style.booking_summary_details_div}>
         <div className={Style.booking_desc}>
@@ -92,8 +124,8 @@ function BookingSummary({
         <div className={Style.booking_desc}>
           Mobile :{" "}
           <label>
-            {"+"}
-            {appoinment_form.reminderNumber?.slice(3)}
+            
+            {appoinment_form.reminderNumber.replace("%2B","+")}
           </label>
         </div>
         {appoinment_form?.emergencyname && (
@@ -120,14 +152,14 @@ function BookingSummary({
         <label className={Style.booking_summary_doctor_details}>
           Consultation Details
         </label>
-        <Link
+        {/* <Link
           className={Style.booking_summary_consultation_change_link}
           onClick={() => {
             setProgress(6);
           }}
         >
           Change
-        </Link>
+        </Link> */}
       </div>
       <div className={Style.booking_summary_details_div}>
         <div className={Style.booking_desc}>
@@ -159,12 +191,12 @@ function BookingSummary({
             </label>
           </div>
         )}
-        {appoinment_form?.surgerydetails?.length > 0 && (
+        {appoinment_form?.surgeries?.length > 0 && (
           <div className={Style.booking_desc}>
             Surgeries :{" "}
             <label>
-              {appoinment_form?.surgerydetails?.map((res, index) => {
-                if (appoinment_form?.surgerydetails?.length - 1 == index) {
+              {appoinment_form?.surgeries?.map((res, index) => {
+                if (appoinment_form?.surgeries?.length - 1 == index) {
                   return <span key={index}>{res.surgery}</span>;
                 }
                 return <span key={index}>{res.surgery},</span>;
@@ -187,12 +219,13 @@ function BookingSummary({
         )}
         <div className={Style.booking_desc}>
           Report(s) :{" "}
-          <label>{reportLength ? reportLength : 0} attachment(s)</label>
+          <label>{getReportsCount()} attachment(s)</label>
         </div>
 
+
         {appoinment_form.patientId != undefined &&
-        appoinment_form.patientId != "" &&
-        appoinment_form.patientId != null ? (
+          appoinment_form.patientId != "" &&
+          appoinment_form.patientId != null ? (
           <div className={Style.booking_desc}>
             Patient ID/MRN : <label>{appoinment_form.patientId}</label>
           </div>

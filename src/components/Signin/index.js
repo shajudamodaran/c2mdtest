@@ -21,6 +21,7 @@ import { checkUser } from "../../actions/SignupAction";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import ConfirmModal from "./ConfirmModal";
 function Signin() {
   const history = useHistory();
   const re = /^[0-9\b]+$/;
@@ -42,6 +43,7 @@ function Signin() {
   };
   const [errorMsg, setErrorMsg] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
+  let [drSign,setDrSign]=useState(false)
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
@@ -55,6 +57,8 @@ function Signin() {
     } else if (values.loginType == "mobile") {
       userName = `%2B${values.dial_code} ${mobNo}`;
     }
+
+
     await dispatch(
       loginAction({
         loginType: values.loginType,
@@ -62,8 +66,10 @@ function Signin() {
         accessCountry: values.countryCode,
         password: values.password,
         history: history,
+        setDrSign:setDrSign
       })
     ).then((res) => {
+
       if (res.info) {
         let text = values.loginType === "email" ? "email id" : "mobile number";
         setErrorMsg(
@@ -134,31 +140,38 @@ function Signin() {
           });
         }
       })
-      .catch(() => {});
+      .catch(() => { });
   };
 
-  const handleOnChange = (value, data, event, formattedValue) => {};
+  const handleOnChange = (value, data, event, formattedValue) => { };
 
   return (
     <SignupLayout>
+
+      <ConfirmModal
+        showModal={drSign}
+         setShowModal={()=>{setDrSign(true)}}
+         onCancel={()=>{setDrSign(false)}}
+      
+      />
       <div className={Style.signin_form_align}>
         <h2 className={Style.signin_header_align}>Sign in to your account</h2>
 
         <div className="form-group">
           <p></p>
-          <GoogleLogin
+          {/* <GoogleLogin
             clientId="4919873164-em3btdice5bkpojvdgu0kenvgtl3or77.apps.googleusercontent.com"
             buttonText="Sign in with google"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             cookiePolicy={"single_host_origin"}
             className={Style.signin_google_button}
-          />
+          /> */}
         </div>
-        <div>
+        {/* <div>
           <p></p>
           <p className={Style.signin_text_option}>Or</p>
-        </div>
+        </div> */}
         <div>
           <Formik
             initialValues={{
@@ -171,7 +184,7 @@ function Signin() {
               mobile: "",
               dial_code: "91",
               countryCode: "IN",
-              code: { name: "India", flag: "🇮🇳", code: "IN", dial_code: "+91" },
+              code: { name: "", flag: "🇮", code: "", dial_code: "" },
             }}
             validationSchema={validationSchema}
             onSubmit={(values, { setSubmitting }) => {
@@ -261,8 +274,7 @@ function Signin() {
                           className={
                             Style.signin_input_field +
                             " " +
-                            `${
-                              touched.email && errors.email ? "is-invalid" : ""
+                            `${touched.email && errors.email ? "is-invalid" : ""
                             }`
                           }
                           placeholder="Enter Email Id"
@@ -279,9 +291,8 @@ function Signin() {
                     {values.loginType === "mobile" && (
                       <div className={Style.mob_flag_wrp}>
                         <div
-                          className={`${Style.siginin_mobile}${" "}${
-                            touched.mobile && errors.mobile ? "is-invalid" : ""
-                          }`}
+                          className={`${Style.siginin_mobile}${" "}${touched.mobile && errors.mobile ? "is-invalid" : ""
+                            }`}
                         >
                           <PhoneInput
                             country={"in"}
@@ -361,10 +372,9 @@ function Signin() {
                       className={
                         Style.signin_input_field +
                         " " +
-                        `${
-                          touched.password && errors.password
-                            ? "is-invalid"
-                            : ""
+                        `${touched.password && errors.password
+                          ? "is-invalid"
+                          : ""
                         }`
                       }
                     >
@@ -394,7 +404,7 @@ function Signin() {
                       className={Style.signin_password_forgot}
                       onClick={() => history.push("/reset")}
                     >
-                      Forgot Password
+                      Forgot Password?
                     </p>
                   </div>
 
@@ -417,15 +427,14 @@ function Signin() {
                     &nbsp;
                     <Button
                       variant="outline-dark"
-                      className={`${Style.signin_continue_btn1} ${
-                        values.password ? Style.signin_continue_btn1_active : ""
-                      }`}
+                      className={`${Style.signin_continue_btn1} ${values.password ? Style.signin_continue_btn1_active : ""
+                        }`}
                       type="submit"
                       onClick={() => {
                         setFieldValue("submitBttn", "type2");
                       }}
                       disabled={isSubmitting}
-                      // onClick={login}
+                    // onClick={login}
                     >
                       {values.submitBttn === "type2" && isSubmitting
                         ? "Please wait..."

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32">
+    <defs>
+        <path id="nken5og6na" d="M4 0h24c2.21 0 4 1.79 4 4v24c0 2.21-1.79 4-4 4H4c-2.21 0-4-1.79-4-4V4c0-2.21 1.79-4 4-4z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <g>
+                <g transform="translate(-179 -652) translate(179 652)">
+                    <use fill="#EDF2F8" opacity=".8" xlink:href="#nken5og6na"/>
+                </g>
+                <g>
+                    <path fill="#0A8CE0" d="M2.4 0h16.8c1.325 0 2.4 1.075 2.4 2.4v4.8c0 1.325-1.075 2.4-2.4 2.4H2.4C1.075 9.6 0 8.525 0 7.2V2.4C0 1.075 1.075 0 2.4 0z" transform="translate(-179 -652) translate(179 652) translate(5 19)"/>
+                    <path fill="#FFF" fill-rule="nonzero" d="M3.957 7.5V5.247h2.218v-.951H3.957v-1.3h2.458v-.95H2.804V7.5h1.153zm4.886 0V2.045H7.69V7.5h1.153zm4.943 0v-.95h-2.339V2.044h-1.153V7.5h3.492zm4.95 0v-.95h-2.533V5.246h2.334v-.951h-2.334v-1.3h2.523v-.95H15.05V7.5h3.686z" transform="translate(-179 -652) translate(179 652) translate(5 19)"/>
+                </g>
+                <g stroke="#59709B">
+                    <path fill="#FFF" d="M14-.5c.69 0 1.315.28 1.768.732C16.22.685 16.5 1.31 16.5 2h0v7c0 .69-.28 1.315-.732 1.768-.453.452-1.078.732-1.768.732h0H2c-.69 0-1.315-.28-1.768-.732C-.22 10.315-.5 9.69-.5 9h0V2c0-.69.28-1.315.732-1.768C.685-.22 1.31-.5 2-.5h0z" transform="translate(-179 -652) translate(179 652) translate(8 5)"/>
+                    <g fill="#59709B" fill-rule="nonzero" stroke-width=".35">
+                        <g>
+                            <path d="M4.693 6.826H.427C.19 6.826 0 6.635 0 6.399V.427C0 .19.191 0 .427 0h2.772c.057 0 .111.022.152.062L5.057 1.77c.04.04.062.094.062.15V6.4c0 .236-.19.427-.426.427zM.427.426V6.4h4.266V2.008L3.11.427H.427z" transform="translate(-179 -652) translate(179 652) translate(8 5) translate(6 2)"/>
+                            <path d="M4.906 2.423H3.143c-.235 0-.426-.19-.426-.426V.213c0-.118.095-.213.213-.213s.213.095.213.213v1.784h1.763c.118 0 .213.095.213.213s-.095.213-.213.213z" transform="translate(-179 -652) translate(179 652) translate(8 5) translate(6 2)"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

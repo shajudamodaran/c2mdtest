@@ -16,7 +16,7 @@ function DoctorProfileSidebar({ doctorDetail }) {
         </div>
 
         <div className={Style.doctorSpeciality}>
-          <img src={data.thirdPartySiteLogo} alt="hospital" />
+          {/* <img src={data.thirdPartySiteLogo} alt="hospital" /> */}
           <h5>{data.doctorName}</h5>
           {data.doctorSpecialityName != "" && (
             <p className={Style.content1}>{data.doctorSpecialityName}</p>
@@ -30,6 +30,10 @@ function DoctorProfileSidebar({ doctorDetail }) {
         {data?.qualification && (
           <>
             <h6 className={Style.heading}>Qualification</h6>
+
+            {
+              console.log(data?.qualification)
+            }
             <h6
               className={Style.Bottom_content1}
               dangerouslySetInnerHTML={{

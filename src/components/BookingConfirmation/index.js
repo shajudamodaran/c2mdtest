@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useRef,useEffect } from "react";
 import Style from "./BookingConfirmation.module.scss";
 import YesNoButton from "../YesNoButton";
 import { Accordion, Button, Col, Row } from "react-bootstrap";
@@ -10,15 +10,32 @@ import AddToCalendar from "@culturehq/add-to-calendar";
 import "@culturehq/add-to-calendar/dist/styles.css";
 import { GotoDashboard_action } from "../../actions/BookAppoinmentAction";
 import moment from "moment";
-function BookingConfirmation({ progressIncrementer }) {
+function BookingConfirmation({ progressIncrementer }) 
+{
   const history = useHistory();
   const dispatch = useDispatch();
   const clientDetails = useSelector((state) => state.clientDetails);
 
+
+  const successImageRef = useRef(null)
+
+  useEffect(() => {
+
+    successImageRef.current.focus()
+   
+  }, [])
+
+
+
   const AppoinmentId = useSelector(
     (state) => state.bookAppoinment.bookingConfirmRes
   );
-
+let requestId=null;
+if(localStorage.getItem("RequestId")!=undefined)
+{
+  requestId=localStorage.getItem("RequestId")
+}
+  console.log("****",AppoinmentId)
   const appoinment_form = useSelector(
     (state) => state.bookAppoinment.appoinment_form
   );
@@ -30,8 +47,13 @@ function BookingConfirmation({ progressIncrementer }) {
         src={Assets.success_icon}
         className={Style.booking_confirmation_success_icon}
       ></img>
-      <h3 className={Style.booking_confirmation_main_heading}>Thank you</h3>
       {AppoinmentId?.appoinmentType == "Book" ? (
+      <h3 tabindex="-1" ref={successImageRef} className={Style.booking_confirmation_main_heading}>Thank You</h3>
+      ):(
+        <h3 tabindex="-1" ref={successImageRef} className={Style.booking_confirmation_main_heading}>Thank You</h3>
+      )
+    }
+       {AppoinmentId?.appoinmentType == "Book" ? (
         <h4 className={Style.booking_confirmation_sub_heading}>
           Your booking is complete
         </h4>
@@ -39,16 +61,26 @@ function BookingConfirmation({ progressIncrementer }) {
         <h4 className={Style.booking_confirmation_sub_heading}>
           Your booking request has been submitted
         </h4>
-      )}
+      )} 
       <label className={Style.booking_confirmation_main_label}>
         You will soon receive an email/sms confirmation
       </label>
+      
       {AppoinmentId?.appoinmentType == "Book" &&
         AppoinmentId?.appoinmentId?.info && (
           <div className={Style.booking_confirmation_appointment_id}>
             APPOINTMENT ID : {AppoinmentId?.appoinmentId?.info}
           </div>
         )}
+        {AppoinmentId=="Request"? (
+           <div className={Style.booking_confirmation_appointment_id}>
+           REQUEST ID : {requestId!=null ? requestId:""}
+         </div>
+        ):""
+        
+
+        }
+        
       <DoctorDetails></DoctorDetails>
       {AppoinmentId?.appoinmentType == "Book" && (
         <AddToCalendar
@@ -129,7 +161,7 @@ function BookingConfirmation({ progressIncrementer }) {
                   {clientDetails?.email}
                 </a>
               )}
-              you will hear back from us within 24 hours.
+               .&nbsp;You will hear back from us within 24 hours.
             </p>
           </Accordion.Body>
         </Accordion.Item>
@@ -140,7 +172,7 @@ function BookingConfirmation({ progressIncrementer }) {
           onClick={() => {
             dispatch(GotoDashboard_action());
             history.push({
-              pathname: "/dashboard",
+              pathname: "/mobiledashboard",
             });
           }}
         >

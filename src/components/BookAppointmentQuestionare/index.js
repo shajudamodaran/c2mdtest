@@ -5,6 +5,7 @@ import {
   fetch_appoinment_questions,
   Store_formData,
 } from "../../actions/BookAppoinmentAction";
+import { fetch_DoctorDetail } from "../../actions/DoctorDetailsAction";
 import { Col } from "react-bootstrap";
 import "react-datepicker/dist/react-datepicker.css";
 import { useHistory } from "react-router";
@@ -38,7 +39,7 @@ import Allergies from "../Allergies";
 import AddToCalendar from "@culturehq/add-to-calendar";
 import "@culturehq/add-to-calendar/dist/styles.css";
 
-function BookAppointmentQuestionare() {
+function BookAppointmentQuestionare({setSummary}) {
   const dispatch = useDispatch();
   const history = useHistory();
   // const doctorId = history.location.state.doctorId;
@@ -59,35 +60,67 @@ function BookAppointmentQuestionare() {
     (state) => state.bookAppoinment.appoinment_form
   );
 
+  useEffect(() => {
+
+    if(progress==14)
+    {
+      setSummary(true)
+    }
+    else{
+      setSummary(false)
+    }
+   
+  }, [progress])
+  
+
+  console.log(appoinment_form);
+  let reduxData = useSelector(state => state)
+
   const old_appointment = useSelector(
     (state) => state.bookAppoinment.appointmentResult
   );
-  
+
   useEffect(() => {
     if (innerPage == 0) {
       if (addMember) {
         setAddMemeber(false);
       }
+      if (appoinment_form.referenceId != "" && appoinment_form.bookingFrom === "Book") {
+        setProgress(progress + 12);
+        setSummary(true)
+      //  dispatch(fetch_DoctorDetail(doctorId));
+        //console.log(progress + 3)
+      }
     }
+
     window.scrollTo(0, 0);
   }, [innerPage]);
+
   useEffect(() => {
     dispatch(fetchReasonforVisit(doctorId));
     dispatch(fetchTypeofAppoinment(doctorId));
+    dispatch(fetch_DoctorDetail(doctorId));
   }, []);
+
   const progressIncrementer = () => {
     setProgress(progress + 1);
   };
 
+
+
   const progressDescrementer = () => {
+
     if (progress != 1) {
       if (progress == 9 && appoinment_form?.medicalConditions?.length == 0) {
         setProgress(progress - 1);
-      } else {
+      }
+
+      else {
         setProgress(progress - 1);
       }
     }
   };
+  
   const settingsdata = useSelector(
     (state) => state.bookAppoinment.settingsdata
   );
@@ -95,11 +128,17 @@ function BookAppointmentQuestionare() {
   return (
     <div className={Style.book_appointment_topSection}>
       <Col>
-        <h2 className={Style.book_appointment_header_align}>
-          {appoinment_form?.bookingType == "Request"
-            ? "Request an Appointment"
-            : "Book an Appointment"}
-        </h2>
+
+        {
+          progress == 14 ? null :
+            <h2 className={Style.book_appointment_header_align} data={progress}>
+              {appoinment_form?.bookingType == "Request"
+                ? "Request an Appointment"
+                : "Book an Appointment"}
+            </h2>
+
+        }
+
 
         <BookAppointmentQBox
           progressDescrementer={progressDescrementer}
@@ -128,21 +167,21 @@ function BookAppointmentQuestionare() {
             />
           )}
 
-          {progress == 3 && (
+          {/* {progress == 3 && (
             <NationalId
               progressIncrementer={progressIncrementer}
               appoinment_form={appoinment_form}
               Store_formData={Store_formData}
             />
-          )}
-
+          )} */}
+{/* 
           {progress == 4 && (
             <InsuranceForm
               progressIncrementer={progressIncrementer}
               appoinment_form={appoinment_form}
               Store_formData={Store_formData}
             />
-          )}
+          )} */}
 
           {/* {progress == 5 && (
             <AppointmentType
@@ -152,7 +191,7 @@ function BookAppointmentQuestionare() {
             />
           )} */}
 
-          {progress == 5 && (
+          {progress == 3 && (
             <ReasonForVisit
               progressIncrementer={progressIncrementer}
               appoinment_form={appoinment_form}
@@ -160,7 +199,7 @@ function BookAppointmentQuestionare() {
             />
           )}
 
-          {progress == 6 && (
+          {progress == 4 && (
             <Symptoms
               progressIncrementer={progressIncrementer}
               appoinment_form={appoinment_form}
@@ -169,7 +208,7 @@ function BookAppointmentQuestionare() {
             />
           )}
 
-          {progress == 7 && (
+          {progress == 5 && (
             <MedicalConditions
               progressIncrementer={progressIncrementer}
               appoinment_form={appoinment_form}
@@ -178,7 +217,7 @@ function BookAppointmentQuestionare() {
             />
           )}
 
-          {progress == 9 && (
+          {progress == 7 && (
             <Surgeries
               progressIncrementer={progressIncrementer}
               appoinment_form={appoinment_form}
@@ -197,18 +236,18 @@ function BookAppointmentQuestionare() {
               addMedicine={addMedicine}
             />
           )} */}
-          {progress == 8 &&
+          {progress == 6 &&
             // (appoinment_form?.medicalConditions?.length == 0 ? (
             //   progressIncrementer()
             // ) : (
-              <AddMedicine
-                progressIncrementer={progressIncrementer}
-                settingsdata={settingsdata}
-                appoinment_form={appoinment_form}
-                Store_formData={Store_formData}
-              />
+            <AddMedicine
+              progressIncrementer={progressIncrementer}
+              settingsdata={settingsdata}
+              appoinment_form={appoinment_form}
+              Store_formData={Store_formData}
+            />
             // ))
-            }
+          }
           {/* {progress == 9 &&
             (appoinment_form?.medicalConditions?.length == 0 ? (
               progressIncrementer()
@@ -225,7 +264,7 @@ function BookAppointmentQuestionare() {
             <Medications progressIncrementer={progressIncrementer} />
           )} */}
 
-          {progress == 10 && (
+          {progress == 8 && (
             <Allergies
               progressIncrementer={progressIncrementer}
               appoinment_form={appoinment_form}
@@ -234,7 +273,7 @@ function BookAppointmentQuestionare() {
             />
           )}
 
-          {progress == 11 && (
+          {progress == 9 && (
             <UploadReports
               progressIncrementer={progressIncrementer}
               appoinment_form={appoinment_form}
@@ -242,7 +281,7 @@ function BookAppointmentQuestionare() {
             />
           )}
 
-          {progress == 12 && (
+          {progress == 10 && (
             <HospitalVisit
               progressIncrementer={progressIncrementer}
               appoinment_form={appoinment_form}
@@ -250,7 +289,7 @@ function BookAppointmentQuestionare() {
             />
           )}
 
-          {progress == 13 && (
+          {progress == 11 && (
             <GettingInTouch
               progressIncrementer={progressIncrementer}
               Store_formData={Store_formData}
@@ -258,14 +297,14 @@ function BookAppointmentQuestionare() {
             />
           )}
 
-          {progress == 14 && (
+          {progress == 12 && (
             <EmergencyContact
               progressIncrementer={progressIncrementer}
               appoinment_form={appoinment_form}
               Store_formData={Store_formData}
             />
           )}
-
+{/* 
           {progress == 15 && (
             <Reference
               progressIncrementer={progressIncrementer}
@@ -273,9 +312,9 @@ function BookAppointmentQuestionare() {
               Store_formData={Store_formData}
               progress={progress}
             />
-          )}
+          )} */}
 
-          {progress == 16 && (
+          {progress == 13 && (
             <BookingSummary
               progressIncrementer={progressIncrementer}
               appoinment_form={appoinment_form}
@@ -285,7 +324,7 @@ function BookAppointmentQuestionare() {
             />
           )}
 
-          {progress == 17 && (
+          {progress == 14 && (
             <BookingConfirmation progressIncrementer={progressIncrementer} />
           )}
         </BookAppointmentQBox>

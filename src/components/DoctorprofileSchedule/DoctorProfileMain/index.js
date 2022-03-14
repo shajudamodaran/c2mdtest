@@ -34,7 +34,7 @@ function DoctorProfilemain({ doctorDetail, doctorid }) {
       scheduleTab.current.scrollIntoView({
           behavior: "smooth",
           block: "start",
-          // inline: "start",
+           inline: "start",
         });
     } else if (activeTab == 2) {
       scrollToTab(professionalTab);
@@ -57,7 +57,7 @@ function DoctorProfilemain({ doctorDetail, doctorid }) {
         tabSection.current.scrollIntoView({
           behavior: "smooth",
           block: "nearest",
-          inline: "start",
+           inline: "start",
         });
     }
   };

@@ -1,0 +1,61 @@
+.SignupDropDown {
+  width: 100%;
+
+  .ant-select-selector {
+    height: 50px !important;
+    border: 0px solid rgb(255, 255, 255) !important;
+    background-color: #f2f7fa !important;
+    border-radius: 2px;
+   
+  }
+
+  .ant-select-selection-placeholder {
+    color: #a5b5cc;
+    font-size: 15px;
+    font-weight: normal !important;
+    letter-spacing: .05px;
+  }
+
+  .ant-select-focused .ant-select-selector,
+   .ant-select-selector:focus,
+   .ant-select-selector:active,
+   .ant-select-open.ant-select-selector {
+      border-color: #ffffff!important;
+      box-shadow: none!important;
+      outline: 0px !important;
+   }
+
+
+
+   .ant-select-selector{
+    background-color: #f2f7fa;
+    border-radius: 2px;
+
+    span{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      font-weight: 500;
+     
+    }
+  }
+
+  
+  .ant-select-focused .ant-select-selector,
+  .ant-select-selector:focus,
+  .ant-select-selector:active,
+  .ant-select-open .ant-select-selector {
+  
+    box-shadow: none !important;
+    border: 0px;
+    outline: 0px;
+    background-color: #f2f7fa;
+  }
+
+  .ant-select:hover .ant-select-selector {
+  
+    box-shadow: none !important;
+    border: 0px;
+    border-radius: 2px;
+  }
+}

@@ -353,6 +353,8 @@ function DoctorListingFilters({
           </div>
         )}
       </div>
+      
+      
       {clientDetails?.clinicurl === "shalby" && (
         <div
           className={dropdownClassHospital}
@@ -403,7 +405,7 @@ function DoctorListingFilters({
           )}
         </div>
       )}
-      <div
+      {/* <div
         className={dropdownClassLocation}
         onClick={() => setSelect({ location: !showSelect.location })}
       >
@@ -447,9 +449,9 @@ function DoctorListingFilters({
               })}
           </div>
         )}
-      </div>
+      </div> */}
 
-      <div className={dropdownClassLanguage}>
+      {/* <div className={dropdownClassLanguage}>
         <span
           className={Style.filterNamelabelBox}
           onClick={() => setSelect({ language: !showSelect.language })}
@@ -491,6 +493,7 @@ function DoctorListingFilters({
           </div>
         )}
       </div>
+       */}
       <div className={Style.resetText}>
         <div onClick={ResetFilter}>
           <img src={Assets.reset_icon} alt="" />

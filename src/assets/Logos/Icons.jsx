@@ -324,6 +324,22 @@ export const MuteIcon = () => {
     )
 }
 
+export const IframeIcon = ({status}) => {
+
+    let color=status?"#59709B":"white"
+
+    return (
+        <svg width="22" height="22" viewBox="0 0 125 125" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M117.188 23.4375H7.8125V85.9961H117.188V23.4375Z" stroke={color} stroke-width="6" stroke-miterlimit="10" />
+            <path d="M62.5 101.562V85.9961" stroke={color}stroke-width="6" stroke-miterlimit="10" />
+            <path d="M42.9688 101.562H81.9922" stroke={color} stroke-width="6" stroke-miterlimit="10" />
+        </svg>
+
+
+
+    )
+}
+
 
 export const NoVedioIcon = () => {
     return (
@@ -581,7 +597,7 @@ export const AddFileIcon = () => {
     )
 }
 
-export const InviteIcon_V2 = ({status}) => {
+export const InviteIcon_V2 = ({ status }) => {
 
     let color = status ? "#8AB4F8" : "white"
 

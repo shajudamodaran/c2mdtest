@@ -15,7 +15,7 @@ import MobileBookAppointment from "../BookAppointmentMobile";
 import Assets from "../Layout/Assets";
 import Spinner from "react-bootstrap/Spinner";
 import { fetchSpeciality } from "../../actions/SpecialityListingAction";
-import { fetch_clientDetails } from "../../actions/MicrositeAction";
+import { fetch_clientDetails, getCountryData } from "../../actions/MicrositeAction";
 
 function DoctorListing({
   showFilter,
@@ -34,6 +34,7 @@ function DoctorListing({
     gender: "Gender",
     doctorName: "",
   });
+
   const [filterKey, setFilterkey] = useState(null);
   const [loader, setLoader] = useState(true);
 
@@ -48,12 +49,15 @@ function DoctorListing({
   let { clinicId } = useParams();
 
   useEffect(() => {
+    // dispatch(
+    //   getCountryData()
+    // );
     if (specialityData.length == 0) {
       dispatch(
-        fetchSpeciality(clinicId == undefined ? "babymemorial" : clinicId)
+        fetchSpeciality(clinicId == undefined ? "" : clinicId)
       );
       dispatch(
-        fetch_clientDetails(clinicId == undefined ? "babymemorial" : clinicId)
+        fetch_clientDetails(clinicId == undefined ? "" : clinicId)
       );
     } else {
       if (!speciality) {
@@ -95,9 +99,12 @@ function DoctorListing({
     setFilterkey({ ...filterKey, doctorName: searchDoctor });
   }, [searchDoctor]);
 
+
   useEffect(() => {
+
     loading();
-  }, [selectedSpeciality, clientDetails]);
+  }, [selectedSpeciality, clientDetails,filterForm]);
+  
   const loading = async () => {
     if (selectedSpeciality != "") {
       await setLoader(true);
@@ -196,7 +203,10 @@ function DoctorListing({
 
   return !showFilter ? (
     <div className={Style.doctor_listing_topSection}>
+
+     
       <Container>
+     
         <div className={Style.doctorListWrap}>
           <div className={colSpecialityDiv}>
             <h2 className={Style.doctor_listing_main_heading}>Specialities</h2>
@@ -215,6 +225,7 @@ function DoctorListing({
               filterKey={filterKey}
               ResetFilter={ResetFilter}
               clientDetails={clientDetails}
+             
             />
             <div className={Style.doctor_listing_scrolling}>
               {loader == true ? (
@@ -248,6 +259,8 @@ function DoctorListing({
       setFilterkey={setFilterkey}
       filterKey={filterKey}
       clientDetails={clientDetails}
+      // setSearchDoctor={setSearchDoctor}
+      // searchDoctor={searchDoctor}
     />
   );
   //<MobileBookAppointment/>

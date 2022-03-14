@@ -1,4 +1,4 @@
-import { CHECK_CONSULTATION, FETCH_CLIENTDETAILS } from "./type";
+import { CHECK_CONSULTATION, FETCH_CLIENTDETAILS, FETCH_COUNTRYDATA } from "./type";
 import loginedApi from "../apis";
 import moment from "moment";
 let off = new Date().toString().replace(/GMT\+(\d\d)(\d\d)/, "GMT+$1:$2");
@@ -10,7 +10,10 @@ if (formatTime.search(/\+/g) != null) {
   formatTime = formatTime.replace(/\-/g, "%2D")
 }//replace(/\+/g,' ') browserTimeZone: GMT${formatTime}
 
-export const fetch_clientDetails = (userData) => async (dispatch) => {
+export const fetch_clientDetails = (clinicId) => async (dispatch) => {
+
+
+
   let params = {
     requestType: "1036",
     token: "C2MDVerificationToken",
@@ -19,19 +22,23 @@ export const fetch_clientDetails = (userData) => async (dispatch) => {
       currency: "INR",
       accessCountry: "IN",
       todayRate: "",
-      clinicId: userData?.clinicId,
+      clinicId: clinicId,
     },
   };
-  if (userData.clinicId != "") {
-    params.data.clinicId = userData.clinicId;
+  if (clinicId != "") {
+    params.data.clinicId = clinicId;
   }
 
   const response = await loginedApi.post("getclinicdetails", params);
   //localStorage.setItem("ClinicDetails",response.data.data);
+
+  console.log("Calling.....................",params);
+  console.log("Response.....................",response);
+
   await localStorage.setItem("ClinicDetails", JSON.stringify(response.data.data));
   dispatch({ type: FETCH_CLIENTDETAILS, payload: response.data.data });
+  getCountryData();
 };
-
 
 
 export const check_consultation = (userData) => async (dispatch) => {
@@ -71,6 +78,30 @@ let today= moment(new Date()).format("DD-MMM-YYYY")
   }
 
 };
+
+
+export const getCountryData = () => async (dispatch) => {
+ 
+ 
+
+  const res = await loginedApi.post("getcountrycode", 
+  {
+    "token": "token",
+    "version":"2.0",
+    "data": { browserTimeZone: `GMT${formatTime}`,},
+    "requestType": 1058
+});
+
+
+  if (res.status === 200) {
+
+
+    dispatch({ type: FETCH_COUNTRYDATA, payload: res.data.data });
+  }
+
+
+};
+
 
 
 
