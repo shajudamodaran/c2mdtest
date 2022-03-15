@@ -10,6 +10,7 @@ if (formatTime.search(/\+/g) != null) {
   formatTime = formatTime.replace(/\-/g, "%2D")
 }//replace(/\+/g,' ') browserTimeZone: GMT${formatTime}
 
+
 export const fetch_clientDetails = (clinicId) => async (dispatch) => {
 
 
@@ -39,6 +40,7 @@ export const fetch_clientDetails = (clinicId) => async (dispatch) => {
   dispatch({ type: FETCH_CLIENTDETAILS, payload: response.data.data });
   getCountryData();
 };
+
 
 
 export const check_consultation = (userData) => async (dispatch) => {

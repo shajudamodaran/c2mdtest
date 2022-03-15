@@ -1,25 +1,25 @@
-.doctor_listing_modal_align{
+.doctor_listing_modal_align {
     max-width: 610px;
     width: 100%;
     // height: 979px;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    box-shadow: -3px 3px 6px #0000001A;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: -3px 3px 6px #0000001a;
     opacity: 1;
-    border:none;
+    border: none;
     left: inherit;
-    right:-100%;
+    right: -100%;
     top: 80px;
-    transition: all 0.9s;
+    transition: all 0.5s;
     padding-left: 0 !important;
     padding-right: 0 !important;
-    .doctor_listing_heading{
+    .doctor_listing_heading {
         text-align: left;
-        font-weight: bold; 
+        font-weight: bold;
         font-size: 24px;
         letter-spacing: 0.24px;
         color: #000000;
         opacity: 1;
-        border:none;
+        border: none;
     }
 
     :global .modal-content {
@@ -28,18 +28,20 @@
     }
     :global .modal-dialog {
         max-width: inherit;
+
+        
     }
-    :global  .modal-title {
+    :global .modal-title {
         font-weight: 800;
     }
-    :global  .btn-close {
+    :global .btn-close {
         opacity: 1;
         background-size: 12px;
         position: absolute;
         top: 0;
         right: 20px;
     }
-  
+
     :global select {
         max-width: 100% !important;
     }
@@ -54,25 +56,23 @@
 :global {
     .modal-open {
         .book_modal {
-            right:0;
+            right: 0;
         }
     }
-
-} 
+}
 :global .modal-open {
     padding: 0 !important;
 }
-@media screen and (max-width:991px) {
-    .doctor_listing_modal_align{
+@media screen and (max-width: 991px) {
+    .doctor_listing_modal_align {
         top: 0;
         z-index: 10000;
         width: 100%;
         max-width: inherit;
-        :global  .btn-close {
+        :global .btn-close {
             right: 3px;
             top: 9px;
             margin: 0;
-
         }
         :global .modal-content {
             padding: 0;
@@ -82,28 +82,29 @@
         }
         :global .modal-dialog {
             margin: 0;
+
+           
         }
-        .doctor_listing_heading{
+        .doctor_listing_heading {
             box-shadow: 0px 3px 6px #0000000d;
             position: fixed;
             width: 100%;
             background: #fff;
             z-index: 10000;
         }
-       
-        :global  .modal-title {
+
+        :global .modal-title {
             font-weight: 600;
             font-size: 18px;
         }
     }
 }
-@media screen and (max-width:767px) {
-    .doctor_listing_modal_align{
+@media screen and (max-width: 767px) {
+    .doctor_listing_modal_align {
         width: 100%;
-        :global  .btn-close {
+        :global .btn-close {
             right: 5px;
             margin: 0;
         }
     }
 }
-

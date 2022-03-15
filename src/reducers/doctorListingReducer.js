@@ -10,6 +10,17 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {
     case DOCTOR_LISTING:
+
+      let newStet = payload.doctors.doctorDetails
+      let oldState = state.doctorList.doctorDetails
+
+
+      if (oldState && !payload.speciality) {
+
+        payload.doctors.doctorDetails=[...oldState,...newStet]
+
+      }
+
       return {
         ...state,
         doctorList: payload.doctors,

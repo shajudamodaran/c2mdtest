@@ -5,7 +5,10 @@ let IP = publicIp.v4();
 let platform = window.navigator.platform;
 let userAgent = window.navigator.userAgent;
 
-export const fetch_doctors = (speciality, clinicId) => async (dispatch) => {
+export const fetch_doctors = (speciality, clinicId, pagination) => async (dispatch) => {
+
+  console.log("Fetching Doctors..........................",speciality);
+
   let params = {
     data: {
       clinicId: clinicId,
@@ -24,11 +27,39 @@ export const fetch_doctors = (speciality, clinicId) => async (dispatch) => {
     token: "C2MDVerificationToken",
   };
 
+
+  let dummyParams={
+    "requestType": "259",
+    "token": "C2MDVerificationToken",
+    "data": {
+        "browserTimeZone": "GMT%2B05:30",
+        "currency": "INR",
+        "accessCountry": "IN",
+        "todayRate": "",
+        "clinicId": "babymemorial",
+        "searchName": "",
+        "City": "",
+        "count":pagination
+    }
+}
+
   if (clinicId != "") {
     params.data.clinicId = clinicId;
   }
 
-  const res = await loginedApi.post("searchDoctor", params);
+  let res=null
+
+  if(speciality)
+  {
+    res = await loginedApi.post("searchDoctor", params);
+  }
+  else{
+    res = await loginedApi.post("getdoctors", dummyParams);
+  }
+
+  // const res = await loginedApi.post("searchDoctor", params);
+  
+  //  const res = await loginedApi.post("getdoctors", dummyParams);
 
   if (res.status === 200) {
     const doctors = res.data.data;
@@ -51,9 +82,11 @@ export const fetch_doctors = (speciality, clinicId) => async (dispatch) => {
     doctors.languagesSet.map((item) => {
       item && location.push({ value: item, checked: false });
     });
+
     dispatch({
       type: DOCTOR_LISTING,
       payload: {
+        speciality,
         doctors: doctors,
         location: location,
         hospitals: hospitals,
@@ -61,5 +94,7 @@ export const fetch_doctors = (speciality, clinicId) => async (dispatch) => {
         indexCharacters: doctors?.indexCharacters,
       },
     });
+
+
   }
 };

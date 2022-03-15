@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import Style from "./DoctorListing.module.scss";
@@ -27,6 +27,8 @@ function DoctorListing({
   const languageData = useSelector((state) => state.doctorListing.languagesSet);
   const hospitalData = useSelector((state) => state.doctorListing.hospitals);
 
+  let doctorListingScroll = useRef()
+
   const [filterForm, setFilter] = useState({
     location: [],
     hospital: [],
@@ -36,7 +38,9 @@ function DoctorListing({
   });
 
   const [filterKey, setFilterkey] = useState(null);
-  const [loader, setLoader] = useState(true);
+  const [loader, setLoader] = useState(false);
+
+  let [pagination,setPagination]=useState(0)
 
   let { speciality } = useParams();
   const specialityData = useSelector(
@@ -60,23 +64,25 @@ function DoctorListing({
         fetch_clientDetails(clinicId == undefined ? "" : clinicId)
       );
     } else {
-      if (!speciality) {
-        setSpeciality(specialityData[0].specialityName);
-      }
+      // if (!speciality) {
+      //   setSpeciality(specialityData[0].specialityName);
+      // }
     }
   }, [specialityData]);
 
   const clientDetails = useSelector((state) => state.clientDetails);
 
-  useEffect(() => {
-    speciality &&
+
+   useEffect(() => {
+
       dispatch(
         fetch_doctors(
           speciality,
-          clientDetails != undefined ? clientDetails.clinicName : ""
+          clientDetails != undefined ? clientDetails.clinicName : "",
+          pagination
         )
       );
-  }, [speciality]);
+  }, []);
 
   const colSpecialityDiv = classNames(
     Style.doctor_listing_speciality_div,
@@ -103,15 +109,17 @@ function DoctorListing({
   useEffect(() => {
 
     loading();
-  }, [selectedSpeciality, clientDetails,filterForm]);
-  
+  }, [selectedSpeciality, clientDetails, filterForm]);
+
   const loading = async () => {
     if (selectedSpeciality != "") {
       await setLoader(true);
       await dispatch(
         fetch_doctors(
+          
           selectedSpeciality,
-          clientDetails != undefined ? clientDetails.clinicName : ""
+          clientDetails != undefined ? clientDetails.clinicName : "",
+          pagination
         )
       );
       await setLoader(false);
@@ -146,8 +154,8 @@ function DoctorListing({
         const isSameDocName =
           filterKey["doctorName"] && filterKey["doctorName"] != undefined
             ? item?.doctorFirstName
-                .toLowerCase()
-                .startsWith(filterKey["doctorName"].toLowerCase())
+              .toLowerCase()
+              .startsWith(filterKey["doctorName"].toLowerCase())
             : true;
         const isSelectedGender = filterKey["gender"]
           ? item?.gender.toLowerCase() === filterKey["gender"].toLowerCase()
@@ -201,12 +209,47 @@ function DoctorListing({
     });
   };
 
+  let onScrollDoctorList = async()=>{
+
+    const { scrollTop, scrollHeight, clientHeight } = doctorListingScroll.current;
+    
+    if (scrollTop + clientHeight === scrollHeight) {
+      // TO SOMETHING HERE
+      console.log('Reached bottom')
+
+      if(FilterItem.length%4==0)
+      {
+        // await setLoader(true);
+        await dispatch(
+          fetch_doctors(
+            selectedSpeciality,
+            clientDetails != undefined ? clientDetails.clinicName : "",
+            pagination+10
+          )
+        );
+        setPagination(pagination+10)
+        // await setLoader(false);
+
+      }
+      
+
+     
+     
+    }
+    
+  }
+
+ 
+  
+
+
+
   return !showFilter ? (
     <div className={Style.doctor_listing_topSection}>
 
-     
+
       <Container>
-     
+
         <div className={Style.doctorListWrap}>
           <div className={colSpecialityDiv}>
             <h2 className={Style.doctor_listing_main_heading}>Specialities</h2>
@@ -225,9 +268,9 @@ function DoctorListing({
               filterKey={filterKey}
               ResetFilter={ResetFilter}
               clientDetails={clientDetails}
-             
+
             />
-            <div className={Style.doctor_listing_scrolling}>
+            <div className={Style.doctor_listing_scrolling} ref={doctorListingScroll} onScroll={() => { onScrollDoctorList() }}>
               {loader == true ? (
                 <div className={Style.loader}>
                   <Spinner animation="border" role="status">
@@ -259,8 +302,8 @@ function DoctorListing({
       setFilterkey={setFilterkey}
       filterKey={filterKey}
       clientDetails={clientDetails}
-      // setSearchDoctor={setSearchDoctor}
-      // searchDoctor={searchDoctor}
+    // setSearchDoctor={setSearchDoctor}
+    // searchDoctor={searchDoctor}
     />
   );
   //<MobileBookAppointment/>
