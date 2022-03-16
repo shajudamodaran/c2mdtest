@@ -35,8 +35,8 @@ export const book_slot =
     let data1 = {
       nationalId: data.nationalId,
       insurance: {
-        provider: data.insurance.provider,
-        membershipNo: data.insurance.membershipNo,
+        provider: data.insurance?.provider,
+        membershipNo: data.insurance?.membershipNo,
       },
       symptoms: data.symptoms,
       medicalConditions: data.medicalConditions,
@@ -79,7 +79,9 @@ export const book_slot =
     };
     let response = [];
     let orderRes = [];
+
     if (!old_appointment?.info) {
+
       response = await loginedApi.post("/appointments", {
         token: "C2MDVerificationToken",
         data: {
@@ -97,10 +99,13 @@ export const book_slot =
         },
         requestType: "161",
       });
+
+
       dispatch({
         type: BOOKING_UPDATE_CONFIRMATION,
         payload: response.data.data,
       });
+
       orderRes = response.data.data;
     } else {
       response = old_appointment;
@@ -127,6 +132,8 @@ export const book_slot =
       //   })
       // );
     } else {
+
+     
       dispatch(
         displayRazorpay({
           orderRes,

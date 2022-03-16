@@ -260,7 +260,7 @@
 .user-card{
 
     position: absolute;
-    bottom: .5rem;
+    bottom: 3.5rem;
     left: .5rem;
     background-color: white;
     width: 150px;
@@ -425,9 +425,9 @@
     min-height: 100% !important;
     min-width: 100% !important;
 
-    width: 150px !important;
+    width: 314px !important;
     border-radius: 8px;
-    height: 150px !important;
+    height: 195px !important;
 }
 
 .medicines-list{

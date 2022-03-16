@@ -13,7 +13,7 @@ export const DASHBOARD_LEFT_OPTIONS=[
                 name:"Book a consultation",
                 ico:<i class="fal fa-book-medical"></i>,
                 component:null,
-                date:"10, February, 2021 - Wednesday"
+                date:"10, February, 2021 - Wednesday",
             },
             {
                 name:"Appointment History",

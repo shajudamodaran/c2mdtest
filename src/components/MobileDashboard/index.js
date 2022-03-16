@@ -33,27 +33,10 @@ function MobileDashboard() {
     let [activeLeft, setActiveleft] = useState({ menu: null, option: null })
     let [isDash, setDash] = React.useState(true);
     let [isPlayed, setPlayed] = useState(false)
-
-    let [reports, setReports] = useState([
-        // {
-        //     lastModified: 1588350162449,
-        //     lastModifiedDate: new Date,
-        //     name: "Report1.pdf",
-        //     size: 68317,
-        //     type: "image/png",
-        //     webkitRelativePath: "",
-        // },
-        // {
-        //     lastModified: 1588350162449,
-        //     lastModifiedDate: new Date,
-        //     name: "Report2.pdf",
-        //     size: 68317,
-        //     type: "image/png",
-        //     webkitRelativePath: "",
-        // }
-    ])
-
+    let [reports, setReports] = useState([])
     let [localReports, setLocalReports] = useState([])
+
+
 
     // let [consultationToday, setConsultationToday] = useState(null)
 
@@ -77,6 +60,10 @@ function MobileDashboard() {
         (state) => state.login.logout
     );
 
+    let clientDetails = useSelector(
+        state => state.clientDetails
+    );
+
     const onChange = e => {
         console.log('radio checked', e.target.value);
         setValue(e.target.value);
@@ -88,30 +75,27 @@ function MobileDashboard() {
 
         loadInitialData()
 
-       try {
+        try {
 
-        dispatch(
-            check_consultation(userData, dashboardData)
-        );
+            dispatch(
+                check_consultation(userData, dashboardData)
+            );
 
-           
-       } catch (error) {
 
-        console.log(error);
-           
-       }
-        dispatch(
-            fetch_clientDetails(userData)
-        )
+        } catch (error) {
 
-        hit201()
+            console.log(error);
+
+        }
+
+        // hit201()
 
     }, [])
 
     useEffect(() => {
 
         if (activeLeft.menu === 0 && activeLeft.option === 0) {
-            history.push('./speciality')
+            history.push(`./${clientDetails?clientDetails.clinicurl:"speciality"}`)
         }
 
     }, [activeLeft])
@@ -120,10 +104,16 @@ function MobileDashboard() {
 
 
     let loadInitialData = () => {
-        dispatch(fetch_dashboardData(userData,dashboardData))
+        dispatch(fetch_dashboardData(
+            userData?.profileId,
+            userData?.userName,
+            userData?.mobileNumber
+        ))
     }
 
     let reduxData = useSelector(state => state)
+
+
 
     let consultations = reduxData.consultationDetails.appointmentDetail ? reduxData.consultationDetails.appointmentDetail : []
 
@@ -152,11 +142,6 @@ function MobileDashboard() {
 
 
     }, [consultationToday])
-
-
-
-    console.log(consultationToday);
-
 
 
     let sideNavList = [
@@ -236,32 +221,6 @@ function MobileDashboard() {
     }
 
 
-    let hit201 = () => {
-
-        setInterval(function () {
-
-
-          call201().then((res)=>{
-
-           if(res.data.appointmentId)
-           {
-                console.log(res.data);
-           }
-           else{
-              call65().then((res_65)=>{
-
-                console.log(res_65);
-
-              })
-           }
-
-          })
-
-
-
-        }, 15000);
-
-    }
 
 
 
@@ -273,22 +232,19 @@ function MobileDashboard() {
 
 
 
-        if (logoutDetails?.info) {
-            window.open("https://www.connect2mydoctor.com/", "_self")
+        if (clientDetails) {
 
-
-        }
-        else {
-
-            window.open("https://www.connect2mydoctor.com/", "_self")
+            history.push("/signin")
+            window.open(clientDetails.homeurl, "_blank")
 
         }
+
     }
 
 
     let uploadReportsHandler = (e) => {
 
-       
+
 
         let formData = new FormData();
         formData.append("appintmentId", consultationToday?.appointmentId)
@@ -305,9 +261,34 @@ function MobileDashboard() {
     }
 
     let openPrescription = () => {
+
         window.open(consultationToday.prescription, "_blank")
     }
 
+
+
+
+
+    // ***V2 Consultation flow..........................................................................................
+
+    //201 result is stored here
+    let [activeConsultation, setActiveConsultation] = useState(null)
+
+    //65 result is stored here
+    let [activeConsultationDetails, setActiveConsultationDetails] = useState(null)
+
+    useEffect(() => {
+
+
+        call201().then((res) => {
+
+            setActiveConsultation(res.data)
+
+        })
+
+        hit201()
+
+    }, [])
 
     let call201 = async () => {
 
@@ -316,8 +297,8 @@ function MobileDashboard() {
             "requestType": "201",
             "token": "C2MDVerificationToken",
             "data": {
-                "userId": userData?.userId, 
-                "userType": userData?.userType, 
+                "userId": userData?.userId,
+                "userType": userData?.userType,
                 "browserTimeZone": "GMT+05:30",
                 "Ipaddress": "192.168.1.34",
                 "useragent": "RMX1992",
@@ -331,37 +312,90 @@ function MobileDashboard() {
 
     }
 
+    let hit201 = () => {
+
+        setInterval(function () {
+
+
+            call201().then((res) => {
+
+                setActiveConsultation(res.data)
+
+            })
+
+
+
+        }, 15000);
+
+    }
+
     let call65 = async () => {
 
-        let today= moment(new Date()).format("DD-MMM-YYYY")
+        let today = moment(new Date()).format("DD-MMM-YYYY")
 
         let paramAppoint =
         {
-          "requestType": "65",
-          "token": "C2MDVerificationToken",
-          "data":
-          {
-            "patientId": userData?.userId,
-            "patientEmail": userData?.userName,
-            "patientMobile": userData?.mobileNumber,
-            "browserTimeZone": "GMT%2B05:30",
-            "dayOfAppointment": today,
-            "appointmentNavigation": "start",
-            "currency": "INR",
-            "accessCountry": "IN",
-            "todayRate": "74.45000",
-            "Ipaddress": {},
-            "useragent": "Mozilla/5.0 (Linux; Android 8.0.0; Nexus 6P Build/OPP3.170518.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.81 Mobile Safari/537.36", "Browser": "Chrome-95.0.4638.69", "Os": "Win32"
-          }
+            "requestType": "65",
+            "token": "C2MDVerificationToken",
+            "data":
+            {
+                "patientId": userData?.userId,
+                "patientEmail": userData?.userName,
+                "patientMobile": userData?.mobileNumber,
+                "browserTimeZone": "GMT%2B05:30",
+                "dayOfAppointment": today,
+                "appointmentNavigation": "start",
+                "currency": "INR",
+                "accessCountry": "IN",
+                "todayRate": "74.45000",
+                "Ipaddress": {},
+                "useragent": "Mozilla/5.0 (Linux; Android 8.0.0; Nexus 6P Build/OPP3.170518.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.81 Mobile Safari/537.36", "Browser": "Chrome-95.0.4638.69", "Os": "Win32"
+            }
         }
-      
-        const response = await loginedApi.post("appointments", today);
+
+        const response = await loginedApi.post("appointments", paramAppoint);
 
         return response.data
 
     }
 
+    useEffect(() => {
 
+
+        if (activeConsultation?.appointmentId) {
+            call65().then((respo) => {
+
+                console.log("65 responce--->", respo.data);
+
+                if (respo.data) {
+                    setActiveConsultationDetails(respo.data)
+
+                }
+                else {
+                    console.log("***There is no consultation available in 65***");
+                }
+            })
+
+        }
+        else {
+            console.log("***There is no consultation available in 201***");
+        }
+
+
+    }, [activeConsultation?.appointmentId])
+
+
+    let filterUpcomingAppointments = (appointmentsArray) => {
+
+
+
+        if (appointmentsArray?.appointmentDetail.length > 0) {
+            let tempArray = appointmentsArray?.appointmentDetail.filter(element => element.status == "Upcoming")
+
+            return tempArray
+        }
+
+    }
 
 
     return (
@@ -488,150 +522,164 @@ function MobileDashboard() {
 
                                                 <div className="dash-card-body">
 
-
                                                     {
-                                                        consultationToday ?
+                                                        filterUpcomingAppointments(activeConsultationDetails) ?
 
 
-                                                            <>
+                                                            filterUpcomingAppointments(activeConsultationDetails).map((element) => {
+
+                                                                return (
+                                                                    <div className="today_consultation_card">
+
+                                                                        <div className="body">
+
+                                                                            <img src={element.doctorImage ? element.doctorImage : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0kigo369AKCLUVSYPBs4K54t0WQbsfL9Lmw&usqp=CAU"} alt="" className="dr_image" />
+
+                                                                            <div className="dr_details">
+
+                                                                                <span className="dr_name">{element.doctorName}</span>
+                                                                                <span className="dr-caption">Appointment Time : {element.appointmentTimes}</span>
+                                                                                <span className="dr-caption">Appointment Reason : {element.reasonForVisit}</span>
+                                                                                {/* <span className="dr-caption">Appointment Status : {consultationToday.status}</span> */}
+
+                                                                                <div class="dr-line">&nbsp;</div>
 
 
-                                                                {playAudio()}
+
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                        <div className="footer">
+
+                                                                            <div className="dr-caption">
+
+                                                                                <div style={{
+                                                                                    width: "100%", textAlign: "start", marginTop: "10px", fontSize: 13, fontWeight: 500,
+                                                                                    display: "flex",
+                                                                                    flexDirection: "row",
+                                                                                    justifyContent: "space-between",
+                                                                                    alignItems: "center"
+
+                                                                                }}>
+
+                                                                                    <span>Reports :</span>
+                                                                                    {localReports.length > 0 ? <button onClick={uploadReportsHandler} className="report_upload_button">Upload</button> : null}
+
+
+                                                                                </div>
+
+                                                                                <div className="reports-container">
+
+                                                                                    {
+                                                                                        reports.length > 0 ?
+
+                                                                                            reports.map((each_report, key) => {
+
+                                                                                                return (
+                                                                                                    <div onClick={() => { downloadFile(reports[key].filecontent) }} className="report-name">{each_report.filename}</div>
+                                                                                                )
+
+                                                                                            })
+
+
+                                                                                            : <div className="no-reports-text">( No reports uploaded. click the + button to add report )</div>
+                                                                                    }
 
 
 
 
-                                                                <div className="today_consultation_card">
 
-                                                                    <div className="body">
+                                                                                    <Tooltip placement="topLeft" title="Add new report">
+                                                                                        <div className="report-name-transparent">
+                                                                                            <label style={{ cursor: "pointer" }} htmlFor="contained-button-file">
+                                                                                                <AddFileIcon />
+                                                                                            </label>
 
-                                                                        <img src={consultationToday.doctorImage ? consultationToday.doctorImage : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0kigo369AKCLUVSYPBs4K54t0WQbsfL9Lmw&usqp=CAU"} alt="" className="dr_image" />
+                                                                                            <input
+                                                                                                type="file"
+                                                                                                multiple
+                                                                                                onChange={fileChangeHandler}
+                                                                                                style={{ display: 'none' }}
+                                                                                                id="contained-button-file"
+                                                                                            />
 
-                                                                        <div className="dr_details">
-
-                                                                            <span className="dr_name">{consultationToday.doctorName}</span>
-                                                                            <span className="dr-caption">Appointment Time : {consultationToday.appointmentTimes}</span>
-                                                                            <span className="dr-caption">Appointment Reason : {consultationToday.reasonForVisit}</span>
-                                                                            <span className="dr-caption">Appointment Status : {consultationToday.status}</span>
-
-                                                                            <div class="dr-line">&nbsp;</div>
+                                                                                        </div>
+                                                                                    </Tooltip>
 
 
+                                                                                </div>
+                                                                            </div>
 
                                                                         </div>
 
                                                                     </div>
 
-                                                                    <div className="footer">
+                                                                )
 
-                                                                        <div className="dr-caption">
-
-                                                                            <div style={{
-                                                                                width: "100%", textAlign: "start", marginTop: "10px", fontSize: 13, fontWeight: 500,
-                                                                                display: "flex",
-                                                                                flexDirection: "row",
-                                                                                justifyContent: "space-between",
-                                                                                alignItems: "center"
-
-                                                                            }}>
-
-                                                                                <span>Reports :</span>
-                                                                                {localReports.length > 0 ? <button onClick={uploadReportsHandler} className="report_upload_button">Upload</button> : null}
-
-
-                                                                            </div>
-
-                                                                            <div className="reports-container">
-
-                                                                                {
-                                                                                    reports.length > 0 ?
-
-                                                                                        reports.map((each_report, key) => {
-
-                                                                                            return (
-                                                                                                <div onClick={() => { downloadFile(reports[key].filecontent) }} className="report-name">{each_report.filename}</div>
-                                                                                            )
-
-                                                                                        })
-
-
-                                                                                        : <div className="no-reports-text">( No reports uploaded. click the + button to add report )</div>
-                                                                                }
+                                                            })
 
 
 
+                                                            :
 
+                                                            " THERE ARE NO CONSULTATIONS AVAILABLE FOR YOU NOW"
 
-                                                                                <Tooltip placement="topLeft" title="Add new report">
-                                                                                    <div className="report-name-transparent">
-                                                                                        <label style={{ cursor: "pointer" }} htmlFor="contained-button-file">
-                                                                                            <AddFileIcon />
-                                                                                        </label>
-
-                                                                                        <input
-                                                                                            type="file"
-                                                                                            multiple
-                                                                                            onChange={fileChangeHandler}
-                                                                                            style={{ display: 'none' }}
-                                                                                            id="contained-button-file"
-                                                                                        />
-
-                                                                                    </div>
-                                                                                </Tooltip>
-
-
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-
-                                                                </div>
-
-
-                                                            </>
-
-
-
-                                                            : " THERE ARE NO CONSULTATIONS AVAILABLE FOR YOU NOW"
                                                     }
+
+
                                                 </div>
 
 
                                                 <div className="dash-card-footer">
 
+
                                                     {
-                                                        consultationToday ?
+                                                        filterUpcomingAppointments(activeConsultationDetails)?.map((element, key) => {
 
-                                                            consultationToday.status === "Completed" ?
+                                                            return (
 
+                                                                element.status === "Completed" ?
 
-                                                                <div className="row p-0 m-0 w-100">
+                                                                    <div className="row p-0 m-0 w-100">
 
-                                                                    <div className="col-md-12 col-sm-12 col-12 p-0 m-0 text-center">
-                                                                        {
-                                                                            consultationToday.prescription ?
-                                                                                <DashButton action={consultationToday.prescription} onClick={openPrescription} text="Download Prescription" active />
-                                                                                : <DashButton text="Download Prescription " inactive />
-                                                                        }
+                                                                        <div className="col-md-12 col-sm-12 col-12 p-0 m-0 text-center">
+                                                                            {
+                                                                                consultationToday.prescription ?
+                                                                                    <DashButton action={consultationToday.prescription} onClick={openPrescription} text="Download Prescription" active />
+                                                                                    :
+                                                                                    <DashButton text="Download Prescription" inactive />
+                                                                            }
+
+                                                                        </div>
 
                                                                     </div>
 
-                                                                </div>
-                                                                :
 
+                                                                    :
+                                                                    <div className="row p-0 m-0 w-100">
 
-                                                                <div className="row p-0 m-0 w-100">
-
-                                                                    <div className="col-md-6 col-sm-12 col-12 p-0 m-0 text-center">
+                                                                        {/* <div className="col-md-6 col-sm-12 col-12 p-0 m-0 text-center">
                                                                         <DashButton text="Mute" inactive />
+                                                                    </div> */}
+
+                                                                        <div className="col-md-12 col-sm-12 col-12 p-0 m-0 text-center" onClick={() => { isWithinMinutes(element.appointmentDate, element.appointmentTimes) ? handlePageChange("/meet_pt") : console.log(""); }}>
+                                                                            <DashButton text="Join Now" active={isWithinMinutes(element.appointmentDate, element.appointmentTimes)} />
+                                                                        </div>
+
                                                                     </div>
 
-                                                                    <div className="col-md-6 col-sm-12 col-12 p-0 m-0 text-center" onClick={() => { isWithinMinutes(consultationDetails.appointmentDate, consultationToday.appointmentTimes) ? handlePageChange("/meet_dr") : console.log(""); }}>
-                                                                        <DashButton text="Join Now" active={isWithinMinutes(consultationDetails.appointmentDate, consultationToday.appointmentTimes)} />
-                                                                    </div>
+                                                            )
 
-                                                                </div> : null
+
+
+
+
+                                                        })
+
                                                     }
+
+
 
 
                                                 </div>
@@ -658,7 +706,7 @@ function MobileDashboard() {
                                                 <div className="dash-card-footer">
                                                     <div className="row p-0 m-0 w-100">
                                                         <div className="col-md-12 col-sm-12 col-12 p-0 m-0 text-center">
-                                                            <DashButton onClick={handlePageChange} action='./speciality' text="BOOK NOW" active />
+                                                            <DashButton onClick={()=>{handlePageChange(`./${clientDetails?clientDetails.clinicurl:"speciality"}`)}} action='./speciality' text="BOOK NOW" active />
                                                         </div>
                                                     </div>
                                                 </div>

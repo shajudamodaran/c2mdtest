@@ -172,7 +172,7 @@ if(localStorage.getItem("RequestId")!=undefined)
           onClick={() => {
             dispatch(GotoDashboard_action());
             history.push({
-              pathname: "/mobiledashboard",
+              pathname: "/dashboard",
             });
           }}
         >

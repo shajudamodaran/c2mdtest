@@ -57,7 +57,7 @@ export const loginAction =
         } else if (history?.location?.state?.redirection) {
           history.push(history?.location?.state?.redirection);
         } else {
-          history.push("/mobiledashboard");
+          history.push("/dashboard");
         }
       } else {
         // history.push("/mobiledashboard");
@@ -85,6 +85,7 @@ export const logoutAction = () => async (dispatch) => {
   dispatch({ type: LOG_OUT_ACTION });
   localStorage.removeItem("userData");
 };
+
 export const loginwithotp =
   ({ loginType, userName, accessCountry, history, appoinment_form }) =>
   async (dispatch) => {
