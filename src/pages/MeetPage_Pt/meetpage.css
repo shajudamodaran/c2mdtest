@@ -122,4 +122,70 @@
 }
 
 
+.invite-container{
+
+    padding:1rem;
+
+}
+
+.invite-container .title{
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.invite-container .body{
+
+    margin-top: 1rem;
+
+}
+
+.invite-container input{
+
+    margin-top: .6rem;
+
+}
+.invite-container .medicines-list-add-btn {
+
+    width: 100%;
+    margin-top:1.5rem;
+}
+
+.appointment-details-reports-list{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.appointment-details-reports-list .report-card{
+
+    width: 100%;
+    padding: .5rem;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.appointment-details-reports-list .report-card .report-header{
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+}
+
+.appointment-details-reports-list .report-card .report-header .name{
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
 

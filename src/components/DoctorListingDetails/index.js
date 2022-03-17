@@ -172,6 +172,9 @@ function DoctorListingDetails({ Details }) {
                   className={Style.doctor_listing_timer_icon}
                 ></img>
                 <span className={Style.doctor_listing_timer_text}>
+                  {
+                    console.log(Details.fees)
+                  }
                   {Details.fees}
                 </span>
               </div>

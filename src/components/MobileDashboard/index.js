@@ -122,26 +122,7 @@ function MobileDashboard() {
 
     let consultationDetails = reduxData.consultationDetails
 
-    useEffect(() => {
-
-        if (consultationToday) {
-            if (consultationToday.reports) {
-                if (consultationToday) {
-                    consultationToday.reports.length > 0 ?
-
-                        setReports([...consultationToday.reports]) : console.log("No reports")
-
-                }
-
-            }
-
-
-        }
-
-
-
-
-    }, [consultationToday])
+   
 
 
     let sideNavList = [
@@ -289,6 +270,28 @@ function MobileDashboard() {
         hit201()
 
     }, [])
+
+
+    useEffect(() => {
+
+        if (activeConsultation) {
+            if (activeConsultation.reports) {
+                if (activeConsultation) {
+                    activeConsultation.reports.length > 0 ?
+
+                        setReports([...activeConsultationDetails.reports]) : console.log("No reports")
+
+                }
+
+            }
+
+
+        }
+
+
+
+
+    }, [activeConsultation])
 
     let call201 = async () => {
 
@@ -526,8 +529,10 @@ function MobileDashboard() {
                                                         filterUpcomingAppointments(activeConsultationDetails) ?
 
 
-                                                            filterUpcomingAppointments(activeConsultationDetails).map((element) => {
+                                                            filterUpcomingAppointments(activeConsultationDetails).map((element,key) => {
 
+                                                              if(key==0)
+                                                              {
                                                                 return (
                                                                     <div className="today_consultation_card">
 
@@ -564,7 +569,7 @@ function MobileDashboard() {
                                                                                 }}>
 
                                                                                     <span>Reports :</span>
-                                                                                    {localReports.length > 0 ? <button onClick={uploadReportsHandler} className="report_upload_button">Upload</button> : null}
+                                                                                    {/* {localReports.length > 0 ? <button onClick={uploadReportsHandler} className="report_upload_button">Upload</button> : null} */}
 
 
                                                                                 </div>
@@ -616,6 +621,7 @@ function MobileDashboard() {
                                                                     </div>
 
                                                                 )
+                                                              }
 
                                                             })
 

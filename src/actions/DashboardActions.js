@@ -1,7 +1,7 @@
 import moment from "moment";
 import loginedApi from "../apis";
 import { check_consultation } from "./MicrositeAction";
-import { DASHBOARD_DATA_PATIENT } from "./type";
+import { DASHBOARD_DATA_PATIENT, FETCH_COUNTRYDATA } from "./type";
 
 const publicIp = require("public-ip");
 let IP = publicIp.v4();
@@ -81,4 +81,27 @@ export const uploadReports = ({ formData, userData, dashboardData }) => async (d
 
 
 }
+
+export const getCountryData = () => async (dispatch) => {
+ 
+ 
+
+  const res = await loginedApi.post("getcountrycode", 
+  {
+    "token": "token",
+    "version":"2.0",
+    "data": {"browserTimeZone":"GMT%2B05:30"},
+    "requestType": 1058
+});
+
+
+  if (res.status === 200) {
+
+
+    dispatch({ type: FETCH_COUNTRYDATA, payload: res.data.data });
+  }
+
+
+};
+
 

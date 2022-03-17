@@ -21,7 +21,7 @@
     height: 100%;
     position: fixed;
    background-color: #1018233d;
-    z-index: 9999;
+    z-index: 10002;
     left: 0;
     top: 0;
     display: flex;
@@ -37,9 +37,10 @@
     background-color: white;
     max-width: 70%;
     border-radius: 5px;
-    padding: .8rem;
+    /* padding: 3rem 9.5rem; */
     color: black;
     z-index: 9999;
+
 
     animation: zoomin .2s ease-in;
 
@@ -49,6 +50,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    width: 480px;
+    height: 220px;
 
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;

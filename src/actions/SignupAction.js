@@ -6,11 +6,33 @@ const publicIp = require("public-ip");
 let IP = publicIp.v4();
 let platform = window.navigator.platform;
 let userAgent = window.navigator.userAgent;
+let off = new Date().toString().replace(/GMT\+(\d\d)(\d\d)/, "GMT+$1$2");
+let formatTime = off?.split("GMT")[1].split(" (")[0];
+let result = formatTime?.slice(1);
+if(formatTime.search(/\+/g)!=null)
+  {
+    formatTime=formatTime.replace(/\+/g,"%2B")
+  }else if(formatTime.search(/\-/g)!=null)
+  {
+    formatTime=formatTime.replace(/\-/g,"%2D")
+  }//replace(/\+/g,' ') browserTimeZone: `GMT${formatTime}`
 
+  let countrycoderes;
+  let doctorscountrycode;
 export const signup_action =
   ({ values, userType, OTP, history }) =>
   async (dispatch) => {
     // var hash = CryptoJS.SHA512(values.password);
+
+    countrycoderes = await loginedApi.post("getcountrycode", 
+    {
+      "token": "token",
+      "version":"2.0",
+      "data": { browserTimeZone: `GMT${formatTime}`,},
+      "requestType": 1058
+  });
+  
+   doctorscountrycode = countrycoderes.data.data;
     var hash = CryptoJS.SHA512("C2MD|" + values.password);
 
     let password = hash.toString();
@@ -20,13 +42,16 @@ export const signup_action =
     let limit = values.dial_code?.length;
     let mobNo = values.mobileNumber?.slice(limit);
     let mobileNo = `%2B${values.dial_code}${" "}${mobNo}`;
+    
+    console.log(values);
 
     const res = await loginedApi.post("signup", {
       requestType: 2,
       data: {
-        lastName: values.fullName,
-        accessCountry: values?.countryCode,
-        source: "iOSApp",
+        
+        lastName: "",
+        accessCountry: doctorscountrycode.Country,
+        source: "Web APP",
         useragent: userAgent,
         department: "",
         password: password,
@@ -42,7 +67,7 @@ export const signup_action =
         clinicId: "20",
         Ipaddress: IP,
         type: "",
-        browserTimeZone: "GMT%2B0530",
+        browserTimeZone: `GMT${formatTime}`,
         speciality: "",
         appname: "C2MD Patient",
       },
@@ -57,10 +82,10 @@ export const signup_action =
       } else {
         dispatch({
           type: SIGNUP_SUCCESS_ACTION,
-          payload: JSON.stringify(res.data.data),
+          payload: res.data.data,
         });
         localStorage.setItem("userData", response);
-        history.push("/DoctorListing");
+        history.push("/mobiledashboard");
       }
       return response;
     }
@@ -108,7 +133,7 @@ export const signup_with_Google =
         clinicId: "20",
         Ipaddress: IP,
         type: "",
-        browserTimeZone: "GMT%2B0530",
+        browserTimeZone: `GMT${formatTime}`,
         speciality: "",
         appname: "C2MD Patient",
       },

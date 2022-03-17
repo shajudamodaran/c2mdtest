@@ -5,10 +5,15 @@ import './meetpage.css'
 import Draggable from 'react-draggable'; // The default
 import { Select, Tooltip } from 'antd';
 import { Popover, Button, Upload } from 'antd';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PrescribeMedicine from '../../components/PrescribeMedicine/PrescribeMedicine';
 import ConsultationModal from '../../components/Modals/ConsultationModal';
 import loginedApi from '../../apis';
+import { fetch_clientDetails } from '../../actions/ConsultationAction';
+import { ClipLoader, PuffLoader } from 'react-spinners';
+import { Radio, Input } from 'antd';
+import { getFileTypeFromFileName } from '../../Helpers/FileHelper';
+
 const { OTSession, OTPublisher, OTStreams, OTSubscriber, createSession } = require('opentok-react');
 
 
@@ -21,7 +26,25 @@ var token_dummy = 'T1==cGFydG5lcl9pZD00NzM3Mjg5MSZzaWc9ODk2YzlmN2YyMDU4NGMxN2MzN
 
 
 
-let AppintmentDetails = ({ setSuperSubMenu }) => {
+let AppintmentDetails = ({ setSuperSubMenu, reports, setReports }) => {
+
+    let [localFiles, setLocalFiles] = useState([])
+    let hiddenFileInput=useRef()
+
+    let hanleFileChange = (e) => {
+
+
+        console.log("setting file == >", e.target.files['0']);
+         setLocalFiles([...localFiles, e.target.files['0']])
+    }
+
+
+
+console.log(localFiles);
+
+
+
+
 
     return (
         <div className="super-sub-menu-container">
@@ -30,7 +53,7 @@ let AppintmentDetails = ({ setSuperSubMenu }) => {
                 <div style={{ cursor: "pointer" }} onClick={() => { setSuperSubMenu(null) }}>
                     <ArrowLeft /> Appoinment Details
                 </div>
-
+           
             </div>
 
             <div className="white-container mt-3">
@@ -46,28 +69,58 @@ let AppintmentDetails = ({ setSuperSubMenu }) => {
                 <div className="d-flex flex-row align-items-center mt-1">
                     <span style={{
                         fontWeight: 500
-                    }}>Type of consultation - </span>
+                    }}>Type of consultation -&nbsp;</span>
                     <span> First time consultation</span>
 
                 </div>
 
             </div>
 
-            <div className="white-container">
+            {/* <div className="white-container">
                 <div className="white-container-heading">
                     Notes to Doctor
                 </div>
-            </div>
+            </div> */}
 
 
-            <div className="white-container">
+            <div className="white-container appointment-details-reports-list">
                 <div className="white-container-heading">
                     Reports Uploaded
                 </div>
 
-                <Upload {...props} className="white-container-button p-0" showUploadList={false}>
-                    <button className="white-container-button"> <UploadIcon /> Upload a new file</button>
-                </Upload>
+                <div className="appointment-details-reports-list">
+
+                    {
+                        localFiles.length > 0 ?
+
+                            localFiles.map((each_file) => {
+                                return (
+                                    <div className="report-card">
+
+                                        <div className="report-header d-flex flex-row align-items-center justify-content-start">
+
+                                       
+                                            <img className="icon me-2" src={getFileTypeFromFileName(each_file.name)} />
+                                            <div className="name" >{each_file.name}</div>
+                                        </div>
+
+                                        <div className="report-body d-flex flex-row align-items-center justify-content-start">
+                                            &nbsp;
+                                        </div>
+                                    </div>
+                                )
+                            })
+
+                            : "No reports"
+                    }
+
+
+
+                </div>
+
+                <input ref={hiddenFileInput} style={{ display: "none" }} type='file' onChange={hanleFileChange} className="white-container-button p-0" />
+                <button for="file-upload" className="white-container-button" onClick={()=>{hiddenFileInput.current.click()}}> <UploadIcon /> Upload a new file</button>
+
             </div>
         </div>
     )
@@ -91,7 +144,7 @@ let ViewNotes = ({ setSuperSubMenu, context }) => {
 
 
 
-                <textarea className="test-textare-input" placeholder='Notes' rows={5} />
+                <textarea readOnly className="test-textare-input" placeholder={context} rows={5} />
 
 
             </div>
@@ -161,10 +214,9 @@ let AddInvestigation = ({ setSuperSubMenu, setActiveLeft }) => {
 
 //popover content
 const content = (
-    <div>
-        <p>Screen Share</p>
-        <p>Record Video</p>
-        <p>Invite</p>
+    <div style={{ maxWidth: "500px" }}>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius perferendis doloribus quibusdam temporibus. Veritatis qui dolores incidunt dignissimos. Velit, laudantium eveniet. Ipsum sint pariatur voluptatibus!</p>
+
     </div>
 );
 
@@ -200,11 +252,20 @@ export const MeetPage_Pt = () => {
 
 
     let history = useHistory()
+    let dispatch = useDispatch()
+
+
     let [activeLeft, setActiveLeft] = useState({ status: false, page: null })
     let [superSubMenu, setSuperSubMenu] = useState(null)
     let [activeButton, setActiveButton] = useState(0)
     let [sessionHelper, setSessionHelper] = useState(null)
     let [isIframe, setIframe] = useState(false)
+
+    let [reportFiles, setReports] = useState([])
+
+
+
+
 
     let [publisherProperties, setpublisherProperties] = useState({
         error: null,
@@ -230,6 +291,19 @@ export const MeetPage_Pt = () => {
         token: token_dummy
     })
 
+    var apiKey = '';
+    var sessionId = '';
+    var token = ''
+    let [connectionDetails, setConnectionDetails] = useState({
+        apiKey: apiKey,
+        sessionId: sessionId,
+        token: token,
+        doctorName: "",
+        doctorimg: ""
+
+    })
+
+
     let [doctor, setDoctor] = useState(null)
     let [patient, setPatient] = useState(null)
     let [message, setMessage] = useState(false)
@@ -250,7 +324,8 @@ export const MeetPage_Pt = () => {
 
     useEffect(() => {
 
-        getConsultationDetails()
+        // getConsultationDetails()
+        fetch_consultation()
 
     }, [])
 
@@ -266,6 +341,36 @@ export const MeetPage_Pt = () => {
         }
 
     }, [consultation])
+
+
+    let setAudio = (audio) => {
+        setpublisherProperties({ ...publisherProperties, audio: !publisherProperties.audio });
+        if (publisherProperties.audio) {
+
+            setMessage("Audio has been disabled.\nClick again to enable.")
+        }
+        else {
+            setMessage("Audio has been enabled.\nClick again to disable.")
+        }
+    }
+
+    let setVideo = (video) => {
+
+        console.log("$$$$$$$$$$")
+        console.log(publisherProperties.video)
+        setpublisherProperties({ ...publisherProperties, video: !publisherProperties.video });
+        console.log(publisherProperties.video)
+        console.log(publisherProperties)
+        if (publisherProperties.video) {
+            setMessage("Video has been disabled.\nClick again to enable.")
+        }
+        else {
+            setMessage("Video has been enabled.\nClick again to disable.")
+        }
+
+
+    }
+
 
 
     const subscriberEventHandlers = {
@@ -399,14 +504,11 @@ export const MeetPage_Pt = () => {
     let [isTopMenu, setTopMenu] = useState(true)
 
 
-    console.log(activeLeft);
-
-
     let leftOptions = {
         patientInfo: [
             {
                 name: "Appointment Details",
-                page: <AppintmentDetails setSuperSubMenu={setSuperSubMenu} />
+                page: <AppintmentDetails setSuperSubMenu={setSuperSubMenu} reports={reportFiles} setReports={setReports} />
             },
 
 
@@ -442,42 +544,43 @@ export const MeetPage_Pt = () => {
 
 
 
-    let setAudio = (audio) => {
-        setpublisherProperties({ ...publisherProperties, audio: !publisherProperties.audio });
-    }
 
-    let setVideo = (video) => {
-        setpublisherProperties({ ...publisherProperties, video: !publisherProperties.video });
-    }
+    const fetch_consultation = () => {
+        var consultationID = localStorage.getItem("consultationId");
 
 
-    let setVideoSource = (videoSource) => {
-        setpublisherProperties({ ...publisherProperties, vedio: !publisherProperties ? null : "camera" });
-    }
+        dispatch(fetch_clientDetails(consultationID, userdata.userType)).then((res) => {
 
-    let handlePageChange = (page) => {
+            console.log("apiCalled", res);
 
-        history.push({
-            pathname: `${page}`,
+            apiKey = res?.apiKey
+            sessionId = res?.sessionId
+            token = res?.tokenId
+
+            setConnectionDetails({
+                apiKey: apiKey?.toString(),
+                sessionId: sessionId,
+                token: token,
+                doctorName: res?.doctorDetails.doctorName,
+                doctorimg: res?.doctorDetails.doctorImage,
+            })
         });
+    };
+
+
+    let handleInviteOnClick = async () => {
+
+        let countrycoderes = await loginedApi.post("getcountrycode",
+            {
+                "token": "token",
+                "version": "2.0",
+                "data": {},
+                "requestType": 1058
+            });
+
+
     }
 
-
-    let handleIframeButtonClick = ({ para_id }) => {
-
-
-        setSuperSubMenu(null)
-
-        setActiveLeft({
-            status: false,
-            page: null
-        })
-
-        setTopMenu(false)
-
-        setIframe(!isIframe)
-
-    }
 
 
 
@@ -507,15 +610,15 @@ export const MeetPage_Pt = () => {
                                         <li>
                                             <div className="d-flex flex-column align-items-start">
                                                 <span className="top-menu-headding">Doctor</span>
-                                                <span className="top-menu-caption">{consultation?.doctorDetails.doctorName}</span>
+                                                <span className="top-menu-caption">{consultation ? consultation.doctorDetails.doctorName : ""}</span>
                                             </div>
 
                                         </li>
                                         <li>
 
                                             <div className="d-flex flex-column align-items-start">
-                                                <span className="top-menu-headding">{consultation?.reasonforvisit}</span>
-                                                <span className="top-menu-caption">General Consultation</span>
+                                                <span className="top-menu-headding">General Consultation</span>
+                                                <span className="top-menu-caption">{consultation ? consultation.reasonforvisit : ""}</span>
 
                                             </div>
                                         </li>
@@ -524,7 +627,7 @@ export const MeetPage_Pt = () => {
 
                                             <div className="d-flex flex-column align-items-start">
                                                 <span className="top-menu-headding">Phone: </span>
-                                                <span className="top-menu-caption">+91 9876543210</span>
+                                                <span className="top-menu-caption">{consultation ? consultation.mobileNumber : ""}</span>
                                             </div>
 
                                         </li>
@@ -567,9 +670,9 @@ export const MeetPage_Pt = () => {
 
 
                                 {
-                                    meetCred.apiKey ?
+                                    connectionDetails.apiKey ?
 
-                                        <OTSession ref={subsessionRef} apiKey={meetCred.apiKey} sessionId={meetCred.sessionId} token={meetCred.token} eventHandlers={sessionEventssubscriber}>
+                                        <OTSession ref={subsessionRef} apiKey={connectionDetails.apiKey} sessionId={connectionDetails.sessionId} token={connectionDetails.token} eventHandlers={sessionEventssubscriber}>
 
 
                                             <OTStreams>
@@ -617,7 +720,7 @@ export const MeetPage_Pt = () => {
                                         <div className="user-profile">
                                             <div className="user-profile-container">
                                                 {
-                                                    userdata.profileImage != null ? <img alt="img" src={userdata.profileImage} className="user-avatar" /> : ""
+                                                    userdata.profileImage != null ? <img alt="img" src={userdata.profileImage ? userdata.profileImage : "https://cdn.pixabay.com/photo/2015/03/04/22/35/head-659652_960_720.png"} className="user-avatar" /> : ""
                                                 }
 
 
@@ -629,23 +732,36 @@ export const MeetPage_Pt = () => {
                                             </div>
                                         </div>
 
-                                        : null
-                                }
-                                {
-                                    meetCred.apiKey ?
+                                        :
 
-                                        <OTSession ref={sessionRef} apiKey={meetCred.apiKey} sessionId={meetCred.sessionId} token={meetCred.token} eventHandlers={sessionEventspublisher}>
+                                        connectionDetails.apiKey ?
 
-                                            <OTPublisher properties={{
-                                                publishAudio: publisherProperties.audio,
-                                                publishVideo: publisherProperties.vedio,
-                                                // videoSource: true ? 'screen' : undefined
-                                            }}
-                                                eventHandlers={publisherEventHandlers}
-                                            />
+                                            <OTSession ref={sessionRef} apiKey={connectionDetails.apiKey} sessionId={connectionDetails.sessionId} token={connectionDetails.token} eventHandlers={sessionEventspublisher}>
 
-                                        </OTSession>
-                                        : null
+                                                <OTPublisher properties={{
+                                                    publishAudio: publisherProperties.audio,
+                                                    publishVideo: publisherProperties.vedio,
+                                                    // videoSource: true ? 'screen' : undefined
+                                                }}
+                                                    eventHandlers={publisherEventHandlers}
+                                                />
+
+                                            </OTSession>
+                                            :
+                                            <div className="user-profile">
+                                                <div className="user-profile-container">
+                                                    {
+                                                        userdata.profileImage != null ? <img alt="img" src={userdata.profileImage ? userdata.profileImage : "https://cdn.pixabay.com/photo/2015/03/04/22/35/head-659652_960_720.png"} className="user-avatar" /> : ""
+                                                    }
+
+
+                                                    <div className="user-profile-footer">
+                                                        {userdata.profileName}
+                                                        {/* <ThreeDotVerticalWhiteIcon /> */}
+                                                    </div>
+
+                                                </div>
+                                            </div>
 
                                 }
 
@@ -733,7 +849,7 @@ export const MeetPage_Pt = () => {
                                         <div className="user-profile-small">
                                             <div className="user-profile-container-small">
                                                 {
-                                                    userdata.profileImage != null ? <img alt="img" src={userdata.profileImage?userdata.profileImage:"https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg"} className="user-avatar" /> : ""
+                                                    userdata.profileImage != null ? <img alt="img" src={userdata.profileImage ? userdata.profileImage : "https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg"} className="user-avatar" /> : ""
                                                 }
 
 
@@ -752,7 +868,7 @@ export const MeetPage_Pt = () => {
 
                                                 <OTPublisher properties={{
                                                     publishAudio: publisherProperties.audio,
-                                                    publishVideo: publisherProperties.vedio,
+                                                    publishVideo: publisherProperties.video,
                                                     // videoSource: true ? 'screen' : undefined
                                                 }}
                                                     eventHandlers={publisherEventHandlers}
@@ -810,17 +926,17 @@ export const MeetPage_Pt = () => {
 
                                             <ul className='test-sub-menu'>
 
-                                                <li onClick={() => { setSuperSubMenu(<ViewNotes setSuperSubMenu={setSuperSubMenu} context="Notes for Patient" />) }}>
+                                                <li onClick={() => { setSuperSubMenu(<ViewNotes setSuperSubMenu={setSuperSubMenu} context="Chief Complaints" />) }}>
                                                     <div className='d-flex flex-column'>
-                                                        <span className='small-tittle'>Notes for Patient</span>
+                                                        <span className='small-tittle'>Chief Complaints</span>
                                                     </div>
                                                     <RightArrowIconOriginal />
                                                 </li>
 
 
-                                                <li onClick={() => { setSuperSubMenu(<ViewNotes setSuperSubMenu={setSuperSubMenu} context="Doctor's Private Note" />) }}>
+                                                <li onClick={() => { setSuperSubMenu(<ViewNotes setSuperSubMenu={setSuperSubMenu} context="Relevant Points From History" />) }}>
                                                     <div className='d-flex flex-column'>
-                                                        <span className='small-tittle'>Doctor's Private Note</span>
+                                                        <span className='small-tittle'>Relevant Points From History</span>
 
                                                     </div>
                                                     <RightArrowIconOriginal />
@@ -828,7 +944,7 @@ export const MeetPage_Pt = () => {
 
                                                 <li >
                                                     <div className='d-flex flex-column'>
-                                                        <span className='small-tittle'>Attachments</span>
+                                                        <span className='small-tittle'>Diagnosis or Provisional Diagnosic</span>
 
                                                     </div>
                                                     <RightArrowIconOriginal />
@@ -858,29 +974,28 @@ export const MeetPage_Pt = () => {
                                                 <ul className='test-sub-menu'>
 
 
-                                                    <li>
-                                                        <div className='d-flex flex-column'>
-                                                            <span className='small-tittle'>Hematology</span>
-                                                            <span className='small-caption'>TC</span>
+                                                    <div className="white-container mt-0 invite-container">
+                                                        <div className="title">Invite with :</div>
+
+                                                        <div className="body">
+                                                            <Radio.Group>
+                                                                <Radio value={1}>E-Mail ID</Radio>
+                                                                <Radio value={2}>Mobile Number</Radio>
+
+                                                            </Radio.Group>
+
+                                                            <Input placeholder="E-Mail ID" />
+
+                                                            <button className="medicines-list-add-btn" onClick={() => { handleInviteOnClick() }}>
+
+                                                                <div className="d-flex text-white flex-row align-items-center justify-content-center">
+                                                                    Invite
+                                                                </div>
+                                                            </button>
                                                         </div>
-                                                        <RightArrowIconOriginal />
-                                                    </li>
+                                                    </div>
 
 
-                                                    <li>
-                                                        <div className='d-flex flex-column'>
-                                                            <span className='small-tittle'>Urine</span>
-                                                            <span className='small-caption'>CBC</span>
-                                                        </div>
-                                                        <RightArrowIconOriginal />
-                                                    </li>
-
-                                                    <button className="medicines-list-add-btn" onClick={() => { setSuperSubMenu(<AddInvestigation setSuperSubMenu={setSuperSubMenu} setActiveLeft={handleSetLeft} />) }}>
-
-                                                        <div className="d-flex text-white flex-row align-items-center justify-content-center">
-                                                            <AddIcon /> Add investigation
-                                                        </div>
-                                                    </button>
 
 
                                                 </ul>
