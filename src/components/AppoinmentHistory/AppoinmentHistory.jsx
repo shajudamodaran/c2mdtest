@@ -101,7 +101,7 @@ function AppoinmentHistory() {
 
 
                           appointmentHistoryRedux.map((element, key) => {
-
+                            console.log(key)
                               return (
                                   <tr>
                                       <td >{element.appointmentId}</td>

@@ -51,7 +51,7 @@ function App() {
   return (
     <>
       {/* <Router basename={'/ROOT/'}> */}
-      <Router basename={"/"}>
+      <Router basename={"/demo/"}>
         <div>
           <Suspense fallback={<></>}>
             <ScrollToTop />
