@@ -25,14 +25,14 @@ function AppoinmentHistory() {
     console.log(selectedAppointmentHistoryRedux);
 
 
-    let handleTableClick = () => {
+    let handleTableClick = (appointmentId) => {
 
         // dispatch(setModalRedux({
         //     name: "ApointmentHistoryModal",
         //     value: true
         // }))
         dispatch(fetchSelectedAppointmentDetails({
-            appointmentId:selectedAppointmentHistoryRedux[0]?.appointmentId,
+            appointmentId:appointmentId?appointmentId:null,
             userData
 
         }));
@@ -101,7 +101,7 @@ function AppoinmentHistory() {
 
 
                           appointmentHistoryRedux.map((element, key) => {
-
+                          
                               return (
                                   <tr>
                                       <td >{element.appointmentId}</td>
@@ -112,7 +112,7 @@ function AppoinmentHistory() {
                                           Not Available
                                           {/* See again in In 5 weeks */}
                                       </td>
-                                      <td  ><button onClick={handleTableClick} className='more-btn' >More</button></td>
+                                      <td  ><button onClick={()=>{handleTableClick(element.appointmentId)}} className='more-btn' >More</button></td>
 
                                   </tr>
                               )

@@ -43,14 +43,17 @@ if(localStorage.getItem("RequestId")!=undefined)
 
   return (
     <>
+    
+    <input type={"text"} ref={successImageRef} style={{display:"none"}}></input>
       <img
         src={Assets.success_icon}
         className={Style.booking_confirmation_success_icon}
       ></img>
+      
       {AppoinmentId?.appoinmentType == "Book" ? (
-      <h3 tabindex="-1" ref={successImageRef} className={Style.booking_confirmation_main_heading}>Thank You</h3>
+      <h3 tabindex="-1"  className={Style.booking_confirmation_main_heading}>Thank You</h3>
       ):(
-        <h3 tabindex="-1" ref={successImageRef} className={Style.booking_confirmation_main_heading}>Thank You</h3>
+        <h3 tabindex="-1"  className={Style.booking_confirmation_main_heading}>Thank You</h3>
       )
     }
        {AppoinmentId?.appoinmentType == "Book" ? (

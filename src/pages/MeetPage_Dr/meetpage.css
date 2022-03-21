@@ -169,7 +169,7 @@
      border-bottom-right-radius: 8px;
      max-width: 100%;
      overflow: auto;
-     min-width: 60%;
+     min-width: 80%;
      transition-duration: .3s;
     
  }
@@ -212,6 +212,7 @@
 
     min-width: 25%;
     max-width: 25%;
+    height: 50px;
 
 
     

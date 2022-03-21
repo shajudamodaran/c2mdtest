@@ -1,16 +1,16 @@
 .doctor_listing_modal_align {
   max-width: 610px;
   width: 100%;
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  -webkit-box-shadow: -3px 3px 6px #0000001A;
-          box-shadow: -3px 3px 6px #0000001A;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  -webkit-box-shadow: -3px 3px 6px #0000001a;
+          box-shadow: -3px 3px 6px #0000001a;
   opacity: 1;
   border: none;
   left: inherit;
   right: -100%;
-  top: 100px;
-  -webkit-transition: all 0.9s;
-  transition: all 0.9s;
+  top: 80px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
   padding-left: 0 !important;
   padding-right: 0 !important;
 }

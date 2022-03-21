@@ -34,13 +34,19 @@ function AppointmentHistoryModalContent() {
 
                         <div className="c-row">Patient Name - <div className="date">{appointmentHistoryRedux?.[0].patientName}</div></div>
 
+                        <div className="c-row"> <i class='fas fa-phone-alt icon'></i> <div className="date">---</div></div>
+
+                        <div className="c-row"> <i class="fa fa-envelope icon"></i> <div className="date">---</div></div>
+
+
+                       
                         <div className="c-row">No further input from your provider</div>
 
                         <div className="step-end">&nbsp;</div>
 
                     </div>
                 </div>
-
+              
                 <div className="step">
                     <div className="step-graph">
 
@@ -63,11 +69,17 @@ function AppointmentHistoryModalContent() {
                             {
                                 appointmentHistoryRedux?.[0].reportDetails.length > 0 ?
 
-                                    appointmentHistoryRedux?.[0].reportDetails.map((element) => {
+                                    appointmentHistoryRedux?.[0].reportDetails.map((element,key) => {
 
 
                                         return (
-                                            <li onClick={() => { downloadFile(element.filecontent) }}>{element.filename}</li>
+                                            <li style={{
+                                               whiteSpace:"nowrap",
+                                               textOverflow:"ellipsis",
+                                               maxWidth:"100px"
+
+
+                                            }} onClick={() => { downloadFile(element.filecontent) }}>{`Report ${key+1}`}</li>
                                         )
 
                                     })

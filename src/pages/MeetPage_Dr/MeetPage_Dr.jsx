@@ -918,7 +918,7 @@ export const MeetPage_Dr = () => {
 
 
         setSuperSubMenu(null)
-
+        setIframe(false)
 
         setActiveLeft({
             status: activeLeft.page === para_id && activeLeft.status ? false : true,

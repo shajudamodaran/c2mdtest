@@ -51,7 +51,7 @@ function App() {
   return (
     <>
       {/* <Router basename={'/ROOT/'}> */}
-      <Router basename={"/"}>
+      <Router basename={"/demo/"}>
         <div>
           <Suspense fallback={<></>}>
             <ScrollToTop />
@@ -90,7 +90,7 @@ function App() {
 
               <Route path="/meet_dr" component={MeetPage_Dr} />
 
-              <Route path="/meet_pt" component={MeetPage_Pt} />
+              <Route path="/meet_pt/:appointmentId" component={MeetPage_Pt} />
               <Route
                 exact
                 path="/prescriptionpolicy"

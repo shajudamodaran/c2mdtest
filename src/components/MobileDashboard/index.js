@@ -95,7 +95,7 @@ function MobileDashboard() {
     useEffect(() => {
 
         if (activeLeft.menu === 0 && activeLeft.option === 0) {
-            history.push(`./${clientDetails?clientDetails.clinicurl:"speciality"}`)
+            history.push(`./${clientDetails ? clientDetails.clinicurl : "speciality"}`)
         }
 
     }, [activeLeft])
@@ -122,7 +122,7 @@ function MobileDashboard() {
 
     let consultationDetails = reduxData.consultationDetails
 
-   
+
 
 
     let sideNavList = [
@@ -309,7 +309,11 @@ function MobileDashboard() {
             }
         }
 
+        console.log("Calling................",paramAppoint);
+
         const response = await loginedApi.post("consultation", paramAppoint);
+
+        console.log("Res................",response);
 
         return response.data
 
@@ -529,99 +533,98 @@ function MobileDashboard() {
                                                         filterUpcomingAppointments(activeConsultationDetails) ?
 
 
-                                                            filterUpcomingAppointments(activeConsultationDetails).map((element,key) => {
+                                                            filterUpcomingAppointments(activeConsultationDetails).map((element, key) => {
 
-                                                              if(key==0)
-                                                              {
-                                                                return (
-                                                                    <div className="today_consultation_card">
+                                                                if (key == 0) {
+                                                                    return (
+                                                                        <div className="today_consultation_card">
 
-                                                                        <div className="body">
+                                                                            <div className="body">
 
-                                                                            <img src={element.doctorImage ? element.doctorImage : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0kigo369AKCLUVSYPBs4K54t0WQbsfL9Lmw&usqp=CAU"} alt="" className="dr_image" />
+                                                                                <img src={element.doctorImage ? element.doctorImage : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0kigo369AKCLUVSYPBs4K54t0WQbsfL9Lmw&usqp=CAU"} alt="" className="dr_image" />
 
-                                                                            <div className="dr_details">
+                                                                                <div className="dr_details">
 
-                                                                                <span className="dr_name">{element.doctorName}</span>
-                                                                                <span className="dr-caption">Appointment Time : {element.appointmentTimes}</span>
-                                                                                <span className="dr-caption">Appointment Reason : {element.reasonForVisit}</span>
-                                                                                {/* <span className="dr-caption">Appointment Status : {consultationToday.status}</span> */}
+                                                                                    <span className="dr_name">{element.doctorName}</span>
+                                                                                    <span className="dr-caption">Appointment Time : {element.appointmentTimes}</span>
+                                                                                    <span className="dr-caption">Appointment Reason : {element.reasonForVisit}</span>
+                                                                                    {/* <span className="dr-caption">Appointment Status : {consultationToday.status}</span> */}
 
-                                                                                <div class="dr-line">&nbsp;</div>
+                                                                                    <div class="dr-line">&nbsp;</div>
 
 
+
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                            <div className="footer">
+
+                                                                                <div className="dr-caption">
+
+                                                                                    <div style={{
+                                                                                        width: "100%", textAlign: "start", marginTop: "10px", fontSize: 13, fontWeight: 500,
+                                                                                        display: "flex",
+                                                                                        flexDirection: "row",
+                                                                                        justifyContent: "space-between",
+                                                                                        alignItems: "center"
+
+                                                                                    }}>
+
+                                                                                        <span>Reports :</span>
+                                                                                        {/* {localReports.length > 0 ? <button onClick={uploadReportsHandler} className="report_upload_button">Upload</button> : null} */}
+
+
+                                                                                    </div>
+
+                                                                                    <div className="reports-container">
+
+                                                                                        {
+                                                                                            reports.length > 0 ?
+
+                                                                                                reports.map((each_report, key) => {
+
+                                                                                                    return (
+                                                                                                        <div onClick={() => { downloadFile(reports[key].filecontent) }} className="report-name">{each_report.filename}</div>
+                                                                                                    )
+
+                                                                                                })
+
+
+                                                                                                : <div className="no-reports-text">( No reports uploaded. click the + button to add report )</div>
+                                                                                        }
+
+
+
+
+
+                                                                                        <Tooltip placement="topLeft" title="Add new report">
+                                                                                            <div className="report-name-transparent">
+                                                                                                <label style={{ cursor: "pointer" }} htmlFor="contained-button-file">
+                                                                                                    <AddFileIcon />
+                                                                                                </label>
+
+                                                                                                <input
+                                                                                                    type="file"
+                                                                                                    multiple
+                                                                                                    onChange={fileChangeHandler}
+                                                                                                    style={{ display: 'none' }}
+                                                                                                    id="contained-button-file"
+                                                                                                />
+
+                                                                                            </div>
+                                                                                        </Tooltip>
+
+
+                                                                                    </div>
+                                                                                </div>
 
                                                                             </div>
 
                                                                         </div>
 
-                                                                        <div className="footer">
-
-                                                                            <div className="dr-caption">
-
-                                                                                <div style={{
-                                                                                    width: "100%", textAlign: "start", marginTop: "10px", fontSize: 13, fontWeight: 500,
-                                                                                    display: "flex",
-                                                                                    flexDirection: "row",
-                                                                                    justifyContent: "space-between",
-                                                                                    alignItems: "center"
-
-                                                                                }}>
-
-                                                                                    <span>Reports :</span>
-                                                                                    {/* {localReports.length > 0 ? <button onClick={uploadReportsHandler} className="report_upload_button">Upload</button> : null} */}
-
-
-                                                                                </div>
-
-                                                                                <div className="reports-container">
-
-                                                                                    {
-                                                                                        reports.length > 0 ?
-
-                                                                                            reports.map((each_report, key) => {
-
-                                                                                                return (
-                                                                                                    <div onClick={() => { downloadFile(reports[key].filecontent) }} className="report-name">{each_report.filename}</div>
-                                                                                                )
-
-                                                                                            })
-
-
-                                                                                            : <div className="no-reports-text">( No reports uploaded. click the + button to add report )</div>
-                                                                                    }
-
-
-
-
-
-                                                                                    <Tooltip placement="topLeft" title="Add new report">
-                                                                                        <div className="report-name-transparent">
-                                                                                            <label style={{ cursor: "pointer" }} htmlFor="contained-button-file">
-                                                                                                <AddFileIcon />
-                                                                                            </label>
-
-                                                                                            <input
-                                                                                                type="file"
-                                                                                                multiple
-                                                                                                onChange={fileChangeHandler}
-                                                                                                style={{ display: 'none' }}
-                                                                                                id="contained-button-file"
-                                                                                            />
-
-                                                                                        </div>
-                                                                                    </Tooltip>
-
-
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-
-                                                                    </div>
-
-                                                                )
-                                                              }
+                                                                    )
+                                                                }
 
                                                             })
 
@@ -643,41 +646,46 @@ function MobileDashboard() {
                                                     {
                                                         filterUpcomingAppointments(activeConsultationDetails)?.map((element, key) => {
 
-                                                            return (
 
-                                                                element.status === "Completed" ?
+                                                            if (key == 0) {
 
-                                                                    <div className="row p-0 m-0 w-100">
+                                                                console.log(element);
 
-                                                                        <div className="col-md-12 col-sm-12 col-12 p-0 m-0 text-center">
-                                                                            {
-                                                                                consultationToday.prescription ?
-                                                                                    <DashButton action={consultationToday.prescription} onClick={openPrescription} text="Download Prescription" active />
-                                                                                    :
-                                                                                    <DashButton text="Download Prescription" inactive />
-                                                                            }
+                                                                return (
+
+                                                                    element.status === "Completed" ?
+
+                                                                        <div className="row p-0 m-0 w-100">
+
+                                                                            <div className="col-md-12 col-sm-12 col-12 p-0 m-0 text-center">
+                                                                                {
+                                                                                    consultationToday.prescription ?
+                                                                                        <DashButton action={consultationToday.prescription} onClick={openPrescription} text="Download Prescription" active />
+                                                                                        :
+                                                                                        <DashButton text="Download Prescription" inactive />
+                                                                                }
+
+                                                                            </div>
 
                                                                         </div>
 
-                                                                    </div>
 
+                                                                        :
+                                                                        <div className="row p-0 m-0 w-100">
 
-                                                                    :
-                                                                    <div className="row p-0 m-0 w-100">
-
-                                                                        {/* <div className="col-md-6 col-sm-12 col-12 p-0 m-0 text-center">
+                                                                            {/* <div className="col-md-6 col-sm-12 col-12 p-0 m-0 text-center">
                                                                         <DashButton text="Mute" inactive />
                                                                     </div> */}
 
-                                                                        <div className="col-md-12 col-sm-12 col-12 p-0 m-0 text-center" onClick={() => { isWithinMinutes(element.appointmentDate, element.appointmentTimes) ? handlePageChange("/meet_pt") : console.log(""); }}>
-                                                                            <DashButton text="Join Now" active={isWithinMinutes(element.appointmentDate, element.appointmentTimes)} />
+                                                                            <div className="col-md-12 col-sm-12 col-12 p-0 m-0 text-center" onClick={() => { isWithinMinutes(element.appointmentDate, element.appointmentTimes) ? handlePageChange(`/meet_pt/${element.appointmentId}`) : console.log(""); }}>
+                                                                                <DashButton text="Join Now" active={isWithinMinutes(element.appointmentDate, element.appointmentTimes)} />
+                                                                            </div>
+
                                                                         </div>
 
-                                                                    </div>
+                                                                )
 
-                                                            )
-
-
+                                                            }
 
 
 
@@ -712,7 +720,7 @@ function MobileDashboard() {
                                                 <div className="dash-card-footer">
                                                     <div className="row p-0 m-0 w-100">
                                                         <div className="col-md-12 col-sm-12 col-12 p-0 m-0 text-center">
-                                                            <DashButton onClick={()=>{handlePageChange(`./${clientDetails?clientDetails.clinicurl:"speciality"}`)}} action='./speciality' text="BOOK NOW" active />
+                                                            <DashButton onClick={() => { handlePageChange(`./${clientDetails ? clientDetails.clinicurl : "speciality"}`) }} action='./speciality' text="BOOK NOW" active />
                                                         </div>
                                                     </div>
                                                 </div>

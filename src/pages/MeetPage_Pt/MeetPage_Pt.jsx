@@ -13,6 +13,7 @@ import { fetch_clientDetails } from '../../actions/ConsultationAction';
 import { ClipLoader, PuffLoader } from 'react-spinners';
 import { Radio, Input } from 'antd';
 import { getFileTypeFromFileName } from '../../Helpers/FileHelper';
+import { useParams } from "react-router-dom";
 
 const { OTSession, OTPublisher, OTStreams, OTSubscriber, createSession } = require('opentok-react');
 
@@ -33,14 +34,12 @@ let AppintmentDetails = ({ setSuperSubMenu, reports, setReports }) => {
 
     let hanleFileChange = (e) => {
 
-
         console.log("setting file == >", e.target.files['0']);
          setLocalFiles([...localFiles, e.target.files['0']])
     }
 
 
 
-console.log(localFiles);
 
 
 
@@ -263,7 +262,10 @@ export const MeetPage_Pt = () => {
 
     let [reportFiles, setReports] = useState([])
 
+    let {appointmentId}=useParams()
 
+
+    console.log(appointmentId);
 
 
 
@@ -326,7 +328,7 @@ export const MeetPage_Pt = () => {
 
         // getConsultationDetails()
         fetch_consultation()
-
+        
     }, [])
 
 
@@ -379,77 +381,116 @@ export const MeetPage_Pt = () => {
 
             setsubscriberProperties({ ...subscriberProperties, vedio: false });
 
-            setMessage("Video has been disabled. You will not be able to see the Doctor now")
+            setMessage("Video has been disabled.\n You will not be able to see the Doctor now")
         },
         videoEnabled: event => {
             console.log('Subscriber video enabled!');
-            setMessage("Video has been enabled.You will be able to see Doctor now.")
+            setMessage("Video has been enabled.\nYou will be able to see Doctor now.")
             setsubscriberProperties({ ...subscriberProperties, vedio: true });
         },
-        streamPropertyChanged: (event) => {
-
-            // console.log(`streamPropertyChanged -- ${event}`);
-
-            setDoctor(true)
+        streamPropertyChanged:(event)=>{
+            console.log("****streamPropertyChanged*****")
+            console.log(event)
+          //  setDoctor(true)
         }
     };
 
-    const publisherEventHandlers = {
 
+    const publisherEventHandlers = {
+        
         videoDisabled: event => {
             console.log('publisher video disabled!');
-
+            
         },
         videoEnabled: event => {
             console.log('Subscriber video enabled!');
-
+           
         },
-        streamPropertyChanged: (event) => {
-
+        streamPropertyChanged:(event)=>{
+            
         }
     };
 
+  
     const sessionEventspublisher = {
         sessionConnected: (event) => {
             console.log(event)
             setPatient("true")
+            sendSignal();
         },
         sessionDisconnected: () => {
-
+         
         },
-        streamPropertyChanged: (event) => {
+        streamPropertyChanged:(event)=>{
             console.log(event)
         }
-    };
-
+      };
+      
     const sessionEventssubscriber = {
         sessionConnected: (event) => {
-            console.log("sessionEventssubscriber : ")
+            
+          
+            
+        },
+        streamCreated:(event)=>{
+            console.log("streamCreated : ")
             console.log(event)
             setDoctor(true)
         },
-        sessionDisconnected: () => {
-
+        sessionDisconnected: (event) => {
+            console.log(event)
         },
-        streamPropertyChanged: (event) => {
-            if (event.stream.connection.id != event.stream.id && event.changedProperty == "hasAudio" && event.stream.name == "Doctor") {
-                if (event.newValue) {
-                    setMessage(`Audio has been enabled.You will  be able to hear the Doctor now.`)
+        streamPropertyChanged:(event)=>{
+           
+            if(event.stream.connection.id != event.stream.id && event.changedProperty == "hasAudio" && event.stream.name == "Doctor"){
+                if(event.newValue){
+                    setMessage(`Audio has been enabled.\nYou will  be able to hear the Doctor now.`)
                     sendSignal();
-                } else {
-                    setMessage(`Audio has been disabled.You will not be able to hear the Doctor now.`)
+                }else{
+                    setMessage(`Audio has been disabled.\nYou will not be able to hear the Doctor now.`)
                 }
             }
-            else if (event.stream.connection.id != event.stream.id && event.changedProperty == "hasAudio" && event.stream.name == "Guest") {
-                if (event.newValue) {
-                    setMessage(`Audio has been enabled.<br>You will  be able to hear the Guest now.`)
-                } else {
-                    setMessage(`Audio has been disabled.<br>You will not be able to hear the Guest now.`)
+            else if(event.stream.connection.id != event.stream.id && event.changedProperty == "hasAudio" && event.stream.name == "Guest"){
+                if(event.newValue){
+                    setMessage(`Audio has been enabled.\nYou will  be able to hear the Guest now.`)
+                }else{
+                    setMessage(`Audio has been disabled.\nYou will not be able to hear the Guest now.`)
                 }
             }
+        },
+        streamDestroyed:(event)=>{
+            setDoctor(null)
+               // setMessage(`The Doctor has either logged out or closed the window.\nPlease wait until the Doctor comes back.`)
+                //      setTimeout(function(){
+                //       setDoctor(null) 
+                //  }.bind(this),8000); 
+            // if(subsessionRef.current!=undefined)
+            //     {
+                
+            //         //  // When the session is disconnected
+            //     subsessionRef.current.sessionHelper.session.on('signal:closeAppointment', function(event){
+            //         console.log("Session disconnected...")
+            //         console.log(event)
+            //         setMessage(`Your session has been disconnected.`)
+            //         setTimeout(function(){
+            //             history.push("/mobiledashboard");
+            //     }.bind(this),15000); 
+            //     //  history.push("/mobiledashboard");
+            //     })
+            //     }
+            // if(event.reason=="clientDisconnected")
+            // {
+            //     setMessage(`The Doctor has either logged out or closed the window.\nPlease wait until the Doctor comes back.`)
+            //         setTimeout(function(){
+            //           setDoctor(null) 
+            //     }.bind(this),8000); 
+            // }
+            
+                
+         console.log(event)
         }
-    };
-
+      };
+    
 
     const sendSignal = () => {
         sessionRef.current.sessionHelper.session.signal(
@@ -546,10 +587,10 @@ export const MeetPage_Pt = () => {
 
 
     const fetch_consultation = () => {
+
         var consultationID = localStorage.getItem("consultationId");
 
-
-        dispatch(fetch_clientDetails(consultationID, userdata.userType)).then((res) => {
+        dispatch(fetch_clientDetails(appointmentId, userdata.userType)).then((res) => {
 
             console.log("apiCalled", res);
 
@@ -559,10 +600,11 @@ export const MeetPage_Pt = () => {
 
             setConnectionDetails({
                 apiKey: apiKey?.toString(),
-                sessionId: sessionId,
-                token: token,
+                sessionId: res?.sessionId,
+                token: res?.tokenId,
                 doctorName: res?.doctorDetails.doctorName,
                 doctorimg: res?.doctorDetails.doctorImage,
+                type:res?.reasonforvisit,
             })
         });
     };
@@ -584,6 +626,8 @@ export const MeetPage_Pt = () => {
 
 
 
+
+
     return (
 
 
@@ -598,7 +642,7 @@ export const MeetPage_Pt = () => {
 
 
                 {
-                    !isIframe ?
+                   
 
 
                         <div className="vedio-container-left" >
@@ -610,7 +654,7 @@ export const MeetPage_Pt = () => {
                                         <li>
                                             <div className="d-flex flex-column align-items-start">
                                                 <span className="top-menu-headding">Doctor</span>
-                                                <span className="top-menu-caption">{consultation ? consultation.doctorDetails.doctorName : ""}</span>
+                                                <span className="top-menu-caption">{connectionDetails ? connectionDetails.doctorName : ""}</span>
                                             </div>
 
                                         </li>
@@ -618,7 +662,7 @@ export const MeetPage_Pt = () => {
 
                                             <div className="d-flex flex-column align-items-start">
                                                 <span className="top-menu-headding">General Consultation</span>
-                                                <span className="top-menu-caption">{consultation ? consultation.reasonforvisit : ""}</span>
+                                                <span className="top-menu-caption">{connectionDetails ? connectionDetails.type : ""}</span>
 
                                             </div>
                                         </li>
@@ -775,115 +819,7 @@ export const MeetPage_Pt = () => {
 
                         </div>
 
-                        :
-
-                        <div className="vedio-container-mobile" >
-
-                            <div className="vedio-mobile">
-                                {
-                                    !subscriberProperties.vedio ?
-
-                                        <div className="user-profile2">
-
-                                            <div className="user-profile2-container">
-                                                <img src={userdata.profileImage} className="user2-avatar" />
-
-                                                <div className="user-profile2-footer">
-                                                    {userdata.profileName}
-                                                    {/* <ThreeDotVerticalWhiteIcon /> */}
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        : null
-                                }
-
-                                {
-                                    meetCred.apiKey ?
-
-                                        <OTSession ref={subsessionRef} apiKey={meetCred.apiKey} sessionId={meetCred.sessionId} token={meetCred.token} eventHandlers={sessionEventssubscriber}>
-
-
-                                            <OTStreams>
-                                                <OTSubscriber
-                                                    properties={subscriberPropertiess}
-                                                    eventHandlers={subscriberEventHandlers}
-                                                />
-                                            </OTStreams>
-
-                                        </OTSession>
-
-                                        // <div className="user-profile2">
-                                        //     <div className="user-profile2-container">
-                                        //         <img src={consultation?.doctorDetails.doctorImage} className="user2-avatar" />
-
-                                        //         <div className="user-profile2-footer">
-                                        //         {consultation?.doctorDetails.doctorName}
-                                        //             {/* <ThreeDotVerticalWhiteIcon /> */}
-                                        //         </div>
-
-                                        //     </div>
-                                        // </div>
-                                        :
-                                        <div className="user-profile2">
-                                            <div className="user-profile2-container">
-                                                <img src={userdata.profileImage} className="user2-avatar" />
-
-                                                <div className="user-profile2-footer">
-                                                    {userdata.profileName}
-                                                    {/* <ThreeDotVerticalWhiteIcon /> */}
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                }
-
-
-                            </div>
-
-                            <div className="vedio-mobile">
-                                {
-                                    !publisherProperties.video ?
-
-                                        <div className="user-profile-small">
-                                            <div className="user-profile-container-small">
-                                                {
-                                                    userdata.profileImage != null ? <img alt="img" src={userdata.profileImage ? userdata.profileImage : "https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg"} className="user-avatar" /> : ""
-                                                }
-
-
-                                                <div className="user-profile-footer-smal">
-                                                    {userdata.profileName}
-                                                    {/* <ThreeDotVerticalWhiteIcon /> */}
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        :
-
-                                        meetCred.apiKey ?
-
-                                            <OTSession ref={sessionRef} apiKey={meetCred.apiKey} sessionId={meetCred.sessionId} token={meetCred.token} eventHandlers={sessionEventspublisher}>
-
-                                                <OTPublisher properties={{
-                                                    publishAudio: publisherProperties.audio,
-                                                    publishVideo: publisherProperties.video,
-                                                    // videoSource: true ? 'screen' : undefined
-                                                }}
-                                                    eventHandlers={publisherEventHandlers}
-                                                />
-
-                                            </OTSession>
-                                            :
-                                            <div>No Vedio</div>
-
-
-
-                                }
-                            </div>
-
-                        </div>
+                        
                 }
 
                 <div className="vedio-container-right">

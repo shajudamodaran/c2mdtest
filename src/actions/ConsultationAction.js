@@ -14,7 +14,7 @@ if(formatTime.search(/\+/g)!=null)
 
   export const fetch_clientDetails = (consultationId,userType) => async (dispatch) => {
 
-    console.log("Calling............................");
+  
     
     let countrycoderes = await loginedApi.post("getcountrycode", 
     {
@@ -38,10 +38,12 @@ if(formatTime.search(/\+/g)!=null)
       },
     };
     
+   
     if (consultationId != "") {
       params.data.consultationId = consultationId;
     }
   
+    console.log("Calling............................",params);
     const response = await loginedApi.post("consultation", params);
     dispatch({ type: FETCH_CONSULTATION, payload: response.data.data });
   

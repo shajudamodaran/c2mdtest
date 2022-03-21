@@ -83,6 +83,10 @@
   margin-bottom: 1rem;
 }
 
+.appointment-timeline .step .icon {
+  margin-right: .8rem;
+}
+
 .appointment-timeline .step .row {
   display: -webkit-box;
   display: -ms-flexbox;
