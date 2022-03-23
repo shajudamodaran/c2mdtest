@@ -113,6 +113,6 @@ export const Links = [
   },
   {
     title:
-      "If you wish to link to or make any use of content on our Site other than that set out above, please contact support@connect2my.doctor",
+      "If you wish to link to or make any use of content on our Site other than that set out above, please contact support.connect2mydoctor.com",
   },
 ];

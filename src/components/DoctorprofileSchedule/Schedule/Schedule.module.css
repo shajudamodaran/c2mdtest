@@ -344,6 +344,7 @@
   border-radius: 5px;
   color: #8da2b5;
   text-align: center;
+  cursor: not-allowed;
 }
 
 .Schedule .Schedule_Bottom :global .react-multi-carousel-list ul li > div {

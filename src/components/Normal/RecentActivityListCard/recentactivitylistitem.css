@@ -43,6 +43,7 @@
     padding: 6px 8px;
     border-radius: 2px;
     color: rgb(100, 100, 100);
+    cursor:default !important;
 }
 
 .recent-list-item-button-active{

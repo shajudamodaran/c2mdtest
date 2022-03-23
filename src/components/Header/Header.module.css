@@ -223,16 +223,6 @@
           align-items: center;
 }
 
-.sec_header :global .navbar-nav a.first-child:after {
-  content: "";
-  position: absolute;
-  background: #ccc;
-  width: 1px;
-  height: 70%;
-  right: -16px;
-  top: 6px;
-}
-
 .sec_header :global .navbar-nav .nav-item.dropdown {
   background: url("../../assets/icon-help.svg") no-repeat left center;
   padding-left: 28px;
@@ -478,9 +468,9 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 .DeleteConfirmmodal .DeleteText {

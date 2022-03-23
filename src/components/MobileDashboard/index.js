@@ -35,10 +35,23 @@ function MobileDashboard() {
     let [isPlayed, setPlayed] = useState(false)
     let [reports, setReports] = useState([])
     let [localReports, setLocalReports] = useState([])
+    let [activeTitle, setActiveTitle] = useState("Dashboard")
 
 
 
     // let [consultationToday, setConsultationToday] = useState(null)
+
+    useEffect(() => {
+
+        if( activeLeft.menu!==null)
+        {
+            setActiveTitle(DASHBOARD_LEFT_OPTIONS[activeLeft.menu]?.options[activeLeft.option].name)
+        }
+      
+       
+
+    }, [activeLeft])
+
 
 
     let dispatch = useDispatch()
@@ -309,11 +322,11 @@ function MobileDashboard() {
             }
         }
 
-        console.log("Calling................",paramAppoint);
+        console.log("Calling................", paramAppoint);
 
         const response = await loginedApi.post("consultation", paramAppoint);
 
-        console.log("Res................",response);
+        console.log("Res................", response);
 
         return response.data
 
@@ -424,7 +437,7 @@ function MobileDashboard() {
                                 <div className="dr-id-home text-start w-100" >ID: {userData ? userData.profileId : "---"}</div>
                             </TittleCard>
 
-                            <div className="list-tittle" onClick={() => { setDash(true) }}>
+                            <div className={`list-tittle ${isDash?"active":null}`} onClick={() => { setDash(true); setActiveTitle("Dashboard") }}>
                                 <div className="icon" ><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard</div>
 
@@ -442,7 +455,7 @@ function MobileDashboard() {
                                                 {
                                                     object.options.map((element, optionKey) => {
                                                         return (
-                                                            <li className={activeLeft.menu === menuKey && activeLeft.option === optionKey ? "active" : null} onClick={() => { setActiveleft({ menu: menuKey, option: optionKey }); setDash(false) }}>
+                                                            <li className={activeLeft.menu === menuKey && activeLeft.option === optionKey && !isDash ? "active" : null} onClick={() => { setActiveleft({ menu: menuKey, option: optionKey }); setDash(false) }}>
                                                                 <div className="icon" >
                                                                     {
                                                                         element.ico
@@ -509,7 +522,9 @@ function MobileDashboard() {
 
                         <TittleCard style={{ width: "100%" }} >
 
-                            <div className="page-name-home">My Dashboard</div>
+    
+
+                            <div className="page-name-home">{activeTitle}</div>
 
                         </TittleCard>
 

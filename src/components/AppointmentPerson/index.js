@@ -85,6 +85,7 @@ function AppointmentPerson({
     }
     setError(temp);
     if (temp.error == false) {
+     
       dispatch(editMember(member));
       setEditDob(false);
       setInnerPage(0);
@@ -217,7 +218,7 @@ function AppointmentPerson({
       </div>
     </>
   ) : !editDob ? (
-    <AddMember setInnerPage={setInnerPage} innerPage={innerPage} />
+    <AddMember setMemberMain={setMember} setInnerPage={setInnerPage} innerPage={innerPage} />
   ) : (
     <>
       <h3 className={Style.book_appointment_main_heading}>Age & Gender</h3>

@@ -50,7 +50,7 @@ function GettingInTouch({
       : appoinment_form.alternativeNumber?.slice(3)?.replace(/ /g, "")
   );
 
-  const brands = ["WhatsApp", "Telegram", "Botim"];
+  const brands = ["WhatsApp", "Telegram", "Botim","Viber","Signal","Skype","IMO","Others"];
   const [brand, setBrand] = useState(
     appoinment_form.Channel == undefined || appoinment_form.Channel == ""
       ? ""

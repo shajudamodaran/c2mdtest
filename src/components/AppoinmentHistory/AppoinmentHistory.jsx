@@ -32,7 +32,7 @@ function AppoinmentHistory() {
         //     value: true
         // }))
         dispatch(fetchSelectedAppointmentDetails({
-            appointmentId:appointmentId?appointmentId:null,
+            appointmentId: appointmentId ? appointmentId : null,
             userData
 
         }));
@@ -49,20 +49,19 @@ function AppoinmentHistory() {
 
     }, [])
 
-    let getDateFull=()=>
-    {
+    let getDateFull = () => {
 
         const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-        let today= new Date()
+        let today = new Date()
 
-        let date=today.getDate()
-        let month=today.getMonth()
-        let year=today.getFullYear()
-        let week=today.getDay()
+        let date = today.getDate()
+        let month = today.getMonth()
+        let year = today.getFullYear()
+        let week = today.getDay()
 
-        return (`${date}, ${months[month]}, ${year} - ${days[week]}` )
+        return (`${date}, ${months[month]}, ${year} - ${days[week]}`)
 
     }
 
@@ -72,7 +71,7 @@ function AppoinmentHistory() {
         <div className='appontment-history-container'>
 
             <div className="header">
-               {getDateFull()}
+                {getDateFull()}
 
                 {/* <div className="filter-button">
                     <div className="icon">&nbsp;</div>
@@ -81,56 +80,56 @@ function AppoinmentHistory() {
 
             </div>
 
-          {
-              appointmentHistoryRedux?
+            {
+                appointmentHistoryRedux ?
 
-              <table className='appoinment-table'>
-              <tr>
-                  <th>Appointment ID</th>
-                  <th>Time</th>
-                  <th>Doctor Name</th>
-                  <th>Consultation Status</th>
-                  <th>Next Steps</th>
-                  <th></th>
-              </tr>
-
-              <tbody>
-
-                  {
-                      appointmentHistoryRedux ?
-
-
-                          appointmentHistoryRedux.map((element, key) => {
-<<<<<<< HEAD
-                          
-=======
-                            console.log(key)
->>>>>>> d09b5db6d80ec7989fab02352478ac918eac3f0a
-                              return (
-                                  <tr>
-                                      <td >{element.appointmentId}</td>
-                                      <td >{element.appointmentDate}</td>
-                                      <td >{element.consultantName}</td>
-                                      <td >{element.status}</td>
-                                      <td >
-                                          Not Available
-                                          {/* See again in In 5 weeks */}
-                                      </td>
-                                      <td  ><button onClick={()=>{handleTableClick(element.appointmentId)}} className='more-btn' >More</button></td>
-
-                                  </tr>
-                              )
-
-                          })
+                    <table className='appoinment-table'>
+                        <tr>
+                            <th>Appointment ID</th>
+                            <th>Time</th>
+                            <th>Doctor Name</th>
+                            <th>Consultation Status</th>
+                            <th>Next Steps</th>
+                            <th></th>
+                        </tr>
 
 
 
-                          : null
-                  }
+                        <tbody>
 
-              </tbody>
-          </table>:null
-          }
+                            {
+                                appointmentHistoryRedux ?
+
+
+                                    appointmentHistoryRedux.map((element, key) => {
+
+                                        return (
+                                            <tr>
+                                                <td >{element.appointmentId}</td>
+                                                <td >{element.appointmentDate}</td>
+                                                <td >{element.consultantName}</td>
+                                                <td >{element.status}</td>
+                                                <td >
+                                                    Not Available
+                                                    {/* See again in In 5 weeks */}
+                                                </td>
+                                                <td  ><button onClick={() => { handleTableClick(element.appointmentId) }} className='more-btn' >More</button></td>
+
+                                            </tr>
+                                        )
+
+                                    })
+
+
+
+                                    : null
+                            }
+
+
+
+                        </tbody>
+                    </table> : <div className="no-appointments">Oops!! There is no appointments available for you.</div>
+            }
 
             <div className="pagination-container">
                 {/* <Pagination defaultCurrent={6} total={500} /> */}

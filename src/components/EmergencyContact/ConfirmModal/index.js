@@ -35,13 +35,13 @@ function ConfirmModal({
                 />
               </div> */}
 
-              <div>
+              {/* <div>
                 <img
                   src={Assets.closeIcon}
                   alt=""
                   className={Style.headerIcon}
                 />
-              </div>
+              </div> */}
 
               <h3 className={Style.HeaderText}> Are you sure ?</h3>
             </div>

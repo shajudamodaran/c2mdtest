@@ -77,9 +77,12 @@ function DoctorDetails() {
               </span>
             </p>
           )}
-          {appoinment_form?.gstamount && (
+          {
+            console.log()
+          }
+          {appoinment_form?.gstamount && appoinment_form?.gstamount.split(" ")[1]>0 &&  (
             <p>
-              <span className={Style.booking_summary_left_aligned}>GST</span>
+              <span className={Style.booking_summary_left_aligned}>GST on service fees</span>
               <span className={Style.booking_summary_right_aligned}>
                 {appoinment_form.gstamount}
               </span>

@@ -496,8 +496,8 @@ function InsideIndia() {
           If you encounter any content on the Website that you find offensive
           and which you believe violates these Terms of Use, please report the
           content to us by e-mailing{" "}
-          <a href="mailto:support@connect2my.doctor">
-            support@connect2my.doctor
+          <a href="mailto:support.connect2mydoctor.com">
+            support.connect2mydoctor.com
           </a>
           . So that we can efficiently deal with your report, please ensure that
           your report: <br />
@@ -517,7 +517,7 @@ function InsideIndia() {
         If you receive or encounter any information which a reasonable person
         would consider to be confidential in nature, you agree to contact us
         immediately at{" "}
-        <a href="mailto:support@connect2my.doctor">support@connect2my.doctor</a>
+        <a href="mailto:support.connect2mydoctor.com">support.connect2mydoctor.com</a>
         .
       </p>
       <h3 className={Style.headings}>21. Applicable Law</h3>
@@ -534,8 +534,8 @@ function InsideIndia() {
       <p className={Style.content}>
         If you have any questions or concerns regarding these Terms of Use
         please contact us at
-        <a href="mailto:support@connect2my.doctor">
-          support@connect2my.doctor
+        <a href="mailto:support.connect2mydoctor.com">
+          support.connect2mydoctor.com
         </a>{" "}
         .
       </p>

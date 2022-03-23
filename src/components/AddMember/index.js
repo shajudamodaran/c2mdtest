@@ -10,7 +10,7 @@ import { addMember } from "../../actions/BookAppoinmentAction";
 import { useDispatch, useSelector } from "react-redux";
 import CustomDropDown from "../Common/CustomDropDown";
 
-function AddMember({ setInnerPage, innerPage }) {
+function AddMember({ setInnerPage, innerPage, setMemberMain }) {
   const [member, setMember] = useState({
     memberName: "",
     relationship: "",
@@ -82,8 +82,11 @@ function AddMember({ setInnerPage, innerPage }) {
     if (member.dob == "") {
       temp = { ...temp, dob: true, error: true };
     }
+
     setError(temp);
     if (temp.error == false) {
+
+      setMemberMain(member)
       await dispatch(addMember(member));
       setInnerPage(innerPage - 1);
     } else {

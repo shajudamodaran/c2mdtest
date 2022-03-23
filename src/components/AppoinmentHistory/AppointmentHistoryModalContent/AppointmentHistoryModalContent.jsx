@@ -13,7 +13,13 @@ function AppointmentHistoryModalContent() {
             file, "_blank");
     }
 
-    console.log(appointmentHistoryRedux?.[0].appointmentDate);
+    let handleOpenUrl = (url) =>{
+
+        window.open(
+            url, "_blank");
+    }
+
+    console.log(appointmentHistoryRedux);
 
     return (
         <div className='ahmc-container'>
@@ -93,8 +99,8 @@ function AppointmentHistoryModalContent() {
                         <div className="row">Other documents</div>
 
                         <ul>
-                            <li>Patient Consent Form</li>
-                            <li>Consultation Invoice</li>
+                            <li onClick={()=>{handleOpenUrl(appointmentHistoryRedux[0]?.otherdocuments.Consent)}}>Patient Consent Form</li>
+                            <li onClick={()=>{handleOpenUrl(appointmentHistoryRedux[0]?.otherdocuments.Invoice)}}>Consultation Invoice</li>
                         </ul>
 
 
