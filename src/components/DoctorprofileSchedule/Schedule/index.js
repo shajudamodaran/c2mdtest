@@ -400,7 +400,7 @@ function Schedule({ responsive, Typeofappointment, doctorId, DayCounter }) {
             <span className={Style.SubText}>
               {/* ( {ApponmtType.split("(")?.[1]} */}
               {ApponmtType.split("(")?.[1] &&
-                "( " + ApponmtType.split("(")?.[1]}
+                "(" + ApponmtType.split("(")?.[1]}
             </span>
           </Dropdown.Toggle>
           <Dropdown.Menu>
@@ -480,7 +480,10 @@ function Schedule({ responsive, Typeofappointment, doctorId, DayCounter }) {
                   return (
                     <div key={index}>
                       <div className={Style.SliderItem}>
-                        <h2 className={Style.Day_head}>{item.dates}</h2>
+                        {
+                          
+                        }
+                        <h2 className={moment(new Date()).date()==item.dates?Style.Day_head_active:Style.Day_head}>{item.dates}</h2>
                         <p className={Style.Day_text}>
                           {moment(
                             `${item.year}-${item.month + 1}-${item.dates}`,

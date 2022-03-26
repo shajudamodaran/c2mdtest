@@ -17,13 +17,13 @@ function DoctorListingDetails({ Details }) {
   const toastId = React.useRef(null);
   const notify = () => toastId.current = toast("Sorry,This booking facility is allowed only for patients", {
     position: toast.POSITION.TOP_CENTER,
-    hideProgressBar:true,
+    hideProgressBar: true,
     onOpen: (props) => setToastOpen(true),
     onClose: (props) => setToastOpen(false),
   });
   useEffect(() => {
     document.querySelector("body").scrollTo(0, 0);
-    return ()=>{
+    return () => {
       toast.dismiss(toastId.current)
     }
   }, []);
@@ -52,10 +52,13 @@ function DoctorListingDetails({ Details }) {
 
   const [showModal, setModal] = useState(false);
 
-  const viewModal = () => {
+  const viewModal = (e) => {
+
+    e.stopPropagation()
+
     if (user?.userType === "Doctor") {
       if (!toastOpen) {
-      notify();
+        notify();
       }
     } else {
       dispatch(
@@ -88,65 +91,67 @@ function DoctorListingDetails({ Details }) {
     });
   };
   return (
-    <div className={Style.doctor_listing_profile_details}>
-      <div
-        className={doctorDetailsDiv}
-        onClick={() =>
-          width < 992 &&
-          history.push({
-            pathname: "/doctorProfile/" + Details.doctorId,
-            state: { detail: Details },
-          })
-        }
-      >
-        <div className="col-md-2 doc-list-fcol">
-          <img
-            src={Details.doctorImage}
-            className={Style.doctorImage}
-            alt=""
-            onError={addDefaultSrc}
-          />
-          <span className={Style.mobverifytext}>
-            <img src={Assets.tick_Outline} />
-            Verified
-          </span>
-        </div>
-        <div className="col-md-6 doc-list-mcol">
-          <h3>
-            {Details.doctorName}{" "}
-            <img className={Style.mainverifytext} src={Assets.tick_Outline} />
-          </h3>
-          <div className={Style.doctorProfDesc}>
-            {Details.specialization != "" && (
-              <span className={doctorDetailsSpan}>
-                {Details.specialization}
-              </span>
-            )}
-            {Details.expirence != "" && (
-              <span className={doctorDetailsSpan}>
-                Experience : {Details.expirence}
-              </span>
-            )}
-            <span className="">
-              <img
-                src={Assets.location_icon}
-                className={Style.doctor_listing_location_icon}
-                alt=""
-              />
-              {Details.location}
+
+    <>
+      <div className={Style.doctor_listing_profile_details} onClick={view_profile}>
+        <div
+          className={doctorDetailsDiv}
+          onClick={() =>
+            width < 992 &&
+            history.push({
+              pathname: "/doctorProfile/" + Details.doctorId,
+              state: { detail: Details },
+            })
+          }
+        >
+          <div className="col-md-2 doc-list-fcol">
+            <img
+              src={Details.doctorImage}
+              className={Style.doctorImage}
+              alt=""
+              onError={addDefaultSrc}
+            />
+            <span className={Style.mobverifytext}>
+              <img src={Assets.tick_Outline} />
+              Verified
             </span>
           </div>
-          <div className={Style.doctor_listing_horizontal_line}></div>
-          <p
-            className={Style.doctor_listing_content}
-            dangerouslySetInnerHTML={{
-              __html: Details.qualification
-                .replace(/[(]/g, "<span>(")
-                .replace(/[)]/g, ")</span>"),
-            }}
-          ></p>
+          <div className="col-md-6 doc-list-mcol">
+            <h3>
+              {Details.doctorName}{" "}
+              <img className={Style.mainverifytext} src={Assets.tick_Outline} />
+            </h3>
+            <div className={Style.doctorProfDesc}>
+              {Details.specialization != "" && (
+                <span className={doctorDetailsSpan}>
+                  {Details.specialization}
+                </span>
+              )}
+              {Details.expirence != "" && (
+                <span className={doctorDetailsSpan}>
+                  Experience : {Details.expirence}
+                </span>
+              )}
+              <span className="">
+                <img
+                  src={Assets.location_icon}
+                  className={Style.doctor_listing_location_icon}
+                  alt=""
+                />
+                {Details.location}
+              </span>
+            </div>
+            <div className={Style.doctor_listing_horizontal_line}></div>
+            <p
+              className={Style.doctor_listing_content}
+              dangerouslySetInnerHTML={{
+                __html: Details.qualification
+                  .replace(/[(]/g, "<span>(")
+                  .replace(/[)]/g, ")</span>"),
+              }}
+            ></p>
 
-          {/* {Details.clinicLogo !== "" &&
+            {/* {Details.clinicLogo !== "" &&
             Details.clinicLogo !== undefined &&
             Details.clinicLogo !== null && (
               <img
@@ -155,7 +160,33 @@ function DoctorListingDetails({ Details }) {
                 alt="hospital"
               />
             )} */}
-          <div className={Style.doctorListTimerColmob}>
+            <div className={Style.doctorListTimerColmob}>
+              <div className={Style.doctorListTimerCol}>
+                <div>
+                  <img
+                    src={Assets.timer_icon}
+                    className={Style.doctor_listing_timer_icon}
+                  ></img>
+                  <span className={Style.doctor_listing_timer_text}>
+                    Up to {Details.duration} min
+                  </span>
+                </div>
+                <div>
+                  <img
+                    src={Assets.fee_icon}
+                    className={Style.doctor_listing_timer_icon}
+                  ></img>
+                  <span className={Style.doctor_listing_timer_text}>
+                    {
+                      console.log(Details.fees)
+                    }
+                    {Details.fees}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={last_column}>
             <div className={Style.doctorListTimerCol}>
               <div>
                 <img
@@ -172,64 +203,42 @@ function DoctorListingDetails({ Details }) {
                   className={Style.doctor_listing_timer_icon}
                 ></img>
                 <span className={Style.doctor_listing_timer_text}>
-                  {
-                    console.log(Details.fees)
-                  }
                   {Details.fees}
                 </span>
               </div>
             </div>
-          </div>
-        </div>
-        <div className={last_column}>
-          <div className={Style.doctorListTimerCol}>
-            <div>
-              <img
-                src={Assets.timer_icon}
-                className={Style.doctor_listing_timer_icon}
-              ></img>
-              <span className={Style.doctor_listing_timer_text}>
-                Up to {Details.duration} min
-              </span>
-            </div>
-            <div>
-              <img
-                src={Assets.fee_icon}
-                className={Style.doctor_listing_timer_icon}
-              ></img>
-              <span className={Style.doctor_listing_timer_text}>
-                {Details.fees}
-              </span>
-            </div>
-          </div>
 
-          <Button
-            variant="outline-secondary"
-            className={Style.doctor_listing_appointment_btn}
-            type="submit"
-            onClick={viewModal}
-          >
-            Book Appointment
-          </Button>
-          {width > 992 && (
             <Button
               variant="outline-secondary"
-              className={Style.doctor_listing_view_btn}
+              className={Style.doctor_listing_appointment_btn}
               type="submit"
-              onClick={view_profile}
+              onClick={viewModal}
             >
-              View Profile
+              Book Appointment
             </Button>
-          )}
+            {width > 992 && (
+              <Button
+                variant="outline-secondary"
+                className={Style.doctor_listing_view_btn}
+                type="submit"
+                onClick={view_profile}
+              >
+                View Profile
+              </Button>
+            )}
+          </div>
         </div>
+
       </div>
+
       <BookAppointment
         show={showModal}
         handleClose={hidemodal}
         // Details={Details}
         doctorId={Details.doctorId}
       />
-    </div>
+
+    </>
   );
 }
 

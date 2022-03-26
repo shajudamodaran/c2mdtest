@@ -39,7 +39,7 @@ function BookAppointment({ show, handleClose, doctorId }) {
         className={`${Style.doctor_listing_modal_align} book_modal`}
       >
         <Modal.Header closeButton className={Style.doctor_listing_heading}>
-          <Modal.Title>Book Your Appointment</Modal.Title>
+          <Modal.Title>Book your Appointment</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {width >= 992 ? (
