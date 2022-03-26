@@ -420,7 +420,7 @@ export const BookingConfirmationOnRequest =
           appointmentFor: orderData.appointmentFor,
           reports: orderData.reports,
           blockId: orderRes?.info,
-          basicFees: orderData.basicFees.replace("INR ", ""),
+          basicFees: orderData.basicFees.replace("INR ",""),
           surgerydetails: orderData.surgeries,
           referenceId: "123456",
           allergies: orderData.allergies,

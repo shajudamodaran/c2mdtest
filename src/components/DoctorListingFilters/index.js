@@ -257,9 +257,14 @@ function DoctorListingFilters({
   };
 
   const getSample = (item, index) => {
+
+
     if (indexCharacters.includes(item)) {
+
+    
+
       return (
-        <li key={index} onClick={() => handleStarts(item)}>
+        <li className={filterKey.doctorName == item ? "Style.selecetdIndex" : "not-selected"} key={index} onClick={() => handleStarts(item)}>
           {item}
         </li>
       );
@@ -302,7 +307,29 @@ function DoctorListingFilters({
             <ul>
               {CharacterSet &&
                 CharacterSet.map(
-                  (item, index) => getSample(item, index)
+                  (item, index) => {
+
+
+                    if (indexCharacters.includes(item)) {
+
+                     
+                      return (
+                        <li className={filterKey.doctorName == item ? Style.SelectedIndex : "not-selected"} key={index} onClick={() => handleStarts(item)}>
+                          {item}
+                        </li>
+                      );
+                    } else {
+                      return (
+                        <li
+                          key={index}
+                          className={Style.ActiveIndex}
+                          style={{ color: "#D1D1D1", cursor: "not-allowed" }}
+                        >
+                          {item}
+                        </li>
+                      );
+                    }
+                  }
                   // return (
                   //   <li key={index} onClick={() => handleStarts(item)}>
                   //     {item}
@@ -353,8 +380,8 @@ function DoctorListingFilters({
           </div>
         )}
       </div>
-      
-      
+
+
       {clientDetails?.clinicurl === "shalby" && (
         <div
           className={dropdownClassHospital}
@@ -366,7 +393,7 @@ function DoctorListingFilters({
           >
             <span
               className={Style.filterNamelabel}
-              // onClick={() => setSelect({ hospital: !showSelect.hospital })}
+            // onClick={() => setSelect({ hospital: !showSelect.hospital })}
             >
               {" "}
               {filterForm.hospital?.length == 0
@@ -376,7 +403,7 @@ function DoctorListingFilters({
             <img
               src={Assets.down_arrow}
               alt=""
-              // onClick={() => setSelect({ hospital: !showSelect.hospital })}
+            // onClick={() => setSelect({ hospital: !showSelect.hospital })}
             />
           </span>
           {showSelect.hospital && (
@@ -451,7 +478,7 @@ function DoctorListingFilters({
         )}
       </div> */}
 
-      {/* <div className={dropdownClassLanguage}>
+      <div className={dropdownClassLanguage}>
         <span
           className={Style.filterNamelabelBox}
           onClick={() => setSelect({ language: !showSelect.language })}
@@ -493,7 +520,7 @@ function DoctorListingFilters({
           </div>
         )}
       </div>
-       */}
+      
       <div className={Style.resetText}>
         <div onClick={ResetFilter}>
           <img src={Assets.reset_icon} alt="" />

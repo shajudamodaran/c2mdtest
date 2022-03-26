@@ -7,8 +7,10 @@
     opacity: 1;
     border: none;
     left: inherit;
+   
     right: -100%;
     top: 80px;
+    
     transition: all 0.5s;
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -25,6 +27,7 @@
     :global .modal-content {
         border: 0 !important;
         padding: 0 20px;
+        min-height: 900px;
     }
     :global .modal-dialog {
         max-width: inherit;

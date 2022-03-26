@@ -1,15 +1,17 @@
 .doctor_listing_profile_details {
   background: white !important;
   border-radius: 8px;
-  margin-bottom: 21px;
+  margin-bottom: 9px;
   transition: all 0.5s ease;
 
   border: 2px solid #fff;
   border-radius: 8px;
-  &:hover {
-    border: 2px solid #208ce1;
-    border-radius: 8px;
-  }
+
+  cursor: pointer;
+  // &:hover {
+  //   border: 2px solid #208ce1;
+  //   border-radius: 8px;
+  // }
   .doctor_listing_profile_details_row {
     padding: 25px 25px 35px;
     .doctor_listing_last_column_align {
@@ -135,7 +137,7 @@
       }
       .doctor_listing_timer_text {
         text-align: left;
-        font-size: 14px;
+        font-size: 15px !important;
         // font-weight: 500;
         letter-spacing: 0px;
         color: #011d29;
@@ -157,9 +159,12 @@
         border: 1px solid #208ce1;
         margin: 10px 0 20px;
         font-family: "DM Sans", sans-serif;
+
+        z-index: 10000 !important;
         &:hover {
           background: #e1f2ff;
           color: #208ce1;
+          font-weight: 500;
         }
         &:focus {
           outline: none;
@@ -180,6 +185,7 @@
         &:hover {
           background: #e1f2ff;
           color: #208ce1;
+          font-weight: 500;
         }
         &:focus {
           outline: none;

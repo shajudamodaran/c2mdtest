@@ -18,7 +18,8 @@
       border: none;
       border-radius: 5px;
       outline: none;
-      max-width: 406px;
+      height: 55px !important;
+      // max-width: 406px;
       width: 100%;
       color: #000;
       text-align: left;
@@ -28,12 +29,12 @@
       overflow: hidden;
       text-overflow: ellipsis;
       padding-right: 25px;
-      font-size: 14px;
+      font-size: 15px;
       color: #000234;
       &:after {
         position: absolute;
         right: 10px;
-        top: 20px;
+        top: 27px !important;
       }
     }
     .appointmentTypeTxt {
@@ -41,7 +42,7 @@
       color: #162d43;
       opacity: 1;
       font-weight: 500;
-      font-size: 16px;
+      font-size: 18px;
       img {
         margin-right: 15px;
       }
@@ -52,7 +53,7 @@
     color: #162d43;
     opacity: 1;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 17px;
     img {
       margin-right: 15px;
     }
@@ -128,7 +129,7 @@
         text-transform: capitalize;
         opacity: 1;
         font-weight: 600;
-        font-size: 17px;
+        font-size: 18px;
         margin-bottom: 0px;
         display: flex;
         align-items: center;
@@ -145,7 +146,7 @@
         text-transform: capitalize;
         opacity: 1;
         font-weight: 500;
-        font-size: 12px;
+        font-size: 13px;
         margin-bottom: 0px;
         cursor: pointer;
         transition: all 0.5s ease;
@@ -185,11 +186,28 @@
           display: block;
         }
       }
+
+      .Day_head_active {
+        color: #208ce1;
+        text-transform: capitalize;
+        opacity: 1;
+        font-weight: bold;
+        text-align: center;
+        font-size: 28px;
+        margin: 0;
+        position: relative;
+        z-index: 1000;
+        &:hover {
+          color: #208ce1;
+          cursor: pointer;
+          display: block;
+        }
+      }
       .Day_text {
         color: #7a7b7e;
         text-transform: capitalize;
         opacity: 1;
-        font-size: 14px;
+        font-size: 15px;
         text-align: center;
       }
     }

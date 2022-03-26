@@ -15,11 +15,11 @@ function MicrositeHeader({ clientDetails }) {
     body.classList.toggle("nav-open");
   };
   const dispatch = useDispatch();
-  
+
   const userData = useSelector((state) => state.login);
   const patientData = useSelector(
     (state) => state.login.patientDashboard
-);
+  );
 
   const history = useHistory();
   const logout = () => {
@@ -95,51 +95,58 @@ function MicrositeHeader({ clientDetails }) {
               </Link> */}
             </Nav>
             {userData.login ? (
-              <Button
-                variant="outline-secondary"
-                className={Style.siginup_Btn}
-                onClick={logout}
-                style={{ marginRight: 30 }}
-              >
-                Logout
-              </Button>
+              // <Button
+              //   variant="outline-secondary"
+              //   className={Style.siginup_Btn}
+              //   onClick={logout}
+              //   style={{ marginRight: 30 }}
+              // >
+              //   Logout
+              // </Button>
+              <>
+                <div onClick={logout} className={Style.siginup_Btn_v2}>Logout</div>
+                <div className={Style.siginup_Btn_v2} style={{fontSize:"18px"}}>|</div>
+                <div onClick={() => { history.push("dashboard") }} className={Style.siginup_Btn_v2}>Go to Dashboard</div>
+              </>
+
+
             ) : (
-              <Button
-                style={{ marginRight: 30 }}
-                variant="outline-secondary"
-                className={Style.siginup_Btn}
+
+              <div
                 onClick={() => {
-                  history.push("/signup");
-                }}
-              >
-                Sign in / Sign up
-              </Button>
+                      history.push("/signup");
+                    }}
+                  className = { Style.siginup_Btn_v2 } > Sign in / Sign up</div >
+              // <Button
+              //   style={{ marginRight: 30 }}
+              //   variant="outline-secondary"
+              //   className={Style.siginup_Btn}
+              //   onClick={() => {
+              //     history.push("/signup");
+              //   }}
+              // >
+              //   Sign in / Sign up
+              // </Button>
             )}
             <div className={Style.iconWrapper}>
-              <span>Download Our App :</span>
-              <a
-                href={
-                  clientDetails.androidapp
-                    ? clientDetails.androidapp
-                    : `https://play.google.com/store/apps/details?id=com.neevlabs.connect2mydoctorpatient&hl=en`
-                }
-                target="_blank"
-              >
-                <img src={Assets.icon_ios} alt="appStoreIcon" />
-              </a>
-              <a
-                href={
-                  clientDetails.iosapp
-                    ? clientDetails.iosapp
-                    : `https://apps.apple.com/au/app/connect2mydoctor-for-patients/id1490627746`
-                }
-                target="_blank"
-              >
-                <img src={Assets.icon_android} alt="appStoreIcon" />
-              </a>
+              {/* <span>Download Our App :</span> */}
+
+              {
+                clientDetails.androidapp ? <img src={Assets.google_play_icon} alt="appStoreIcon" /> : null
+              }
+
+              {
+                clientDetails.iosapp ? <img src={Assets.app_store_icon} alt="appStoreIcon" /> : null
+              }
+
+
+
+
             </div>
+
+
             <div className={Style.mobiconWrapper}>
-              <span>Download Our App :</span>
+              <span>Download Our Apps :</span>
               <a
                 href={
                   clientDetails.androidapp
