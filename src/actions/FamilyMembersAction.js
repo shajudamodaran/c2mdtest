@@ -9,21 +9,44 @@ import {
   FETCH_PATIENT_MEDICAL_DATA_FAIL_ACTION,
 } from "./type";
 const publicIp = require("public-ip");
-let IP = publicIp.v4();
+const { detect } = require("detect-browser");
+const browser = detect();
 let platform = window.navigator.platform;
 let userAgent = window.navigator.userAgent;
+let off = new Date().toString().replace(/GMT\+(\d\d)(\d\d)/, "GMT+$1:$2");
+let formatTime = off?.split("GMT")[1].split(" (")[0];
+let result = formatTime?.slice(1);
+if (formatTime.search(/\+/g) != null) {
+  formatTime = formatTime.replace(/\+/g, "%2B");
+} else if (formatTime.search(/\-/g) != null) {
+  formatTime = formatTime.replace(/\-/g, "%2D");
+} //replace(/\+/g,' ') browserTimeZone: `GMT${formatTime}`
 
 export const fetch_family_members =
   ({ userid }) =>
   async (dispatch) => {
+    let resp = await loginedApi.post("getcountrycode", 
+  {
+    "token": "token",
+    "version":"2.0",
+    "data": {browserTimeZone: `GMT${formatTime}`},
+    "requestType": 1058
+});
+const doctorscountrycode = resp.data.data;
+
     const res = await loginedApi.post("profile", {
       token: "C2MDVerificationToken",
       data: {
-        Os: platform,
-        useragent: userAgent,
         patientId: userid?.user.userId,
         isfrommobile: true,
-        Ipaddress: IP,
+        browserTimeZone: `GMT${formatTime}`,
+        Ipaddress: doctorscountrycode.Ipaddress,
+        useragent: userAgent,
+        Browser: browser.name + " " + browser.version,
+        appname: "C2MD Web",
+        Os: platform,
+        currency: doctorscountrycode.currency,
+        accessCountry: doctorscountrycode.Country,
       },
       requestType: "66",
     });
@@ -47,6 +70,15 @@ export const fetch_family_members =
 export const fetch_patient_medicalDetails =
   ({ userdata, date, userID }) =>
   async (dispatch) => {
+    let resp = await loginedApi.post("getcountrycode", 
+  {
+    "token": "token",
+    "version":"2.0",
+    "data": {browserTimeZone: `GMT${formatTime}`},
+    "requestType": 1058
+});
+const doctorscountrycode = resp.data.data;
+
     dispatch({ type: FETCH_PATIENT_MEDICAL_DATA_INIT_ACTION });
     const res = await loginedApi.post("profile", {
       requestType: "68",
@@ -55,15 +87,20 @@ export const fetch_patient_medicalDetails =
         patientId: date.relationship == "rel-self" ? userID : date.relationship,
         patientEmail: userdata?.userId,
         patientMobile: userdata?.mobileNumber,
-        browserTimeZone: "GMT%2B05:30",
-        accessCountry: "IN",
+        
         todayRate: userdata?.today_rate?.todayRate,
         currency: userdata?.today_rate?.currency,
         dayOfAppointment: date.appointmentDate,
         appointmentNavigation: "start",
-        Ipaddress: IP,
-        useragent: userAgent,
-        Os: platform,
+        browserTimeZone: `GMT${formatTime}`,
+			Ipaddress: doctorscountrycode.Ipaddress, 
+            useragent: userAgent,
+            Browser: browser.name+" "+browser.version,
+            appname: "C2MD Web",
+            Os: platform ,
+            currency: doctorscountrycode.currency,
+            accessCountry: doctorscountrycode.Country,
+        
       },
     });
 
@@ -75,6 +112,15 @@ export const fetch_patient_medicalDetails =
 export const fetch_Uploaded_files =
   ({ userId }) =>
   async (dispatch) => {
+    let resp = await loginedApi.post("getcountrycode", 
+    {
+      "token": "token",
+      "version":"2.0",
+      "data": {browserTimeZone: `GMT${formatTime}`},
+      "requestType": 1058
+  });
+  const doctorscountrycode = resp.data.data;
+  
     const res = await loginedApi.post("profile", {
       requestType: "60",
       token: "C2MDVerificationToken",
@@ -84,13 +130,16 @@ export const fetch_Uploaded_files =
           type: "All",
           limit: "10",
         },
-        browserTimeZone: "GMT%2B05:30",
-        accessCountry: "IN",
+        
         todayRate: "73.81225",
-        currency: "INR",
-        Ipaddress: IP,
-        useragent: userAgent,
-        Os: platform,
+        browserTimeZone: `GMT${formatTime}`,
+			Ipaddress: doctorscountrycode.Ipaddress, 
+            useragent: userAgent,
+            Browser: browser.name+" "+browser.version,
+            appname: "C2MD Web",
+            Os: platform ,
+            currency: doctorscountrycode.currency,
+            accessCountry: doctorscountrycode.Country,
       },
     });
 

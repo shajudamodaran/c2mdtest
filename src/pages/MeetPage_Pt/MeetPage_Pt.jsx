@@ -486,7 +486,10 @@ export const MeetPage_Pt = () => {
             //     }.bind(this),8000); 
             // }
             
-                
+                     setMessage(`Your session has been disconnected.`)
+                    setTimeout(function(){
+                        history.push("/dashboard");
+                 }.bind(this),15000);      
          console.log(event)
         }
       };
@@ -572,14 +575,14 @@ export const MeetPage_Pt = () => {
     useEffect(() => {
 
 
-        let sessionHelper = createSession({
-            apiKey: 'your-api-key',
-            sessionId: 'your-session-id',
-            token: 'your-session-token',
-            onStreamsUpdated: streams => { console.log({ streams }); }
-        });
+        // let sessionHelper = createSession({
+        //     apiKey: 'your-api-key',
+        //     sessionId: 'your-session-id',
+        //     token: 'your-session-token',
+        //     onStreamsUpdated: streams => { console.log({ streams }); }
+        // });
 
-        setSessionHelper(sessionHelper)
+        // setSessionHelper(sessionHelper)
 
     }, [])
 
@@ -661,7 +664,7 @@ export const MeetPage_Pt = () => {
                                         <li>
 
                                             <div className="d-flex flex-column align-items-start">
-                                                <span className="top-menu-headding">General Consultation</span>
+                                                <span className="top-menu-headding">Reason For Visit</span>
                                                 <span className="top-menu-caption">{connectionDetails ? connectionDetails.type : ""}</span>
 
                                             </div>

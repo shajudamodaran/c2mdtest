@@ -15,8 +15,22 @@ import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 const publicIp = require("public-ip");
 let IP = publicIp.v4();
+const { detect } = require('detect-browser');
+const browser = detect();
+
 let platform = window.navigator.platform;
 let userAgent = window.navigator.userAgent;
+let off = new Date().toString().replace(/GMT\+(\d\d)(\d\d)/, "GMT+$1:$2");
+let formatTime = off?.split("GMT")[1].split(" (")[0];
+let result = formatTime?.slice(1);
+if(formatTime.search(/\+/g)!=null)
+  {
+    formatTime=formatTime.replace(/\+/g,"%2B")
+  }else if(formatTime.search(/\-/g)!=null)
+  {
+    formatTime=formatTime.replace(/\-/g,"%2D")
+  }//replace(/\+/g,' ') browserTimeZone: `GMT${formatTime}`
+
 export const fetch_appoinment_questions = () => async (dispatch) => {
   const res = await axios.post(
     "https://run.mocky.io/v3/bb5a24bf-255b-4289-9432-7ff1ebee4320"
@@ -34,10 +48,11 @@ export const book_slot =
   async (dispatch) => {
     let data1 = {
       nationalId: data.nationalId,
-      insurance: {
-        provider: data.insurance?.provider,
-        membershipNo: data.insurance?.membershipNo,
-      },
+
+      // insurance: {
+      //   provider: data.insurance.provider,
+      //   membershipNo: data.insurance.membershipNo,
+      // },
       symptoms: data.symptoms,
       medicalConditions: data.medicalConditions,
       patientHeight: "100",
@@ -51,9 +66,9 @@ export const book_slot =
       appointmentFor: data.appointmentFor,
       reports: data.reports,
       blockId: "",
-      basicFees: data.basicFees.replace("INR ", ""),
+      basicFees: data.basicFees,
       surgerydetails: data.surgeries,
-      referenceId: "",
+      referenceId: data.referenceId,
       allergies: data.allergies,
       gender: data.gender,
       appointmentDate: data.appointmentDate,
@@ -67,8 +82,8 @@ export const book_slot =
       dentalInfo: "[]",
       bookingType: data.bookingType,
       fees: data.fees,
-      hospitalid: "",
-      typeofconsultation: "First time consultation",
+      hospitalid: data.hospitalId,
+      typeofconsultation: "",
       doctorId: data.doctorId,
       emergencyphone: data.emergencyphone,
       status: data.status,
@@ -76,45 +91,75 @@ export const book_slot =
       duration: data.duration,
       appointmentTime: data.appointmentTime,
       lastName: "",
+      typeofconsultation: data.typeofconsultation,
     };
     let response = [];
     let orderRes = [];
+    if (data.referenceId == "" && data.referenceId!="12345" ) {
+      if (!old_appointment?.info) {
+        
+          response = await loginedApi.post("/appointments", {
+          token: "C2MDVerificationToken",
+          data: {
+            IsfromMobile: true,
+            bookingFrom: data.bookingFrom,
+            todayRate: "74.27006",
+            Ipaddress: IP,
+            Os: platform,
+            browserTimeZone: `GMT${formatTime}`,
+            attachedReportFiles: "[]",
+            patientId: userr.userId,
+            appointmentDetails: data1,
+            actualRate: "74.27006",
+            useragent: userAgent,
+            Browser: browser.name+" "+browser.version,
+            appname: "C2MD Web",
+          },
+          requestType: "161",
+        });
 
-    if (!old_appointment?.info) {
+        console.log(response)
+        dispatch({
+          type: BOOKING_UPDATE_CONFIRMATION,
+          payload: response.data.data,
+        });
 
-      response = await loginedApi.post("/appointments", {
-        token: "C2MDVerificationToken",
-        data: {
-          IsfromMobile: true,
-          bookingFrom: data.bookingFrom,
-          todayRate: "74.27006",
-          Ipaddress: IP,
-          Os: platform,
-          browserTimeZone: "GMT%2B05:30",
-          attachedReportFiles: "[]",
-          patientId: userr.userId,
-          appointmentDetails: data1,
-          actualRate: "74.27006",
-          useragent: userAgent,
-        },
-        requestType: "161",
-      });
-
-
-      dispatch({
-        type: BOOKING_UPDATE_CONFIRMATION,
-        payload: response.data.data,
-      });
-
-      orderRes = response.data.data;
-    } else {
-      response = old_appointment;
-      orderRes = response;
-    }
+        orderRes = response.data.data;
+      } else {
+        response = old_appointment;
+        orderRes = response;
+      }} else 
+      {
+        response = await loginedApi.post("/requestordergeneration", {
+          token: "C2MDVerificationToken",
+          data: {
+            IsfromMobile: true,
+            bookingFrom: data.bookingFrom,
+            todayRate: "74.27006",
+            Ipaddress: IP,
+            Os: platform,
+            browserTimeZone: `GMT${formatTime}`,
+            attachedReportFiles: "[]",
+            doctorId: data.doctorId,
+            fees: data.fees,
+            appointmentId: data.referenceId,
+            appointmentDetails: data1,
+            actualRate: "74.27006",
+            useragent: userAgent,
+            Browser: browser.name+" "+browser.version,
+            appname: "C2MD Web",
+          },
+          requestType: "1023",
+        });
+        orderRes = response.data.data;
+        data1.bookingFrom = "Request";
+        data1.referenceId = orderRes.info;
+      }
 
     // let orderRes = response.data.data;
 
     if (data?.bookingFrom == "Request") {
+      
       let appinmentData = {
         appoinmentId: "",
         appoinmentFromTime: "",
@@ -238,6 +283,8 @@ export const signature_Verification =
         razorpay_payment_id: razorpayRes.razorpayPaymentId,
         Ipaddress: IP,
         Os: platform,
+        Browser: browser.name+" "+browser.version,
+        appname: "C2MD Web",
       },
       token: "C2MDVerificationToken",
       requestType: "1025",
@@ -273,9 +320,9 @@ export const BookingConfirmation =
           appointmentFor: orderData.appointmentFor,
           reports: orderData.reports,
           blockId: orderRes?.info,
-          basicFees: orderData.basicFees.replace("INR ", ""),
+          basicFees: orderData.basicFees,
 
-          referenceId: "",
+          referenceId: orderData.referenceId,
           surgerydetails: orderData.surgerydetails,
           allergies: orderData.allergies,
           symptoms: orderData.symptoms,
@@ -311,7 +358,7 @@ export const BookingConfirmation =
       Ipaddress: IP,
       transactionId: razorpayRes.razorpayPaymentId,
       blockId: orderRes?.info,
-      browserTimeZone: "GMT%2B05:30",
+      browserTimeZone: `GMT${formatTime}`,
       attachedReportFiles: "[]",
       Os: platform,
       useragent: userAgent,
@@ -320,6 +367,8 @@ export const BookingConfirmation =
       referenceId: "",
       todayRate: "74.27006",
       bookingFrom: orderData.bookingFrom,
+   Browser: browser.name+" "+browser.version,
+          appname: "C2MD Web",
     };
 
     const res = await loginedApi.post("payment", {
@@ -344,6 +393,7 @@ export const BookingConfirmation =
     }
   };
 
+  //
 export const addMember = (member) => async (dispatch) => {
   dispatch({ type: ADD_FAMILY, payload: member });
 };
@@ -404,7 +454,7 @@ export const BookingConfirmationOnRequest =
       Ipaddress: IP,
       transactionId: "",
       blockId: orderRes?.info,
-      browserTimeZone: "GMT%2B05:30",
+      browserTimeZone: `GMT${formatTime}`,
       attachedReportFiles: "[]",
       Os: platform,
       useragent: userAgent,
@@ -413,6 +463,8 @@ export const BookingConfirmationOnRequest =
       referenceId: "",
       todayRate: "74.27006",
       bookingFrom: orderData.bookingFrom,
+      Browser: browser.name+" "+browser.version,
+            appname: "C2MD Web",
     };
 
     const res = await loginedApi.post("payment", {

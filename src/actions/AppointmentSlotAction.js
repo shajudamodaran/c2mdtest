@@ -1,10 +1,20 @@
 import { APPOINTMENT_SLOT, APPOINTMENT_MORE_SLOT, APPOINTMENT_MORE_SLOT_RESET } from "./type";
 import loginedApi from "../apis";
 
+const { detect } = require('detect-browser');
+const browser = detect();
+let platform = window.navigator.platform;
+let userAgent = window.navigator.userAgent;
 let off = new Date().toString().replace(/GMT\+(\d\d)(\d\d)/, "GMT+$1:$2");
 let formatTime = off?.split("GMT")[1].split(" (")[0];
 let result = formatTime?.slice(1);
-
+if(formatTime.search(/\+/g)!=null)
+  {
+    formatTime=formatTime.replace(/\+/g,"%2B")
+  }else if(formatTime.search(/\-/g)!=null)
+  {
+    formatTime=formatTime.replace(/\-/g,"%2D")
+  }//replace(/\+/g,' ') browserTimeZone: `GMT${formatTime}`
 
 let countrycoderes;
 let doctorscountrycode;
@@ -41,8 +51,13 @@ export const fetch_appointmentSlot =
         browserTimeZone: `GMT${formatTime}`,
         todayRate: "73.49680",
         actualRate: "73.49680",
-        currency: doctorscountrycode.currency,
+        Ipaddress: doctorscountrycode.Ipaddress, 
+        useragent: userAgent,
+        Browser: browser.name+" "+browser.version,
+        appname: "C2MD Web",
+        Os: platform ,
         accessCountry: doctorscountrycode.Country,
+        currency: doctorscountrycode.currency,
       },
     });
 
@@ -90,8 +105,13 @@ export const fetch_appointmentSlot =
           browserTimeZone: `GMT${formatTime}`,
           todayRate: "73.49680",
           actualRate: "73.49680",
-          currency: doctorscountrycode.currency,
+          Ipaddress: doctorscountrycode.Ipaddress, 
+          useragent: userAgent,
+          Browser: browser.name+" "+browser.version,
+          appname: "C2MD Web",
+          Os: platform ,
           accessCountry: doctorscountrycode.Country,
+          currency: doctorscountrycode.currency,
         },
       });
       if (response.status === 200) {
@@ -117,8 +137,13 @@ export const fetch_appointmentSlot =
         data: {
           doctorId: doctorId,
           browserTimeZone: `GMT${formatTime}`,
-          currency: doctorscountrycode.currency,
+          Ipaddress: doctorscountrycode.Ipaddress, 
+          useragent: userAgent,
+          Browser: browser.name+" "+browser.version,
+          appname: "C2MD Web",
+          Os: platform ,
           accessCountry: doctorscountrycode.Country,
+          currency: doctorscountrycode.currency,
           todayRate: "",
         },
       });

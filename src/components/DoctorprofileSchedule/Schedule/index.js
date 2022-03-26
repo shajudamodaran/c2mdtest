@@ -41,7 +41,7 @@ function Schedule({ responsive, Typeofappointment, doctorId, DayCounter }) {
       setRequest(res[0].availableType == "On Request");
       Onload(dateFrom, res[0].Type);
       SetAppmtType(
-        `${res[0].Type} (${res[0].Amount} for upto ${res[0].Duration} Min)`
+        `${res[0].Type} (${res[0].Amount.split(".")[0]} for upto ${res[0].Duration} Min)`
       );
       setDoctorFee(res[0].Amount);
       dispatch(
@@ -302,7 +302,7 @@ function Schedule({ responsive, Typeofappointment, doctorId, DayCounter }) {
 
   const typeChange = (item) => {
     let dateFrom = moment().subtract(1, "d").format("DD MM YYYY");
-    SetAppmtType(`${item.Type} (${item.Amount} for upto ${item.Duration} Min)`);
+    SetAppmtType(`${item.Type} (${item.Amount.split(".")[0]} for up to ${item.Duration} Min)`);
     setSelectedType(item.Type);
     setRequest(item.availableType == "On Request");
     dispatch(
@@ -413,7 +413,7 @@ function Schedule({ responsive, Typeofappointment, doctorId, DayCounter }) {
                 >
                   {item.Type}{" "}
                   <span className={Style.SubText}>
-                    ({item.Amount} for upto {item.Duration} Min)
+                    ({item.Amount.split(".")[0]} for up to {item.Duration} Min)
                   </span>
                 </Dropdown.Item>
               );

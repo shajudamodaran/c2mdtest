@@ -51,7 +51,7 @@ function DoctorDetails() {
                   )}
                 </p>
                 <p className={Style.booking_summary_second_para}>
-                Total consultation fees - {appoinment_form.fees}
+                Total consultation fees - {appoinment_form.fees.split(".")[0]}
                 </p>
               </div>
             </Col>
@@ -64,7 +64,7 @@ function DoctorDetails() {
               Consultation fees
             </span>
             <span className={Style.booking_summary_right_aligned}>
-              {appoinment_form.doctorfees}
+              {appoinment_form.doctorfees.split(".")[0]}
             </span>
           </p>
           {appoinment_form?.c2mdfees && (
@@ -73,7 +73,7 @@ function DoctorDetails() {
                 Service fees
               </span>
               <span className={Style.booking_summary_right_aligned}>
-                {appoinment_form.c2mdfees}
+                {appoinment_form.c2mdfees.split(".")[0]}
               </span>
             </p>
           )}
@@ -84,7 +84,7 @@ function DoctorDetails() {
             <p>
               <span className={Style.booking_summary_left_aligned}>GST on service fees</span>
               <span className={Style.booking_summary_right_aligned}>
-                {appoinment_form.gstamount}
+                {appoinment_form.gstamount.split(".")[0]}
               </span>
             </p>
           )}

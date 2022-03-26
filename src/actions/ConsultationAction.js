@@ -1,5 +1,8 @@
 import { FETCH_CONSULTATION } from "./type";
 import loginedApi from "../apis";
+const { detect } = require('detect-browser');
+const browser = detect();
+
 let off = new Date().toString().replace(/GMT\+(\d\d)(\d\d)/, "GMT+$1:$2");
 let formatTime = off?.split("GMT")[1].split(" (")[0];
 let result = formatTime?.slice(1);
@@ -32,7 +35,10 @@ if(formatTime.search(/\+/g)!=null)
         browserTimeZone: `GMT${formatTime}`,
         currency: doctorscountrycode.currency,
         accessCountry: doctorscountrycode.Country,
+        Ipaddress: doctorscountrycode.Ipaddress, 
         todayRate: "",
+        Browser: browser.name+" "+browser.version,
+        appname: "C2MD Web",
         consultationId: consultationId,
         userType: userType,
       },
@@ -67,7 +73,10 @@ if(formatTime.search(/\+/g)!=null)
         browserTimeZone: `GMT${formatTime}`,
         currency: doctorscountrycode.currency,
         accessCountry: doctorscountrycode.Country,
+        Ipaddress: doctorscountrycode.Ipaddress, 
         todayRate: "",
+        Browser: browser.name+" "+browser.version,
+            appname: "C2MD Web",
         consultationId: consultationId,
         userType: userType,
       },

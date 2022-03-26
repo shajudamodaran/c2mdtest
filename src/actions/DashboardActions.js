@@ -1,9 +1,12 @@
 import moment from "moment";
 import loginedApi from "../apis";
+import authHeader from './AuthHeader';
 import { check_consultation } from "./MicrositeAction";
 import { DASHBOARD_DATA_PATIENT, FETCH_COUNTRYDATA } from "./type";
 
 const publicIp = require("public-ip");
+const { detect } = require('detect-browser');
+const browser = detect();
 let IP = publicIp.v4();
 let platform = window.navigator.platform;
 let userAgent = window.navigator.userAgent;
@@ -18,12 +21,21 @@ if (formatTime.search(/\+/g) != null) {
 }//replace(/\+/g,' ') browserTimeZone: `GMT${formatTime}`
 
 
+
 export const fetch_dashboardData = (patientId, email, phone) => async (dispatch) => {
 
   let today = moment(new Date()).format("DD-MMM-YYYY")
 
-
-
+ 
+    
+  let resp = await loginedApi.post("getcountrycode", 
+  {
+    "token": "token",
+    "version":"2.0",
+    "data": {"browserTimeZone":"GMT%2B05:30"},
+    "requestType": 1058
+});
+const doctorscountrycode = resp.data.data;
 
   let data = {
     patientId: patientId,
@@ -32,11 +44,13 @@ export const fetch_dashboardData = (patientId, email, phone) => async (dispatch)
     browserTimeZone: `GMT${formatTime}`,
     dayOfAppointment: moment(new Date).format('DD-MMM-yyy'),
     appointmentNavigation: "start",
-    currency: "INR",
-    accessCountry: "IN",
     todayRate: "74.45000",
-    Ipaddress: IP, useragent: userAgent,
-    Browser: "Chrome-95.0.4638.69",
+    currency: doctorscountrycode.currency,
+    accessCountry: doctorscountrycode.Country,
+    
+    Ipaddress: doctorscountrycode.Ipaddress, 
+    useragent: userAgent,
+    Browser: browser.name+" "+browser.version,
     Os: platform
   }
 
@@ -45,7 +59,7 @@ export const fetch_dashboardData = (patientId, email, phone) => async (dispatch)
     requestType: "51",
     token: "C2MDVerificationToken",
     data
-  });
+  },{ headers: authHeader() });
 
   if (response.status === 200) {
 
@@ -86,6 +100,7 @@ export const getCountryData = () => async (dispatch) => {
  
  
 
+  
   const res = await loginedApi.post("getcountrycode", 
   {
     "token": "token",
@@ -93,7 +108,6 @@ export const getCountryData = () => async (dispatch) => {
     "data": {"browserTimeZone":"GMT%2B05:30"},
     "requestType": 1058
 });
-
 
   if (res.status === 200) {
 

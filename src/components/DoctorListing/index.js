@@ -74,7 +74,7 @@ function DoctorListing({
 
 
    useEffect(() => {
-
+    setSpeciality("ALL")
       dispatch(
         fetch_doctors(
           speciality,

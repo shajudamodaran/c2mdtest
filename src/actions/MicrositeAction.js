@@ -1,6 +1,10 @@
 import { CHECK_CONSULTATION, FETCH_CLIENTDETAILS, FETCH_COUNTRYDATA } from "./type";
 import loginedApi from "../apis";
 import moment from "moment";
+const { detect } = require('detect-browser');
+const browser = detect();
+let platform = window.navigator.platform;
+let userAgent = window.navigator.userAgent;
 let off = new Date().toString().replace(/GMT\+(\d\d)(\d\d)/, "GMT+$1:$2");
 let formatTime = off?.split("GMT")[1].split(" (")[0];
 let result = formatTime?.slice(1);
@@ -8,8 +12,7 @@ if (formatTime.search(/\+/g) != null) {
   formatTime = formatTime.replace(/\+/g, "%2B")
 } else if (formatTime.search(/\-/g) != null) {
   formatTime = formatTime.replace(/\-/g, "%2D")
-}//replace(/\+/g,' ') browserTimeZone: GMT${formatTime}
-
+}//replace(/\+/g,' ') browserTimeZone: `GMT${formatTime}`
 
 export const fetch_clientDetails = (clinicId) => async (dispatch) => {
 
@@ -47,6 +50,14 @@ export const check_consultation = (userData) => async (dispatch) => {
 
 let today= moment(new Date()).format("DD-MMM-YYYY")
 
+let resp = await loginedApi.post("getcountrycode", 
+  {
+    "token": "token",
+    "version":"2.0",
+    "data": {browserTimeZone: `GMT${formatTime}`},
+    "requestType": 1058
+});
+const doctorscountrycode = resp.data.data;
 
   let paramAppoint =
   {
@@ -57,15 +68,19 @@ let today= moment(new Date()).format("DD-MMM-YYYY")
       "patientId": userData?.userId,
       "patientEmail": userData?.userId,
       "patientMobile": userData?.mobileNumber,
-      "browserTimeZone": "GMT%2B05:30",
+     
       "dayOfAppointment": today,
       "appointmentNavigation": "start",
-      "currency": "INR",
-      "accessCountry": "IN",
-      "todayRate": "74.45000",
-      "Ipaddress": {},
-      "useragent": "Mozilla/5.0 (Linux; Android 8.0.0; Nexus 6P Build/OPP3.170518.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.81 Mobile Safari/537.36", "Browser": "Chrome-95.0.4638.69", "Os": "Win32"
-    }
+       "todayRate": "74.45000",
+       browserTimeZone: `GMT${formatTime}`,
+			Ipaddress: doctorscountrycode.Ipaddress, 
+            useragent: userAgent,
+            Browser: browser.name+" "+browser.version,
+            appname: "C2MD Web",
+            Os: platform ,
+            currency: doctorscountrycode.currency,
+            accessCountry: doctorscountrycode.Country,
+   }
   }
 
 
