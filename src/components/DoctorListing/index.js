@@ -22,12 +22,15 @@ function DoctorListing({
   setShowFilter,
   setSearchDoctor,
   searchDoctor,
+  pagination, setPagination,
+  selectedSpeciality, setSpeciality
 }) {
   const locationData = useSelector((state) => state.doctorListing.location);
   const languageData = useSelector((state) => state.doctorListing.languagesSet);
   const hospitalData = useSelector((state) => state.doctorListing.hospitals);
 
   let doctorListingScroll = useRef()
+  let { speciality } = useParams();
 
   const [filterForm, setFilter] = useState({
     location: [],
@@ -40,16 +43,13 @@ function DoctorListing({
   const [filterKey, setFilterkey] = useState(null);
   const [loader, setLoader] = useState(false);
 
-  let [pagination,setPagination]=useState(0)
+  
 
-  let { speciality } = useParams();
   const specialityData = useSelector(
     (state) => state.specialityList.specialityList
   );
 
-  const [selectedSpeciality, setSpeciality] = useState(
-    speciality ? speciality : ""
-  );
+
   let { clinicId } = useParams();
 
   useEffect(() => {
@@ -73,15 +73,16 @@ function DoctorListing({
   const clientDetails = useSelector((state) => state.clientDetails);
 
 
-   useEffect(() => {
+  useEffect(() => {
     setSpeciality("ALL")
-      dispatch(
-        fetch_doctors(
-          speciality,
-          clientDetails != undefined ? clientDetails.clinicName : "",
-          pagination
-        )
-      );
+    dispatch(
+      fetch_doctors(
+        speciality,
+        clientDetails ? clientDetails.clinicName : "",
+        // clientDetails ? clientDetails.clinicurl : "",
+        pagination
+      )
+    );
   }, []);
 
   const colSpecialityDiv = classNames(
@@ -118,7 +119,8 @@ function DoctorListing({
         fetch_doctors(
 
           selectedSpeciality,
-          clientDetails != undefined ? clientDetails.clinicName : "",
+          clientDetails ? clientDetails.clinicName : "",
+          // clientDetails ? clientDetails.clinicurl : "",
           pagination
         )
       );
@@ -141,13 +143,12 @@ function DoctorListing({
     });
   const findCommonElements3 = (arr1, arr2) => {
 
-    if(arr1 && !Array.isArray(arr1))
-    {
-      arr1=arr1?.split(/[ ,]+/)
+    if (arr1 && !Array.isArray(arr1)) {
+      arr1 = arr1?.split(/[ ,]+/)
     }
 
-   
-   
+
+
     let test = Array.isArray(arr1);
     if (test) {
       return arr1?.some((item) => arr2.includes(item));
@@ -217,7 +218,7 @@ function DoctorListing({
     });
   };
 
-  let onScrollDoctorList = async()=>{
+  let onScrollDoctorList = async () => {
 
     const { scrollTop, scrollHeight, clientHeight } = doctorListingScroll.current;
 
@@ -225,21 +226,22 @@ function DoctorListing({
       // TO SOMETHING HERE
       console.log('Reached bottom')
 
-      
+      // if (FilterItem.length % 4 == 0) {
+
         // await setLoader(true);
         await dispatch(
           fetch_doctors(
             selectedSpeciality,
-            clientDetails != undefined ? clientDetails.clinicName : "",
-            pagination+10
+            clientDetails ? clientDetails.clinicName : "",
+            // clientDetails ? clientDetails.clinicurl : "",
+            pagination + 10
           )
         );
-        setPagination(pagination+10)
+        setPagination(pagination + 10)
         // await setLoader(false);
 
-      
 
-
+      // }
 
 
     }

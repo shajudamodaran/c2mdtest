@@ -28,11 +28,12 @@
   }
 
   .doctor_listing_scrolling {
-    overflow-y: scroll;
+    overflow-y: hidden;
     overflow-x: hidden;
     height: 860px;
     width: 100%;
     padding-right: 8px;
+    height: fit-content;
     .loader {
       text-align: center !important;
       color: #208ce1;

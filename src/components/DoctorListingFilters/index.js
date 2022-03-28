@@ -319,7 +319,7 @@ function DoctorListingFilters({
 
                      
                       return (
-                        <li className={filterKey.doctorName == item ? Style.SelectedIndex : "not-selected"} key={index} onClick={() => handleStarts(item)}>
+                        <li className={filterKey?.doctorName == item ? Style.SelectedIndex : "not-selected"} key={index} onClick={() => handleStarts(item)}>
                           {item}
                         </li>
                       );
