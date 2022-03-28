@@ -397,7 +397,7 @@ function Signup() {
               type="email"
               name="email"
               className={Style.signup_input_field}
-              placeholder="Enter Email Id"
+              placeholder="Enter eMail id"
               value={formik.values.email}
               onChange={(e) => {
                 setShowError({

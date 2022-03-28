@@ -31,19 +31,25 @@ function Signin() {
 
   const dispatch = useDispatch();
   const responseGoogle = (response) => {
+
+    let profileData=response?response.profileObj:null
+
+
     if (response?.profileObj) {
       dispatch(
         loginWithGoogle({ Data: response.profileObj, history: history })
       ).then((res) => {
         if (res.info) {
           setErrorMsg(res.info);
+
+          
         }
       });
     }
   };
   const [errorMsg, setErrorMsg] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
-  let [drSign,setDrSign]=useState(false)
+  let [drSign, setDrSign] = useState(false)
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
@@ -66,7 +72,7 @@ function Signin() {
         accessCountry: values.countryCode,
         password: values.password,
         history: history,
-        setDrSign:setDrSign
+        setDrSign: setDrSign
       })
     ).then((res) => {
 
@@ -150,23 +156,23 @@ function Signin() {
 
       <ConfirmModal
         showModal={drSign}
-         setShowModal={()=>{setDrSign(true)}}
-         onCancel={()=>{setDrSign(false)}}
-      
+        setShowModal={() => { setDrSign(true) }}
+        onCancel={() => { setDrSign(false) }}
+
       />
       <div className={Style.signin_form_align}>
         <h2 className={Style.signin_header_align}>Sign in to your account</h2>
 
         <div className="form-group">
           <p></p>
-          {/* <GoogleLogin
+          <GoogleLogin
             clientId="4919873164-em3btdice5bkpojvdgu0kenvgtl3or77.apps.googleusercontent.com"
             buttonText="Sign in with google"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             cookiePolicy={"single_host_origin"}
             className={Style.signin_google_button}
-          /> */}
+          />
         </div>
         {/* <div>
           <p></p>
@@ -224,12 +230,12 @@ function Signin() {
                     <label className={Style.signin_form_label}>
                       <div>
                         <div className={Style.signin_radiowrp}>
-                          <span className="ml-33">Sign in With</span>
+                          <span className="ml-33">Sign in with</span>
                           <div className={Style.signin_radioeach}>
                             <div>
                               <Form.Check
                                 inline
-                                label="Email"
+                                label="eMail"
                                 name="loginType"
                                 type="radio"
                                 id="email"
@@ -277,7 +283,7 @@ function Signin() {
                             `${touched.email && errors.email ? "is-invalid" : ""
                             }`
                           }
-                          placeholder="Enter Email Id"
+                          placeholder="Enter eMail id"
                         />
 
                         <ErrorMessage

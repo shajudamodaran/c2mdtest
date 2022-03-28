@@ -86,7 +86,7 @@ function Login() {
             {["radio"].map((type) => (
               <div key={`inline-${type}`}>
                 <Row xs="auto">
-                  <Col className="ml-33">Sign in With</Col>
+                  <Col className="ml-33">Sign in with</Col>
                   <Col xs={3}>
                     <Form.Check
                       inline

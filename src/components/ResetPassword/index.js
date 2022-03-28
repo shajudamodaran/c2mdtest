@@ -17,7 +17,48 @@ function ResetPassword() {
   const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
   const [emailform, SetForm] = useState(false);
 
-  const handleOnChange = (value, data, event, formattedValue) => {};
+  let [isEnabled,setEnabled]=useState(false)
+
+  const handleOnChange = (value, data, event, formattedValue) => { };
+
+
+  let onEmailChange = (e) => {
+
+    if (e.target.value.match(emailTest)) 
+    {
+      
+        setEnabled(true)
+    }
+    else{
+
+      setEnabled(false)
+
+    }
+
+  }
+
+
+  let onPhoneChange = (e) => {
+
+    var pattern = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+
+    let phonenumber=e.slice(2)
+
+    if (phonenumber.match(pattern)) 
+    {
+
+        setEnabled(true)
+    }
+    else{
+
+      setEnabled(false)
+
+    }
+
+  }
+
+
+
   return (
     <SignupLayout>
       <Formik
@@ -98,7 +139,7 @@ function ResetPassword() {
                         <div>
                           <Form.Check
                             inline
-                            label="Email"
+                            label="eMail"
                             name="group1"
                             type={type}
                             id={`inline-${type}-1`}
@@ -137,8 +178,8 @@ function ResetPassword() {
                       " " +
                       `${touched.email && errors.email ? "is-invalid" : ""}`
                     }
-                    placeholder="Enter Email Id"
-                    onChange={handleChange}
+                    placeholder="Enter eMail id"
+                    onChange={(e) => { handleChange(e); onEmailChange(e) }}
                   />
                   <ErrorMessage
                     component="div"
@@ -163,6 +204,8 @@ function ResetPassword() {
                       autoFormat={false}
                       countryCodeEditable={false}
                       onChange={(value, data, event, formattedValue) => {
+
+                        onPhoneChange(value)
                         setFieldValue("mobile", value);
                         setFieldValue("dial_code", data.dialCode);
                         setFieldValue(
@@ -227,6 +270,7 @@ function ResetPassword() {
                 </Button>
               ) : (
                 <Button
+                  disabled={!isEnabled}
                   variant="outline-secondary"
                   className={Style.signup_continue_btn}
                   type="submit"
@@ -234,6 +278,15 @@ function ResetPassword() {
                   Continue
                 </Button>
               )}
+
+              <div
+                variant="outline-secondary"
+                className={Style.back_to_login_link}
+                type="submit"
+                onClick={()=>{history.push('/signin')}}
+              >
+                Back to Sign in
+              </div>
             </div>
           </form>
         )}

@@ -132,11 +132,32 @@ function MicrositeHeader({ clientDetails }) {
               {/* <span>Download Our App :</span> */}
 
               {
-                clientDetails.androidapp ? <img src={Assets.google_play_icon} alt="appStoreIcon" /> : null
+                clientDetails.androidapp ? 
+                <a
+                href={
+                  clientDetails.androidapp
+                    ? clientDetails.androidapp
+                    : `https://play.google.com/store/apps/details?id=com.neevlabs.connect2mydoctorpatient&hl=en`
+                }
+                target="_blank"
+              >
+                <img src={Assets.google_play_icon} alt="appStoreIcon" />
+              </a>
+                 : null
               }
 
               {
-                clientDetails.iosapp ? <img src={Assets.app_store_icon} alt="appStoreIcon" /> : null
+                clientDetails.iosapp ? 
+                <a
+                href={
+                  clientDetails.iosapp
+                    ? clientDetails.iosapp
+                    : `https://apps.apple.com/au/app/connect2mydoctor-for-patients/id1490627746`
+                }
+                target="_blank"
+              >
+                <img src={Assets.app_store_icon} alt="appStoreIcon" />
+                </a> : null
               }
 
 

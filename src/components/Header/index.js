@@ -209,12 +209,13 @@ function Header({ showFilter, setShowFilter, searchDoctor, setSearchDoctor }) {
           <Nav defaultActiveKey="#Specialities">
           {width >= 991?
           <>
-            <Link className="first-child" onClick={()=>{setShowModal(true)}}>Contact Us</Link>
-            {/* <NavDropdown title="Help?" id="basic-nav-dropdown">
+            {/* <Link className="first-child" onClick={()=>{setShowModal(true)}}>Contact Us</Link> */}
+            <NavDropdown title="Help?" id="basic-nav-dropdown" style={{ width:" 124px"}}>
+            <NavDropdown.Item >Phone Number</NavDropdown.Item>
               <NavDropdown.Item >FAQ</NavDropdown.Item>
               <NavDropdown.Item >Tutorials</NavDropdown.Item>
               <NavDropdown.Item >Video tutorials</NavDropdown.Item>
-            </NavDropdown> */}
+            </NavDropdown>
             </>
             :<>
             <Link>Contact Us</Link>

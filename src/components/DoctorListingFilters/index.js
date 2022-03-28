@@ -174,11 +174,16 @@ function DoctorListingFilters({
   };
 
   const languagechange = (item, e) => {
-    if (item.value === "All") {
+
+
+    if (item.value === "All") 
+    {
       languageData.map((data) => {
         data.checked = e.target.checked;
       });
+
       delete filterKey?.languages;
+      
       if (e.target.checked) {
         setFilter({
           ...filterForm,

@@ -110,6 +110,7 @@ function VerificationCode() {
   };
 
   const verifyOtp = () => {
+    
     if (pages === "signup") {
       if (value === OTP || value === '78900') {
         dispatch(

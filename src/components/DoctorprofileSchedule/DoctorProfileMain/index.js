@@ -21,8 +21,32 @@ function DoctorProfilemain({ doctorDetail, doctorid }) {
   const awardsTab = useRef(null);
   const papersTab = useRef(null);
   const faqTab = useRef(null);
+  const scrollArea = useRef(null);
 
   const [showModal, setModal] = useState(false);
+
+  let [scrollAmount,setScrollAmount]=useState(0)
+
+  useEffect(() => {
+
+     
+
+    
+
+    // if (scrollAmount > 0) {
+    //     setActiveLeft(leftMenus[0].name)
+    // }
+
+    // if (scrollAmount > 371) {
+    //     setActiveLeft(leftMenus[1].name)
+    // }
+
+    // if (scrollAmount >= 774) {
+    //     setActiveLeft(leftMenus[2].name)
+    // }
+
+
+}, [scrollAmount])
 
   const hidemodal = () => {
     setModal(false);
@@ -99,7 +123,7 @@ function DoctorProfilemain({ doctorDetail, doctorid }) {
   return (
     <div className={Style.DoctorProfilemain}>
       <CustomTab tabs={TABS} activeTab={activeTab} handleTab={handleTab} />
-      <div className={Style.tab_content} >
+      <div className={Style.tab_content} ref={scrollArea} onScroll={(e) => { setScrollAmount(e.target.scrollTop) }}  >
         <div className={Style.Schedule} ref={scheduleTab}>
           <Schedule
             responsive={responsive}

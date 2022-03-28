@@ -9,13 +9,13 @@ body {
   border-radius: 3px;
   .signin_header_align {
     text-align: center;
-    font-size: 24px;
+    font-size: 25px;
     margin-bottom: 20px;
   }
   .siginin_mobile {
     :global .react-tel-input .form-control {
       position: relative;
-      font-size: 14px;
+      font-size: 16px;
       letter-spacing: 0.01rem;
       margin-top: 0 !important;
       margin-bottom: 0 !important;
@@ -159,6 +159,7 @@ body {
     border-radius: 3px !important;
     height: 50px;
     padding-left: 25px !important;
+    margin-bottom: 18px;
     &:hover{border: 1px solid #208ce1 !important;
       background: #f1f7fd !important;
       color: #208ce1 !important;
@@ -240,12 +241,12 @@ body {
   }
 
   .signin_form_label {
-    font-size: 14px;
+    font-size: 16px;
     color: #162d43;
     width: 100%;
     margin-bottom: 4px;
     label {
-      font-size: 14px;
+      font-size: 16px;
       color: #121212;
     }
     input:focus {
@@ -255,7 +256,7 @@ body {
       display: flex;
       span {
         margin-right: 15px;
-        font-size: 14px;
+        font-size: 16px;
         color: #121212;
       }
       :global .form-check-inline {
@@ -322,7 +323,7 @@ body {
   .signin_text_option {
     text-align: center;
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 13px;
     color: #b7c6d5;
   }
   .signin_text_option::after,
@@ -337,13 +338,13 @@ body {
     margin: 0 5px;
   }
   .signin_password_para {
-    font-size: 12px;
+    font-size: 13px;
     color: #aeaeae;
     margin: 5px 0 0;
   }
   .signin_password_forgot {
     color: black;
-    font-size: 14px;
+    font-size: 16px;
     text-align: right;
     margin-bottom: 25px;
     margin-top: -9px;
@@ -409,6 +410,7 @@ body {
       margin: auto;
       justify-content: center;
       display: flex !important;
+      margin-bottom: 15px;
     }
   }
 }

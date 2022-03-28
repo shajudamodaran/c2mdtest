@@ -116,7 +116,7 @@ function DoctorListing({
       await setLoader(true);
       await dispatch(
         fetch_doctors(
-          
+
           selectedSpeciality,
           clientDetails != undefined ? clientDetails.clinicName : "",
           pagination
@@ -140,6 +140,14 @@ function DoctorListing({
       }
     });
   const findCommonElements3 = (arr1, arr2) => {
+
+    if(arr1 && !Array.isArray(arr1))
+    {
+      arr1=arr1?.split(/[ ,]+/)
+    }
+
+   
+   
     let test = Array.isArray(arr1);
     if (test) {
       return arr1?.some((item) => arr2.includes(item));
@@ -212,13 +220,12 @@ function DoctorListing({
   let onScrollDoctorList = async()=>{
 
     const { scrollTop, scrollHeight, clientHeight } = doctorListingScroll.current;
-    
+
     if (scrollTop + clientHeight === scrollHeight) {
       // TO SOMETHING HERE
       console.log('Reached bottom')
 
-      if(FilterItem.length%4==0)
-      {
+      
         // await setLoader(true);
         await dispatch(
           fetch_doctors(
@@ -230,17 +237,17 @@ function DoctorListing({
         setPagination(pagination+10)
         // await setLoader(false);
 
-      }
       
 
-     
-     
+
+
+
     }
-    
+
   }
 
- 
-  
+
+
 
 
 
