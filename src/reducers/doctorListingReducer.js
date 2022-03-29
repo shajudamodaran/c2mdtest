@@ -11,8 +11,8 @@ export default (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {
     case DOCTOR_LISTING:
 
-      let newStet = payload.doctors.doctorDetails
-      let oldState = state.doctorList.doctorDetails
+      let newStet = payload.doctors?.doctorDetails
+      let oldState = state.doctorList?.doctorDetails
 
       if (oldState && (!payload.speciality||payload.speciality=="ALL" )) {
 

@@ -162,7 +162,25 @@
       font-weight: 400;
     }
   }
+
+  .pswrd_input_row {
+
+    display: flex;
+      flex-direction: row;
+      align-items: center;
+  }
+
+  .infoIcon{
+
+    margin-right: -18px;
+    margin-left: 5px;
+    cursor: pointer;
+
+  }
+
   .pswrd_input {
+
+
     .signup_input_field {
       display: flex;
       position: relative;
@@ -243,6 +261,11 @@
     }
     &:focus {
       box-shadow: none;
+    }
+
+    &:disabled {
+      background-color: #b6dfff;
+      border: 1px solid #b6dfff !important;
     }
   }
   .signup_checkbox_text {

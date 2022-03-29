@@ -106,13 +106,13 @@ export const fetch_doctors =
           { value: "Tamil", checked: false },
         ];
 
-        doctors.Hospitals.map((item) => {
+        doctors?.Hospitals.map((item) => {
           item && hospitals.push({ value: item, checked: false });
         });
-        doctors.citiesSet.map((item) => {
+        doctors?.citiesSet?.map((item) => {
           item && location.push({ value: item, checked: false });
         });
-        doctors.languagesSet.map((item) => {
+        doctors?.languagesSet.map((item) => {
           item && location.push({ value: item, checked: false });
         });
 

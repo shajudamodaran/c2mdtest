@@ -189,7 +189,10 @@ function DoctorProfilemain({ doctorDetail, doctorid }) {
                     <div className={Style.info} key={index}>
                       <img src={Assets.TickIcon} />
                       <p className={Style.content}>
-                        {item.course}-{item.institution}-({item.year})
+                      {/* {item.course}-{item.institution}-({item.year}) */}
+
+                        {`${item.course}`}{item.institution?` - ${item.institution}`:null}{item.year?` - (${item.year})`:null}
+                       
                       </p>
                     </div>
                   );

@@ -10,6 +10,7 @@ import CountryJson from "../../constants/country.json";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { ArrowLeftBlue } from "../../assets/Logos/Icons";
 
 function ResetPassword() {
   const re = /^[0-9\b]+$/;
@@ -54,6 +55,14 @@ function ResetPassword() {
       setEnabled(false)
 
     }
+
+  }
+
+
+
+  let onContinue = () =>{
+
+    
 
   }
 
@@ -134,7 +143,7 @@ function ResetPassword() {
                 {["radio"].map((type) => (
                   <div key={`inline-${type}`}>
                     <div className={Style.signin_radiowrp}>
-                      <span>Sign in With</span>
+                      <span>Sign in with</span>
                       <div className={Style.signin_radioeach}>
                         <div>
                           <Form.Check
@@ -285,7 +294,8 @@ function ResetPassword() {
                 type="submit"
                 onClick={()=>{history.push('/signin')}}
               >
-                Back to Sign in
+                <div className={Style.back_to_login_link_icon}><ArrowLeftBlue/></div>
+                Back
               </div>
             </div>
           </form>

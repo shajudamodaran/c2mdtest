@@ -23,6 +23,8 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
 import SighnupDropDown from "../SignupDropdown/SighnupDropDown";
+import { InformationIcon } from "../../assets/Logos/Icons";
+import { Tooltip } from "antd";
 
 
 function Signup() {
@@ -49,6 +51,67 @@ function Signup() {
   let reduxData = useSelector(state => state)
 
   const [passwordShown, setPasswordShown] = useState(false);
+
+
+
+  let checkForSubmitEnable = (formikValues) => {
+
+    var re = /\S+@\S+\.\S+/;
+
+    const phoneRegExp =
+      /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
+
+    // if( && formikValues.email?.test(re) && formikValues.mobileNumber?.slice(2).match(phoneRegExp) && formikValues.password)
+    // {
+    //     return false
+    // }
+    // else{
+    //   return true
+    // }
+
+    let responce = {
+      fullName: false,
+      email: false,
+      phone: false,
+      password: false
+    }
+
+
+    if (formikValues.fullName) {
+      responce.fullName = true
+    }
+
+
+    if (formikValues.email) {
+      if (formikValues.email.match(re)) {
+        responce.email = true
+      }
+    }
+
+    if (formikValues.mobileNumber) {
+      if (formikValues.mobileNumber.slice(2).match(phoneRegExp)) {
+        responce.phone = true
+      }
+    }
+
+    if (formikValues.password) {
+      responce.password = true
+    }
+
+
+    if (responce.fullName && responce.email && responce.phone && responce.password) {
+
+      return false
+
+    }
+    else {
+      return true
+    }
+
+
+
+  }
 
   const [ShowError, setShowError] = useState({
     emailError: false,
@@ -136,23 +199,23 @@ function Signup() {
     validationSchema,
 
     onSubmit: (values) => {
-      
+
       console.log(ShowError)
       if (!ShowError.emailError && !ShowError.mobileError) {
         history.push({
           pathname: "/signup/verify",
           state: { detail: values, userType: userType, page: "signup" },
         });
-     }
+      }
 
     },
 
   });
 
 
- 
 
-  
+
+
 
   const responseGoogle = (response) => {
     let Obj = response.profileObj;
@@ -212,7 +275,7 @@ function Signup() {
     let limit = formik.values?.dial_code?.length;
     let mobNo = formik.values?.mobileNumber?.slice(limit);
 
-    
+
     if (!formik.values?.mobileNumber?.slice(limit)) {
       setShowError({
         ...ShowError,
@@ -242,11 +305,10 @@ function Signup() {
           })
         )
           .then((res) => {
-            if (res?.info === "New User") 
-            {
+            if (res?.info === "New User") {
               setShowError({
                 ...ShowError,
-        
+
                 mobileError: false,
                 mobileerrorMsg: null
               });
@@ -268,14 +330,19 @@ function Signup() {
   };
   const handleOnChange = (value, data, event, formattedValue) => {
 
-    console.log(formik.values);
+
 
   };
 
   return (
     <SignupLayout>
       <form className={Style.signup_form_align} onSubmit={formik.handleSubmit}>
-        <h2 className={Style.signup_header_align}>Create your account</h2>
+        <h2 className={Style.signup_header_align}>Create your account
+          <span style={{
+            fontSize: "14px",
+            marginLeft: "5px"
+          }}>(For patient only)</span>
+        </h2>
         <div className={Style.signup_button_type_selection}>
           {/* {
             clinicdata ? null :
@@ -308,7 +375,7 @@ function Signup() {
                 )}
               </Button>
           } */}
-          <Button
+          {/* <Button
             variant="outline-secondary"
             className={`${buttonSelection}${userType == "Patient" && activeButton
               }`}
@@ -333,7 +400,7 @@ function Signup() {
                 className={Style.activeTick}
               />
             )}
-          </Button>
+          </Button> */}
         </div>
         <div className="form-group ">
           <p></p>
@@ -365,7 +432,7 @@ function Signup() {
             <input
               type="text"
               name="fullName"
-              placeholder="Enter Your Name"
+              placeholder="Enter your name"
               value={formik.values.fullName}
               onChange={(e) => {
                 if (e.target.value === "" || nameRegExp.test(e.target.value)) {
@@ -389,7 +456,7 @@ function Signup() {
           </p>
         </div>
         <div className={Style.form_group}>
-          <label className={Style.signup_form_label}>Email Address</label>
+          <label className={Style.signup_form_label}>eMail Id</label>
           <br />
 
           <p>
@@ -473,14 +540,12 @@ function Signup() {
 
                 onChange={(value, data, event, formattedValue) => {
 
-                  console.log(value,data, event, formattedValue);
-
 
                   formik.setFieldValue("mobileNumber", value);
                   formik.setFieldValue("dial_code", data.dialCode);
                   // formik.setFieldValue("code",{ name:  data.name, flag: getCountryFlagFromCountryCode(data.countryCode.toUpperCase()), code: data.countryCode.toUpperCase(), dial_code:  data.dialCode })
 
-                  
+
                   formik.setFieldValue(
                     "countryCode",
                     data.countryCode?.toUpperCase()
@@ -531,36 +596,43 @@ function Signup() {
           <br />
 
           <p className={Style.pswrd_input}>
-            <div
-              className={
-                Style.signup_input_field +
-                " " +
-                `${formik.touched.password && formik.errors.password
-                  ? "is-invalid"
-                  : ""
-                }`
-              }
-            >
-              <input
-                type={passwordShown ? "text" : "password"}
-                name="password"
-                placeholder="Enter Password"
-                value={formik.values.password}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                autoComplete="off"
-                className={Style.signupPasswordInput}
-              />
-              <img
-                className={Style.signupPasswordImg}
-                src={Assets.iconpassword}
-                alt=""
-                onClick={togglePasswordVisiblity}
-              />
+            <div className={Style.pswrd_input_row}>
+              <div
+                className={
+                  Style.signup_input_field +
+                  " " +
+                  `${formik.touched.password && formik.errors.password
+                    ? "is-invalid"
+                    : ""
+                  }`
+                }
+              >
+                <input
+                  type={passwordShown ? "text" : "password"}
+                  name="password"
+                  placeholder="Enter Password"
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  autoComplete="off"
+                  className={Style.signupPasswordInput}
+                />
+                <img
+                  className={Style.signupPasswordImg}
+                  src={Assets.iconpassword}
+                  alt=""
+                  onClick={togglePasswordVisiblity}
+                />
+              </div>
+
+              <Tooltip placement="right" title={"A secure password consists of minimum 8 characters including 1 special character, 1 CAPITAL letter and 1 small letter"}>
+              <div className={Style.infoIcon}><InformationIcon/></div>
+              </Tooltip>
+
             </div>
-            {formik.touched.password && formik.errors.password ? (
+            {/* {formik.touched.password && formik.errors.password ? (
               <div className={Style.errors}>{formik.errors.password}</div>
-            ) : null}
+            ) : null} */}
           </p>
         </div>
         {userType === "Doctor" && (
@@ -620,6 +692,7 @@ function Signup() {
         <div className="col-md-12">
           <br />
           <Button
+            disabled={checkForSubmitEnable(formik.values)}
             onClick={formik.handleSubmit}
             variant="outline-secondary"
             className={Style.signup_continue_btn}
