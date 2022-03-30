@@ -26,7 +26,7 @@ function ImportantRead({
   return (
     <>
       <h3 className={Style.book_appointment_main_heading}>
-        Is this an Emergency?
+        Is this for an Emergency? <span className="mandatory">*</span>
       </h3>
       <Button
         variant="outline-secondary"
@@ -126,6 +126,8 @@ function ImportantRead({
         show={showModal}
         onHide={hidemodal}
         className={Style.patient_consent_modal_align}
+        backdrop="static"
+
       >
         <Modal.Body>
           <div className={Style.modalContent}>
@@ -146,6 +148,8 @@ function ImportantRead({
         >
           Go to Dashboard
         </Button>
+
+        <div onClick={hidemodal} className={Style.not_emergency_back}>Not an emergency</div>
       </Modal>
     </>
   );

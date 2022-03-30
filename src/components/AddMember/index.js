@@ -117,6 +117,11 @@ function AddMember({ setInnerPage, innerPage, setMemberMain }) {
           <p className={Style.error}>Please enter the name of the patient</p>
         )}
       </div>
+      
+
+      <AgeGender member={member} error={error} setMember={setMember} />
+
+
       <div className="form-group mb-spce">
         <label className={Style.book_appointment_label}>
           What is your relationship with this member?
@@ -143,7 +148,7 @@ function AddMember({ setInnerPage, innerPage, setMemberMain }) {
         )}
       </div>
 
-      <AgeGender member={member} error={error} setMember={setMember} />
+      
 
       <p className={Style.book_appointment_confirmation_paragraph}>
         By continuing, you confirm that you have the necessary consent to book

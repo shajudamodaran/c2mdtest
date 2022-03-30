@@ -134,7 +134,7 @@ function BookAppointmentQuestionare({setSummary}) {
             <h2 className={Style.book_appointment_header_align} data={progress}>
               {appoinment_form?.bookingType == "Request"
                 ? "Request an Appointment"
-                : "Book an Appointment"}
+                : "Book your appointment"}
             </h2>
 
         }

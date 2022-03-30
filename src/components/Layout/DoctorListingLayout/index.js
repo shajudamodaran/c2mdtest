@@ -46,7 +46,11 @@ function DoctorlistingLayout({ children, pagination, setPagination, selectedSpec
             pagination + 10
           )
         );
-        setPagination(pagination + 10)
+        if(setPagination)
+        {
+          setPagination(pagination + 10)
+        }
+       
         // await setLoader(false);
 
 

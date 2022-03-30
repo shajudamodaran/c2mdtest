@@ -18,9 +18,10 @@ const BookAppointmentQBox = ({
     (state) => state.bookAppoinment.appoinment_form
   );
 
-  console.log(appoinment_form?.bookingType, progress);
-
   let location=useLocation()
+
+
+  console.log(progress,innerPage);
 
 
   return (
@@ -34,7 +35,15 @@ const BookAppointmentQBox = ({
                 <img
                   src={Assets.previous_icon}
                   className={Style.book_appointment_previous_icon}
-                  onClick={progressDescrementer}
+                  onClick={()=>{
+                    if(innerPage>=1)
+                    {
+                      setInnerPage(innerPage - 1)
+                    }
+                    else{
+                      progressDescrementer()
+                    }
+                  }}
                 />
             )}
             {innerPage == 0 ? (

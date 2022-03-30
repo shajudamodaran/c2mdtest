@@ -15,67 +15,70 @@ if (formatTime.search(/\+/g) != null) {
 
 export const fetchForgotPassword =
   ({ values, userId }) =>
-  async (dispatch) => {
-    let resp = await loginedApi.post("getcountrycode", 
-  {
-    "token": "token",
-    "version":"2.0",
-    "data": {browserTimeZone: `GMT${formatTime}`},
-    "requestType": 1058
-});
-const doctorscountrycode = resp.data.data;
+    async (dispatch) => {
+      let resp = await loginedApi.post("getcountrycode",
+        {
+          "token": "token",
+          "version": "2.0",
+          "data": { browserTimeZone: `GMT${formatTime}` },
+          "requestType": 1058
+        });
+      const doctorscountrycode = resp.data.data;
+      // var hash = CryptoJS.SHA512(values.confirmPassword);
+      var hash = CryptoJS.SHA512("C2MD|" + values.confirmPassword);
 
-
-    // var hash = CryptoJS.SHA512(values.confirmPassword);
-    var hash = CryptoJS.SHA512("C2MD|" + values.confirmPassword);
-
-    const res = await loginedApi.post("updateForgotPassword", {
-      token: "C2MDVerificationToken",
-      data: {
-        password: hash.toString(),
-        userId: userId,
-        browserTimeZone: `GMT${formatTime}`,
-			Ipaddress: doctorscountrycode.Ipaddress, 
-            useragent: userAgent,
-            Browser: browser.name+" "+browser.version,
-            appname: "C2MD Web",
-            Os: platform ,
-            currency: doctorscountrycode.currency,
-            accessCountry: doctorscountrycode.Country,
-      },
-      requestType: 6,
-    });
-  };
+      const res = await loginedApi.post("updateForgotPassword", {
+        token: "C2MDVerificationToken",
+        data: {
+          password: hash.toString(),
+          userId: userId,
+          browserTimeZone: `GMT${formatTime}`,
+          Ipaddress: doctorscountrycode.Ipaddress,
+          useragent: userAgent,
+          Browser: browser.name + " " + browser.version,
+          appname: "C2MD Web",
+          Os: platform,
+          currency: doctorscountrycode.currency,
+          accessCountry: doctorscountrycode.Country,
+        },
+        requestType: 6,
+      });
+    };
 
 export const checkUserAvailability =
   ({ type, searchkey }) =>
-  async (dispatch) => {
-    let resp = await loginedApi.post("getcountrycode", 
-  {
-    "token": "token",
-    "version":"2.0",
-    "data": {browserTimeZone: `GMT${formatTime}`},
-    "requestType": 1058
-});
-const doctorscountrycode = resp.data.data;
+    async (dispatch) => {
+
+      let resp = await loginedApi.post("getcountrycode",
+        {
+          "token": "token",
+          "version": "2.0",
+          "data": { browserTimeZone: `GMT${formatTime}` },
+          "requestType": 1058
+        });
+      const doctorscountrycode = resp.data.data;
+
+      console.log({ type: type, searchkey: searchkey });
 
 
-    const response = await loginedApi.post("checkuserAvailablity", {
-      requestType: 5,
-      token: "C2MDVerificationToken",
-      data: { type: type, searchkey: searchkey,
-        browserTimeZone: `GMT${formatTime}`,
-			Ipaddress: doctorscountrycode.Ipaddress, 
-            useragent: userAgent,
-            Browser: browser.name+" "+browser.version,
-            appname: "C2MD Web",
-            Os: platform ,
-            currency: doctorscountrycode.currency,
-            accessCountry: doctorscountrycode.Country,
-       },
-    });
+      const response = await loginedApi.post("checkuserAvailablity", {
+        requestType: 5,
+        token: "C2MDVerificationToken",
+        data: {
+          type: type, searchkey: searchkey,
+          browserTimeZone: `GMT${formatTime}`,
+          Ipaddress: doctorscountrycode.Ipaddress,
+          useragent: userAgent,
+          Browser: browser.name + " " + browser.version,
+          appname: "C2MD Web",
+          Os: platform,
+          currency: doctorscountrycode.currency,
+          accessCountry: doctorscountrycode.Country,
+        },
+      });
 
-    if (response.status === 200) {
-      return response.data && response.data;
-    }
-  };
+     
+      if (response.status === 200) {
+        return response.data && response.data;
+      }
+    };

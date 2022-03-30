@@ -34,6 +34,7 @@
   border: 1.5px solid #208ce1;
   background: #f1f7fd;
   color: #208ce1;
+  font-weight: 500;
 }
 
 .book_appointment_important_read {
@@ -63,7 +64,7 @@
     font-size: 15px;
     font-weight: bold;
     letter-spacing: 0px;
-    color: #162d43;
+    color: #636363;
   }
   .book_appointment_body_heading {
     font-weight: normal;
@@ -76,7 +77,7 @@
     font-weight: normal;
     font-size: 13px;
     letter-spacing: 0px;
-    color: #8c9194;
+    color: #6e6e6e;
     opacity: 1;
     padding-left: 14px;
     margin-top: 8px;
@@ -114,7 +115,7 @@
   :global .modal-body {
     max-height: 430px;
     overflow-y: auto;
-    padding: 1rem 20px 1rem 0;
+    // padding: 1rem 20px 1rem 0;
     &::-webkit-scrollbar-track {
       -webkit-box-shadow: none;
       border-radius: 10px;
@@ -177,11 +178,29 @@
     color: #ffffff;
     margin-top: 15px;
     border: 1px solid #208ce1;
-    margin-bottom: 45px;
+    margin-bottom: 18px;
     &:hover {
       background: transparent;
       color: #208ce1;
     }
+  }
+}
+
+.not_emergency_back{
+  color: #208ce1;
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 45px;
+  font-size: 18px;
+  cursor: pointer;
+
+  &:hover{
+    
+    text-decoration: underline;
+
   }
 }
 @media screen and (max-width: 575px) {

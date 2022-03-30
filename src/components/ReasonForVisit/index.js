@@ -56,7 +56,7 @@ function ReasonForVisit({
   return (
     <>
       <h3 className={Style.visit_reason_main_heading}>
-        What is the reason for this visit?
+        What is the reason for this visit? <span className="mandatory">*</span>
       </h3>
       <div className={Style.visit_reason_search_input}>
         <img

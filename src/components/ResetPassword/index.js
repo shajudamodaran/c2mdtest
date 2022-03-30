@@ -5,12 +5,14 @@ import Button from "react-bootstrap/Button";
 import SignupLayout from "../Layout/SignupLayout";
 import Form from "react-bootstrap/Form";
 import { useHistory } from "react-router-dom";
-import { Formik, Field, ErrorMessage } from "formik";
+import { Formik, useFormik, Field, ErrorMessage } from "formik";
 import CountryJson from "../../constants/country.json";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { ArrowLeftBlue } from "../../assets/Logos/Icons";
+import { useDispatch } from "react-redux";
+import { checkUserAvailability } from "../../actions/ForgotPasswordAction";
 
 function ResetPassword() {
   const re = /^[0-9\b]+$/;
@@ -18,19 +20,23 @@ function ResetPassword() {
   const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
   const [emailform, SetForm] = useState(false);
 
-  let [isEnabled,setEnabled]=useState(false)
+  let dispatch = useDispatch()
 
-  const handleOnChange = (value, data, event, formattedValue) => { };
+  let [isEnabled, setEnabled] = useState(false)
+
+  const handleOnChange = (value, data, event, formattedValue) => {
+
+  };
+
 
 
   let onEmailChange = (e) => {
 
-    if (e.target.value.match(emailTest)) 
-    {
-      
-        setEnabled(true)
+    if (e.target.value.match(emailTest)) {
+
+      setEnabled(true)
     }
-    else{
+    else {
 
       setEnabled(false)
 
@@ -43,14 +49,13 @@ function ResetPassword() {
 
     var pattern = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
-    let phonenumber=e.slice(2)
+    let phonenumber = e.slice(2)
 
-    if (phonenumber.match(pattern)) 
-    {
+    if (phonenumber.match(pattern)) {
 
-        setEnabled(true)
+      setEnabled(true)
     }
-    else{
+    else {
 
       setEnabled(false)
 
@@ -60,12 +65,42 @@ function ResetPassword() {
 
 
 
-  let onContinue = () =>{
+  let onContinue = (values) => {
 
-    
+    let { loginType, email, mobile } = values;
+
+    console.log(loginType,values.mobile?.slice(2));
+
+    dispatch(
+      checkUserAvailability({
+        type: values.loginType,
+        searchkey: values.loginType == "email" ? values.email : values.mobile.slice(2),
+      })
+    ).then((res) => {
+
+      console.log(res);
+
+      if (res?.data.info) {
+
+        console.log("User not exist");
+
+      }
+      else {
+
+        console.log("User exist",res?.data);
+
+      }
+
+
+      // if (res?.data.otpvalue == "Email id not registerd") 
+      // {
+      //   console.log();
+      // } else {
+
+      // }
+    });
 
   }
-
 
 
   return (
@@ -93,6 +128,7 @@ function ResetPassword() {
           }
           return errors;
         }}
+
         initialValues={{
           email: "",
           mobile: "",
@@ -103,14 +139,16 @@ function ResetPassword() {
           code: { name: "India", flag: "🇮🇳", code: "IN", dial_code: "+91" },
         }}
         onSubmit={(values) => {
-          if (values.loginType === "mobile") {
-            history.push({
-              pathname: "/signup/verify",
-              state: { detail: values, page: "reset" },
-            });
-          } else {
-            SetForm(true);
-          }
+          // if (values.loginType === "mobile") {
+          //   history.push({
+          //     pathname: "/signup/verify",
+          //     state: { detail: values, page: "reset" },
+          //   });
+          // } else {
+          //   SetForm(true);
+          // }
+
+          onContinue(values);
         }}
       >
         {({
@@ -119,7 +157,8 @@ function ResetPassword() {
           setFieldValue,
           values,
           handleChange,
-          handleSubmit,
+          handleSubmit
+
         }) => (
           <form className={Style.reset_form_align} onSubmit={handleSubmit}>
             <h2 className={Style.reset_header_align}>Reset your password</h2>
@@ -143,7 +182,7 @@ function ResetPassword() {
                 {["radio"].map((type) => (
                   <div key={`inline-${type}`}>
                     <div className={Style.signin_radiowrp}>
-                      <span>Sign in with</span>
+                      <span>Sign in With</span>
                       <div className={Style.signin_radioeach}>
                         <div>
                           <Form.Check
@@ -283,6 +322,7 @@ function ResetPassword() {
                   variant="outline-secondary"
                   className={Style.signup_continue_btn}
                   type="submit"
+
                 >
                   Continue
                 </Button>
@@ -292,9 +332,9 @@ function ResetPassword() {
                 variant="outline-secondary"
                 className={Style.back_to_login_link}
                 type="submit"
-                onClick={()=>{history.push('/signin')}}
+                onClick={() => { history.push('/signin') }}
               >
-                <div className={Style.back_to_login_link_icon}><ArrowLeftBlue/></div>
+                <div className={Style.back_to_login_link_icon}><ArrowLeftBlue /></div>
                 Back
               </div>
             </div>
