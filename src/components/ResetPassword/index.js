@@ -81,12 +81,13 @@ function ResetPassword() {
       console.log(res);
 
       if (res?.data.info) {
-
+        let errors = {};
         console.log("User not exist");
+        errors.email ="This mailid not registerd with Us please check the Email Id"
 
       }
       else {
-
+        SetForm(true);
         console.log("User exist",res?.data);
 
       }
@@ -182,7 +183,7 @@ function ResetPassword() {
                 {["radio"].map((type) => (
                   <div key={`inline-${type}`}>
                     <div className={Style.signin_radiowrp}>
-                      <span>Sign in With</span>
+                      <span>Sign in with</span>
                       <div className={Style.signin_radioeach}>
                         <div>
                           <Form.Check

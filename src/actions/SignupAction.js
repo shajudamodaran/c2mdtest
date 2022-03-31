@@ -88,7 +88,14 @@ export const signup_action =
             payload: res.data.data,
           });
           localStorage.setItem("userData", response);
-          history.push("/mobiledashboard");
+          if (res.data?.data?.userType == "Patient") {
+            
+             if (history?.location?.state?.redirection) {
+              history.push(history?.location?.state?.redirection);
+            } else {
+              history.push("/dashboard");
+            }
+          }
         }
         return response;
       }
@@ -115,6 +122,7 @@ export const generate_OTP = (formData) => async (dispatch) => {
 export const signup_with_Google =
   ({ userType, Data, history }) =>
     async (dispatch) => {
+      console.log("Data",Data);
       const res = await loginedApi.post("signup", {
         requestType: 2,
         data: {
@@ -133,9 +141,10 @@ export const signup_with_Google =
           signupFrom: "c2md",
           Os: platform,
           firstName: Data.name,
+          socialProfileId:Data.googleId,
           clinicId: "20",
           Ipaddress: IP,
-          type: "",
+          type: "signUpGoogle",
           browserTimeZone: `GMT${formatTime}`,
           speciality: "",
           appname: "C2MD Patient",
@@ -145,6 +154,7 @@ export const signup_with_Google =
 
       if (res.data.data) {
         let response = res.data.data;
+       
 
         if (response.hasOwnProperty("info")) {
           // toast.error(response.info, {
@@ -158,7 +168,15 @@ export const signup_with_Google =
             payload: JSON.stringify(res.data.data),
           });
           localStorage.setItem("userData", response);
-          history.push("/DoctorListing");
+          if (res.data?.data?.userType == "Patient") {
+            
+            if (history?.location?.state?.redirection) {
+             history.push(history?.location?.state?.redirection);
+           } else {
+             history.push("/dashboard");
+           }
+         }
+          //history.push("/DoctorListing");
         }
         return response;
       }

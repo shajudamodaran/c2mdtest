@@ -41,6 +41,7 @@ export const loginAction =
     });
     const doctorscountrycode = resp.data.data;
 
+    console.log(backupData);
     var hash = CryptoJS.SHA512("C2MD|" + password);
     // var hash = CryptoJS.SHA512(password);
     const res = await loginedApi.post("login", {

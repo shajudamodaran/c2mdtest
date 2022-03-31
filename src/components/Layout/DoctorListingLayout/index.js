@@ -39,13 +39,13 @@ function DoctorlistingLayout({ children, pagination, setPagination, selectedSpec
         // if (FilterItem.length % 4 == 0) {
 
         // await setLoader(true);
-        await dispatch(
-          fetch_doctors(
-            selectedSpeciality,
-            clientDetails ? clientDetails.clinicurl : "",
-            pagination + 10
-          )
-        );
+        // await dispatch(
+        //   fetch_doctors(
+        //     selectedSpeciality,
+        //     clientDetails ? clientDetails.clinicurl : "",
+        //     pagination + 10
+        //   )
+        // );
         if(setPagination)
         {
           setPagination(pagination + 10)

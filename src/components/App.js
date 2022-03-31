@@ -53,7 +53,7 @@ function App() {
   return (
     <>
       {/* <Router basename={'/ROOT/'}> */}
-      <Router basename={"/demo/"}>
+      <Router basename={"/c2mydrnew/"}>
         <div>
           <Suspense fallback={<></>}>
             <ScrollToTop />

@@ -166,7 +166,7 @@ function Signin() {
         <div className="form-group">
           <p></p>
           <GoogleLogin
-            clientId="4919873164-em3btdice5bkpojvdgu0kenvgtl3or77.apps.googleusercontent.com"
+            clientId="259504799474-3q2tvrsu5gf83rofjevpr5bpdpun3jii.apps.googleusercontent.com"
             buttonText="Sign in with google"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
@@ -174,10 +174,10 @@ function Signin() {
             className={Style.signin_google_button}
           />
         </div>
-        {/* <div>
+        {<div>
           <p></p>
           <p className={Style.signin_text_option}>Or</p>
-        </div> */}
+        </div> }
         <div>
           <Formik
             initialValues={{

@@ -35,7 +35,7 @@ function Signup() {
   let history = useHistory();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchSpeciality());
+    //dispatch(fetchSpeciality());
     dispatch(getCountryData())
   }, []);
   const speciality = useSelector(
@@ -407,9 +407,9 @@ function Signup() {
           {/* <Button variant="outline-secondary" className={Style.signup_google_btn} type="submit">
         Sign up with google
       </Button> */}
-          {/* <div className={Style.btn_google}>
+          { <div className={Style.btn_google}>
             <GoogleLogin
-              clientId="4919873164-em3btdice5bkpojvdgu0kenvgtl3or77.apps.googleusercontent.com"
+              clientId="259504799474-3q2tvrsu5gf83rofjevpr5bpdpun3jii.apps.googleusercontent.com"
               buttonText="Sign up with google"
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
@@ -417,13 +417,13 @@ function Signup() {
               className={Style.gBtn}
               disabled={false}
             />
-          </div> */}
+          </div> }
         </div>
         {errorMsg != "" && <p className={Style.errors}>{errorMsg}</p>}
-        {/* <div>
+        {<div>
           <p></p>
           <p className={Style.signup_text_option}>Or</p>
-        </div> */}
+        </div> }
         <div className={Style.form_group}>
           <label className={Style.signup_form_label}>Full Name</label>
           <br />
@@ -463,7 +463,7 @@ function Signup() {
             <input
               type="email"
               name="email"
-              className={Style.signup_input_field}
+             
               placeholder="Enter eMail id"
               value={formik.values.email}
               onChange={(e) => {
