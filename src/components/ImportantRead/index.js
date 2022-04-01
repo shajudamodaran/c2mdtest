@@ -122,6 +122,10 @@ function ImportantRead({
         </Accordion.Item>
       </Accordion>
 
+
+      <div style={{marginTop:"8px"}}> <span className="mandatory" style={{fontSize:"14px"}}>* </span> - Mandatory</div>
+     
+
       <Modal
         show={showModal}
         onHide={hidemodal}

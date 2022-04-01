@@ -114,6 +114,15 @@ select {
 .mb-spce {
   margin-bottom: 20px;
 }
+
+.period{
+
+  margin-bottom: 15px;
+  min-width: fit-content;
+  margin-left: 10px;
+  width: 100%;
+
+}
 .dropdown .dropdown-toggle {
   margin-bottom: 5px !important;
 }

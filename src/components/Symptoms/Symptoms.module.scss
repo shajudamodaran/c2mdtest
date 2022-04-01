@@ -248,6 +248,19 @@
   //   overflow-x: hidden;
   // }
 }
+
+.since_row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+
+  &.period{
+    margin-top: 9px;
+    background-color: red;
+  }
+}
 @media screen and (max-width: 575px) {
   .add_medicine_medicine_details {
     padding: 20px 15px 5px;

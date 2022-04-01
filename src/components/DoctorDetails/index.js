@@ -41,11 +41,17 @@ function DoctorDetails() {
             <Col xs={9}>
               <h4>{doctorDetails.doctorName}</h4>
               <div className={Style.cat_det}>
+                {
+                  console.log(doctorDetails)
+                }
                 <p className={Style.booking_summary_first_para}>
-                  <span>{doctorDetails.doctorSpecialityName}</span>
+                  {/* <span>{doctorDetails.doctorSpecialityName}</span> */}
                   {appoinment_form.appointmentTime != "" && (
                     <span>
-                      {moment(appoinment_form.appointmentDate,"DD-MMMM-YYYY").format("ddd")} at{" "}
+
+                      {console.log(appoinment_form.appointmentDate)}
+                      {/* {moment(appoinment_form.appointmentDate,"DD-MMMM-YYYY").format("ddd")} at{" "} */}
+                      {appoinment_form.appointmentDate} at{" "}
                       {appoinment_form.appointmentTime} (IST)
                     </span>
                   )}
@@ -64,7 +70,7 @@ function DoctorDetails() {
               Consultation fees
             </span>
             <span className={Style.booking_summary_right_aligned}>
-              {appoinment_form.doctorfees.split(".")[0]}
+              {appoinment_form.doctorfees?.split(".")[0]}
             </span>
           </p>
           {appoinment_form?.c2mdfees && (
@@ -77,9 +83,7 @@ function DoctorDetails() {
               </span>
             </p>
           )}
-          {
-            console.log()
-          }
+         
           {appoinment_form?.gstamount && appoinment_form?.gstamount.split(" ")[1]>0 &&  (
             <p>
               <span className={Style.booking_summary_left_aligned}>GST on service fees</span>
@@ -91,7 +95,7 @@ function DoctorDetails() {
           <p className={Style.booking_summary_top_border}>
             <span className={Style.booking_summary_left_total}>Total</span>
             <span className={Style.booking_summary_right_total}>
-              {appoinment_form.fees}
+              {appoinment_form.fees.split(".")[0]}
             </span>
           </p>
         </Accordion.Body>}

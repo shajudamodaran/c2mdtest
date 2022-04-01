@@ -140,7 +140,7 @@
       }
       .upload_reports_description {
         font-weight: normal;
-        font-size: 12px;
+        font-size: 13px;
         letter-spacing: 0px;
         color: #162d43;
         opacity: 0.66;
@@ -273,6 +273,10 @@
       margin-right: 20px;
     }
   }
+}
+
+.upload_reports_pdf_icon{
+  height: 38px;
 }
 @media screen and (max-width: 575px) {
   .upload_reports_accordion_align {
