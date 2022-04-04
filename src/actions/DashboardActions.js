@@ -69,7 +69,55 @@ const doctorscountrycode = resp.data.data;
 
   // return response.data.data.Details;
 };
+// Recent activities API integration
+export const fetch_recentactivities = (patientId, email, phone) => async (dispatch) => {
 
+  let today = moment(new Date()).format("DD-MMM-YYYY")
+
+ 
+    
+  let resp = await loginedApi.post("getcountrycode", 
+  {
+    "token": "token",
+    "version":"2.0",
+    "data": {"browserTimeZone":"GMT%2B05:30"},
+    "requestType": 1058
+});
+const doctorscountrycode = resp.data.data;
+
+  let data = {
+    patientId: patientId,
+    patientEmail: email,
+    patientMobile: phone,
+    browserTimeZone: `GMT${formatTime}`,
+    
+    todayRate: "74.45000",
+    currency: doctorscountrycode.currency,
+    accessCountry: doctorscountrycode.Country,
+    
+    Ipaddress: doctorscountrycode.Ipaddress, 
+    useragent: userAgent,
+    Browser: browser.name+" "+browser.version,
+    Os: platform
+  }
+
+
+  const response = await loginedApi.post("getrecentactivities", {
+    requestType: "1039",
+    token: "C2MDVerificationToken",
+    data
+  },{ headers: authHeader() });
+
+  console.log("recent activities----",response)
+
+  if (response.status === 200) {
+
+   // dispatch({ type: DASHBOARD_DATA_PATIENT, payload: response.data.data.data });
+  }
+
+
+  // return response.data.data.Details;
+};
 
 export const uploadReports = ({ formData, userData, dashboardData }) => async (dispatch) => {
 

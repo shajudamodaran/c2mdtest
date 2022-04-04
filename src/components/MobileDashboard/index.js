@@ -3,7 +3,7 @@ import { TittleCard } from '../../components/Styled/TittleCard'
 import DashButton from '../../components/Normal/DashButton/DashButton';
 import './mobiledashboard.css'
 import './customstyle.css'
-import { fetch_dashboardData, uploadReports } from "../../actions/DashboardActions";
+import { fetch_dashboardData, uploadReports, fetch_recentactivities } from "../../actions/DashboardActions";
 import { useDispatch, useSelector } from "react-redux";
 import RecentActivityListItem from "../Normal/RecentActivityListCard/RecentActivityListItem";
 import Footer from '../../components/Footer'
@@ -87,6 +87,7 @@ function MobileDashboard() {
     useEffect(() => {
 
         loadInitialData()
+        loadrecentactivitest();
 
         try {
 
@@ -118,6 +119,13 @@ function MobileDashboard() {
 
     let loadInitialData = () => {
         dispatch(fetch_dashboardData(
+            userData?.profileId,
+            userData?.userName,
+            userData?.mobileNumber
+        ))
+    }
+    let loadrecentactivitest = () => {
+        dispatch(fetch_recentactivities(
             userData?.profileId,
             userData?.userName,
             userData?.mobileNumber
