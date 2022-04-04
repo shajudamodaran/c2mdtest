@@ -196,13 +196,13 @@ function Allergies({
                   <Accordion.Body>
                     <div className="form-group">
                       <label className={Style.period_accordion_label}>
-                        Allergy Name
+                      Allergent
                       </label>
                       <input
                         type="text"
                         name="allergen"
                         className={`${Style.period_accordion_input_field}`}
-                        placeholder={`Allergy Name`}
+                        placeholder={`Allergent`}
                         value={aller.allergen}
                         onChange={(e) => {
                           let newAllergies = [...allergies];
@@ -254,14 +254,14 @@ function Allergies({
           {showForm && (
             <div className={Style.add_medicine_medicine_details}>
               <div className="form-group">
-                <label className={Style.add_medicine_label}>Allergy Name</label>
+                <label className={Style.add_medicine_label}>Allergent</label>
                 <input
                   type="text"
                   name="allergen"
                   className={`${Style.add_medicine_input_field} ${
                     error.allergen && Style.inputError
                   }`}
-                  placeholder={`Allergy Name`}
+                  placeholder={`Allergent`}
                   value={allergiesForm.allergen}
                   onChange={(e) => {
                     setAllergiesForm({

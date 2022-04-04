@@ -18,6 +18,7 @@ function BookingSummary({
   useEffect(() => {
     document.querySelector("body").scrollTo(0, 0);
   }, []);
+
   const dispatch = useDispatch();
   const [showModal, setModal] = useState(false);
   const [patientConsentdata, setPatientConsent] = useState(false);
@@ -328,7 +329,7 @@ function BookingSummary({
             onClick={() => onsubmit()}
             disabled={!(patientConsentdata && tc)}
           >
-            Proceed To Payment
+            Proceed to payment
           </Button>
         )}
       </div>

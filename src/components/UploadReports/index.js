@@ -29,8 +29,8 @@ function UploadReports({
 
   const [fileItem, setFileName] = useState([]);
   const [uploads, setUploads] = useState(appoinment_form?.reportsArray);
-  const [selectedFiles,setSelectedFiles] = useState(appoinment_form.selectedFiles?appoinment_form.selectedFiles:[]);
-// console.log(selectedFiles,"this is aupted")
+  const [selectedFiles, setSelectedFiles] = useState(appoinment_form.selectedFiles ? appoinment_form.selectedFiles : []);
+  // console.log(selectedFiles,"this is aupted")
   useEffect(() => {
     dispatch(fetch_Uploaded_files({ userId: userData?.user?.userId }));
     document.querySelector("body").scrollTo(0, 0);
@@ -57,14 +57,14 @@ function UploadReports({
   const Continue = () => {
     let NewArry = fileItem.push(appoinment_form.reports);
 
-    if (uploads?.length >= 1||selectFiles.length>=1) {
+    if (uploads?.length >= 1 || selectFiles.length >= 1) {
       setShowError(false);
       dispatch(
         Store_formData({
           ...appoinment_form,
           reports: fileItem?.toString(),
           reportsArray: uploads,
-          selectedFiles:selectedFiles
+          selectedFiles: selectedFiles
         })
       );
       progressIncrementer();
@@ -78,8 +78,7 @@ function UploadReports({
 
     let imgSize = parseFloat(file?.size / (1024 * 1024)).toFixed(2);
 
-    if (uploads.length <= 4) 
-    {
+    if (uploads.length <= 4) {
       if (imgSize < 5) {
         setError(false);
         const formData = new FormData();
@@ -107,16 +106,15 @@ function UploadReports({
               },
             ]);
           })
-          .catch((error) => {});
+          .catch((error) => { });
       } else {
         setError(true);
       }
-    } else 
-    {
+    } else {
       if (!toastOpen) {
         toast.error("Only 5 files are allowed to upload", {
           position: toast.POSITION.TOP_CENTER,
-          hideProgressBar:true,
+          hideProgressBar: true,
           onOpen: (props) => setToastOpen(true),
           onClose: (props) => setToastOpen(false),
         });
@@ -164,34 +162,56 @@ function UploadReports({
         // } else {
         // }
       })
-      .catch((error) => {});
+      .catch((error) => { });
   };
 
-  const selectFiles = (file,index) => {
-    if(selectedFiles.includes(file)){
+  const selectFiles = (file, index) => {
+
+    if (selectedFiles.includes(file)) {
       let x = [...selectedFiles]
-      x = x.filter(function(el) { return el.filename != file.filename })
+      x = x.filter(function (el) { return el.filename != file.filename })
       let y = [...fileItem]
-      y = y.filter(function(el) { return el.filename != file.filename })
+      y = y.filter(function (el) { return el.filename != file.filename })
       setSelectedFiles(x)
       setFileName(y)
 
-    }else{
-      setSelectedFiles([...selectedFiles,file])
+    } else {
+      setSelectedFiles([...selectedFiles, file])
       setFileName([...fileItem, file.filename]);
+      // setUploads([
+      //   ...uploads,
+      //   {
+      //     title: file.filename,
+      //     uploaded: moment().format("DD-MM-YYYY"),
+      //     status: true,
+      //     resName: res.data.data.fileName,
+      //   },
+      // ]);
     }
   }
 
-  const isSelected = (file) =>{
+  const isSelected = (file) => {
     // console.log(selectedFiles,file)
     // selectedFiles.filter(function(el) { return el.filename == file.filename })
-    if(selectedFiles.some(item => item.filename === file.filename&&item.uploadRefId==file.uploadRefId)){
+    if (selectedFiles.some(item => item.filename === file.filename && item.uploadRefId == file.uploadRefId)) {
       return true;
     }
     return false;
   }
 
-  console.log(uploadedData);
+  let convertExtensionToSmall = (name) => {
+
+    if (name) {
+
+      let format = name.split('.').pop().toLowerCase()
+      return format
+
+    }
+
+  }
+
+
+  console.log(uploads, selectedFiles);
 
   return (
     <>
@@ -209,9 +229,51 @@ function UploadReports({
             defaultActiveKey="1"
             className={`${Style.upload_reports_accordion_align}`}
           >
-            <Accordion.Item eventKey="0" className={`${uploads?.length==0&&Style.noFiles}`}>
+            <Accordion.Item eventKey="0" className={`${uploads?.length == 0 && Style.noFiles}`}>
+              <Accordion.Body>
+                {uploads &&
+                  uploads.map((item, index) => {
+                    return (
+                      <div
+                        className={
+                          Style.upload_reports_location_content_selected
+                        }
+                      >
+                        <span className={Style.upload_reports_count}>
+                          {index + 1}
+                        </span>
+                        <img
+                          src={getFileTypeFromFileName(item.title)}
+                          className={Style.upload_reports_pdf_icon}
+                        ></img>
+                        <span className={Style.upload_reports_dropdown_content}>
+                          <span>{item.name}</span>
+                          <span className={Style.upload_reports_description}>
+                            {item.title} - {item.uploaded}
+                          </span>
+                        </span>
+                        <figure>
+                          <img
+                            src={Assets.tick_icon}
+                            className={Style.upload_reports_tick_icon}
+                          ></img>
+                        </figure>
+                        <figure>
+                          <img
+                            src={Assets.deleteIcon}
+                            className={Style.upload_reports_Delete_icon}
+                            onClick={() => deleteUploads(item)}
+                          />
+                        </figure>
+                      </div>
+                    );
+                  })}
+
+               
+              </Accordion.Body>
+              
               <Accordion.Header>
-                <div className={Style.upload_button} onClick={()=>{fileInputRef.current.click()}}>
+                <div className={Style.upload_button} onClick={() => { fileInputRef.current.click() }}>
                   <input
                     type="file"
                     id="upload"
@@ -254,47 +316,9 @@ function UploadReports({
                   </span>
                 </span> */}
               </Accordion.Header>
-              <Accordion.Body>
-                {uploads &&
-                  uploads.map((item, index) => {
-                    return (
-                      <div
-                        className={
-                          Style.upload_reports_location_content_selected
-                        }
-                      >
-                        <span className={Style.upload_reports_count}>
-                          {index + 1}
-                        </span>
-                        <img
-                          src={getFileTypeFromFileName(item.title)}
-                          className={Style.upload_reports_pdf_icon}
-                        ></img>
-                        <span className={Style.upload_reports_dropdown_content}>
-                          <span>{item.name}</span>
-                          <span className={Style.upload_reports_description}>
-                            {item.title} - {item.uploaded}
-                          </span>
-                        </span>
-                        <figure>
-                          <img
-                            src={Assets.tick_icon}
-                            className={Style.upload_reports_tick_icon}
-                          ></img>
-                        </figure>
-                        <figure>
-                          <img
-                            src={Assets.deleteIcon}
-                            className={Style.upload_reports_Delete_icon}
-                            onClick={() => deleteUploads(item)}
-                          />
-                        </figure>
-                      </div>
-                    );
-                  })}
-              </Accordion.Body>
+
             </Accordion.Item>
-            <Accordion.Item eventKey="2" className={`${uploadedData?.length==0&&Style.noFiles}`}>
+            <Accordion.Item eventKey="2" className={`${uploadedData?.length == 0 && Style.noFiles}`}>
               <Accordion.Header>
                 <span className={Style.upload_reports_location_heading}>
                   <img
@@ -310,12 +334,11 @@ function UploadReports({
               <Accordion.Body>
                 {uploadedData &&
                   uploadedData.map((item, index) => {
-                    if(item.filename&&item.filename!=',')
-                    {
+                    if (item.filename && item.filename != ',') {
                       return (
                         <div
-                          className={`${Style.upload_reports_location_content_selected} ${isSelected(item)&&Style.active}`}
-                          onClick={()=>{selectFiles(item,index)}}
+                          className={`${Style.upload_reports_location_content_selected} ${isSelected(item) && Style.active}`}
+                          onClick={() => { selectFiles(item, index) }}
                         >
                           <span className={Style.upload_reports_count}>
                             {index + 1}
@@ -325,12 +348,12 @@ function UploadReports({
                             className={Style.upload_reports_pdf_icon}
                           ></img>
                           <span className={Style.upload_reports_dropdown_content}>
-                            <span>{item.filename}</span>
-                            <span className={Style.upload_reports_description}>
-                               {item.dateOfReport}
+                            <span style={{ textTransform: "none" }}>{item.filename.toLowerCase()}</span>
+                            <span className={Style.upload_reports_description} style={{ textTransform: "none" }}>
+                              {`Uploaded on - `}{item.dateOfReport}
                             </span>
                           </span>
-                          {isSelected(item)&&<figure>
+                          {isSelected(item) && <figure>
                             <img
                               src={Assets.tick_icon}
                               className={Style.upload_reports_tick_icon}
@@ -339,7 +362,7 @@ function UploadReports({
                         </div>
                       );
                     }
-                    
+
                   })}
 
                 {/* <div

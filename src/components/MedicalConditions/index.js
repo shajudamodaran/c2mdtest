@@ -96,7 +96,7 @@ function MedicalConditions({
     }
     setError(errorTemp);
 
-    if (!errorTemp.error || (medCondition.length > 0&&(errorTemp.medicalcondition&&errorTemp.numberofdays&&errorTemp.status&&errorTemp.sincePeriod))) {
+    if (!errorTemp.error || (medCondition.length > 0 && (errorTemp.medicalcondition && errorTemp.numberofdays && errorTemp.status && errorTemp.sincePeriod))) {
       setForm(false);
       setmedCondition(
         medConditionForm
@@ -232,7 +232,7 @@ function MedicalConditions({
   return (
     <>
       <h3 className={Style.symptoms_main_heading}>
-      Do you have any medical conditions?
+        Do you have any medical conditions?
       </h3>
       <YesNoButton
         yes_btn_Change={yes_btn_Change}
@@ -263,6 +263,9 @@ function MedicalConditions({
                         <label className={Style.add_medicine_label}>
                           Select Medical Conditions
                         </label>
+
+
+
                         <CustomDropDown
                           error={false}
                           DataItem={DataItem}
@@ -343,6 +346,11 @@ function MedicalConditions({
                 <label className={Style.add_medicine_label}>
                   Medical Conditions {medCondition.length + 1}
                 </label>
+
+                {
+                  console.log(DataItem.push("Other"))
+                }
+
                 <CustomDropDown
                   error={error.medicalcondition}
                   DataItem={DataItem}
@@ -363,27 +371,53 @@ function MedicalConditions({
                   </p>
                 )}
               </div>
-              <div className="form-group">
-                <label className={Style.add_medicine_label}>Since</label>
-                <input
-                  type="text"
-                  name="since"
-                  error={error.sincePeriod}
-                  className={`${Style.add_medicine_input_field} ${
-                    error.sincePeriod
+
+              {
+                medConditionForm?.medicalcondition == "Other" ?
+
+                  <div className="form-group">
+                    <label className={Style.add_medicine_label}>
+                      Other medical condition
+                    </label>
+                    <input
+                      type="text"
+                      name="since"
+                      className={`${Style.add_medicine_input_field}`}
+                      placeholder="Other medical condition"
+                      onBlur={(e) => { onMedicalCondtionChange2(e.target.value) }}
+
+                    // value={sym.sincePeriod}
+                    // onChange={(e) => {
+                    //   sinceOnChange(e, index);
+                    // }}
+                    />
+                  </div> : null
+
+              }
+
+              <div className={Style.add_medicine_align_contents}>
+
+                <div className={Style.add_medicine_align_col1}>
+                  <label className={Style.add_medicine_label}>Since</label>
+                  <input
+                    type="text"
+                    name="since"
+                    error={error.sincePeriod}
+                    className={`${Style.add_medicine_input_field} ${error.sincePeriod
                       ? Style.add_medicine_input_field_error
                       : ""
-                  }`}
-                  placeholder="Since"
-                  value={medConditionForm.sincePeriod}
-                  onChange={handleChange}
-                />
-                {error.sincePeriod && (
-                  <p className={Style.error}>Since is required</p>
-                )}
-              </div>
-              <div className="form-group  mb-spce">
-                <label className={Style.add_medicine_label}>Since Period</label>
+                      }`}
+                    placeholder="Since"
+                    value={medConditionForm.sincePeriod}
+                    onChange={handleChange}
+                  />
+                  {error.sincePeriod && (
+                    <p className={Style.error}>Since is required</p>
+                  )}
+                </div>
+
+                <div className={Style.add_medicine_align_col2}>
+                <label className={Style.add_medicine_label}>&nbsp;</label>
                 <CustomDropDown
                   error={error.numberofdays}
                   DataItem={duration}
@@ -408,8 +442,13 @@ function MedicalConditions({
                 )}
               </div>
 
+              </div>
+
+
+            
+
               <div className="form-group  mb-spce">
-                <label className={Style.add_medicine_label}>Status</label>
+                <label className={Style.add_medicine_label}>Current status</label>
                 <CustomDropDown
                   error={error.status}
                   DataItem={status}
@@ -417,11 +456,10 @@ function MedicalConditions({
                     setMedConditionForm({ ...medConditionForm, status: e });
                   }}
                   defaultPlaceH={medConditionForm.status != ""}
-                  defaultPlaceH={medConditionForm.status != ""}
                   selectedData={
                     medConditionForm.status != ""
                       ? medConditionForm.status
-                      : "Status"
+                      : "Current status"
                   }
                 />
                 {error.status && (

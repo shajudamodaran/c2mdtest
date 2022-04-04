@@ -2,7 +2,7 @@ import React from 'react';
 import { Dropdown } from "react-bootstrap";
 import Style from './CustomDropDown.module.scss';
 
-const CustomDropDown = ({DataItem,onClick,selectedData,error,defaultPlaceH}) => {
+const CustomDropDown = ({DataItem,onClick,selectedData,error,defaultPlaceH,className}) => {
     return (
         <Dropdown className={`${Style.CustomDropDown}`}>
             <Dropdown.Toggle className={error&&Style.error} id="dropdown-basic">

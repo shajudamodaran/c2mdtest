@@ -42,6 +42,9 @@ function Symptoms({
   const [symptomsForm, setSymptomsForm] = useState(symptomsInit);
   const [symptoms, setSymptoms] = useState(appoinment_form.symptoms);
 
+  let [otherSymptom, setOtherSymptom] = useState(null)
+
+
   const errorInit = {
     symptoms: false,
     sincePeriod: false,
@@ -103,7 +106,7 @@ function Symptoms({
     }
     setError(errorTemp);
 
-    if (!errorTemp.error || (symptoms.length > 0&&(errorTemp.symptoms&&errorTemp.numberofdays&&errorTemp.status&&errorTemp.sincePeriod))) {
+    if (!errorTemp.error || (symptoms.length > 0 && (errorTemp.symptoms && errorTemp.numberofdays && errorTemp.status && errorTemp.sincePeriod))) {
       setForm(false);
       setSymptoms(symptomsForm ? [symptomsForm] : [...symptoms, symptomsForm]);
       if (symptomsForm.symptoms != "") {
@@ -167,6 +170,7 @@ function Symptoms({
       });
     }
   };
+
   const sinceOnChange = (e, index) => {
     const re = /^[0-9\b]+$/;
     if (e.target.value === "" || re.test(e.target.value)) {
@@ -175,6 +179,9 @@ function Symptoms({
       setSymptoms(newSur);
     }
   };
+
+
+
   const symptomsOnChange = (e) => {
     let foundItem = symptoms.some((el) => el.symptoms === e);
 
@@ -186,6 +193,20 @@ function Symptoms({
       setSymptomsForm({ ...symptomsForm, symptoms: e });
     }
   };
+
+  const Other_symptomsOnChange = (e) => {
+    let foundItem = symptoms.some((el) => el.symptoms === e);
+
+    if (foundItem) {
+      toast.error(`${e}  Already Added`, {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } else {
+      setSymptomsForm({ ...symptomsForm, symptoms: e });
+    }
+  };
+
+
   const deleteSymptoms = (item, index) => {
     setShowModal(true);
     setDeleteItem(item);
@@ -219,6 +240,7 @@ function Symptoms({
             {symptoms?.map((sym, index) => {
               return (
                 <Accordion.Item key={index} eventKey={index}>
+
                   <div className={Style.medication_accordion_repeat}>
                     <Accordion.Header>
                       <span className={Style.medication_accordion_main_heading}>
@@ -233,6 +255,8 @@ function Symptoms({
                   </div>
                   <Accordion.Body>
                     <div className={Style.add_medicine_medicine_details}>
+
+
                       <div className="form-group mb-spce">
                         <label className={Style.add_medicine_label}>
                           Select Symptoms
@@ -253,6 +277,11 @@ function Symptoms({
                           }
                         />
                       </div>
+
+
+
+
+
                       <div className="form-group">
                         <label className={Style.add_medicine_label}>
                           Since
@@ -313,12 +342,17 @@ function Symptoms({
               );
             })}
           </Accordion>
+
           {showForm && (
             <div className={Style.add_medicine_medicine_details}>
               <div className="form-group mb-spce">
                 <label className={Style.add_medicine_label}>
                   Symptoms {symptoms.length + 1}
                 </label>
+
+                {
+                  console.log(DataItem.push("Other"))
+                }
                 <CustomDropDown
                   error={error.symptoms}
                   DataItem={DataItem}
@@ -337,46 +371,75 @@ function Symptoms({
                   </p>
                 )}
               </div>
-              <div className="form-group">
-                <label className={Style.add_medicine_label}>Since</label>
-                <input
-                  type="text"
-                  name="since"
-                  error={error.sincePeriod}
-                  className={`${Style.add_medicine_input_field} ${
-                    error.sincePeriod
+
+
+
+              {
+                symptomsForm?.symptoms == "Other" ?
+
+                  <div className="form-group">
+                    <label className={Style.add_medicine_label}>
+                      Other symptom
+                    </label>
+                    <input
+                      type="text"
+                      name="since"
+                      className={`${Style.add_medicine_input_field}`}
+                      placeholder="Other symptom"
+                      onBlur={(e) => { symptomsOnChange(e.target.value) }}
+
+                    // value={sym.sincePeriod}
+                    // onChange={(e) => {
+                    //   sinceOnChange(e, index);
+                    // }}
+                    />
+                  </div> : null
+
+              }
+
+
+              <div className={Style.add_medicine_align_contents}>
+                <div className={Style.add_medicine_align_col1}>
+                  <label className={Style.add_medicine_label}>Since</label>
+                  <input
+                    type="text"
+                    name="since"
+                    error={error.sincePeriod}
+                    className={`${Style.add_medicine_input_field} ${error.sincePeriod
                       ? Style.add_medicine_input_field_Error
                       : ""
-                  }`}
-                  placeholder="Since"
-                  value={symptomsForm.sincePeriod}
-                  onChange={handleChange}
-                />
-                {error.sincePeriod && (
-                  <p className={Style.error}>Since is required </p>
-                )}
-              </div>
-              <div className="form-group  mb-spce">
-                <label className={Style.add_medicine_label}>Since Period</label>
-                <CustomDropDown
-                  error={error.numberofdays}
-                  DataItem={duration}
-                  onClick={(e) => {
-                    setSymptomsForm({ ...symptomsForm, numberofdays: e });
-                  }}
-                  defaultPlaceH={symptomsForm.numberofdays != ""}
-                  selectedData={
-                    symptomsForm.numberofdays != ""
-                      ? symptomsForm.numberofdays
-                      : "Since Period"
-                  }
-                />
-                {error.numberofdays && (
-                  <p className={Style.error}>
-                    It would be appropriate to let the practitioner know how
-                    long have you felt this symptom
-                  </p>
-                )}
+                      }`}
+                    placeholder="Since"
+                    value={symptomsForm.sincePeriod}
+                    onChange={handleChange}
+                  />
+                  {error.sincePeriod && (
+                    <p className={Style.error}>Since is required </p>
+                  )}
+                </div>
+                <div className={Style.add_medicine_align_col2}>
+                  <label className={Style.add_medicine_label}>&nbsp;</label>
+                  <CustomDropDown
+                   
+                    error={error.numberofdays}
+                    DataItem={duration}
+                    onClick={(e) => {
+                      setSymptomsForm({ ...symptomsForm, numberofdays: e });
+                    }}
+                    defaultPlaceH={symptomsForm.numberofdays != ""}
+                    selectedData={
+                      symptomsForm.numberofdays != ""
+                        ? symptomsForm.numberofdays
+                        : "Since Period"
+                    }
+                  />
+                  {error.numberofdays && (
+                    <p className={Style.error}>
+                      It would be appropriate to let the practitioner know how
+                      long have you felt this symptom
+                    </p>
+                  )}
+                </div>
               </div>
 
               <div className="form-group  mb-spce">

@@ -34,7 +34,7 @@ function PatientConsent({ show, handleClose, setPatientConsent }) {
   }
 
   useEffect(() => {
-    getLocation();
+    // getLocation();
   }, []);
 
   return (

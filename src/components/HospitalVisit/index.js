@@ -52,7 +52,7 @@ function HospitalVisit({
   return (
     <>
       <h3 className={Style.hospital_visit_main_heading}>
-        Have you visited this practitioner/hospital/clinic before?
+        Have you visited this practitioner/ hospital/clinic before?
       </h3>
       <YesNoButton
         yes_btn_Change={yes_btn_Change}
@@ -64,15 +64,14 @@ function HospitalVisit({
         <>
           <div className="form-group">
             <label className={Style.hospital_visit_label}>
-              Enter you Patient ID/MRN
+              Enter your hospital id
             </label>
             <input
               type="text"
               name="hospitalId"
-              className={`${Style.hospital_visit_input_field} ${
-                error && Style.inputError
-              }`}
-              placeholder=""
+              className={`${Style.hospital_visit_input_field} ${error && Style.inputError
+                }`}
+              placeholder="Enter your hospital id"
               onChange={handleChange}
               value={hospitalVisit.patientId}
             />
@@ -84,6 +83,7 @@ function HospitalVisit({
           </div>
           <div className={`${Style.btn_floating} btn_floating`}>
             <Button
+              disabled={hospitalVisit.patientId ? false : true}
               className={Style.hospital_visit_continue_button}
               onClick={onSubmit}
             >
