@@ -75,6 +75,8 @@ function BookAppointmentQuestionare({setSummary}) {
 
   let reduxData = useSelector(state => state)
 
+  console.log("appoinment_form---",appoinment_form)
+
   const old_appointment = useSelector(
     (state) => state.bookAppoinment.appointmentResult
   );

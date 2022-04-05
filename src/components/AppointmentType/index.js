@@ -24,7 +24,7 @@ function AppointmentType({
         fees: item.Amount,
         duration: item.Duration,
         c2mdfees: item.c2mdFees,
-        basicFees: item.Amount,
+        basicFees: item.doctorfees.split(" ")[1],
       })
     );
     progressIncrementer();

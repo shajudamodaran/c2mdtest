@@ -66,7 +66,7 @@ function MobileSchedule({
       setRequest(res[0].availableType == "On Request");
       Onload(dateFrom, res[0].Type);
       SetAppmtType(
-        `${res[0].Type} (${res[0].doctorfees}) for upto ${res[0].Duration} Min`
+        `${res[0].Type} (${res[0].Amount.split(".")[0]}) for up to ${res[0].Duration} Min`
       );
       dispatch(
         Store_formData({
@@ -77,7 +77,7 @@ function MobileSchedule({
           fees: res[0].Amount,
           duration: res[0].Duration,
           c2mdfees: res[0].c2mdFees,
-          basicFees: res[0].Amount,
+          basicFees: res[0].doctorfees,
         })
       );
     });

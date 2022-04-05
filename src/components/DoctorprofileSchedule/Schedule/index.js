@@ -53,7 +53,7 @@ function Schedule({ responsive, Typeofappointment, doctorId, DayCounter }) {
           fees: res[0].Amount,
           duration: res[0].Duration,
           c2mdfees: res[0].c2mdFees,
-          basicFees: res[0].Amount,
+          basicFees: res[0].doctorfees.split(" ")[1],
         })
       );
     });

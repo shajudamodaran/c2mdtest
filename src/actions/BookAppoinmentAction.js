@@ -67,7 +67,7 @@ export const book_slot =
       appointmentFor: data.appointmentFor,
       reports: data.reports,
       blockId: "",
-      basicFees: data.basicFees,
+      basicFees: data.basicFees.split(" ")[1],
       surgerydetails: data.surgeries,
       referenceId: data.referenceId,
       allergies: data.allergies,
@@ -95,10 +95,13 @@ export const book_slot =
       typeofconsultation: data.typeofconsultation,
     };
 
+
     let response = [];
     let orderRes = [];
 
-    if (data.referenceId == "" && data.referenceId!="12345" ) {
+    console.log("------data",data)
+
+    if (data.referenceId == "") {
       
       if (!old_appointment?.info) {
         
@@ -132,7 +135,8 @@ export const book_slot =
       } else {
         response = old_appointment;
         orderRes = response;
-      }} else 
+      }
+    } else 
       {
         response = await loginedApi.post("/requestordergeneration", {
           token: "C2MDVerificationToken",
@@ -164,6 +168,8 @@ export const book_slot =
 
     if (data?.bookingFrom == "Request") {
       
+      
+      localStorage.setItem("RequestId",orderRes?.info)
       let appinmentData = {
         appoinmentId: "",
         appoinmentFromTime: "",
@@ -420,13 +426,13 @@ export const BookingConfirmationOnRequest =
           weightMeasurement: "kg",
           noOfBooking: 1,
           bookingFrom: orderData.bookingFrom,
-          reminderNumber: "%2B91 8157968993",
+          reminderNumber: "",
           appointmentFor: orderData.appointmentFor,
           reports: orderData.reports,
           blockId: orderRes?.info,
-          basicFees: orderData.basicFees.replace("INR ",""),
+          basicFees: orderData.basicFees,
           surgerydetails: orderData.surgeries,
-          referenceId: "123456",
+          referenceId: "",
           allergies: orderData.allergies,
           gender: orderData.gender,
           appointmentDate: orderData.appointmentDate,
@@ -440,10 +446,10 @@ export const BookingConfirmationOnRequest =
           dentalInfo: "[]",
           bookingType: orderData.bookingType,
           fees: orderData.fees,
-          hospitalid: "123456",
+          hospitalid: "",
           typeofconsultation: orderData.typeofconsultation,
           doctorId: orderData.doctorId,
-          emergencyphone: "%2B91 968754621",
+          emergencyphone: "",
           status: orderData.status,
           modeOfConsultation: "Video",
           duration: orderData.duration,
