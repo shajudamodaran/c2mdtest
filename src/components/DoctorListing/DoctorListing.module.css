@@ -38,11 +38,14 @@
 }
 
 .doctor_listing_topSection .doctor_listing_scrolling {
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
   height: 860px;
   width: 100%;
   padding-right: 8px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .doctor_listing_topSection .doctor_listing_scrolling .loader {

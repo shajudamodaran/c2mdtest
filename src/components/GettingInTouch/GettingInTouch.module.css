@@ -214,11 +214,10 @@
 .getting_touch_medicine_details {
   margin-top: 16.5px;
   width: 100%;
-  min-height: 266px;
   background: #eff8ff 0% 0% no-repeat padding-box;
   border-radius: 8px;
   opacity: 1;
-  padding: 32.52px 26.75px 15px 25px;
+  padding: 20px 26.75px 20px 25px;
 }
 
 .getting_touch_medicine_details .getting_touch_align_contents {

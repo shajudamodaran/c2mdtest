@@ -21,7 +21,7 @@
   border: none;
   border-radius: 5px;
   outline: none;
-  max-width: 406px;
+  height: 55px !important;
   width: 100%;
   color: #000;
   text-align: left;
@@ -31,14 +31,14 @@
   overflow: hidden;
   text-overflow: ellipsis;
   padding-right: 25px;
-  font-size: 14px;
+  font-size: 15px;
   color: #000234;
 }
 
 .Schedule .Select_wrapper :global .dropdown-toggle:after {
   position: absolute;
   right: 10px;
-  top: 20px;
+  top: 27px !important;
 }
 
 .Schedule .Select_wrapper .appointmentTypeTxt {
@@ -46,7 +46,7 @@
   color: #162d43;
   opacity: 1;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .Schedule .Select_wrapper .appointmentTypeTxt img {
@@ -58,7 +58,7 @@
   color: #162d43;
   opacity: 1;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 17px;
   margin-bottom: 10px;
   margin-top: 20px;
 }
@@ -151,7 +151,7 @@
   text-transform: capitalize;
   opacity: 1;
   font-weight: 600;
-  font-size: 17px;
+  font-size: 18px;
   margin-bottom: 0px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -176,7 +176,7 @@
   text-transform: capitalize;
   opacity: 1;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 13px;
   margin-bottom: 0px;
   cursor: pointer;
   -webkit-transition: all 0.5s ease;
@@ -223,11 +223,29 @@
   display: block;
 }
 
+.Schedule .Schedule_Bottom .SliderItem .Day_head_active {
+  color: #208ce1;
+  text-transform: capitalize;
+  opacity: 1;
+  font-weight: bold;
+  text-align: center;
+  font-size: 28px;
+  margin: 0;
+  position: relative;
+  z-index: 1000;
+}
+
+.Schedule .Schedule_Bottom .SliderItem .Day_head_active:hover {
+  color: #208ce1;
+  cursor: pointer;
+  display: block;
+}
+
 .Schedule .Schedule_Bottom .SliderItem .Day_text {
   color: #7a7b7e;
   text-transform: capitalize;
   opacity: 1;
-  font-size: 14px;
+  font-size: 15px;
   text-align: center;
 }
 

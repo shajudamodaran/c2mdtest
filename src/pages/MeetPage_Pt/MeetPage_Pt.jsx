@@ -14,7 +14,7 @@ import { ClipLoader, PuffLoader } from 'react-spinners';
 import { Radio, Input } from 'antd';
 import { getFileTypeFromFileName } from '../../Helpers/FileHelper';
 import { useParams } from "react-router-dom";
-
+import './meetpatient.css'
 const { OTSession, OTPublisher, OTStreams, OTSubscriber, createSession } = require('opentok-react');
 
 
@@ -30,17 +30,13 @@ var token_dummy = 'T1==cGFydG5lcl9pZD00NzM3Mjg5MSZzaWc9ODk2YzlmN2YyMDU4NGMxN2MzN
 let AppintmentDetails = ({ setSuperSubMenu, reports, setReports }) => {
 
     let [localFiles, setLocalFiles] = useState([])
-    let hiddenFileInput=useRef()
+    let hiddenFileInput = useRef()
 
     let hanleFileChange = (e) => {
 
         console.log("setting file == >", e.target.files['0']);
-         setLocalFiles([...localFiles, e.target.files['0']])
+        setLocalFiles([...localFiles, e.target.files['0']])
     }
-
-
-
-
 
 
 
@@ -49,10 +45,10 @@ let AppintmentDetails = ({ setSuperSubMenu, reports, setReports }) => {
         <div className="super-sub-menu-container">
             <div className="d-flex flex-row justify-content-start align-items-center back-button-supersubmenu">
 
-                <div style={{ cursor: "pointer" }} onClick={() => { setSuperSubMenu(null) }}>
+                {/* <div style={{ cursor: "pointer" }} onClick={() => { setSuperSubMenu(null) }}>
                     <ArrowLeft /> Appoinment Details
-                </div>
-           
+                </div> */}
+
             </div>
 
             <div className="white-container mt-3">
@@ -98,7 +94,7 @@ let AppintmentDetails = ({ setSuperSubMenu, reports, setReports }) => {
 
                                         <div className="report-header d-flex flex-row align-items-center justify-content-start">
 
-                                       
+
                                             <img className="icon me-2" src={getFileTypeFromFileName(each_file.name)} />
                                             <div className="name" >{each_file.name}</div>
                                         </div>
@@ -118,7 +114,7 @@ let AppintmentDetails = ({ setSuperSubMenu, reports, setReports }) => {
                 </div>
 
                 <input ref={hiddenFileInput} style={{ display: "none" }} type='file' onChange={hanleFileChange} className="white-container-button p-0" />
-                <button for="file-upload" className="white-container-button" onClick={()=>{hiddenFileInput.current.click()}}> <UploadIcon /> Upload a new file</button>
+                <button for="file-upload" className="white-container-button" onClick={() => { hiddenFileInput.current.click() }}> <UploadIcon /> Upload a new file</button>
 
             </div>
         </div>
@@ -134,7 +130,11 @@ let ViewNotes = ({ setSuperSubMenu, context }) => {
             <div className="d-flex flex-row justify-content-start align-items-center  back-button-supersubmenu " style={{ width: "100%" }}>
 
                 <div style={{ cursor: "pointer", fontWeight: "bold" }} onClick={() => { setSuperSubMenu(null) }}>
-                    <ArrowLeft /> {context}
+                    <ArrowLeft /> {context} <span style={{
+                        fontSize:"13px",
+                        fontWeight:"normal",
+                        marginLeft:"2px"
+                    }}>(read only)</span>
                 </div>
 
             </div>
@@ -211,11 +211,41 @@ let AddInvestigation = ({ setSuperSubMenu, setActiveLeft }) => {
 }
 
 
+export const PopupFaq = () => {
+
+    return (
+        <div className='popup_faq_container'>
+
+            <h3 className="title_faq"> 1. What is Connect2MyDoctor?</h3>
+            <p className='content_faq'>Connect2MyDoctor, an online platform serving patients and doctors by eliminating the boundaries
+                of quality healthcare via online video consultations, managing patientâ€™s self and family
+                medical records in a HIPAA secure server, syncing data from multiple sources - all stitched
+                together with intuitive user experience across computers, tablet and mobile devices.</p>
+
+
+            <h3 className={"title_faq"}>
+                {" "}
+                2. How can I access Connect2MyDoctor?
+            </h3>
+            <p>Connect2MyDoctor will be available across computers, smart phones and tablets. Our iPhone, iPad and Android apps are coming soon.</p>
+
+            <h3 className={"title_faq"}> 3. Can I contact a doctor Connect2MyDoctor during emergencies?</h3>
+            <p>NO. Patients should NOT use Connect2MyDoctor incase of any medical emergency. If you are having
+                a medical emergency, please contact your local emergency service.</p>
+
+
+
+        </div>
+    )
+
+}
+
+
+
 //popover content
 const content = (
     <div style={{ maxWidth: "500px" }}>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius perferendis doloribus quibusdam temporibus. Veritatis qui dolores incidunt dignissimos. Velit, laudantium eveniet. Ipsum sint pariatur voluptatibus!</p>
-
+        <PopupFaq />
     </div>
 );
 
@@ -262,7 +292,7 @@ export const MeetPage_Pt = () => {
 
     let [reportFiles, setReports] = useState([])
 
-    let {appointmentId}=useParams()
+    let { appointmentId } = useParams()
 
 
     console.log(appointmentId);
@@ -328,7 +358,7 @@ export const MeetPage_Pt = () => {
 
         // getConsultationDetails()
         fetch_consultation()
-        
+
     }, [])
 
 
@@ -388,30 +418,30 @@ export const MeetPage_Pt = () => {
             setMessage("Video has been enabled.\nYou will be able to see Doctor now.")
             setsubscriberProperties({ ...subscriberProperties, vedio: true });
         },
-        streamPropertyChanged:(event)=>{
+        streamPropertyChanged: (event) => {
             console.log("****streamPropertyChanged*****")
             console.log(event)
-          //  setDoctor(true)
+            //  setDoctor(true)
         }
     };
 
 
     const publisherEventHandlers = {
-        
+
         videoDisabled: event => {
             console.log('publisher video disabled!');
-            
+
         },
         videoEnabled: event => {
             console.log('Subscriber video enabled!');
-           
+
         },
-        streamPropertyChanged:(event)=>{
-            
+        streamPropertyChanged: (event) => {
+
         }
     };
 
-  
+
     const sessionEventspublisher = {
         sessionConnected: (event) => {
             console.log(event)
@@ -419,20 +449,20 @@ export const MeetPage_Pt = () => {
             sendSignal();
         },
         sessionDisconnected: () => {
-         
+
         },
-        streamPropertyChanged:(event)=>{
+        streamPropertyChanged: (event) => {
             console.log(event)
         }
-      };
-      
+    };
+
     const sessionEventssubscriber = {
         sessionConnected: (event) => {
-            
-          
-            
+
+
+
         },
-        streamCreated:(event)=>{
+        streamCreated: (event) => {
             console.log("streamCreated : ")
             console.log(event)
             setDoctor(true)
@@ -440,33 +470,33 @@ export const MeetPage_Pt = () => {
         sessionDisconnected: (event) => {
             console.log(event)
         },
-        streamPropertyChanged:(event)=>{
-           
-            if(event.stream.connection.id != event.stream.id && event.changedProperty == "hasAudio" && event.stream.name == "Doctor"){
-                if(event.newValue){
+        streamPropertyChanged: (event) => {
+
+            if (event.stream.connection.id != event.stream.id && event.changedProperty == "hasAudio" && event.stream.name == "Doctor") {
+                if (event.newValue) {
                     setMessage(`Audio has been enabled.\nYou will  be able to hear the Doctor now.`)
                     sendSignal();
-                }else{
+                } else {
                     setMessage(`Audio has been disabled.\nYou will not be able to hear the Doctor now.`)
                 }
             }
-            else if(event.stream.connection.id != event.stream.id && event.changedProperty == "hasAudio" && event.stream.name == "Guest"){
-                if(event.newValue){
+            else if (event.stream.connection.id != event.stream.id && event.changedProperty == "hasAudio" && event.stream.name == "Guest") {
+                if (event.newValue) {
                     setMessage(`Audio has been enabled.\nYou will  be able to hear the Guest now.`)
-                }else{
+                } else {
                     setMessage(`Audio has been disabled.\nYou will not be able to hear the Guest now.`)
                 }
             }
         },
-        streamDestroyed:(event)=>{
+        streamDestroyed: (event) => {
             setDoctor(null)
-               // setMessage(`The Doctor has either logged out or closed the window.\nPlease wait until the Doctor comes back.`)
-                //      setTimeout(function(){
-                //       setDoctor(null) 
-                //  }.bind(this),8000); 
+            // setMessage(`The Doctor has either logged out or closed the window.\nPlease wait until the Doctor comes back.`)
+            //      setTimeout(function(){
+            //       setDoctor(null) 
+            //  }.bind(this),8000); 
             // if(subsessionRef.current!=undefined)
             //     {
-                
+
             //         //  // When the session is disconnected
             //     subsessionRef.current.sessionHelper.session.on('signal:closeAppointment', function(event){
             //         console.log("Session disconnected...")
@@ -485,15 +515,15 @@ export const MeetPage_Pt = () => {
             //           setDoctor(null) 
             //     }.bind(this),8000); 
             // }
-            
-                     setMessage(`Your session has been disconnected.`)
-                    setTimeout(function(){
-                        history.push("/dashboard");
-                 }.bind(this),15000);      
-         console.log(event)
+
+            setMessage(`Your session has been disconnected.`)
+            setTimeout(function () {
+                history.push("/dashboard");
+            }.bind(this), 15000);
+            console.log(event)
         }
-      };
-    
+    };
+
 
     const sendSignal = () => {
         sessionRef.current.sessionHelper.session.signal(
@@ -549,14 +579,14 @@ export const MeetPage_Pt = () => {
 
 
     let leftOptions = {
-        patientInfo: [
-            {
-                name: "Appointment Details",
-                page: <AppintmentDetails setSuperSubMenu={setSuperSubMenu} reports={reportFiles} setReports={setReports} />
-            },
+        // patientInfo: [
+        //     {
+        //         name: "Appointment Details",
+        //         page: <AppintmentDetails setSuperSubMenu={setSuperSubMenu} reports={reportFiles} setReports={setReports} />
+        //     },
 
 
-        ]
+        // ]
     }
 
 
@@ -607,7 +637,7 @@ export const MeetPage_Pt = () => {
                 token: res?.tokenId,
                 doctorName: res?.doctorDetails.doctorName,
                 doctorimg: res?.doctorDetails.doctorImage,
-                type:res?.reasonforvisit,
+                type: res?.reasonforvisit,
             })
         });
     };
@@ -645,125 +675,163 @@ export const MeetPage_Pt = () => {
 
 
                 {
-                   
 
 
-                        <div className="vedio-container-left" >
 
-                            <div className="top-menu-container" >
-                                <div className={isTopMenu ? "top-menu" : "top-menu-hidden"} onClick={() => { setTopMenu(false) }}>
+                    <div className="vedio-container-left" >
 
-                                    <ul>
-                                        <li>
-                                            <div className="d-flex flex-column align-items-start">
-                                                <span className="top-menu-headding">Doctor</span>
+                        <div className="top-menu-container" >
+                            <div className={isTopMenu ? "top-menu" : "top-menu-hidden"} onClick={() => { setTopMenu(false) }}>
+
+                                <ul>
+                                    <li>
+                                        <div className="d-flex flex-column align-items-start">
+                                            <span className="top-menu-headding">Doctor</span>
+                                            <Tooltip placement="right" title={connectionDetails ? connectionDetails.doctorName : ""}>
                                                 <span className="top-menu-caption">{connectionDetails ? connectionDetails.doctorName : ""}</span>
-                                            </div>
-
-                                        </li>
-                                        <li>
-
-                                            <div className="d-flex flex-column align-items-start">
-                                                <span className="top-menu-headding">Reason For Visit</span>
-                                                <span className="top-menu-caption">{connectionDetails ? connectionDetails.type : ""}</span>
-
-                                            </div>
-                                        </li>
-
-                                        <li>
-
-                                            <div className="d-flex flex-column align-items-start">
-                                                <span className="top-menu-headding">Phone: </span>
-                                                <span className="top-menu-caption">{consultation ? consultation.mobileNumber : ""}</span>
-                                            </div>
-
-                                        </li>
-
-                                        <li>
-
-                                            <div className="d-flex flex-column align-items-start">
-                                                <span className="top-menu-headding">Emergency contact: </span>
-                                                <span className="top-menu-caption">Not Available</span>
-                                            </div>
-
-                                        </li>
-                                    </ul>
-
-                                </div>
-                            </div>
-
-                            <div className="streamer" onClick={() => {
-                                setActiveLeft({ ...activeLeft, status: false })
-                                setTopMenu(true)
-                            }}>
-                                {
-                                    !subscriberProperties.vedio ?
-
-                                        <div className="user-profile2">
-
-                                            <div className="user-profile2-container">
-                                                <img src={userdata.profileImage} className="user2-avatar" />
-
-                                                <div className="user-profile2-footer">
-                                                    {userdata.profileName}
-                                                    {/* <ThreeDotVerticalWhiteIcon /> */}
-                                                </div>
-
-                                            </div>
+                                            </Tooltip>
                                         </div>
 
-                                        : null
-                                }
+                                    </li>
+                                    <li>
+
+                                        <div className="d-flex flex-column align-items-start">
+                                            <span className="top-menu-headding">Reason For Visit</span>
+                                            <Tooltip placement="right" title={connectionDetails ? connectionDetails.type : ""}>
+                                                <span className="top-menu-caption">{connectionDetails ? connectionDetails.type : ""}</span>
+                                            </Tooltip>
+                                        </div>
+                                    </li>
+
+                                    <li>
+
+                                        <div className="d-flex flex-column align-items-start">
+                                            <span className="top-menu-headding">Phone: </span>
+                                            <Tooltip placement="right" title={connectionDetails ? connectionDetails.mobileNumber : ""}>
+                                                <span className="top-menu-caption">{consultation ? consultation.mobileNumber : ""}</span>
+                                            </Tooltip>
+                                        </div>
+
+                                    </li>
+
+                                    <li>
+
+                                        <div className="d-flex flex-column align-items-start">
+                                            <span className="top-menu-headding">Emergency contact: </span>
+                                            <Tooltip placement="right" title={"Not Available"}>
+                                                <span className="top-menu-caption">Not Available</span>
+                                            </Tooltip>
+                                        </div>
+
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+
+                        <div className="streamer" onClick={() => {
+                            setActiveLeft({ ...activeLeft, status: false })
+                            setTopMenu(true)
+                        }}>
+                            {
+                                !subscriberProperties.vedio ?
+
+                                    <div className="user-profile2">
+
+                                        <div className="user-profile2-container">
+                                            <img src={userdata.profileImage} className="user2-avatar" />
+
+                                            <div className="user-profile2-footer">
+                                                {userdata.profileName}
+                                                {/* <ThreeDotVerticalWhiteIcon /> */}
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    : null
+                            }
 
 
-                                {
+                            {
+                                connectionDetails.apiKey ?
+
+                                    <OTSession ref={subsessionRef} apiKey={connectionDetails.apiKey} sessionId={connectionDetails.sessionId} token={connectionDetails.token} eventHandlers={sessionEventssubscriber}>
+
+
+                                        <OTStreams>
+                                            <OTSubscriber
+                                                properties={subscriberPropertiess}
+                                                eventHandlers={subscriberEventHandlers}
+                                            />
+                                        </OTStreams>
+
+                                    </OTSession>
+
+                                    // <div className="user-profile2">
+                                    //     <div className="user-profile2-container">
+                                    //         <img src={consultation?.doctorDetails.doctorImage} className="user2-avatar" />
+
+                                    //         <div className="user-profile2-footer">
+                                    //         {consultation?.doctorDetails.doctorName}
+                                    //             {/* <ThreeDotVerticalWhiteIcon /> */}
+                                    //         </div>
+
+                                    //     </div>
+                                    // </div>
+                                    :
+                                    <div className="user-profile2">
+                                        <div className="user-profile2-container">
+                                            <img src={userdata.profileImage} className="user2-avatar" />
+
+                                            <div className="user-profile2-footer">
+                                                {userdata.profileName}
+                                                {/* <ThreeDotVerticalWhiteIcon /> */}
+                                            </div>
+
+                                        </div>
+                                    </div>
+                            }
+                        </div>
+
+
+
+                        <div className="user-card">
+
+                            {
+                                !publisherProperties.video ?
+
+                                    <div className="user-profile">
+                                        <div className="user-profile-container">
+                                            {
+                                                userdata.profileImage != null ? <img alt="img" src={userdata.profileImage ? userdata.profileImage : "https://cdn.pixabay.com/photo/2015/03/04/22/35/head-659652_960_720.png"} className="user-avatar" /> : ""
+                                            }
+
+
+                                            <div className="user-profile-footer">
+                                                {userdata.profileName}
+                                                {/* <ThreeDotVerticalWhiteIcon /> */}
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    :
+
                                     connectionDetails.apiKey ?
 
-                                        <OTSession ref={subsessionRef} apiKey={connectionDetails.apiKey} sessionId={connectionDetails.sessionId} token={connectionDetails.token} eventHandlers={sessionEventssubscriber}>
+                                        <OTSession ref={sessionRef} apiKey={connectionDetails.apiKey} sessionId={connectionDetails.sessionId} token={connectionDetails.token} eventHandlers={sessionEventspublisher}>
 
-
-                                            <OTStreams>
-                                                <OTSubscriber
-                                                    properties={subscriberPropertiess}
-                                                    eventHandlers={subscriberEventHandlers}
-                                                />
-                                            </OTStreams>
+                                            <OTPublisher properties={{
+                                                publishAudio: publisherProperties.audio,
+                                                publishVideo: publisherProperties.vedio,
+                                                // videoSource: true ? 'screen' : undefined
+                                            }}
+                                                eventHandlers={publisherEventHandlers}
+                                            />
 
                                         </OTSession>
-
-                                        // <div className="user-profile2">
-                                        //     <div className="user-profile2-container">
-                                        //         <img src={consultation?.doctorDetails.doctorImage} className="user2-avatar" />
-
-                                        //         <div className="user-profile2-footer">
-                                        //         {consultation?.doctorDetails.doctorName}
-                                        //             {/* <ThreeDotVerticalWhiteIcon /> */}
-                                        //         </div>
-
-                                        //     </div>
-                                        // </div>
                                         :
-                                        <div className="user-profile2">
-                                            <div className="user-profile2-container">
-                                                <img src={userdata.profileImage} className="user2-avatar" />
-
-                                                <div className="user-profile2-footer">
-                                                    {userdata.profileName}
-                                                    {/* <ThreeDotVerticalWhiteIcon /> */}
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                }
-                            </div>
-
-
-
-                            <div className="user-card">
-
-                                {
-                                    !publisherProperties.video ?
-
                                         <div className="user-profile">
                                             <div className="user-profile-container">
                                                 {
@@ -779,50 +847,19 @@ export const MeetPage_Pt = () => {
                                             </div>
                                         </div>
 
-                                        :
-
-                                        connectionDetails.apiKey ?
-
-                                            <OTSession ref={sessionRef} apiKey={connectionDetails.apiKey} sessionId={connectionDetails.sessionId} token={connectionDetails.token} eventHandlers={sessionEventspublisher}>
-
-                                                <OTPublisher properties={{
-                                                    publishAudio: publisherProperties.audio,
-                                                    publishVideo: publisherProperties.vedio,
-                                                    // videoSource: true ? 'screen' : undefined
-                                                }}
-                                                    eventHandlers={publisherEventHandlers}
-                                                />
-
-                                            </OTSession>
-                                            :
-                                            <div className="user-profile">
-                                                <div className="user-profile-container">
-                                                    {
-                                                        userdata.profileImage != null ? <img alt="img" src={userdata.profileImage ? userdata.profileImage : "https://cdn.pixabay.com/photo/2015/03/04/22/35/head-659652_960_720.png"} className="user-avatar" /> : ""
-                                                    }
-
-
-                                                    <div className="user-profile-footer">
-                                                        {userdata.profileName}
-                                                        {/* <ThreeDotVerticalWhiteIcon /> */}
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                }
-
-                            </div>
-
-
-
-
-
-
+                            }
 
                         </div>
 
-                        
+
+
+
+
+
+
+                    </div>
+
+
                 }
 
                 <div className="vedio-container-right">
@@ -838,58 +875,69 @@ export const MeetPage_Pt = () => {
                             {
                                 activeLeft.page === leftMenus[0] && activeLeft.status && superSubMenu == null ?
 
-                                    leftOptions[activeLeft.page] ?
+                                    // leftOptions[activeLeft.page] ?
 
-                                        leftOptions[activeLeft.page].map((obj, key) => {
-                                            return (
-                                                <li
-                                                    onClick={() => { setSuperSubMenu(obj.page); setPatientInfoActive(leftOptions.patientInfo[key].name) }}
-                                                    className={patientInfoActive === leftOptions.patientInfo[key].name ? "active-patient-info" : null}
-                                                >
-                                                    <RightArrowIcon />
-                                                    {obj.name}
-                                                </li>
-                                            )
-                                        })
-
-
-
-                                        : null
+                                    //     leftOptions[activeLeft.page].map((obj, key) => {
+                                    //         return (
+                                    //             <li
+                                    //                 onClick={() => { setSuperSubMenu(obj.page); setPatientInfoActive(leftOptions.patientInfo[key].name) }}
+                                    //                 className={patientInfoActive === leftOptions.patientInfo[key].name ? "active-patient-info" : null}
+                                    //             >
+                                    //                 <RightArrowIcon />
+                                    //                 {obj.name}
+                                    //             </li>
+                                    //         )
+                                    //     })
 
 
-                                    : activeLeft.page === leftMenus[1] && activeLeft.status && superSubMenu == null ?
+
+                                    //     : null
+
+                                    <AppintmentDetails/>
+
+                                    
+
+                                        : activeLeft.page === leftMenus[1] && activeLeft.status && superSubMenu == null ?
 
 
-                                        <div className="d-flex flex-column align-items-center ">
+                                            <div className="d-flex flex-column align-items-center ">
 
 
-                                            <ul className='test-sub-menu'>
+                                                <ul className='test-sub-menu'>
 
-                                                <li onClick={() => { setSuperSubMenu(<ViewNotes setSuperSubMenu={setSuperSubMenu} context="Chief Complaints" />) }}>
-                                                    <div className='d-flex flex-column'>
-                                                        <span className='small-tittle'>Chief Complaints</span>
-                                                    </div>
-                                                    <RightArrowIconOriginal />
-                                                </li>
+                                                    <li onClick={() => { setSuperSubMenu(<ViewNotes setSuperSubMenu={setSuperSubMenu} context="Chief Complaints" />) }}>
+                                                        <div className='d-flex flex-column'>
+                                                            <span className='small-tittle'>Chief Complaints</span>
+                                                        </div>
+                                                        <RightArrowIconOriginal />
+                                                    </li>
 
 
-                                                <li onClick={() => { setSuperSubMenu(<ViewNotes setSuperSubMenu={setSuperSubMenu} context="Relevant Points From History" />) }}>
-                                                    <div className='d-flex flex-column'>
-                                                        <span className='small-tittle'>Relevant Points From History</span>
+                                                    <li onClick={() => { setSuperSubMenu(<ViewNotes setSuperSubMenu={setSuperSubMenu} context="Relevant Points From History" />) }}>
+                                                        <div className='d-flex flex-column'>
+                                                            <span className='small-tittle'>Relevant Points from History</span>
 
-                                                    </div>
-                                                    <RightArrowIconOriginal />
-                                                </li>
+                                                        </div>
+                                                        <RightArrowIconOriginal />
+                                                    </li>
 
-                                                <li >
-                                                    <div className='d-flex flex-column'>
-                                                        <span className='small-tittle'>Diagnosis or Provisional Diagnosic</span>
+                                                    <li onClick={() => { setSuperSubMenu(<ViewNotes setSuperSubMenu={setSuperSubMenu} context="Diagnosis or Provisional Diagnosic" />) }} >
+                                                        <div className='d-flex flex-column'>
+                                                            <span className='small-tittle'>Diagnosis or Provisional Diagnosic</span>
 
-                                                    </div>
-                                                    <RightArrowIconOriginal />
-                                                </li>
+                                                        </div>
+                                                        <RightArrowIconOriginal />
+                                                    </li>
 
-                                                {/* <button className="medicines-list-add-btn" onClick={() => { setSuperSubMenu(<AddInvestigation setSuperSubMenu={setSuperSubMenu} setActiveLeft={handleSetLeft} />) }}>
+                                                    <li onClick={() => { setSuperSubMenu(<ViewNotes setSuperSubMenu={setSuperSubMenu} context="Examination and Lab findings" />) }} >
+                                                        <div className='d-flex flex-column'>
+                                                            <span className='small-tittle'>Examination and Lab findings</span>
+
+                                                        </div>
+                                                        <RightArrowIconOriginal />
+                                                    </li>
+
+                                                    {/* <button className="medicines-list-add-btn" onClick={() => { setSuperSubMenu(<AddInvestigation setSuperSubMenu={setSuperSubMenu} setActiveLeft={handleSetLeft} />) }}>
 
                                                             <div className="d-flex text-white flex-row align-items-center justify-content-center">
                                                                 <AddIcon /> Add investigation
@@ -897,55 +945,55 @@ export const MeetPage_Pt = () => {
                                                         </button> */}
 
 
-                                            </ul>
-
-
-
-                                        </div>
-
-
-
-                                        : activeLeft.page === leftMenus[2] && activeLeft.status && superSubMenu == null ?
-
-
-                                            <div className="d-flex flex-column align-items-center p-2  ">
-
-                                                <ul className='test-sub-menu'>
-
-
-                                                    <div className="white-container mt-0 invite-container">
-                                                        <div className="title">Invite with :</div>
-
-                                                        <div className="body">
-                                                            <Radio.Group>
-                                                                <Radio value={1}>E-Mail ID</Radio>
-                                                                <Radio value={2}>Mobile Number</Radio>
-
-                                                            </Radio.Group>
-
-                                                            <Input placeholder="E-Mail ID" />
-
-                                                            <button className="medicines-list-add-btn" onClick={() => { handleInviteOnClick() }}>
-
-                                                                <div className="d-flex text-white flex-row align-items-center justify-content-center">
-                                                                    Invite
-                                                                </div>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-
-
-
-
                                                 </ul>
-
-
 
 
 
                                             </div>
 
-                                            : superSubMenu
+
+
+                                            : activeLeft.page === leftMenus[2] && activeLeft.status && superSubMenu == null ?
+
+
+                                                <div className="d-flex flex-column align-items-center p-2  ">
+
+                                                    <ul className='test-sub-menu'>
+
+
+                                                        <div className="white-container mt-0 invite-container">
+                                                            <div className="title">Invite with :</div>
+
+                                                            <div className="body">
+                                                                <Radio.Group>
+                                                                    <Radio value={1}>E-Mail ID</Radio>
+                                                                    <Radio value={2}>Mobile Number</Radio>
+
+                                                                </Radio.Group>
+
+                                                                <Input placeholder="E-Mail ID" />
+
+                                                                <button className="medicines-list-add-btn" onClick={() => { handleInviteOnClick() }}>
+
+                                                                    <div className="d-flex text-white flex-row align-items-center justify-content-center">
+                                                                        Invite
+                                                                    </div>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+
+
+
+                                                    </ul>
+
+
+
+
+
+                                                </div>
+
+                                                : superSubMenu
                             }
 
                         </ul>
@@ -961,7 +1009,7 @@ export const MeetPage_Pt = () => {
             <div className="meet-footer">
 
                 <div className="footer-item left">
-                    <Popover content={content} placement="topLeft">
+                    <Popover content={content} placement="topLeft" style={{ zIndex: "1000000" }}>
 
                         <div style={{ cursor: "pointer" }}> <QuestIcon /></div>
 
@@ -1055,6 +1103,7 @@ export const MeetPage_Pt = () => {
 
     )
 }
+
 
 
 

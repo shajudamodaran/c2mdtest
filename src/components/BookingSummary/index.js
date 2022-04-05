@@ -8,6 +8,7 @@ import { book_slot } from "../../actions/BookAppoinmentAction";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import ConfirmModal from "./ConfirmModal";
+import { PropagateLoader, PulseLoader } from "react-spinners";
 
 function BookingSummary({
   progressIncrementer,
@@ -45,12 +46,13 @@ function BookingSummary({
 
   useEffect(() => {
     if (bookingConfirm) {
+
+      console.log("Booking Conf..................",bookingConfirm);
       progressIncrementer();
     }
   }, [bookingConfirm]);
 
-  const onsubmit = () => 
-  {
+  const onsubmit = () => {
 
     setPaymentLoading(true)
 
@@ -64,7 +66,7 @@ function BookingSummary({
     ).then((res) => {
 
 
-      setPaymentLoading(false)
+      // setPaymentLoading(false)
       console.log("book_slot API result ==> ", res);
       // progressIncrementer()
     });
@@ -125,8 +127,8 @@ function BookingSummary({
         <div className={Style.booking_desc}>
           Mobile :{" "}
           <label>
-            
-            {appoinment_form.reminderNumber.replace("%2B","+")}
+
+            {appoinment_form.reminderNumber.replace("%2B", "+")}
           </label>
         </div>
         {appoinment_form?.emergencyname && (
@@ -327,9 +329,21 @@ function BookingSummary({
           <Button
             className={Style.booking_summary_continue_button}
             onClick={() => onsubmit()}
-            disabled={!(patientConsentdata && tc)}
+            disabled={!(patientConsentdata && tc )  || paymentLoading}
           >
-            Proceed to payment
+            {
+              paymentLoading ?
+
+                <div className={Style.payment_loader}>
+                  Connecting &nbsp;
+                  <PulseLoader
+                    Style={{ width: 50 }}  loading={true} size={10} />
+                </div>
+
+                :
+                "Proceed to payment"
+            }
+
           </Button>
         )}
       </div>

@@ -28,6 +28,7 @@ const bookAppoinmentReducer = persistReducer(
   persistConfig1,
   bookAppoinmentReducer1
 );
+
 export default combineReducers({
   login: loginReducer,
   specialityList: specialityListReducer,

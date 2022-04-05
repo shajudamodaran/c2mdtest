@@ -51,6 +51,10 @@
         .booking_desc {
           font-size: 17px;
           margin-bottom: 5px;
+
+         
+
+
         }
 }
 .booking_summary_continue_button{
@@ -134,4 +138,39 @@
     :global .booking_summary_label {
       display: none;
     }
+  }
+
+  .payment_loader{
+
+   &:first-child{
+    &:first-child{
+      span{
+        &:first-child{
+          span{
+            background-color: white;
+          }
+        }
+        
+      }
+    }
+   }
+
+
+   &:hover{
+
+    &:first-child{
+      &:first-child{
+        span{
+          &:first-child{
+            span{
+              background-color: #208CE1;
+            }
+          }
+          
+        }
+      }
+     }
+
+   }
+
   }

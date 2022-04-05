@@ -23,7 +23,7 @@
 
 .signup_form_align .signup_header_align {
   text-align: center;
-  font-size: 24px;
+  font-size: 26px;
 }
 
 .signup_form_align .signup_button_type_selection {
@@ -46,7 +46,7 @@
   opacity: 1;
   background: #fff;
   margin-right: 10px !important;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -85,7 +85,7 @@
 
 .signup_form_align .siginup_mobileInput :global .react-tel-input .form-control {
   position: relative;
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 0.01rem;
   margin-top: 0 !important;
   margin-bottom: 0 !important;
@@ -121,7 +121,7 @@
 }
 
 .signup_form_align .signup_input_field {
-  padding: 0 16px;
+  padding: 0 15px;
   width: 100%;
   height: 50px;
   background: #f2f7fa;
@@ -198,6 +198,25 @@
   font-weight: 400;
 }
 
+.signup_form_align .pswrd_input_row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.signup_form_align .infoIcon {
+  margin-right: -18px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
 .signup_form_align .pswrd_input .signup_input_field {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -207,18 +226,18 @@
 }
 
 .signup_form_align .pswrd_input .signup_input_field input {
-  padding: 0 45px 0 16px;
+  padding: 0 45px 0 15px;
 }
 
 .signup_form_align .pswrd_input .signup_input_field .signupPasswordImg {
   position: absolute;
-  right: 16px;
+  right: 15px;
   top: 17px;
 }
 
 .signup_form_align .signup_mobile_input_field {
   border-left: outset;
-  padding: 0 16px;
+  padding: 0 15px;
   width: 100%;
   height: 50px;
   background: #f2f7fa;
@@ -295,8 +314,13 @@
           box-shadow: none;
 }
 
+.signup_form_align .signup_continue_btn:disabled {
+  background-color: #b6dfff;
+  border: 1px solid #b6dfff !important;
+}
+
 .signup_form_align .signup_checkbox_text {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: normal;
   letter-spacing: 0px;
   color: #162d43;
@@ -346,7 +370,7 @@
 }
 
 .signup_form_align .signup_form_label {
-  font-size: 14px;
+  font-size: 15px;
   color: #162d43;
   margin-bottom: 4px;
 }
@@ -426,7 +450,7 @@
 .errors {
   color: red;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   padding-top: 3px;
 }
 

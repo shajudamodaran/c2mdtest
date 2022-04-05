@@ -66,6 +66,13 @@
   margin-bottom: 5px;
 }
 
+.booking_summary_details_div .booking_desc label {
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .booking_summary_continue_button {
   width: 100%;
   height: 60px;
@@ -146,5 +153,13 @@ input[type="checkbox"] {
   :global .booking_summary_label {
     display: none;
   }
+}
+
+.payment_loader:first-child:first-child span:first-child span {
+  background-color: white;
+}
+
+.payment_loader:hover:first-child:first-child span:first-child span {
+  background-color: #208CE1;
 }
 /*# sourceMappingURL=BookingSummary.module.css.map */

@@ -70,11 +70,10 @@
 .booking_summary_accordion_align .booking_summary_header .booking_summary_span_heading .booking_summary_first_para span:nth-child(1) {
   margin-right: 10px;
   padding-right: 10px;
-  border-right: 1px solid #ccc;
 }
 
 .booking_summary_accordion_align .booking_summary_header .booking_summary_span_heading .booking_summary_first_para span:nth-child(2) {
-  width: 50%;
+  width: 100%;
 }
 
 .booking_summary_accordion_align .booking_summary_header .booking_summary_span_heading .booking_summary_second_para {

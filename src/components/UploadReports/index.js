@@ -269,9 +269,51 @@ function UploadReports({
                     );
                   })}
 
-               
+                  {
+                    console.log(selectedFiles,uploads)
+                  }
+
+                {selectedFiles &&
+                  selectedFiles.map((item, index) => {
+                    return (
+                      <div
+                        className={
+                          Style.upload_reports_location_content_selected
+                        }
+                      >
+                        <span className={Style.upload_reports_count}>
+                          {index+uploads.length + 1}
+                        </span>
+                        <img
+                          src={getFileTypeFromFileName(item.filename)}
+                          className={Style.upload_reports_pdf_icon}
+                        ></img>
+                        <span className={Style.upload_reports_dropdown_content}>
+                          <span>{item.title}</span>
+                          <span className={Style.upload_reports_description}>
+                            {item.filename} - {item.dateOfReport} 
+                          </span>
+                        </span>
+                        <figure>
+                          <img
+                            src={Assets.tick_icon}
+                            className={Style.upload_reports_tick_icon}
+                          ></img>
+                        </figure>
+                        <figure>
+                          {/* <img
+                            src={Assets.deleteIcon}
+                            className={Style.upload_reports_Delete_icon}
+                            onClick={() => deleteUploads(item)}
+                          /> */}
+                        </figure>
+                      </div>
+                    );
+                  })}
+
+
               </Accordion.Body>
-              
+
               <Accordion.Header>
                 <div className={Style.upload_button} onClick={() => { fileInputRef.current.click() }}>
                   <input

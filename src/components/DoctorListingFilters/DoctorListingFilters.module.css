@@ -3,7 +3,7 @@
   background: white !important;
   min-height: 72px;
   border-radius: 8px;
-  padding: 16px;
+  padding: 30px;
   font-size: 14px;
   font-style: normal;
   margin-bottom: 9px;
@@ -16,6 +16,13 @@
 
 .doctor_listing_details_div .ActiveIndex {
   color: #d1d1d1;
+}
+
+.doctor_listing_details_div .SelectedIndex {
+  color: #d1d1d1;
+  background-color: #D7ECFC;
+  border-radius: 5px;
+  border: 1px solid #AAADB1;
 }
 
 .doctor_listing_details_div .doctor_listing_byname {
@@ -157,9 +164,9 @@
   height: 40px;
   text-align: left;
   font-size: 14px;
-  font-weight: normal;
+  font-weight: 600;
   letter-spacing: 0.14px;
-  color: #c6c3c3;
+  color: #575757;
   opacity: 1;
   border-radius: 4px;
 }

@@ -46,6 +46,7 @@ export const Store_formData = (data) => async (dispatch) => {
 export const book_slot =
   ({ data, userr, old_appointment }) =>
   async (dispatch) => {
+
     let data1 = {
       nationalId: data.nationalId,
 
@@ -93,9 +94,12 @@ export const book_slot =
       lastName: "",
       typeofconsultation: data.typeofconsultation,
     };
+
     let response = [];
     let orderRes = [];
+
     if (data.referenceId == "" && data.referenceId!="12345" ) {
+      
       if (!old_appointment?.info) {
         
           response = await loginedApi.post("/appointments", {

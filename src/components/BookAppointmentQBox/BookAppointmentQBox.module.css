@@ -1,5 +1,5 @@
 .book_appointment_div {
-  max-width: 525px;
+  max-width: 582px;
   background: #ffffff 0% 0% no-repeat padding-box;
   -webkit-box-shadow: 0px 3px 50px #00000014;
           box-shadow: 0px 3px 50px #00000014;
@@ -7,10 +7,22 @@
   opacity: 1;
   margin: auto;
   margin-top: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .book_appointment_div .book_appointment_form_align {
-  max-width: 520px;
+  max-width: 573px;
   width: 100%;
   padding: 9% 40px 40px 40px;
   text-align: left;

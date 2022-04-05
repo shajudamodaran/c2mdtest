@@ -73,7 +73,6 @@ function BookAppointmentQuestionare({setSummary}) {
   }, [progress])
   
 
-  console.log(appoinment_form);
   let reduxData = useSelector(state => state)
 
   const old_appointment = useSelector(
@@ -103,6 +102,8 @@ function BookAppointmentQuestionare({setSummary}) {
   }, []);
 
   const progressIncrementer = () => {
+
+    console.log(progress+1);
     setProgress(progress + 1);
   };
 

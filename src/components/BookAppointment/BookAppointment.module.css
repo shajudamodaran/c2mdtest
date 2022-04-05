@@ -28,6 +28,7 @@
 .doctor_listing_modal_align :global .modal-content {
   border: 0 !important;
   padding: 0 20px;
+  min-height: 900px;
 }
 
 .doctor_listing_modal_align :global .modal-dialog {

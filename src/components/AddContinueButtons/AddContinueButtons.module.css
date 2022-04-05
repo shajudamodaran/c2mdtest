@@ -29,6 +29,7 @@
   background: #208CE1;
   border: 2px solid #208CE1;
   color: #fff;
+  font-weight: 600;
 }
 
 .AddMoreContinue_align_buttons .AddMoreContinue_continue_button {
@@ -39,7 +40,7 @@
   border-radius: 7px;
   opacity: 1;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 20px;
   letter-spacing: 0px;
   color: #FFFFFF;
   border: none;
@@ -49,6 +50,7 @@
 .AddMoreContinue_align_buttons .AddMoreContinue_continue_button:hover {
   background: transparent;
   color: #208CE1;
+  font-weight: 600;
 }
 
 .AddMoreContinue_align_buttons .AddMoreContinue_button:hover {

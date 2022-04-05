@@ -1,0 +1,79 @@
+.popup_faq_container h3 {
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.popup_faq_container p {
+  font-size: 13px;
+  color: #162D43;
+  text-align: justify;
+}
+
+.popup_faq_container h6 {
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.popup_faq_container a {
+  text-decoration: none;
+  padding-left: 5px;
+}
+
+.popup_faq_container .headings {
+  letter-spacing: 0px;
+  color: #162d43;
+  opacity: 1;
+  font-size: 20px;
+  margin-top: 28px;
+  font-weight: 600;
+}
+
+.popup_faq_container .subContent_main {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.popup_faq_container .subContent_main .subContent {
+  padding-bottom: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.popup_faq_container .subContent_main .subContent span {
+  margin-left: 10px;
+  font-size: 18px;
+  color: #162D43;
+}
+
+.popup_faq_container .btn_wrapper {
+  margin-top: 41px;
+  margin-bottom: 41px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.popup_faq_container .btn_wrapper .btn_1 {
+  margin-right: 10px;
+  background-color: #ebf1f8;
+  border-color: #ebf1f8 !important;
+  color: #7b8a98;
+  border-radius: 5px;
+  opacity: 1;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 8px 20px;
+  font-family: "IBM Plex Sans";
+}
+
+.popup_faq_container .btn_wrapper .active_btn1 {
+  background-color: #1485d8;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+}
+/*# sourceMappingURL=meetpatient.css.map */

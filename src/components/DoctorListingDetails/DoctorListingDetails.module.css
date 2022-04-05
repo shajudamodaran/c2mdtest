@@ -1,16 +1,12 @@
 .doctor_listing_profile_details {
   background: white !important;
   border-radius: 8px;
-  margin-bottom: 21px;
+  margin-bottom: 9px;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   border: 2px solid #fff;
   border-radius: 8px;
-}
-
-.doctor_listing_profile_details:hover {
-  border: 2px solid #208ce1;
-  border-radius: 8px;
+  cursor: pointer;
 }
 
 .doctor_listing_profile_details .doctor_listing_profile_details_row {
@@ -164,7 +160,7 @@
 
 .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_timer_text {
   text-align: left;
-  font-size: 14px;
+  font-size: 15px !important;
   letter-spacing: 0px;
   color: #011d29;
   opacity: 1;
@@ -185,11 +181,13 @@
   border: 1px solid #208ce1;
   margin: 10px 0 20px;
   font-family: "DM Sans", sans-serif;
+  z-index: 10000 !important;
 }
 
 .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_appointment_btn:hover {
   background: #e1f2ff;
   color: #208ce1;
+  font-weight: 500;
 }
 
 .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_appointment_btn:focus {
@@ -213,6 +211,7 @@
 .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_view_btn:hover {
   background: #e1f2ff;
   color: #208ce1;
+  font-weight: 500;
 }
 
 .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_view_btn:focus {
