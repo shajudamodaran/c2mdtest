@@ -150,8 +150,8 @@ function DoctorProfilemain({ doctorDetail, doctorid }) {
                       <img src={Assets.TickIcon} />
 
                       <p className={Style.content}>
-                        {profile.details.position}-{profile.details.practised}(
-                        {profile.details.startYear}-{profile.details.endYear})
+                        {profile.details.position} - {profile.details.practised.replace(/&amp;/g, "&")} (
+                        {profile.details.startYear} - {profile.details.endYear})
                       </p>
                     </div>
                   );
@@ -213,7 +213,7 @@ function DoctorProfilemain({ doctorDetail, doctorid }) {
                     <div className={Style.info} key={index}>
                       <img src={Assets.TickIcon} />
                       <p className={Style.content}>
-                        {item.details.name} ({item.year})-{item.details.details}
+                        {item.details.name} ({item.year}) - {item.details.details}
                       </p>
                     </div>
                   );
