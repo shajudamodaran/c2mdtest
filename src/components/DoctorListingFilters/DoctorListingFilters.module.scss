@@ -3,7 +3,7 @@
   background: white !important;
   min-height: 72px;
   border-radius: 8px;
-  padding: 30px;
+  padding: 25px;
   font-size: 14px;
   font-style: normal;
   margin-bottom: 9px;
@@ -123,6 +123,7 @@
     display: flex;
     align-items: center;
     z-index: 2;
+    margin-top: 15px;
     .doctor_listing_search_by_name {
       padding-left: 11px;
       border: 1px solid #e3e3e3;
@@ -171,6 +172,8 @@
     top: 65px;
     // margin-left: -9px;
     z-index: 10;
+
+    margin-top: 15px;
     .doctor_listing_gender_content_male {
       padding: 15px;
       border-bottom: 1px solid #e5e4e4;
@@ -343,6 +346,8 @@
     text-transform: capitalize;
     overflow-y: auto;
     z-index: 2;
+
+    margin-top: 15px;
     .checkboxList {
       display: flex;
       align-items: center;

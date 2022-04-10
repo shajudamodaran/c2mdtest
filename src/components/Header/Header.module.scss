@@ -98,8 +98,11 @@
   }
 }
 :global .navbar-light .navbar-nav .nav-link {
+
+ 
   color: #162d43;
   font-weight: 500;
+
   &.active,
   &:hover {
     color: #208ce1;
@@ -211,10 +214,14 @@
       .dropdown-menu {
         right: 0;
         left: inherit;
+
+
       }
       a.nav-link{
         margin-right: 0 !important;
         padding: 0;
+
+       
       }
     }
   }

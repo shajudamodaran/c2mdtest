@@ -112,10 +112,10 @@ function ResetPassword() {
           if (values.loginType === "email") {
             if (values.email === "") {
               errors.email =
-                "Please enter the email id used when you created the account";
+                "Please enter the eMail id used when you created the account";
             } else if (!emailTest.test(values.email)) {
               errors.email =
-                "There seems to be some issue with your email id. Please check ";
+                "There seems to be some issue with your eMail id. Please check ";
             }
           }
           if (values.loginType === "mobile") {

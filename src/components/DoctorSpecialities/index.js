@@ -68,30 +68,33 @@ function DoctorSpecialities({
         />
       </div>
       <div className={Style.doctor_listing_specialities_scroll}>
-      <div
-                
-                className={`${
-                  "ALL" === selectedSpeciality
-                    ? Style.active_speciality
-                    : Style.doctor_listing_selected_speciality
-                }`}
-                onClick={() => onSelectSpeciality("ALL")}
-              >
-                Our Doctors
 
-                <img src={Assets.arrow_right} />
-              </div>
+        {
+          searchQuery ? null :
+            <div
+
+              className={`${"ALL" === selectedSpeciality
+                ? Style.active_speciality
+                : Style.doctor_listing_selected_speciality
+                }`}
+              onClick={() => onSelectSpeciality("ALL")}
+            >
+              All Doctors
+
+              <img src={Assets.arrow_right} />
+            </div>
+        }
+
         {(dataItem &&
           dataItem.length !== 0) ?
           dataItem.map((item, index) => {
             return (
               <div
                 key={index}
-                className={`${
-                  item.specialityName === selectedSpeciality
-                    ? Style.active_speciality
-                    : Style.doctor_listing_selected_speciality
-                }`}
+                className={`${item.specialityName === selectedSpeciality
+                  ? Style.active_speciality
+                  : Style.doctor_listing_selected_speciality
+                  }`}
                 onClick={() => onSelectSpeciality(item.specialityName)}
               >
                 {item.specialityName}
@@ -99,7 +102,7 @@ function DoctorSpecialities({
                 <img src={Assets.arrow_right} />
               </div>
             );
-          }):searchQuery != ""&&<div>The requested speciality is not found</div>}
+          }) : searchQuery != "" && <div>The requested speciality is not found</div>}
       </div>
     </>
   );

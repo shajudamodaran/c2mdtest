@@ -422,12 +422,12 @@ function Schedule({ responsive, Typeofappointment, doctorId, DayCounter }) {
           </Dropdown.Menu>
         </Dropdown>
       </div>
-      <p className={Style.availableTimeTxt}>
+      <div className={Style.availableTimeTxt}>
         <img src={Assets.time} alt="time" />
         {ShowRequest
           ? "Request for an appointment"
           : "Select an available time"}
-      </p>
+      </div>
       {DoctorFee == 0 && (
         <p className={Style.errmsg}>
           You can't book appointment for this doctor. Please contact the support
@@ -484,7 +484,7 @@ function Schedule({ responsive, Typeofappointment, doctorId, DayCounter }) {
                     <div key={index}>
                       <div className={Style.SliderItem}>
                        
-                        <h2 className={moment(new Date()).date()==item.dates?Style.Day_head_active:Style.Day_head}>{item.dates}</h2>
+                        <div className={moment(new Date()).date()==item.dates?Style.Day_head_active:Style.Day_head}>{item.dates}</div>
                         <p className={Style.Day_text}>
                           {moment(
                             `${item.year}-${item.month + 1}-${item.dates}`,

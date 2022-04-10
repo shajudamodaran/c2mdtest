@@ -456,7 +456,7 @@ function Signup() {
           </p>
         </div>
         <div className={Style.form_group}>
-          <label className={Style.signup_form_label}>eMail Id</label>
+          <label className={Style.signup_form_label}>eMail id</label>
           <br />
 
           <p>
@@ -532,7 +532,7 @@ function Signup() {
                 name="mobile"
                 autoFormat={false}
                 countryCodeEditable={false}
-
+                placeholder="Enter"
                 onBlur={(event) => {
                   // formik.handleBlur(event);
                   handleBlurAction2(event, "Mobile", "mobileNumber");

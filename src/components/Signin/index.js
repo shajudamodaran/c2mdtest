@@ -113,9 +113,9 @@ function Signin() {
     email: Yup.string().when("loginType", {
       is: "email",
       then: Yup.string()
-        .email("There seems to be some issue with your email id. Please check ")
+        .email("There seems to be some issue with your eMail id. Please check ")
         .required(
-          "Please enter the email id used when you created the account"
+          "Please enter the eMail id used when you created the account"
         ),
     }),
   });

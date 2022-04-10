@@ -37,6 +37,10 @@
         top: 27px !important;
       }
     }
+
+    :global .dropdown-menu{
+      width: 100%;
+    }
     .appointmentTypeTxt {
       letter-spacing: 0px;
       color: #162d43;
@@ -54,8 +58,12 @@
     opacity: 1;
     font-weight: 500;
     font-size: 17px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     img {
       margin-right: 15px;
+      margin-top: -1px;
     }
     margin-bottom: 10px;
     margin-top: 20px;
@@ -180,6 +188,7 @@
         margin: 0;
         position: relative;
         z-index: 1000;
+        cursor: pointer;
         &:hover {
           color: #208ce1;
           cursor: pointer;
