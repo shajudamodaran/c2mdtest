@@ -27,10 +27,15 @@ function AddMedicine({
   const [deleteItems, setDeleteItem] = useState("");
   const [showForm, setForm] = useState(true);
   const dispatch = useDispatch();
-  const medicationData = settingsdata[1] && settingsdata[1].Medication;
-  const feq = medicationData[0].Frequency;
-  const status = medicationData[3].Status;
-  const unit = medicationData[2].Unit;
+
+  let medicationData = []
+  medicationData = settingsdata[1] && settingsdata[1]?.Medication;
+
+  console.log(medicationData);
+
+  const feq = medicationData?[0].Frequency:null;
+  const status = medicationData?[3].Status:null;
+  const unit = medicationData?[2].Unit:null;
 
   const [isMedication, setIsMedication] = useState(
     appoinment_form.medications?.length > 0 ? "Yes" : ""
@@ -110,7 +115,7 @@ function AddMedicine({
     }
     setError(errorTemp);
 
-    if (!errorTemp.error || (medicine.length > 0&&(errorTemp.medication&&errorTemp.quantity&&errorTemp.measurement&&errorTemp.frequency&&errorTemp.status))) {
+    if (!errorTemp.error || (medicine.length > 0 && (errorTemp.medication && errorTemp.quantity && errorTemp.measurement && errorTemp.frequency && errorTemp.status))) {
       setForm(false);
       // setMedicine(medicineForm?[medicineForm]:[...medicine,medicineForm])
       if (medicineForm.medication != "") {
@@ -239,6 +244,7 @@ function AddMedicine({
                           <input
                             type="number"
                             name="quantity"
+                            min="0"
                             className={Style.add_medicine_input_field}
                             placeholder="Enter Quantity"
                             value={med.quantity}
@@ -323,9 +329,8 @@ function AddMedicine({
                 <input
                   type="text"
                   name="medication"
-                  className={`${Style.add_medicine_input_field} ${
-                    error.medication && Style.inputError
-                  }`}
+                  className={`${Style.add_medicine_input_field} ${error.medication && Style.inputError
+                    }`}
                   placeholder="Enter Medicine Name"
                   value={medicineForm.medication}
                   onChange={(e) => {
@@ -345,9 +350,9 @@ function AddMedicine({
                   <input
                     type="number"
                     name="quantity"
-                    className={`${Style.add_medicine_input_field} ${
-                      error.quantity && Style.inputError
-                    }`}
+                    min="0"
+                    className={`${Style.add_medicine_input_field} ${error.quantity && Style.inputError
+                      }`}
                     placeholder="Enter Quantity"
                     value={medicineForm.quantity}
                     onChange={(e) => {

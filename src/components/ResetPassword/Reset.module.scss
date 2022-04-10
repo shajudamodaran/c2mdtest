@@ -218,6 +218,12 @@ body {
       background: transparent;
       color: #162d43;
     }
+
+    &:disabled{
+      border: 1px solid #b3deff;
+      background-color: #b3deff;
+      color: #ffffff;
+    }
   }
 
   .back_to_login_link{

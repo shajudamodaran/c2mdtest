@@ -130,7 +130,7 @@ function AppointmentPerson({
     let months = moment().diff(moment(dob, 'DD/MMM/YYYY'), "months")
     let days = moment().diff(moment(dob, 'DD/MMM/YYYY'), "days")
 
-    let result = `${months} month)`
+    let result = `${months} months)`
 
     if (months <= 0) {
       result = `${days} days)`
@@ -138,7 +138,7 @@ function AppointmentPerson({
     }
     else {
 
-      result = `${months} month ${moment(new Date()).date()} days)`
+      result = `${months} months ${moment(new Date()).date()} days)`
 
     }
 

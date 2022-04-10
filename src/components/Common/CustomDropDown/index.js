@@ -9,7 +9,7 @@ const CustomDropDown = ({DataItem,onClick,selectedData,error,defaultPlaceH,class
             {defaultPlaceH?selectedData:<span>{selectedData}</span>}
             </Dropdown.Toggle>
             <Dropdown.Menu>
-            {DataItem.map((item,index)=>{
+            {DataItem?.map((item,index)=>{
                 return (
                     <Dropdown.Item 
                     onClick={()=>{onClick(item)}}

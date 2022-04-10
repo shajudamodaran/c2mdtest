@@ -92,6 +92,8 @@ function UploadReports({
             {}
           )
           .then((res) => {
+
+            console.log(res);
             let imgname = res.data.data.fileName?.split("!");
 
             setFileName([...fileItem, res.data && res.data.data.fileName]);
@@ -315,13 +317,14 @@ function UploadReports({
               </Accordion.Body>
 
               <Accordion.Header>
-                <div className={Style.upload_button} onClick={() => { fileInputRef.current.click() }}>
+                <div className={Style.upload_button} >
                   <input
                     type="file"
                     id="upload"
-                    accept=".png, .jpg, .pdf"
+                   
                     ref={fileInputRef}
                     onChange={(e) => {
+                      e.stopPropagation()
                       onFileChange(e.target.files[0]);
                     }}
                   />
@@ -336,6 +339,7 @@ function UploadReports({
                     onDragOver={(event) => console.log("onDragOver", event)}
                     onDragLeave={(event) => console.log("onDragLeave", event)}
                     onDrop={(files, event) => {
+                      event.stopPropagation()
                       onFileChange(files[0]);
                     }}
                   >
@@ -390,7 +394,7 @@ function UploadReports({
                             className={Style.upload_reports_pdf_icon}
                           ></img>
                           <span className={Style.upload_reports_dropdown_content}>
-                            <span style={{ textTransform: "none" }}>{item.filename.toLowerCase()}</span>
+                            <span style={{ textTransform: "none", }}>{item.filename.toLowerCase()}</span>
                             <span className={Style.upload_reports_description} style={{ textTransform: "none" }}>
                               {`Uploaded on - `}{item.dateOfReport}
                             </span>

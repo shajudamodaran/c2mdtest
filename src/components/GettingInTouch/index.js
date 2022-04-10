@@ -269,6 +269,7 @@ function GettingInTouch({
               }${" "}${error.alterPhoneNUmber && Style.inputError}`}
             >
               <PhoneInput
+              style={{borderRadious:"10px"}}
                 country={"in"}
                 value={alterPhoneNUmber}
                 name="mobileNumber"

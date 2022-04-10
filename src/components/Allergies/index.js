@@ -27,7 +27,7 @@ function Allergies({
   const [deleteItems, setDeleteItem] = useState("");
   const dispatch = useDispatch();
   const [showForm, setForm] = useState(true);
-  let allergiesStatus = settingsdata && settingsdata[2].Allergies[0].Status;
+  let allergiesStatus = settingsdata && settingsdata[2]?.Allergies[0].Status;
 
   const [isAllergies, setIsAllergies] = useState(
     appoinment_form.allergies?.length > 0 ? "Yes" : ""

@@ -26,9 +26,9 @@ function MedicalConditions({
     "Do you really want to delete this Medical Conditions ?"
   );
   const [deleteItems, setDeleteItem] = useState("");
-  const dataItem = settingsdata[4].Medicalcondition[0].Medicalconditionlist;
+  // const dataItem = settingsdata[4].Medicalcondition[0].Medicalconditionlist;
   const [showForm, setForm] = useState(true);
-  const DataItem = settingsdata[4].Medicalcondition[0].Medicalconditionlist;
+  const DataItem = settingsdata[4]?.Medicalcondition[0]?.Medicalconditionlist;
   const duration =
     settingsdata[4] && settingsdata[4].Medicalcondition[1].duration;
   const status = settingsdata[4] && settingsdata[3].Symptoms[2].status;
@@ -448,7 +448,7 @@ function MedicalConditions({
             
 
               <div className="form-group  mb-spce">
-                <label className={Style.add_medicine_label}>Current status</label>
+                <label className={Style.add_medicine_label}>Current Status</label>
                 <CustomDropDown
                   error={error.status}
                   DataItem={status}
@@ -459,7 +459,7 @@ function MedicalConditions({
                   selectedData={
                     medConditionForm.status != ""
                       ? medConditionForm.status
-                      : "Current status"
+                      : "Current Status"
                   }
                 />
                 {error.status && (

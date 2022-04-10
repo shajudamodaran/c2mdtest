@@ -73,7 +73,7 @@ function DoctorDetails() {
               {appoinment_form.doctorfees?.split(".")[0]}
             </span>
           </p>
-          {appoinment_form?.c2mdfees && (
+          {appoinment_form?.c2mdfees && appoinment_form?.c2mdfees.split(" ")[1]>0  &&(
             <p>
               <span className={Style.booking_summary_left_aligned}>
                 Service fees

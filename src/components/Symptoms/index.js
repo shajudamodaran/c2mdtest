@@ -27,7 +27,7 @@ function Symptoms({
   );
   const dispatch = useDispatch();
   const [showForm, setForm] = useState(true);
-  const DataItem = settingsdata && settingsdata[3].Symptoms[0].Symptomslist;
+  const DataItem = settingsdata && settingsdata[3]?.Symptoms[0]?.Symptomslist;
   const duration = settingsdata[4] && settingsdata[3].Symptoms[1].duration;
   const status = settingsdata[4] && settingsdata[3].Symptoms[2].status;
   const [flag, setFlag] = useState(
@@ -343,11 +343,11 @@ function Symptoms({
             })}
           </Accordion>
 
-          {showForm && (
+          {showForm? (
             <div className={Style.add_medicine_medicine_details}>
               <div className="form-group mb-spce">
                 <label className={Style.add_medicine_label}>
-                  Symptoms {symptoms.length + 1}
+                  Symptoms {symptoms?.length + 1}
                 </label>
 
                 {
@@ -460,7 +460,7 @@ function Symptoms({
                 )}
               </div>
             </div>
-          )}
+          ):null}
           <AddMoreContinue
             progressIncrementer={progressIncrementer}
             Continue={Continue}
