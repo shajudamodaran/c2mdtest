@@ -146,7 +146,7 @@ function Signup() {
     email: Yup.string()
       .email("There seems to be some issue with your email id. Please check ")
       .required(
-        "An email id is required to keep you updated on any appointment related information"
+        "An eMail id is required to keep you updated on any appointment related information"
       ),
     mobileNumber: Yup.string()
       .required(

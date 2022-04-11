@@ -117,7 +117,7 @@ function Login() {
               type="text"
               name="fullName"
               className={Style.login_input_field}
-              placeholder="Enter Email Id"
+              placeholder="Enter eMail id"
               value={formik.values.fullName}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}

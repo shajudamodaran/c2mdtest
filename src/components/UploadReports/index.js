@@ -251,7 +251,7 @@ function UploadReports({
                         <span className={Style.upload_reports_dropdown_content}>
                           <span>{item.name}</span>
                           <span className={Style.upload_reports_description}>
-                            {item.title} - {item.uploaded}
+                            {item.title.toLowerCase()} -- {item.uploaded}
                           </span>
                         </span>
                         <figure>
@@ -293,7 +293,7 @@ function UploadReports({
                         <span className={Style.upload_reports_dropdown_content}>
                           <span>{item.title}</span>
                           <span className={Style.upload_reports_description}>
-                            {item.filename} - {item.dateOfReport} 
+                            {item.filename.toLowerCase()} - {item.dateOfReport} 
                           </span>
                         </span>
                         <figure>
