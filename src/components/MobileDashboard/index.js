@@ -47,8 +47,8 @@ function MobileDashboard() {
         {
             setActiveTitle(DASHBOARD_LEFT_OPTIONS[activeLeft.menu]?.options[activeLeft.option].name)
         }
-      
-       
+
+
 
     }, [activeLeft])
 
@@ -295,21 +295,26 @@ function MobileDashboard() {
 
     useEffect(() => {
 
-        if (activeConsultation) {
-            if (activeConsultation.reports) {
-                if (activeConsultation) {
+        if (activeConsultation)
+
+        {
+            if (activeConsultation.reports)
+            {
+
+
+
                     activeConsultation.reports.length > 0 ?
 
-                        setReports([...activeConsultationDetails.reports]) : console.log("No reports")
+                        setReports([...activeConsultation.reports]) : console.log("No reports")
 
-                }
+
+
+
 
             }
 
 
         }
-
-
 
 
     }, [activeConsultation])
@@ -330,11 +335,11 @@ function MobileDashboard() {
             }
         }
 
-        console.log("Calling................", paramAppoint);
+        // console.log("Calling................", paramAppoint);
 
         const response = await loginedApi.post("consultation", paramAppoint);
 
-        console.log("Res................", response);
+        // console.log("Res................", response);
 
         return response.data
 
@@ -393,14 +398,16 @@ function MobileDashboard() {
         if (activeConsultation?.appointmentId) {
             call65().then((respo) => {
 
-                console.log("65 responce--->", respo.data);
+                console.log("65 responce--->", respo.data?.appointmentDetail, "appointmentDetail");
 
                 if (respo.data) {
+
+                    console.log("*** There is consultation available in 65 😃 ***");
                     setActiveConsultationDetails(respo.data)
 
                 }
                 else {
-                    console.log("***There is no consultation available in 65***");
+                    console.log("***There is no consultation available in 65 😔 ***");
                 }
             })
 
@@ -418,12 +425,18 @@ function MobileDashboard() {
 
 
         if (appointmentsArray?.appointmentDetail.length > 0) {
-            let tempArray = appointmentsArray?.appointmentDetail.filter(element => element.status == "Upcoming")
+            let tempArray = appointmentsArray?.appointmentDetail.filter(element => element.status == "Upcoming" || element.status=="On-going")
+
 
             return tempArray
         }
 
     }
+
+
+    // console.log(activeConsultationDetails);
+
+
 
 
     return (
@@ -530,7 +543,7 @@ function MobileDashboard() {
 
                         <TittleCard style={{ width: "100%" }} >
 
-    
+
 
                             <div className="page-name-home">{activeTitle}</div>
 
@@ -553,12 +566,19 @@ function MobileDashboard() {
                                                 <div className="dash-card-body">
 
                                                     {
-                                                        filterUpcomingAppointments(activeConsultationDetails) ?
+                                                        filterUpcomingAppointments(activeConsultationDetails)?.length>0 ?
 
 
                                                             filterUpcomingAppointments(activeConsultationDetails).map((element, key) => {
 
+
+
                                                                 if (key == 0) {
+
+
+
+
+
                                                                     return (
                                                                         <div className="today_consultation_card">
 
@@ -648,6 +668,10 @@ function MobileDashboard() {
 
                                                                     )
                                                                 }
+                                                                else{
+                                                                    console.log("No appointments in 0th position***");
+                                                                }
+
 
                                                             })
 

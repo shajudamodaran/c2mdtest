@@ -251,7 +251,7 @@ function UploadReports({
                         <span className={Style.upload_reports_dropdown_content}>
                           <span>{item.name}</span>
                           <span className={Style.upload_reports_description}>
-                            {item.title.toLowerCase()} -- {item.uploaded}
+                            {item.title.toLowerCase()} - {item.uploaded}
                           </span>
                         </span>
                         <figure>

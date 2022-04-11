@@ -108,7 +108,7 @@ const doctorscountrycode = resp.data.data;
     data
   },{ headers: authHeader() });
 
-  console.log("recent activities----",response)
+  // console.log("recent activities----",response)
 
   if (response.status === 200) {
 
