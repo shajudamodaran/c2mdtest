@@ -12,7 +12,7 @@
     opacity: 1;
     background: white !important;
     width: 358px;
-    height: 922px;
+    height: 960px;
     border-radius: 8px;
     margin-right: 14px;
     padding: 25px 10px 25px 20px;
@@ -28,12 +28,12 @@
   }
 
   .doctor_listing_scrolling {
-    overflow-y: hidden;
+    overflow-y: auto;
     overflow-x: hidden;
     height: 860px;
     width: 100%;
     padding-right: 8px;
-    height: fit-content;
+    // height: fit-content;
     .loader {
       text-align: center !important;
       color: #208ce1;

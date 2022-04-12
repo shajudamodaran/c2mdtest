@@ -188,7 +188,7 @@
 .sec_header {
   :global .navbar-nav {
     a {
-      padding-left: 28px;
+     
       position: relative;
       &.first-child {
          background: url("../../assets/icon-contact.svg") no-repeat left center;
@@ -212,7 +212,7 @@
       background: url("../../assets/icon-help.svg") no-repeat left center;
       padding-left: 28px;
       .dropdown-menu {
-        right: 0;
+        right: -20;
         left: inherit;
 
 
@@ -225,6 +225,27 @@
       }
     }
   }
+}
+
+.help_phonenumber{
+  border-bottom: 1px solid rgb(204, 204, 204);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+
+  &:hover{
+   background-color: rgb(255, 255, 255);
+   color: #000 !important;
+  }
+}
+
+.help_normal{
+
+ 
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+
 }
 @media screen and (max-width: 1450px) {
   :global .navbar-brand img {

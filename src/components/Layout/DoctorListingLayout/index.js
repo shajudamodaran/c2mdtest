@@ -68,7 +68,7 @@ function DoctorlistingLayout({ children, pagination, setPagination, selectedSpec
 
 
   return (
-    <div ref={doctorListingScroll} onScroll={() => { onScrollDoctorList() }} style={{ height: "100vh", overflow: "auto" }}>
+    <div className={Style.DoctorlistingLayout_scroll} ref={doctorListingScroll} onScroll={() => { onScrollDoctorList() }} style={{ height: "100vh", overflow: "auto" }}>
       {width >= 992 ? (
         <MicrositeHeader
           showFilter={showFilter}

@@ -189,11 +189,11 @@
         position: relative;
         z-index: 1000;
         cursor: pointer;
-        &:hover {
-          color: #208ce1;
-          cursor: pointer;
-          display: block;
-        }
+        // &:hover {
+        //   color: #208ce1;
+        //   cursor: pointer;
+        //   display: block;
+        // }
       }
 
       .Day_head_active {
@@ -289,6 +289,12 @@
         color: #8da2b5;
         opacity: 1;
         font-size: 15px;
+
+        border-color: #567089;
+        background-color: white;
+        letter-spacing: 0px;
+        color: #567089;
+
         &:focus,
         &:focus-visible {
           box-shadow: none;

@@ -212,11 +212,11 @@ function Header({ showFilter, setShowFilter, searchDoctor, setSearchDoctor }) {
             {/* <Link className="first-child" onClick={()=>{setShowModal(true)}}>Contact Us</Link> */}
             <NavDropdown title="Help?" id="basic-nav-dropdown" style={{ width:" 124px"}}>
               {
-                clientDetails && clientDetails.phoneNumber? <NavDropdown.Item >{clientDetails.phoneNumber}</NavDropdown.Item>:null
+                clientDetails && clientDetails.phoneNumber? <NavDropdown.Item className={Style.help_phonenumber} >{clientDetails.phoneNumber}</NavDropdown.Item>:null
               }
            
-              <NavDropdown.Item onClick={()=>{history.push('/faq')}} >FAQ</NavDropdown.Item>
-              <NavDropdown.Item >Tutorials</NavDropdown.Item>
+              <NavDropdown.Item className={Style.help_normal} onClick={()=>{history.push('/faq')}} >FAQ</NavDropdown.Item>
+              <NavDropdown.Item className={Style.help_normal} >Tutorials</NavDropdown.Item>
              
             </NavDropdown>
             </>

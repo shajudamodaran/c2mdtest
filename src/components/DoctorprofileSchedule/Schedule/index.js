@@ -87,7 +87,7 @@ function Schedule({ responsive, Typeofappointment, doctorId, DayCounter }) {
     return moment(givenDate).isBefore(today);
   };
 
-  const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => 
+  const ButtonGroup = ({ next, previous, goToSlide, ...rest }) =>
   {
     const {
       carouselState: { currentSlide },
@@ -146,7 +146,7 @@ function Schedule({ responsive, Typeofappointment, doctorId, DayCounter }) {
 
     return (
       <div className="carousel-button-group" style={{ display: "flex" }}>
-        <div style={{ flex: 1 }}>
+        <div style={{ flex: 1, border:0 }}>
           <Button
             style={{
               float: "left",
@@ -479,11 +479,11 @@ function Schedule({ responsive, Typeofappointment, doctorId, DayCounter }) {
               {TimeSlot &&
                 TimeSlot.map((item, index) => {
 
-                 
+
                   return (
                     <div key={index}>
                       <div className={Style.SliderItem}>
-                       
+
                         <div className={moment(new Date()).date()==item.dates?Style.Day_head_active:Style.Day_head}>{item.dates}</div>
                         <p className={Style.Day_text}>
                           {moment(

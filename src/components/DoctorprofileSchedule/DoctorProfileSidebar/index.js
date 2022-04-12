@@ -67,7 +67,7 @@ function DoctorProfileSidebar({ doctorDetail }) {
                   if (data.languages.length - 1 == index) {
                     return <span key={index}>{item}</span>;
                   }
-                  return <span key={index}>{item},</span>;
+                  return <span key={index}>{item},&nbsp;</span>;
                 })}
             </h6>
           </>

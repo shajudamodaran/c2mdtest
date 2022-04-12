@@ -3,6 +3,38 @@
   padding-top: 80px;
 }
 
+
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
+  // For Google Chrome
+  &::-webkit-scrollbar {
+    width:  $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+    border-radius: 100px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $background-color;
+    border-radius: 100px;
+  }
+
+  // For Internet Explorer
+  & {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
+
+
+.DoctorlistingLayout_scroll{
+
+  @include scrollbars(0px, red, red)
+
+}
+
 @media screen and (max-width: 991px) {
   .LoginLayout_body {
     padding-top: 68px;
