@@ -155,7 +155,8 @@ function GettingInTouch({
           alterPhoneErrorMsg: `There seems to be some issue with the mobile number your
         entered. Please check`,
         };
-      } else if (phoneNum == alterPhoneNUmber) {
+      } 
+      else if (phoneNum == alterPhoneNUmber) {
         errorTemp = {
           ...errorTemp,
           alterPhoneNUmber: true,
@@ -212,7 +213,19 @@ function GettingInTouch({
       });
     }
   };
-  const handleOnChange = (value, data, event, formattedValue) => {};
+  const handleOnChange = (value, data, event, formattedValue) => {
+
+  
+    if(formattedValue.substring(3)=="")
+    {
+      setError({
+        ...error,
+        alterPhoneNumber: "",
+        error: false,
+        alterPhoneErrorMsg: null,
+      });
+    }
+  };
   return (
     <>
       <h3 className={Style.getting_touch_main_heading}>
@@ -266,7 +279,7 @@ function GettingInTouch({
             <div
               className={`mob-flag-wrp ${" "}${
                 Style.gettinginfo_phoneinput
-              }${" "}${error.alterPhoneNUmber && Style.inputError}`}
+              }${" "}${error.alterPhoneNUmber && error.alterPhoneErrorMsg && Style.inputError}`}
             >
               <PhoneInput
               style={{borderRadious:"10px"}}

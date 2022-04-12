@@ -172,6 +172,7 @@
      min-width: 55%;
      transition-duration: .3s;
      max-width: 1008px;
+     min-width: 750px;
     
  }
 
@@ -828,7 +829,7 @@
     left: 0;
     color: white;
     background-color: #303135;
-    z-index: 125;
+   
 
     height: 100%;
     width: 100%;
@@ -878,7 +879,7 @@
 @media screen and (max-width: 1320px) {
     .top-menu{
 
-         min-width: 70%;
+         min-width: 750px;
          max-width: 1008px;
         
      }
@@ -887,7 +888,7 @@
   @media screen and (max-width: 1083px) {
     .top-menu{
 
-         min-width: 80%;
+        min-width: 750px;
          max-width: 1008px;
         
      }
@@ -896,7 +897,7 @@
   @media screen and (max-width: 900px) {
     .top-menu{
 
-         min-width: 90%;
+        min-width: 750px;
          max-width: 1008px;
         
      }

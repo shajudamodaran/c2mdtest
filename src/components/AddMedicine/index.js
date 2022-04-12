@@ -33,9 +33,9 @@ function AddMedicine({
 
   console.log(medicationData);
 
-  const feq = medicationData?[0].Frequency:null;
-  const status = medicationData?[3].Status:null;
-  const unit = medicationData?[2].Unit:null;
+  const feq = medicationData?[0]:null;
+  const status = medicationData?[3]:null;
+  const unit = medicationData?[2]:null;
 
   const [isMedication, setIsMedication] = useState(
     appoinment_form.medications?.length > 0 ? "Yes" : ""
@@ -370,9 +370,10 @@ function AddMedicine({
                 </div>
                 <div className={Style.add_medicine_align_col2}>
                   <label className={Style.add_medicine_label}>Unit</label>
+
                   <CustomDropDown
                     error={error.measurement}
-                    DataItem={unit}
+                    DataItem={medicationData[2]?.Unit}
                     onClick={(e) => {
                       setMedicineForm({ ...medicineForm, measurement: e });
                     }}
@@ -393,7 +394,7 @@ function AddMedicine({
                 <label className={Style.add_medicine_label}>Frequency</label>
                 <CustomDropDown
                   error={error.frequency}
-                  DataItem={feq}
+                  DataItem={medicationData[0]?.Frequency}
                   onClick={(e) => {
                     setMedicineForm({ ...medicineForm, frequency: e });
                   }}
@@ -417,7 +418,7 @@ function AddMedicine({
                 </label>
                 <CustomDropDown
                   error={error.status}
-                  DataItem={status}
+                  DataItem={medicationData[3]?.Status}
                   onClick={(e) => {
                     setMedicineForm({ ...medicineForm, status: e });
                   }}

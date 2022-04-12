@@ -443,6 +443,7 @@ export const MeetPage_Pt = () => {
 
 
     const sessionEventspublisher = {
+        
         sessionConnected: (event) => {
             console.log(event)
             setPatient("true")
@@ -490,31 +491,31 @@ export const MeetPage_Pt = () => {
         },
         streamDestroyed: (event) => {
             setDoctor(null)
-            // setMessage(`The Doctor has either logged out or closed the window.\nPlease wait until the Doctor comes back.`)
-            //      setTimeout(function(){
-            //       setDoctor(null) 
-            //  }.bind(this),8000); 
-            // if(subsessionRef.current!=undefined)
-            //     {
+            setMessage(`The Doctor has either logged out or closed the window.\nPlease wait until the Doctor comes back.`)
+                 setTimeout(function(){
+                  setDoctor(null) 
+             }.bind(this),8000); 
+            if(subsessionRef.current!=undefined)
+                {
 
-            //         //  // When the session is disconnected
-            //     subsessionRef.current.sessionHelper.session.on('signal:closeAppointment', function(event){
-            //         console.log("Session disconnected...")
-            //         console.log(event)
-            //         setMessage(`Your session has been disconnected.`)
-            //         setTimeout(function(){
-            //             history.push("/mobiledashboard");
-            //     }.bind(this),15000); 
-            //     //  history.push("/mobiledashboard");
-            //     })
-            //     }
-            // if(event.reason=="clientDisconnected")
-            // {
-            //     setMessage(`The Doctor has either logged out or closed the window.\nPlease wait until the Doctor comes back.`)
-            //         setTimeout(function(){
-            //           setDoctor(null) 
-            //     }.bind(this),8000); 
-            // }
+                    //  // When the session is disconnected
+                subsessionRef.current.sessionHelper.session.on('signal:closeAppointment', function(event){
+                    console.log("Session disconnected...")
+                    console.log(event)
+                    setMessage(`Your session has been disconnected.`)
+                    setTimeout(function(){
+                        history.push("/mobiledashboard");
+                }.bind(this),15000); 
+                //  history.push("/mobiledashboard");
+                })
+                }
+            if(event.reason=="clientDisconnected")
+            {
+                setMessage(`The Doctor has either logged out or closed the window.\nPlease wait until the Doctor comes back.`)
+                    setTimeout(function(){
+                      setDoctor(null) 
+                }.bind(this),8000); 
+            }
 
             setMessage(`Your session has been disconnected.`)
             setTimeout(function () {
@@ -870,7 +871,7 @@ export const MeetPage_Pt = () => {
                                 <span className='page-name'>{activeLeft.page?.replace(/([A-Z])/g, ' $1').trim()}</span>
                                 <CloseIconRound /></div>
 
-                            {console.log(activeLeft.page)}
+                            {console.log(activeLeft)}
 
                             {
                                 activeLeft.page === leftMenus[0] && activeLeft.status && superSubMenu == null ?
@@ -902,6 +903,7 @@ export const MeetPage_Pt = () => {
 
                                             <div className="d-flex flex-column align-items-center ">
 
+                                            
 
                                                 <ul className='test-sub-menu'>
 

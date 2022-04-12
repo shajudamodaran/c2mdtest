@@ -56,7 +56,8 @@
 .OT_publisher, .OT_subscriber{
 
     height: 100vh !important;
-    width: 100vw !important;
+    /* width: 100vw !important; */
+    flex:1;
     border-radius: 8px;
 
 }
