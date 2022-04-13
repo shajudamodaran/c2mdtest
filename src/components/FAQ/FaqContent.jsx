@@ -16,7 +16,7 @@ function FaqContent() {
 
             <h3 className={Style.headings}> 1. What is Connect2MyDoctor?</h3>
             <p>Connect2MyDoctor, an online platform serving patients and doctors by eliminating the boundaries
-                of quality healthcare via online video consultations, managing patientâ€™s self and family
+                of quality healthcare via online video consultations, managing patient's self and family
                 medical records in a HIPAA secure server, syncing data from multiple sources - all stitched
                 together with intuitive user experience across computers, tablet and mobile devices.</p>
 
@@ -39,14 +39,14 @@ function FaqContent() {
                 Connect2MyDoctor should be used when you need non critical care, for a follow up or second opinion,
                 reviewing medical reports, initial treatments etc. While Connect2MyDoctor is not intended to replace
                 your regular doctor or specialist for common or chronic conditions, an online consultation can sometimes
-                substitute a doctorâ€™s visit.
+                substitute a doctor's visit.
             </p>
 
             <h3 className={Style.headings}>5. How can I use Connect2MyDoctor?</h3>
             <p>Connect2MyDoctor is your go-to place to search, book and consult online for non-critical ailments.
                 The system also allows you to store and manage self and family health records centrally on the cloud,
                 thereby allowing you to access you medical records, prescriptions, lab reports from your online consultations
-                and much more...Now, isnâ€™t that convenient....no more torn papers and fear of loosing documents.</p>
+                and much more...Now, isn't that convenient....no more torn papers and fear of loosing documents.</p>
 
 
             <h3 className={Style.headings}>6. How much does a consultation on Connect2MyDoctor cost? </h3>
@@ -60,9 +60,9 @@ function FaqContent() {
 
             <h3 className={Style.headings}>
                 {" "}
-                8. Do I talk to â€œreal doctorsâ€�?{" "}
+                8. Do I talk to a real doctors?{" "}
             </h3>
-            <p>Yes. Connect2MyDoctors are certified doctors licensed to practice medicine. We have a stringent doctor on boarding where all the doctorsâ€™ profiles and medical licenses are verified by a human. Only on successful verification process their profiles are made LIVE.</p>
+            <p>Yes. Connect2MyDoctors are certified doctors licensed to practice medicine. We have a stringent doctor on boarding where all the doctors' profiles and medical licenses are verified by a human. Only on successful verification process their profiles are made LIVE.</p>
 
 
             <h3 className={Style.headings}> 9. Is Connect2MyDoctor available 24x7?</h3>
@@ -93,10 +93,10 @@ function FaqContent() {
             <h3 className={Style.headings}>15. How can I get a refund?</h3>
             <p>Please contact our Customer Support team by visiting our Contact page and they will assist you on the same. Also, you can read the refund policy here.</p>
 
-            <h3 className={Style.headings}>16. I am not very technology savvyâ€¦what do I do?</h3>
+            <h3 className={Style.headings}>16. I am not very technology savvy ¦what do I do?</h3>
             <p>It is not meant to be for technology savvy people only. The underlying experience that we have focussed on is the ease of use. So if you can operate a simple website/email then you should be able to use the site without any hassle.</p>
 
-            <h3 className={Style.headings}>17. I have a question and I canâ€™t see that here. What can I do?</h3>
+            <h3 className={Style.headings}>17. I have a question and I can't see that here. What can I do?</h3>
             <p>Sorry about it. Please send an email to support@c2mydr.com and we will respond back to you on the same.</p>
         
         
