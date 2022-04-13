@@ -101,14 +101,14 @@ function BookingSummary({
         <label className={Style.booking_summary_doctor_details}>
           Patient Details
         </label>
-        {/* <Link
+        <Link
           className={Style.booking_summary_change_link}
           onClick={() => {
             setProgress(2);
           }}
         >
           Change
-        </Link> */}
+        </Link>
       </div>
       <div className={Style.booking_summary_details_div}>
         <div className={Style.booking_desc}>

@@ -25,7 +25,10 @@ function AppointmentPerson({
 
   const dispatch = useDispatch();
   const memberList = useSelector((state) => state.bookAppoinment?.familyMember);
+  const selectedMemberRedux = useSelector((state) => state.bookAppoinment?.appoinment_form?.selectedMember);
   const loginData = useSelector((state) => state.login);
+
+
 
   useEffect(() => {
     document.querySelector("body").scrollTo(0, 0);
@@ -38,6 +41,8 @@ function AppointmentPerson({
   const [editDob, setEditDob] = useState(false);
   let prevMember = memberList[0];
   const [member, setMember] = useState();
+
+  console.log(selectedMemberRedux);
 
   useEffect(() => {
     setMember(prevMember);
@@ -55,6 +60,15 @@ function AppointmentPerson({
 
     setEditDob(true);
     setInnerPage(1);
+
+    console.log("Setting on redux***************");
+
+    dispatch(
+      Store_formData({
+        ...appoinment_form,
+        selectedMember: member,
+      })
+    );
 
     // if (member.dob == "") {
     //   setEditDob(true);
@@ -92,23 +106,24 @@ function AppointmentPerson({
     }
   };
 
-  const Continue = () => {
-    if (member.dob == undefined || member.dob == "") {
+  const Continue = (selected) => {
+    if (selected.dob == undefined || selected.dob == "") {
       setEditDob(true);
       setInnerPage(1);
     } else {
-      dispatch(updateLoginDetails({ ...loginData, user: { ...loginData.user, dob: member.dob } }))
+      dispatch(updateLoginDetails({ ...loginData, user: { ...loginData.user, dob: selected.dob } }))
       dispatch(
         Store_formData({
           ...appoinment_form,
           firstName:
-            member.relationship == "self"
+          selected.relationship == "self"
               ? userData?.user?.profileName
-              : member.memberName,
-          relationship: member?.id ? member?.id : `rel-${member.relationship}`,
-          gender: member.gender,
-          dob: member.dob,
-          appointmentFor: member.relationship == "self" ? "Self" : "Loved One",
+              : selected.memberName,
+          relationship: selected?.id ? selected?.id : `rel-${selected.relationship}`,
+          gender: selected.gender,
+          dob: selected.dob,
+          appointmentFor: selected.relationship == "self" ? "Self" : "Loved One",
+          selectedMember:selected
         })
       );
       let userID =
@@ -163,6 +178,17 @@ function AppointmentPerson({
 
   }
 
+  let handleSelectMember = (e,member) => {
+
+    e.stopPropagation()
+    console.log("Setting redux********************",member);
+    setMember(member)
+
+    Continue(member)
+
+  }
+
+
   return innerPage == 0 ? (
     <>
       <h3 className={Style.book_appointment_main_heading}>
@@ -172,10 +198,13 @@ function AppointmentPerson({
         {memberList &&
           memberList.length > 0 &&
           memberList.map((memer, index) => (
+
+            // member?.memberName == memer.memberName?console.log("Match"):null
+
             <div
-              className={`${Style.book_appointment_person_input} ${(member?.memberName == memer.memberName && member?.id == memer.id) && Style.active
+              className={`${Style.book_appointment_person_input} ${(selectedMemberRedux?.memberName == memer.memberName && selectedMemberRedux?.id == memer.id) && Style.active
                 }`}
-                onClick={Continue}
+              onClick={()=>{Continue(memer)}}
             >
               <div className={Style.book_appointment_person_img}>
                 <img
@@ -190,7 +219,7 @@ function AppointmentPerson({
 
               <Button
                 className={Style.book_appointment_person_input_box}
-                onClick={() => setMember(memer)}
+                onClick={(e) =>{handleSelectMember(e,memer)}}
               >
                 {memer.memberName}{" "}
                 {(memer.dob && memer.dob != "") &&

@@ -101,6 +101,7 @@ export const signup_action =
       }
     };
 export const generate_OTP = (formData) => async (dispatch) => {
+  
   let limit = formData.dial_code?.length;
   let mobNo = formData.mobileNumber?.slice(limit);
   let mobileNo = `%2B${formData.dial_code}${" "}${mobNo}`;

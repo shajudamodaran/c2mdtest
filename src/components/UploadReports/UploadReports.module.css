@@ -148,6 +148,7 @@
   letter-spacing: 0px;
   color: #162d43;
   opacity: 0.66;
+  text-transform: lowercase;
 }
 
 .upload_reports_accordion_align .upload_reports_location_content_selected figure {

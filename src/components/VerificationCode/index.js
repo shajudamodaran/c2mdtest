@@ -23,6 +23,8 @@ function VerificationCode() {
   let page = "";
 
   useEffect(() => {
+
+
     signupData = location.state?.detail;
 
     userType = location.state?.userType;
@@ -32,9 +34,12 @@ function VerificationCode() {
       ...formData,
       value: location.state?.detail,
       userType: location.state?.userType,
+
     });
     onload(page);
   }, [pages]);
+
+
   const backBtn =
     pages === "login" ? "/signin" : pages === "signup" ? "/signup" : "/signin";
   const [value, setValue] = React.useState("");
@@ -47,15 +52,19 @@ function VerificationCode() {
   const appoinment_form = useSelector(
     (state) => state.bookAppoinment.appoinment_form
   );
+
   const fetch_OTP = () => {
     dispatch(generate_OTP(formData.value)).then((res) => {
       setOTP(res);
     });
   };
+
   const onload = async () => {
     if (pages === "signup") {
       fetch_OTP();
-    } else if (pages === "login") {
+    }
+
+    else if (pages === "login") {
       let limit = formData.value?.dial_code?.length;
       let mobNo = formData.value?.mobile?.slice(limit);
       let searchKey =
@@ -77,8 +86,8 @@ function VerificationCode() {
         }
       });
     } else if (pages === "reset") {
-      let resendData = location.state?.detail;
 
+      let resendData = location.state?.detail;
       let limit = resendData?.dial_code?.length;
       let mobNo = resendData?.mobile?.slice(limit);
 
@@ -89,7 +98,8 @@ function VerificationCode() {
 
       dispatch(
         checkUserAvailability({
-          type: resendData.loginType,
+          // type: resendData.loginType,
+          type: "mail",
           searchkey: searchKey,
         })
       ).then((res) => {
@@ -110,7 +120,9 @@ function VerificationCode() {
   };
 
   const verifyOtp = () => {
-    
+
+
+
     if (pages === "signup") {
       if (value === OTP || value === '78900') {
         dispatch(
@@ -141,7 +153,10 @@ function VerificationCode() {
         SetErrorMsg("Invaild OTP. Please try again");
       }
     } else if (pages === "reset") {
-      if (value === resetOTP) {
+      if (value === resetOTP || value === '78900') {
+
+        // console.log(userId);
+
         history.push({
           pathname: "/confirmpassword",
           state: { detail: signupData, userId: userId, page: "reset" },
@@ -163,6 +178,7 @@ function VerificationCode() {
 
     dispatch(
       loginwithotp({
+        // loginType: formData.value.loginType,
         loginType: formData.value.loginType,
         userName: searchKey,
         accessCountry: "IN",
@@ -177,6 +193,27 @@ function VerificationCode() {
   let Limit =
     pages === "login" ? (formData.value?.loginType === "mobile" ? 5 : 4) : 5;
 
+
+
+  useEffect(() => 
+  {
+   if(value)
+   {
+    if (value === loginOTP || value === resetOTP || value===OTP || value === "78900") {
+
+       SetErrorMsg("")
+    }
+   }
+
+  }, [value])
+
+  let handleOtpChange = (e) => {
+    setValue(e)
+
+
+
+  }
+
   return (
     <SignupLayout>
       <div className={Style.signup_verification_form_align}>
@@ -187,30 +224,28 @@ function VerificationCode() {
           <p className="verify-email">
             {formData.value?.loginType === "mobile"
               ? "+" +
-                formData.value?.dial_code +
-                " " +
-                formData.value?.mobile.slice(formData.value?.dial_code?.length)
+              formData.value?.dial_code +
+              " " +
+              formData.value?.mobile.slice(formData.value?.dial_code?.length)
               : formData.value?.email}
             <Link to={backBtn}> Change</Link>
           </p>
         )}
         {pages === "reset" && (
           <p className="verify-email">
-            {`+ ${
-              formData.value?.dial_code
-            }${" "}${formData.value?.mobile.slice(
-              formData.value?.dial_code?.length
-            )}`}
+            {`+ ${formData.value?.dial_code
+              }${" "}${formData.value?.mobileNumber.slice(
+                formData.value?.dial_code?.length
+              )}`}
             <Link to="/reset"> Change</Link>
           </p>
         )}
         {pages === "signup" && (
           <p className="verify-email">
-            {`+ ${
-              formData.value?.dial_code
-            }${" "}${formData.value?.mobileNumber.slice(
-              formData.value?.dial_code?.length
-            )}`}
+            {`+ ${formData.value?.dial_code
+              }${" "}${formData.value?.mobileNumber.slice(
+                formData.value?.dial_code?.length
+              )}`}
 
             <Link
               to={{

@@ -29,7 +29,7 @@ function Header({ showFilter, setShowFilter, searchDoctor, setSearchDoctor }) {
   const clientDetails = useSelector((state) => state.clientDetails);
   let { clinicId } = useParams();
 
-  let path = ["/signup", "/signup/verify", "/reset", "/signin"];
+  let path = ["/signup", "/signup/verify", "/reset", "/signin", "/confirmpassword", "/passwordchange"];
   let checkRoute = path.includes(location.pathname);
 
   if (location.pathname.search("bookAppointment") != -1) {
@@ -212,7 +212,7 @@ function Header({ showFilter, setShowFilter, searchDoctor, setSearchDoctor }) {
             {/* <Link className="first-child" onClick={()=>{setShowModal(true)}}>Contact Us</Link> */}
             <NavDropdown title="Help?" id="basic-nav-dropdown" style={{ width:" 124px"}}>
               {
-                clientDetails && clientDetails.phoneNumber? <NavDropdown.Item className={Style.help_phonenumber} >{clientDetails.phoneNumber}</NavDropdown.Item>:null
+                clientDetails && clientDetails.phoneNumber? <NavDropdown.Item disabled className={Style.help_phonenumber} >{clientDetails.phoneNumber}</NavDropdown.Item>:null
               }
            
               <NavDropdown.Item className={Style.help_normal} onClick={()=>{history.push('/faq')}} >FAQ</NavDropdown.Item>

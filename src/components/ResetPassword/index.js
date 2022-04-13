@@ -69,26 +69,68 @@ function ResetPassword() {
 
     let { loginType, email, mobile } = values;
 
-    console.log(loginType,values.mobile?.slice(2));
+    console.log(loginType, values.mobile?.slice(2));
 
     dispatch(
       checkUserAvailability({
-        type: values.loginType,
+        // type: values.loginType,
+        type: "mail",
         searchkey: values.loginType == "email" ? values.email : values.mobile.slice(2),
       })
     ).then((res) => {
 
       console.log(res);
 
-      if (res?.data.info) {
+      if (res?.data.info) 
+      {
         let errors = {};
         console.log("User not exist");
-        errors.email ="This mailid not registerd with Us please check the Email Id"
+        errors.email = "This mailid not registerd with Us please check the Email Id"
 
       }
       else {
         SetForm(true);
-        console.log("User exist",res?.data);
+        
+        console.log("User exist", res?.data);
+
+        let params = {
+          "detail": {
+            "email": "shaju123456@gmail.com",
+            "mobileNumber": "919074810155",
+            "accessCountry": "0",
+            "dial_code": "91",
+            "countryCode": "IN",
+            "code": {
+              "name": "India",
+              "flag": "🇮🇳",
+              "code": "IN",
+              "dial_code": "+91"
+            }
+          },
+          "userType": "Patient",
+          "page": "reset"
+        }
+
+        history.push({
+          pathname: "/signup/verify",
+          state: {
+          "detail": {
+            "email": "shaju123456@gmail.com",
+            "mobileNumber": "919074810155",
+            "accessCountry": "0",
+            "dial_code": "91",
+            "countryCode": "IN",
+            "code": {
+              "name": "India",
+              "flag": "🇮🇳",
+              "code": "IN",
+              "dial_code": "+91"
+            }
+          },
+          "userType": "Patient",
+          "page": "reset"
+        },
+        });
 
       }
 
@@ -329,15 +371,22 @@ function ResetPassword() {
                 </Button>
               )}
 
-              <div
-                variant="outline-secondary"
-                className={Style.back_to_login_link}
-                type="submit"
-                onClick={() => { history.push('/signin') }}
-              >
-                <div className={Style.back_to_login_link_icon}><ArrowLeftBlue /></div>
-                Back
-              </div>
+              {
+                emailform ? null :
+
+                  <div
+                    variant="outline-secondary"
+                    className={Style.back_to_login_link}
+                    type="submit"
+                    onClick={() => { history.push('/signin') }}
+                  >
+                    <div className={Style.back_to_login_link_icon}><ArrowLeftBlue /></div>
+                    Back
+                  </div>
+
+              }
+
+
             </div>
           </form>
         )}

@@ -20,3 +20,10 @@ export const getCountryFlagFromCountryCode =(countryName)=>{
     }
 
 }
+
+
+export const getCountryArray =()=>{
+
+return countryDatabase
+
+}

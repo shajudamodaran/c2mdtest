@@ -39,6 +39,7 @@ const INITIAL_STATE = {
   uploadedData: {},
   bookingConfirmRes: {},
   appointmentResult: [],
+  selectedMember:null
 };
 
 export default (state = INITIAL_STATE, { type, payload }) => {

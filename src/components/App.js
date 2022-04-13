@@ -26,9 +26,13 @@ const VerificationCodePage = React.lazy(() => import("../pages/Verification"));
 const SigninPage = React.lazy(() => import("../pages/Signin"));
 const LoginPage = React.lazy(() => import("../pages/login"));
 const ResetPasswordPage = React.lazy(() => import("../pages/ResetPassword"));
+
+
 const ConfirmPasswordPage = React.lazy(() =>
   import("../pages/ConfirmPassword")
 );
+
+
 const PasswordChangePage = React.lazy(() => import("../pages/PasswordChange"));
 const DoctorListingPage = React.lazy(() => import("../pages/DoctorListing"));
 const BookAppointmentPage = React.lazy(() =>

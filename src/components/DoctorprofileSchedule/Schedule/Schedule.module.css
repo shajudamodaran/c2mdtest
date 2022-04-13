@@ -41,6 +41,10 @@
   top: 27px !important;
 }
 
+.Schedule .Select_wrapper :global .dropdown-menu {
+  width: 100%;
+}
+
 .Schedule .Select_wrapper .appointmentTypeTxt {
   letter-spacing: 0px;
   color: #162d43;
@@ -59,12 +63,23 @@
   opacity: 1;
   font-weight: 500;
   font-size: 17px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin-bottom: 10px;
   margin-top: 20px;
 }
 
 .Schedule .availableTimeTxt img {
   margin-right: 15px;
+  margin-top: -1px;
 }
 
 .Schedule .errmsg {
@@ -215,12 +230,7 @@
   margin: 0;
   position: relative;
   z-index: 1000;
-}
-
-.Schedule .Schedule_Bottom .SliderItem .Day_head:hover {
-  color: #208ce1;
   cursor: pointer;
-  display: block;
 }
 
 .Schedule .Schedule_Bottom .SliderItem .Day_head_active {
@@ -332,6 +342,10 @@
   color: #8da2b5;
   opacity: 1;
   font-size: 15px;
+  border-color: #567089;
+  background-color: white;
+  letter-spacing: 0px;
+  color: #567089;
 }
 
 .Schedule .Schedule_Bottom .TimeSlot_main_wrapper .timeSlot_btn:focus, .Schedule .Schedule_Bottom .TimeSlot_main_wrapper .timeSlot_btn:focus-visible {

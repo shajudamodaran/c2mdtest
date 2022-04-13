@@ -13,7 +13,7 @@ function ResetPassword() {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const userId = location.state.userId;
+  const userId = location.state?.userId;
 
   const submit_data = (values) => {
     dispatch(fetchForgotPassword({ values: values, userId: userId }));

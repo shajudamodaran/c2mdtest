@@ -232,7 +232,7 @@
   }
   .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_timer_icon {
     margin-right: 5px;
-    top: 0;
+    top: -1;
   }
   .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_timer_text {
     margin-right: 6px;

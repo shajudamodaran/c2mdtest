@@ -1,0 +1,88 @@
+@mixin placeholder-color () {
+    &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+      font-weight: normal;
+      font-size: 14px;
+      color: #b0bfc8;
+      font-weight: 400;
+    
+      &:focus{
+        &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+            font-weight: normal;
+            font-size: 14px;
+        }
+      }
+    }
+    
+  }
+
+.custom_phone_input_container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0rem .9rem;
+    background: #F2F7FA;
+    border-radius: 3px;
+    height: 50px;
+   
+
+    
+
+    .flag_box{
+
+        width: fit-content;
+        white-space: nowrap;
+        margin-right: 1px;
+
+        border-right: 1.5px solid rgb(235, 235, 235);
+        padding-right: 6px;
+        margin-right: 5px;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+        border-radius: 3px;
+
+        .flag_image{
+            width: 24px;
+            margin-right: 5px;
+            margin-left: 10px;
+        }
+
+        .ant-dropdown-link{
+            color: black;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            color: #162d43;
+            font-size: 15px;
+            font-weight: 500;
+
+        }
+    }
+
+    
+    .number_box{
+
+        width: 100%;
+
+        input{
+            width: 100%;
+            // padding: .4rem;
+            outline: 0px;
+            border: 0px;
+            background-color: transparent;
+            color: #162d43;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: .5px;
+
+           
+            @include placeholder-color();
+
+        }
+
+    }
+}

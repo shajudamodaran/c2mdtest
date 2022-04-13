@@ -2,6 +2,26 @@
   padding-top: 80px;
 }
 
+.DoctorlistingLayout_scroll::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.DoctorlistingLayout_scroll::-webkit-scrollbar-thumb {
+  background: red;
+  border-radius: 100px;
+}
+
+.DoctorlistingLayout_scroll::-webkit-scrollbar-track {
+  background: red;
+  border-radius: 100px;
+}
+
+.DoctorlistingLayout_scroll {
+  scrollbar-face-color: red;
+  scrollbar-track-color: red;
+}
+
 @media screen and (max-width: 991px) {
   .LoginLayout_body {
     padding-top: 68px;

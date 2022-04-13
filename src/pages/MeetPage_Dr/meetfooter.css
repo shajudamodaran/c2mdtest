@@ -141,7 +141,7 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-bottom: 15px;
+  margin-bottom: 0px;
   padding: 0px 15px;
   cursor: pointer;
 }

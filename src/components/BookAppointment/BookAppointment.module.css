@@ -33,6 +33,9 @@
 
 .doctor_listing_modal_align :global .modal-dialog {
   max-width: inherit;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 .doctor_listing_modal_align :global .modal-title {

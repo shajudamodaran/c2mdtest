@@ -77,6 +77,7 @@ export const checkUserAvailability =
         },
       });
 
+      console.log("Check user responce == >", response);
      
       if (response.status === 200) {
         return response.data && response.data;

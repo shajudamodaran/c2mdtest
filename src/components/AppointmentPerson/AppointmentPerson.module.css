@@ -15,6 +15,26 @@
   margin-bottom: 3px;
 }
 
+.memberList::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.memberList::-webkit-scrollbar-thumb {
+  background: #c7c7c7;
+  border-radius: 100px;
+}
+
+.memberList::-webkit-scrollbar-track {
+  background: #ececec;
+  border-radius: 100px;
+}
+
+.memberList {
+  scrollbar-face-color: #c7c7c7;
+  scrollbar-track-color: #ececec;
+}
+
 .book_appointment_person_input {
   position: relative;
   margin-bottom: 20px;

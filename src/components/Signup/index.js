@@ -25,6 +25,7 @@ import "react-phone-input-2/lib/style.css";
 import SighnupDropDown from "../SignupDropdown/SighnupDropDown";
 import { InformationIcon } from "../../assets/Logos/Icons";
 import { Tooltip } from "antd";
+import CustomPhoneInput from "../CustomPhoneInput/CustomPhoneInput";
 
 
 function Signup() {
@@ -293,7 +294,8 @@ function Signup() {
 
       formik.handleBlur(event);
 
-      if (formik.values.mobileNumber !== "") {
+      if (formik.values.mobileNumber !== "") 
+      {
 
         console.log(formik.values?.mobileNumber?.slice(limit));
 
@@ -407,7 +409,7 @@ function Signup() {
           {/* <Button variant="outline-secondary" className={Style.signup_google_btn} type="submit">
         Sign up with google
       </Button> */}
-          { <div className={Style.btn_google}>
+          {<div className={Style.btn_google}>
             <GoogleLogin
               clientId="259504799474-3q2tvrsu5gf83rofjevpr5bpdpun3jii.apps.googleusercontent.com"
               buttonText="Sign up with google"
@@ -417,13 +419,13 @@ function Signup() {
               className={Style.gBtn}
               disabled={false}
             />
-          </div> }
+          </div>}
         </div>
         {errorMsg != "" && <p className={Style.errors}>{errorMsg}</p>}
         {<div>
           <p></p>
           <p className={Style.signup_text_option}>Or</p>
-        </div> }
+        </div>}
         <div className={Style.form_group}>
           <label className={Style.signup_form_label}>Full Name</label>
           <br />
@@ -463,7 +465,7 @@ function Signup() {
             <input
               type="email"
               name="email"
-             
+
               placeholder="Enter eMail id"
               value={formik.values.email}
               onChange={(e) => {
@@ -526,6 +528,7 @@ function Signup() {
                   );
                 })}
               </select> */}
+
               <PhoneInput
                 country={"in"}
                 value={formik.values.mobile}
@@ -539,6 +542,8 @@ function Signup() {
                 }}
 
                 onChange={(value, data, event, formattedValue) => {
+
+                  console.log(value, data, event, formattedValue);
 
 
                   formik.setFieldValue("mobileNumber", value);
@@ -560,6 +565,41 @@ function Signup() {
                   handleOnChange(value, data, event, formattedValue);
                 }}
               />
+
+
+
+              {/* <CustomPhoneInput
+                value={formik.values.mobile}
+                name="mobile"
+                onBlur={(event) => {
+                  // formik.handleBlur(event);
+                  handleBlurAction2(event, "Mobile", "mobileNumber");
+                }}
+                onChange={(value, data, event, formattedValue) => {
+
+                  console.log(data.countryCode);
+
+                  formik.setFieldValue("mobileNumber", value);
+                  formik.setFieldValue("dial_code", data.dialCode);
+                  // formik.setFieldValue("code",{ name:  data.name, flag: getCountryFlagFromCountryCode(data.countryCode.toUpperCase()), code: data.countryCode.toUpperCase(), dial_code:  data.dialCode })
+
+
+                  formik.setFieldValue(
+                    "countryCode",
+                    data.countryCode?.toUpperCase()
+                  );
+                  // setShowError({
+                  //   ...ShowError,
+
+                  //   mobileError: false,
+                  //   mobileerrorMsg: "",
+                  // });
+
+                  handleOnChange(value, data, event, formattedValue);
+                }}
+              /> */}
+
+
               {/* <input
                 type="text"
                 name="mobileNumber"
@@ -626,7 +666,7 @@ function Signup() {
               </div>
 
               <Tooltip placement="right" title={"A secure password consists of minimum 8 characters including 1 special character, 1 CAPITAL letter and 1 small letter"}>
-              <div className={Style.infoIcon}><InformationIcon/></div>
+                <div className={Style.infoIcon}><InformationIcon /></div>
               </Tooltip>
 
             </div>
