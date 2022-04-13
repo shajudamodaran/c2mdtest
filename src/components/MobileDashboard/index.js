@@ -233,12 +233,16 @@ function MobileDashboard() {
         );
 
 
-
+        console.log(clientDetails)
         if (clientDetails) {
 
-            history.push("/signin")
-            window.open(clientDetails.homeurl, "_blank")
-
+            //history.push("/signin")
+            //window.open(clientDetails.homeurl, "_blank")
+            window.location.href = clientDetails.homeurl; 
+        }
+        else
+        {
+            history.push("/home")
         }
 
     }
