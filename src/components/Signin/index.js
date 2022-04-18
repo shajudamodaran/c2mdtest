@@ -22,6 +22,7 @@ import { checkUser } from "../../actions/SignupAction";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import ConfirmModal from "./ConfirmModal";
+import CustomPhoneInput from "../CustomPhoneInput/CustomPhoneInput";
 function Signin() {
   const history = useHistory();
   const re = /^[0-9\b]+$/;
@@ -300,9 +301,9 @@ function Signin() {
                           className={`${Style.siginin_mobile}${" "}${touched.mobile && errors.mobile ? "is-invalid" : ""
                             }`}
                         >
-                          <PhoneInput
+                         <CustomPhoneInput
                             country={"in"}
-                            value={values.mobile}
+                            value={values.mobile?.slice(values.dial_code?.length)}
                             name="mobile"
                             autoFormat={false}
                             countryCodeEditable={false}

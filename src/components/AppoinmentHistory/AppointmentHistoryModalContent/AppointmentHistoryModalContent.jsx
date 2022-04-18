@@ -69,7 +69,7 @@ function AppointmentHistoryModalContent() {
 
                         <div className="c-row">Patient Name - <div className="date">{appointmentHistoryRedux?.[0].patientName}</div></div>
 
-                        <div className="c-row">Reports from patient</div>
+                        <div className="row">Reports from patient</div>
 
                         <ul>
                             {
@@ -90,7 +90,7 @@ function AppointmentHistoryModalContent() {
 
                                     })
 
-                                    : null
+                                    :   <div className="consultation-no-reports">No reports from patient</div>
                             }
 
 

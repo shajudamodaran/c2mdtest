@@ -1191,7 +1191,7 @@ export const MeetPage_Dr = () => {
                                 </div>
                             </div>
 
-                            <div className="streamer" onClick={() => {
+                            <div className="streamer streamer_doctor" onClick={() => {
                                 setActiveLeft({ ...activeLeft, status: false })
                                 setTopMenu(true)
                             }}>

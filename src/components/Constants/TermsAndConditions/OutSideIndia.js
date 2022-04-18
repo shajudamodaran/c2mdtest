@@ -108,7 +108,7 @@ export const outSideLink = [
       "The website in which you are linking must comply in all respects with our content standards.",
   },
   {
-    title:
-      "If you wish to link to or make any use of content on our Site other than that set out above, please contact support@connect2my.doctor.",
+    title:<span>If you wish to link to or make any use of content on our Site other than that set out above, please contact  <a href="mailto:support@connect2my.doctor">support@connect2my.doctor</a>.</span>
+      
   },
 ];

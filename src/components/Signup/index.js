@@ -529,7 +529,7 @@ function Signup() {
                 })}
               </select> */}
 
-              <PhoneInput
+              {/* <PhoneInput
                 country={"in"}
                 value={formik.values.mobile}
                 name="mobile"
@@ -564,11 +564,11 @@ function Signup() {
 
                   handleOnChange(value, data, event, formattedValue);
                 }}
-              />
+              /> */}
 
 
 
-              {/* <CustomPhoneInput
+              <CustomPhoneInput
                 value={formik.values.mobile}
                 name="mobile"
                 onBlur={(event) => {
@@ -597,7 +597,7 @@ function Signup() {
 
                   handleOnChange(value, data, event, formattedValue);
                 }}
-              /> */}
+              />
 
 
               {/* <input

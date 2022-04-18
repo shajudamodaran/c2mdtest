@@ -8,6 +8,7 @@ import ContinueSkipLinks from "../ContinueSkipLinks";
 import Custommodal from "./ConfirmModal";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import CustomPhoneInput from "../CustomPhoneInput/CustomPhoneInput";
 function EmergencyContact({
   progressIncrementer,
   appoinment_form,
@@ -233,9 +234,9 @@ function EmergencyContact({
               );
             })}
           </select> */}
-          <PhoneInput
+          <CustomPhoneInput
             country={"in"}
-            value={emergencyData.mobileNo}
+            value={emergencyData.mobileNo?.slice(emergencyData.emergencyNoCode?.length)}
             name="mobileNo"
             autoFormat={false}
             countryCodeEditable={false}

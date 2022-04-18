@@ -13,6 +13,7 @@ import "react-phone-input-2/lib/style.css";
 import { ArrowLeftBlue } from "../../assets/Logos/Icons";
 import { useDispatch } from "react-redux";
 import { checkUserAvailability } from "../../actions/ForgotPasswordAction";
+import CustomPhoneInput from "../CustomPhoneInput/CustomPhoneInput";
 
 function ResetPassword() {
   const re = /^[0-9\b]+$/;
@@ -288,9 +289,9 @@ function ResetPassword() {
                       `${touched.mobile && errors.mobile ? "is-invalid" : ""}`
                     }
                   >
-                    <PhoneInput
+                    <CustomPhoneInput
                       country={"in"}
-                      value={values.mobile}
+                      value={values.mobile?.slice(values.dial_code?.length)}
                       name="mobile"
                       autoFormat={false}
                       countryCodeEditable={false}

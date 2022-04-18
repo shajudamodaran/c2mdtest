@@ -118,7 +118,7 @@
   border-radius: 10px;
   z-index: 10000;
   top: 14%;
-  margin-top: 10%;
+  margin-top: 7.5%;
 }
 
 .patient_consent_modal_align :global .modal-dialog {

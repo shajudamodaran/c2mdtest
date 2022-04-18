@@ -60,9 +60,9 @@ function FaqContent() {
 
             <h3 className={Style.headings}>
                 {" "}
-                8. Do I talk to a real doctors?{" "}
+                8. Do I talk to real doctors{" "}
             </h3>
-            <p>Yes. Connect2MyDoctors are certified doctors licensed to practice medicine. We have a stringent doctor on boarding where all the doctors' profiles and medical licenses are verified by a human. Only on successful verification process their profiles are made LIVE.</p>
+            <p>Yes. Connect2MyDoctors are certified doctors licensed to practice medicine. We have a stringent doctor on boarding where all the doctorsâ€™ profiles and medical licenses are verified by a human. Only on successful verification process their profiles are made LIVE.</p>
 
 
             <h3 className={Style.headings}> 9. Is Connect2MyDoctor available 24x7?</h3>
@@ -93,7 +93,7 @@ function FaqContent() {
             <h3 className={Style.headings}>15. How can I get a refund?</h3>
             <p>Please contact our Customer Support team by visiting our Contact page and they will assist you on the same. Also, you can read the refund policy here.</p>
 
-            <h3 className={Style.headings}>16. I am not very technology savvy ¦what do I do?</h3>
+            <h3 className={Style.headings}>16. I am not very technology savvy what do I do?</h3>
             <p>It is not meant to be for technology savvy people only. The underlying experience that we have focussed on is the ease of use. So if you can operate a simple website/email then you should be able to use the site without any hassle.</p>
 
             <h3 className={Style.headings}>17. I have a question and I can't see that here. What can I do?</h3>

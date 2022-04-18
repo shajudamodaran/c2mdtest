@@ -183,3 +183,42 @@ select {
      
       min-width: 9rem !important;
     }
+
+    .form-select-sm {
+   
+      border:0px;
+      outline:0px !important;
+      outline: 0px;
+      box-shadow: none !important;
+      background-color: transparent;
+      padding: 0px !important;
+      width: 70px !important;
+      cursor: pointer;
+     
+  }
+
+  .streamer_patient .OT_publisher, .OT_subscriber{
+
+    height: 100vh !important;
+    /* width: 100vw !important; */
+    flex:1;
+    border-radius: 8px;
+
+}
+
+.streamer_doctor .OTPublisherContainer{
+
+
+
+}
+
+.vedio-mobile .OT_publisher, .OT_subscriber{
+
+    height: 375px !important;
+    width: 595px !important;
+    /* width: 100vw !important; */
+    flex:1;
+    border-radius: 8px;
+ 
+
+}

@@ -55,6 +55,8 @@ function UploadReports({
   };
 
   const Continue = () => {
+    progressIncrementer()
+
     let NewArry = fileItem.push(appoinment_form.reports);
 
     if (uploads?.length >= 1 || selectFiles.length >= 1) {
@@ -466,7 +468,7 @@ function UploadReports({
           <div className={`${Style.btn_floating} btn_floating`}>
             <Button
               className={Style.upload_reports_continue_button}
-              onClick={progressIncrementer}
+              // onClick={}
               onClick={Continue}
             >
               Continue

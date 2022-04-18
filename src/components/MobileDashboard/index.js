@@ -43,8 +43,7 @@ function MobileDashboard() {
 
     useEffect(() => {
 
-        if( activeLeft.menu!==null)
-        {
+        if (activeLeft.menu !== null) {
             setActiveTitle(DASHBOARD_LEFT_OPTIONS[activeLeft.menu]?.options[activeLeft.option].name)
         }
 
@@ -233,16 +232,12 @@ function MobileDashboard() {
         );
 
 
-        console.log(clientDetails)
+
         if (clientDetails) {
 
-            //history.push("/signin")
-            //window.open(clientDetails.homeurl, "_blank")
-            window.location.href = clientDetails.homeurl; 
-        }
-        else
-        {
-            history.push("/home")
+            history.push("/signin")
+            window.open(clientDetails.homeurl, "_blank")
+
         }
 
     }
@@ -299,17 +294,14 @@ function MobileDashboard() {
 
     useEffect(() => {
 
-        if (activeConsultation)
-
-        {
-            if (activeConsultation.reports)
-            {
+        if (activeConsultation) {
+            if (activeConsultation.reports) {
 
 
 
-                    activeConsultation.reports.length > 0 ?
+                activeConsultation.reports.length > 0 ?
 
-                        setReports([...activeConsultation.reports]) : console.log("No reports")
+                    setReports([...activeConsultation.reports]) : console.log("No reports")
 
 
 
@@ -429,7 +421,7 @@ function MobileDashboard() {
 
 
         if (appointmentsArray?.appointmentDetail.length > 0) {
-            let tempArray = appointmentsArray?.appointmentDetail.filter(element => element.status == "Upcoming" || element.status=="On-going")
+            let tempArray = appointmentsArray?.appointmentDetail.filter(element => element.status == "Upcoming" || element.status == "On-going")
 
 
             return tempArray
@@ -462,7 +454,7 @@ function MobileDashboard() {
                                 <div className="dr-id-home text-start w-100" >ID: {userData ? userData.profileId : "---"}</div>
                             </TittleCard>
 
-                            <div className={`list-tittle ${isDash?"active":null}`} onClick={() => { setDash(true); setActiveTitle("Dashboard") }}>
+                            <div className={`list-tittle ${isDash ? "active" : null}`} onClick={() => { setDash(true); setActiveTitle("Dashboard") }}>
                                 <div className="icon" ><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard</div>
 
@@ -504,14 +496,23 @@ function MobileDashboard() {
                                 })
                             }
 
+                            <div className="list-tittle">
+                                <div className="header-card logout" onClick={logoutFunction}>
+                                    <div className="icon"><i class="fal fa-sign-out-alt"></i></div>
+                                    SIGN OUT
+                                </div>
+                            </div>
+
+                            <ul className='side-nav'></ul>
+
                         </div>
 
 
 
-                        <div className="header-card logout" onClick={logoutFunction}>
+                        {/* <div className="header-card logout" onClick={logoutFunction}>
                             <div className="icon"><i class="fal fa-sign-out-alt"></i></div>
                             SIGN OUT
-                        </div>
+                        </div> */}
 
 
 
@@ -570,7 +571,7 @@ function MobileDashboard() {
                                                 <div className="dash-card-body">
 
                                                     {
-                                                        filterUpcomingAppointments(activeConsultationDetails)?.length>0 ?
+                                                        filterUpcomingAppointments(activeConsultationDetails)?.length > 0 ?
 
 
                                                             filterUpcomingAppointments(activeConsultationDetails).map((element, key) => {
@@ -638,7 +639,7 @@ function MobileDashboard() {
                                                                                                 })
 
 
-                                                                                                : <div className="no-reports-text">( No reports uploaded. click the + button to add report )</div>
+                                                                                                : <div className="no-reports-text">( No reports uploaded. Click the + button to add report )</div>
                                                                                         }
 
 
@@ -672,7 +673,7 @@ function MobileDashboard() {
 
                                                                     )
                                                                 }
-                                                                else{
+                                                                else {
                                                                     console.log("No appointments in 0th position***");
                                                                 }
 
@@ -700,7 +701,7 @@ function MobileDashboard() {
 
                                                             if (key == 0) {
 
-                                                                console.log(element);
+                                                                // console.log(element);
 
                                                                 return (
 
@@ -852,7 +853,7 @@ function MobileDashboard() {
                                                                 })
 
 
-                                                                : "NO RECENT ACTIVITIES AVAILABLE"
+                                                                : "NO REQUESTED APPOINTMENTS AVAILABLE"
 
                                                             : null
                                                     }
@@ -860,14 +861,14 @@ function MobileDashboard() {
                                                 </div>
 
 
-                                                <div className="dash-card-footer">
+                                                {/* <div className="dash-card-footer">
                                                     <div className="row p-0 m-0 w-100">
                                                         <div className="col-md-12 col-sm-12 col-12 p-0 m-0 text-center">
                                                             <DashButton text="View More" inactive />
                                                         </div>
 
                                                     </div>
-                                                </div>
+                                                </div> */}
 
 
                                             </div>

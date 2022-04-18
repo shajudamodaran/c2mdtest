@@ -47,7 +47,7 @@ function AgeGender({ member, setMember, error }) {
             error.dob && Style.inputError
           }`}
           onChange={(date) =>
-            setMember({ ...member, dob: moment(date).format("DD/MMM/YYYY") })
+            setMember({ ...member, dob:date? moment(date).format("DD/MMM/YYYY"):null})
           }
           // defaultValue={moment(min_date, "DD/MMM/YYYY")}
           defaultValue={

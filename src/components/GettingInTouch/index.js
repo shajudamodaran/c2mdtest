@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import CustomPhoneInput from "../CustomPhoneInput/CustomPhoneInput";
 
 function GettingInTouch({
   progressIncrementer,
@@ -121,6 +122,8 @@ function GettingInTouch({
 
   const contine = () => {
     let errorTemp = errorInit;
+
+
 
     if (phoneNum == undefined || phoneNum == "") {
       errorTemp = {
@@ -238,9 +241,10 @@ function GettingInTouch({
             error.phoneNum && Style.inputError
           }`}
         >
-          <PhoneInput
+          <CustomPhoneInput
             country={"in"}
-            value={phoneNum}
+            // value={phoneNum}
+            value={phoneNum?.slice(countryCode?.length)}
             name="mobileNumber"
             autoFormat={false}
             countryCodeEditable={false}
@@ -281,10 +285,10 @@ function GettingInTouch({
                 Style.gettinginfo_phoneinput
               }${" "}${error.alterPhoneNUmber && error.alterPhoneErrorMsg && Style.inputError}`}
             >
-              <PhoneInput
+              <CustomPhoneInput
               style={{borderRadious:"10px"}}
                 country={"in"}
-                value={alterPhoneNUmber}
+                value={alterPhoneNUmber?.slice(alternativeCode?.length)}
                 name="mobileNumber"
                 autoFormat={false}
                 countryCodeEditable={false}

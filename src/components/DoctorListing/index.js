@@ -229,14 +229,14 @@ function DoctorListing({
       // if (FilterItem.length % 4 == 0) {
 
         // await setLoader(true);
-        // await dispatch(
-        //   fetch_doctors(
-        //     selectedSpeciality,
-        //     clientDetails ? clientDetails.clinicName : "",
-        //     // clientDetails ? clientDetails.clinicurl : "",
-        //     pagination + 10
-        //   )
-        // );
+        await dispatch(
+          fetch_doctors(
+            selectedSpeciality,
+            clientDetails ? clientDetails.clinicName : "",
+            // clientDetails ? clientDetails.clinicurl : "",
+            pagination + 10
+          )
+        );
         setPagination(pagination + 10)
         // await setLoader(false);
 

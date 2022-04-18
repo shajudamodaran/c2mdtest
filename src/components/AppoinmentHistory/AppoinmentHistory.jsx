@@ -9,6 +9,7 @@ import AppointmentHistoryModalContent from './AppointmentHistoryModalContent/App
 function AppoinmentHistory() {
 
     let [modal, setModal] = useState(false)
+    let dummyData=[]
     let dispatch = useDispatch()
 
     let appointmentHistoryRedux = useSelector(state => state.appointmentHistory.appointmentHistory)
@@ -71,7 +72,7 @@ function AppoinmentHistory() {
         <div className='appontment-history-container'>
 
             <div className="header">
-                {getDateFull()}
+                {/* {getDateFull()} */}
 
                 {/* <div className="filter-button">
                     <div className="icon">&nbsp;</div>
@@ -81,7 +82,7 @@ function AppoinmentHistory() {
             </div>
 
             {
-                appointmentHistoryRedux ?
+                appointmentHistoryRedux?.length>0 ?
 
                     <table className='appoinment-table'>
                         <tr>
@@ -98,7 +99,7 @@ function AppoinmentHistory() {
                         <tbody>
 
                             {
-                                appointmentHistoryRedux ?
+                                 appointmentHistoryRedux.length>0 ?
 
 
                                     appointmentHistoryRedux.map((element, key) => {
@@ -122,7 +123,8 @@ function AppoinmentHistory() {
 
 
 
-                                    : null
+                                    : 
+                                    <div className="no-appointments">Oops!! There is no appointments available for you.</div>
                             }
 
 

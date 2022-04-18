@@ -90,11 +90,13 @@ function AppointmentPerson({
   }, [member]);
 
   const editSubmited = () => {
+
+    console.log(member.dob);
     let temp = errorInit;
     if (member.gender == "") {
       temp = { ...temp, gender: true, error: true };
     }
-    if (member.dob == "") {
+    if (!member.dob ) {
       temp = { ...temp, dob: true, error: true };
     }
     setError(temp);

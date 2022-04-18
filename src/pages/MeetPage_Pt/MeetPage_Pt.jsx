@@ -112,9 +112,11 @@ let AppintmentDetails = ({ setSuperSubMenu, reports, setReports }) => {
 
 
                 </div>
+                
+                <div>&nbsp;</div>
 
                 <input ref={hiddenFileInput} style={{ display: "none" }} type='file' onChange={hanleFileChange} className="white-container-button p-0" />
-                <button for="file-upload" className="white-container-button" onClick={() => { hiddenFileInput.current.click() }}> <UploadIcon /> Upload a new file</button>
+                <button for="file-upload" className="white-container-button" onClick={() => { hiddenFileInput.current.click() }} style={{marginTop:"10px !important"}}> <UploadIcon /> Upload a new file</button>
 
             </div>
         </div>
@@ -131,9 +133,9 @@ let ViewNotes = ({ setSuperSubMenu, context }) => {
 
                 <div style={{ cursor: "pointer", fontWeight: "bold" }} onClick={() => { setSuperSubMenu(null) }}>
                     <ArrowLeft /> {context} <span style={{
-                        fontSize:"13px",
-                        fontWeight:"normal",
-                        marginLeft:"2px"
+                        fontSize: "13px",
+                        fontWeight: "normal",
+                        marginLeft: "2px"
                     }}>(read only)</span>
                 </div>
 
@@ -404,7 +406,6 @@ export const MeetPage_Pt = () => {
     }
 
 
-
     const subscriberEventHandlers = {
         videoDisabled: event => {
             console.log('Subscriber video disabled!');
@@ -443,7 +444,7 @@ export const MeetPage_Pt = () => {
 
 
     const sessionEventspublisher = {
-        
+
         sessionConnected: (event) => {
             console.log(event)
             setPatient("true")
@@ -459,7 +460,6 @@ export const MeetPage_Pt = () => {
 
     const sessionEventssubscriber = {
         sessionConnected: (event) => {
-
 
 
         },
@@ -492,29 +492,27 @@ export const MeetPage_Pt = () => {
         streamDestroyed: (event) => {
             setDoctor(null)
             setMessage(`The Doctor has either logged out or closed the window.\nPlease wait until the Doctor comes back.`)
-                 setTimeout(function(){
-                  setDoctor(null) 
-             }.bind(this),8000); 
-            if(subsessionRef.current!=undefined)
-                {
+            setTimeout(function () {
+                setDoctor(null)
+            }.bind(this), 8000);
+            if (subsessionRef.current != undefined) {
 
-                    //  // When the session is disconnected
-                subsessionRef.current.sessionHelper.session.on('signal:closeAppointment', function(event){
+                //  // When the session is disconnected
+                subsessionRef.current.sessionHelper.session.on('signal:closeAppointment', function (event) {
                     console.log("Session disconnected...")
                     console.log(event)
                     setMessage(`Your session has been disconnected.`)
-                    setTimeout(function(){
+                    setTimeout(function () {
                         history.push("/mobiledashboard");
-                }.bind(this),15000); 
-                //  history.push("/mobiledashboard");
+                    }.bind(this), 15000);
+                    //  history.push("/mobiledashboard");
                 })
-                }
-            if(event.reason=="clientDisconnected")
-            {
+            }
+            if (event.reason == "clientDisconnected") {
                 setMessage(`The Doctor has either logged out or closed the window.\nPlease wait until the Doctor comes back.`)
-                    setTimeout(function(){
-                      setDoctor(null) 
-                }.bind(this),8000); 
+                setTimeout(function () {
+                    setDoctor(null)
+                }.bind(this), 8000);
             }
 
             setMessage(`Your session has been disconnected.`)
@@ -575,7 +573,6 @@ export const MeetPage_Pt = () => {
     }
 
 
-
     let [isTopMenu, setTopMenu] = useState(true)
 
 
@@ -619,7 +616,6 @@ export const MeetPage_Pt = () => {
 
 
 
-
     const fetch_consultation = () => {
 
         var consultationID = localStorage.getItem("consultationId");
@@ -658,7 +654,7 @@ export const MeetPage_Pt = () => {
     }
 
 
-
+    console.log(userdata);
 
 
 
@@ -680,6 +676,19 @@ export const MeetPage_Pt = () => {
 
 
                     <div className="vedio-container-left" >
+
+                        {
+                            !doctor || !patient ?
+                                <div className="waiting-toast">
+                                    <div className='waiting-toast-body'>
+                                        waiting for {!doctor ? "doctor" : !patient ? "patient" : null}...
+                                        <br></br>
+
+                                        <PuffLoader color={"white"} loading={true} size={40} />
+
+                                    </div>
+                                </div> : null
+                        }
 
                         <div className="top-menu-container" >
                             <div className={isTopMenu ? "top-menu" : "top-menu-hidden"} onClick={() => { setTopMenu(false) }}>
@@ -730,7 +739,7 @@ export const MeetPage_Pt = () => {
                             </div>
                         </div>
 
-                        <div className="streamer" onClick={() => {
+                        <div className="streamer streamer_patient" onClick={() => {
                             setActiveLeft({ ...activeLeft, status: false })
                             setTopMenu(true)
                         }}>
@@ -740,10 +749,10 @@ export const MeetPage_Pt = () => {
                                     <div className="user-profile2">
 
                                         <div className="user-profile2-container">
-                                            <img src={userdata.profileImage} className="user2-avatar" />
+                                            <img src={userdata.profileImage ? userdata.profileImage : "http://localhost:3000/c2mydrnew/microsites/static/media/doctor_avatar.c9aa1c0d.png"} className="user2-avatar" />
 
                                             <div className="user-profile2-footer">
-                                                {userdata.profileName}
+                                                {connectionDetails ? connectionDetails.doctorName : ""}
                                                 {/* <ThreeDotVerticalWhiteIcon /> */}
                                             </div>
 
@@ -783,10 +792,11 @@ export const MeetPage_Pt = () => {
                                     :
                                     <div className="user-profile2">
                                         <div className="user-profile2-container">
-                                            <img src={userdata.profileImage} className="user2-avatar" />
+                                            <img src={userdata.profileImage ? userdata.profileImage : "http://localhost:3000/c2mydrnew/microsites/static/media/doctor_avatar.c9aa1c0d.png"} className="user2-avatar" />
+
 
                                             <div className="user-profile2-footer">
-                                                {userdata.profileName}
+                                                {connectionDetails ? connectionDetails.doctorName : ""}
                                                 {/* <ThreeDotVerticalWhiteIcon /> */}
                                             </div>
 
@@ -894,52 +904,52 @@ export const MeetPage_Pt = () => {
 
                                     //     : null
 
-                                    <AppintmentDetails/>
-
-                                    
-
-                                        : activeLeft.page === leftMenus[1] && activeLeft.status && superSubMenu == null ?
+                                    <AppintmentDetails />
 
 
-                                            <div className="d-flex flex-column align-items-center ">
 
-                                            
-
-                                                <ul className='test-sub-menu'>
-
-                                                    <li onClick={() => { setSuperSubMenu(<ViewNotes setSuperSubMenu={setSuperSubMenu} context="Chief Complaints" />) }}>
-                                                        <div className='d-flex flex-column'>
-                                                            <span className='small-tittle'>Chief Complaints</span>
-                                                        </div>
-                                                        <RightArrowIconOriginal />
-                                                    </li>
+                                    : activeLeft.page === leftMenus[1] && activeLeft.status && superSubMenu == null ?
 
 
-                                                    <li onClick={() => { setSuperSubMenu(<ViewNotes setSuperSubMenu={setSuperSubMenu} context="Relevant Points From History" />) }}>
-                                                        <div className='d-flex flex-column'>
-                                                            <span className='small-tittle'>Relevant Points from History</span>
+                                        <div className="d-flex flex-column align-items-center ">
 
-                                                        </div>
-                                                        <RightArrowIconOriginal />
-                                                    </li>
 
-                                                    <li onClick={() => { setSuperSubMenu(<ViewNotes setSuperSubMenu={setSuperSubMenu} context="Diagnosis or Provisional Diagnosic" />) }} >
-                                                        <div className='d-flex flex-column'>
-                                                            <span className='small-tittle'>Diagnosis or Provisional Diagnosic</span>
 
-                                                        </div>
-                                                        <RightArrowIconOriginal />
-                                                    </li>
+                                            <ul className='test-sub-menu'>
 
-                                                    <li onClick={() => { setSuperSubMenu(<ViewNotes setSuperSubMenu={setSuperSubMenu} context="Examination and Lab findings" />) }} >
-                                                        <div className='d-flex flex-column'>
-                                                            <span className='small-tittle'>Examination and Lab findings</span>
+                                                <li onClick={() => { setSuperSubMenu(<ViewNotes setSuperSubMenu={setSuperSubMenu} context="Chief Complaints" />) }}>
+                                                    <div className='d-flex flex-column'>
+                                                        <span className='small-tittle'>Chief Complaints</span>
+                                                    </div>
+                                                    <RightArrowIconOriginal />
+                                                </li>
 
-                                                        </div>
-                                                        <RightArrowIconOriginal />
-                                                    </li>
 
-                                                    {/* <button className="medicines-list-add-btn" onClick={() => { setSuperSubMenu(<AddInvestigation setSuperSubMenu={setSuperSubMenu} setActiveLeft={handleSetLeft} />) }}>
+                                                <li onClick={() => { setSuperSubMenu(<ViewNotes setSuperSubMenu={setSuperSubMenu} context="Relevant Points From History" />) }}>
+                                                    <div className='d-flex flex-column'>
+                                                        <span className='small-tittle'>Relevant Points from History</span>
+
+                                                    </div>
+                                                    <RightArrowIconOriginal />
+                                                </li>
+
+                                                <li onClick={() => { setSuperSubMenu(<ViewNotes setSuperSubMenu={setSuperSubMenu} context="Diagnosis or Provisional Diagnosic" />) }} >
+                                                    <div className='d-flex flex-column'>
+                                                        <span className='small-tittle'>Diagnosis or Provisional Diagnosic</span>
+
+                                                    </div>
+                                                    <RightArrowIconOriginal />
+                                                </li>
+
+                                                <li onClick={() => { setSuperSubMenu(<ViewNotes setSuperSubMenu={setSuperSubMenu} context="Examination and Lab findings" />) }} >
+                                                    <div className='d-flex flex-column'>
+                                                        <span className='small-tittle'>Examination and Lab findings</span>
+
+                                                    </div>
+                                                    <RightArrowIconOriginal />
+                                                </li>
+
+                                                {/* <button className="medicines-list-add-btn" onClick={() => { setSuperSubMenu(<AddInvestigation setSuperSubMenu={setSuperSubMenu} setActiveLeft={handleSetLeft} />) }}>
 
                                                             <div className="d-flex text-white flex-row align-items-center justify-content-center">
                                                                 <AddIcon /> Add investigation
@@ -947,55 +957,55 @@ export const MeetPage_Pt = () => {
                                                         </button> */}
 
 
+                                            </ul>
+
+
+
+                                        </div>
+
+
+
+                                        : activeLeft.page === leftMenus[2] && activeLeft.status && superSubMenu == null ?
+
+
+                                            <div className="d-flex flex-column align-items-center p-2  ">
+
+                                                <ul className='test-sub-menu'>
+
+
+                                                    <div className="white-container mt-0 invite-container">
+                                                        <div className="title">Invite with :</div>
+
+                                                        <div className="body">
+                                                            <Radio.Group>
+                                                                <Radio value={1}>eMail id</Radio>
+                                                                <Radio value={2}>Mobile Number</Radio>
+
+                                                            </Radio.Group>
+
+                                                            <Input placeholder="eMail id" />
+
+                                                            <button className="medicines-list-add-btn" onClick={() => { handleInviteOnClick() }}>
+
+                                                                <div className="d-flex text-white flex-row align-items-center justify-content-center">
+                                                                    Invite
+                                                                </div>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+
+
+
                                                 </ul>
+
+
 
 
 
                                             </div>
 
-
-
-                                            : activeLeft.page === leftMenus[2] && activeLeft.status && superSubMenu == null ?
-
-
-                                                <div className="d-flex flex-column align-items-center p-2  ">
-
-                                                    <ul className='test-sub-menu'>
-
-
-                                                        <div className="white-container mt-0 invite-container">
-                                                            <div className="title">Invite with :</div>
-
-                                                            <div className="body">
-                                                                <Radio.Group>
-                                                                    <Radio value={1}>E-Mail ID</Radio>
-                                                                    <Radio value={2}>Mobile Number</Radio>
-
-                                                                </Radio.Group>
-
-                                                                <Input placeholder="E-Mail ID" />
-
-                                                                <button className="medicines-list-add-btn" onClick={() => { handleInviteOnClick() }}>
-
-                                                                    <div className="d-flex text-white flex-row align-items-center justify-content-center">
-                                                                        Invite
-                                                                    </div>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-
-
-
-
-                                                    </ul>
-
-
-
-
-
-                                                </div>
-
-                                                : superSubMenu
+                                            : superSubMenu
                             }
 
                         </ul>
@@ -1083,18 +1093,7 @@ export const MeetPage_Pt = () => {
 
             </div>
 
-            {/* {
-                !doctor || !patient ?
-                    <div className="waiting-toast">
-                        <div className='waiting-toast-body'>
-                            waiting for {!doctor ? "doctor" : !patient ? "patient" : null}...
-                            <br></br>
 
-                            <PuffLoader color={"white"} loading={true} size={40} />
-
-                        </div>
-                    </div> : null
-            } */}
 
             <ConsultationModal state={message} setState={setMessage} />
 
