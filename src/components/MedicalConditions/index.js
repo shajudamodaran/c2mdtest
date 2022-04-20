@@ -23,7 +23,7 @@ function MedicalConditions({
   );
   const [showModal, setShowModal] = useState(false);
   const [modalItem, setItem] = useState(
-    "Do you really want to delete this Medical Conditions ?"
+    "Do you really want to delete this medical conditions ?"
   );
   const [deleteItems, setDeleteItem] = useState("");
   // const dataItem = settingsdata[4].Medicalcondition[0].Medicalconditionlist;
@@ -202,7 +202,7 @@ function MedicalConditions({
     let foundItem = medCondition.some((el) => el.medicalcondition === e);
 
     if (foundItem) {
-      toast.error(`${e}  Already Added`, {
+      toast.error(`${e}  already added`, {
         position: toast.POSITION.TOP_CENTER,
       });
     } else {

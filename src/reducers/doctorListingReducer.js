@@ -14,11 +14,11 @@ export default (state = INITIAL_STATE, { type, payload }) => {
       let newStet = payload.doctors?.doctorDetails
       let oldState = state.doctorList?.doctorDetails
 
-      // if (oldState && (!payload.speciality||payload.speciality=="ALL" )) {
+      if (oldState && (!payload.speciality||payload.speciality=="ALL" )) {
 
-      //   payload.doctors.doctorDetails=[...oldState,...newStet]
+        payload.doctors.doctorDetails=[...oldState,...newStet]
 
-      // }
+      }
 
       return {
         ...state,

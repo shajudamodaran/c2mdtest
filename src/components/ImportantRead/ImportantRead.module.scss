@@ -98,23 +98,49 @@
   max-width: 563px;
   width: 100%;
   height: auto;
-  background: #ffffff 0% 0% no-repeat padding-box;
-  box-shadow: -3px 3px 6px #0000001a;
+ 
   opacity: 1;
   border: none;
   right: 0;
   margin: auto;
   overflow-y: hidden;
-  border-radius: 10px;
+  
   z-index: 10000;
-  top: 14%;
-  margin-top: 7.5%;
+ 
+  
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
   :global .modal-dialog {
     margin: auto;
+    width: 100%;
+    height: 100%;
+    
+   
+    
+  }
+
+  :global .modal-content {
+    background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: -3px 3px 6px #0000001a;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  margin-top: 80px;
+  width:550px;
+ 
+   
+    
   }
   :global .modal-body {
     max-height: 430px;
     overflow-y: auto;
+   
     // padding: 1rem 20px 1rem 0;
     &::-webkit-scrollbar-track {
       -webkit-box-shadow: none;

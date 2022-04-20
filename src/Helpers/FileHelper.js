@@ -25,7 +25,16 @@ export let getFileTypeFromFileName = (fileName) => {
         if(fileExt)
         {
             let fileIcon=FILE_SCHEMA[fileExt.toLowerCase()]
-            return fileIcon
+
+            if(fileIcon)
+            {
+                return fileIcon
+            }
+            else{
+
+                return FILE_SCHEMA.file
+            }
+           
         }
         else{
 

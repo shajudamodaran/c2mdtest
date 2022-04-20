@@ -23,7 +23,7 @@ function Symptoms({
   const [showModal, setShowModal] = useState(false);
   const [deleteItems, setDeleteItem] = useState("");
   const [modalItem, setItem] = useState(
-    "Do you really want to delete this Symptoms ?"
+    "Do you really want to delete this symptoms ?"
   );
   const dispatch = useDispatch();
   const [showForm, setForm] = useState(true);
@@ -186,7 +186,7 @@ function Symptoms({
     let foundItem = symptoms.some((el) => el.symptoms === e);
 
     if (foundItem) {
-      toast.error(`${e}  Already Added`, {
+      toast.error(`${e}  already added`, {
         position: toast.POSITION.TOP_CENTER,
       });
     } else {
@@ -198,7 +198,7 @@ function Symptoms({
     let foundItem = symptoms.some((el) => el.symptoms === e);
 
     if (foundItem) {
-      toast.error(`${e}  Already Added`, {
+      toast.error(`${e}  already added`, {
         position: toast.POSITION.TOP_CENTER,
       });
     } else {

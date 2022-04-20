@@ -162,7 +162,7 @@ function DoctorListingDetails({ Details }) {
             )} */}
             <div className={Style.doctorListTimerColmob}>
               <div className={Style.doctorListTimerCol}>
-                <div>
+                <div style={{whiteSpace:"nowrap", flexDirection:"row"}}>
                   <img
                     src={Assets.timer_icon}
                     className={Style.doctor_listing_timer_icon}
@@ -171,7 +171,7 @@ function DoctorListingDetails({ Details }) {
                     Up to {Details.duration} min
                   </span>
                 </div>
-                <div>
+                <div style={{whiteSpace:"nowrap", flexDirection:"row"}}>
                   <img
                     src={Assets.fee_icon}
                     className={Style.doctor_listing_timer_icon}
@@ -186,7 +186,7 @@ function DoctorListingDetails({ Details }) {
           </div>
           <div className={last_column}>
             <div className={Style.doctorListTimerCol}>
-              <div>
+            <div style={{whiteSpace:"nowrap", flexDirection:"row"}}>
                 <img
                   src={Assets.timer_icon}
                   className={Style.doctor_listing_timer_icon}
@@ -195,7 +195,7 @@ function DoctorListingDetails({ Details }) {
                   Up to {Details.duration} min
                 </span>
               </div>
-              <div>
+              <div style={{whiteSpace:"nowrap", flexDirection:"row"}}>
                 <img
                   src={Assets.fee_icon}
                   className={Style.doctor_listing_timer_icon}

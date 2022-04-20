@@ -55,6 +55,7 @@
 
 .Schedule .Select_wrapper .appointmentTypeTxt img {
   margin-right: 15px;
+  margin-top: -3px;
 }
 
 .Schedule .availableTimeTxt {
@@ -79,7 +80,7 @@
 
 .Schedule .availableTimeTxt img {
   margin-right: 15px;
-  margin-top: -1px;
+  margin-top: -3px;
 }
 
 .Schedule .errmsg {

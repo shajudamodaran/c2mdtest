@@ -1,3 +1,28 @@
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
+  // For Google Chrome
+  &::-webkit-scrollbar {
+    width:  $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+    border-radius: 100px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $background-color;
+    border-radius: 100px;
+  }
+
+  // For Internet Explorer
+  & {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
+
+
 .doctor_listing_details_div {
   opacity: 1;
   background: white !important;
@@ -124,6 +149,8 @@
     align-items: center;
     z-index: 2;
     margin-top: 15px;
+    @include scrollbars(5px, #c7c7c7,#ececec);
+    overflow: auto;
     .doctor_listing_search_by_name {
       padding-left: 11px;
       border: 1px solid #e3e3e3;

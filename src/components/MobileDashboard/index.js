@@ -107,11 +107,41 @@ function MobileDashboard() {
 
     useEffect(() => {
 
-        if (activeLeft.menu === 0 && activeLeft.option === 0) {
-            history.push(`./${clientDetails ? clientDetails.clinicurl : "speciality"}`)
-        }
+        goToDoctorListing()
+
+        // if (activeLeft.menu === 0 && activeLeft.option === 0) {
+        //     history.push(`./${_clinicUrl}`)
+        // }
 
     }, [activeLeft])
+
+    let goToDoctorListing =async () =>{
+
+        let clinicDetailsLocal= await JSON.parse(localStorage.getItem("ClinicDetails"))
+
+        let _clinicUrl=null
+
+        console.log();
+
+        if(clientDetails?.clinicurl)
+        {
+            _clinicUrl=clientDetails?.clinicurl
+        }
+        else if(clinicDetailsLocal)
+        {
+            _clinicUrl=clinicDetailsLocal.clinicurl
+        }
+
+
+        // console.log(_clinicUrl);
+
+         if (activeLeft.menu === 0 && activeLeft.option === 0) {
+            history.push(`./${_clinicUrl}`)
+        }
+
+
+
+    }
 
 
 
@@ -243,9 +273,6 @@ function MobileDashboard() {
     }
 
 
-
-   
-
     let uploadReportsHandler = (e) => {
 
 
@@ -253,15 +280,14 @@ function MobileDashboard() {
         let formData = new FormData();
         formData.append("appintmentId", consultationToday?.appointmentId)
 
-        console.log("event",e);
+
         if (e.target.files[0]) {
             formData.append(`file`, e.target.files)
         }
-        console.log("formData",formData);
 
-        // dispatch(
-        //     uploadReports({ formData, userData, dashboardData })
-        // );
+        dispatch(
+            uploadReports({ formData, userData, dashboardData })
+        );
 
     }
 
@@ -873,6 +899,16 @@ function MobileDashboard() {
 
                                                     </div>
                                                 </div> */}
+
+                                                <div className="dash-card-footer">
+                                                    <div className="row p-0 m-0 w-100">
+                                                        <div className="col-md-12 col-sm-12 col-12 p-0 m-0 text-center">
+                                                            {/* <DashButton text="View More" inactive /> */}
+                                                            &nbsp;
+                                                        </div>
+
+                                                    </div>
+                                                </div>
 
 
                                             </div>

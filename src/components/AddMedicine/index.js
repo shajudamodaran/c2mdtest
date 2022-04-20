@@ -202,6 +202,7 @@ function AddMedicine({
       {isMedication && (
         <>
           <Accordion className={Style.medications_accordion_align}>
+          
             {medicine?.map((med, index) => {
               return (
                 <Accordion.Item key={index} eventKey={index}>

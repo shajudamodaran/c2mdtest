@@ -149,7 +149,7 @@ function Surgeries({
     let foundItem = surgeries.some((el) => el.surgery === e);
 
     if (foundItem) {
-      toast.error(`${e}  Already Added`, {
+      toast.error(`${e}  already added`, {
         position: toast.POSITION.TOP_CENTER,
       });
     } else {

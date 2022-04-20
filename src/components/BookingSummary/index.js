@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Style from "./BookingSummary.module.scss";
 import { Button } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import DoctorDetails from "../DoctorDetails";
 import PatientConsent from "../PatientConsent";
 import { book_slot } from "../../actions/BookAppoinmentAction";
@@ -83,6 +83,8 @@ function BookingSummary({
 
   }
 
+ 
+
   return (
     <>
 
@@ -155,14 +157,14 @@ function BookingSummary({
         <label className={Style.booking_summary_doctor_details}>
           Consultation Details
         </label>
-        {/* <Link
+        <Link
           className={Style.booking_summary_consultation_change_link}
           onClick={() => {
             setProgress(6);
           }}
         >
           Change
-        </Link> */}
+        </Link>
       </div>
       <div className={Style.booking_summary_details_div}>
         <div className={Style.booking_desc}>

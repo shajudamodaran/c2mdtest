@@ -106,7 +106,7 @@ function MicrositeHeader({ clientDetails }) {
               <>
                 <div onClick={logout} className={Style.siginup_Btn_v2}>Logout</div>
                 <div className={Style.siginup_Btn_v2} style={{fontSize:"18px"}}>|</div>
-                <div onClick={() => { history.push("dashboard") }} className={Style.siginup_Btn_v2}>Go to Dashboard</div>
+                <div onClick={() => { history.push("/dashboard") }} className={Style.siginup_Btn_v2}>Go to Dashboard</div>
               </>
 
 

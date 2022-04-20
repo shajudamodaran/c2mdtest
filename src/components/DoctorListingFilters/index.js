@@ -173,6 +173,7 @@ function DoctorListingFilters({
     setSelect({ hospital: !showSelect.hospital });
   };
 
+
   const languagechange = (item, e) => {
 
 
@@ -195,16 +196,23 @@ function DoctorListingFilters({
           language: [],
         });
       }
-    } else {
-      languageData.map((data) => {
-        if (data.value == item.value) {
+    } else 
+    
+    {
+      languageData.map((data) => 
+      {
+        if (data.value == item.value) 
+        {
           data.checked = e.target.checked;
         }
         if (data.value == "All") {
           data.checked = false;
         }
       });
+
+
       let selectedItem = [];
+
       languageData.map((obj) => {
         if (obj.checked == true && object.value !== "All") {
           return selectedItem.push(obj.value);
@@ -285,6 +293,8 @@ function DoctorListingFilters({
       );
     }
   };
+
+
 
   return (
     <div className={colDetailsDiv} id="filterList">

@@ -154,7 +154,7 @@
   height: 16px;
   margin-right: 5px;
   position: relative;
-  top: -1px;
+  top: -2px;
   z-index: 1;
 }
 
@@ -166,6 +166,7 @@
   opacity: 1;
   margin-right: 10px;
   font-family: "DM Sans", sans-serif;
+  white-space: nowrap;
 }
 
 .doctor_listing_profile_details .doctor_listing_profile_details_row .doctor_listing_last_column_align .doctor_listing_appointment_btn {

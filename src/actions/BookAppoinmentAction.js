@@ -166,7 +166,7 @@ export const book_slot =
 
     // let orderRes = response.data.data;
 
-    if (data.referenceId == "" && data?.bookingFrom == "Request") {
+    if (data?.bookingFrom == "Request") {
       
       
       localStorage.setItem("RequestId",orderRes?.info)
@@ -374,7 +374,7 @@ export const BookingConfirmation =
       useragent: userAgent,
       razorpayId: razorpayRes.razorpayPaymentId,
       patientId: user.userId,
-      referenceId: orderData.referenceId,
+      referenceId: "",
       todayRate: "74.27006",
       bookingFrom: orderData.bookingFrom,
    Browser: browser.name+" "+browser.version,
@@ -392,8 +392,8 @@ export const BookingConfirmation =
     let appinmentTime = JSON.parse(timeData);
     let appinmentData = {
       appoinmentId: response,
-      appoinmentFromTime: "",
-      appoinmentToTime: "",
+      appoinmentFromTime: appinmentTime?.appoinmentFromTime,
+      appoinmentToTime: appinmentTime?.appoinmentToTime,
       appoinmentType: "Book",
     };
     if (response?.info !== "Failed") {

@@ -81,8 +81,7 @@ function GettingInTouch({
           ...errorTemp,
           phoneNum: true,
           error: true,
-          phoneErrorMsg: `There seems to be some issue with the mobile number you entered.
-        Please check`,
+          phoneErrorMsg: `Please enter a valid mobile number`,
         };
       }
 
@@ -99,8 +98,7 @@ function GettingInTouch({
             ...errorTemp,
             alterPhoneNUmber: true,
             error: true,
-            alterPhoneErrorMsg: `There seems to be some issue with the mobile number your
-          entered. Please check`,
+            alterPhoneErrorMsg: `Please enter alternative mobile number`,
           };
         } else if (phoneNum == alterPhoneNUmber) {
           errorTemp = {
@@ -137,8 +135,7 @@ function GettingInTouch({
         ...errorTemp,
         phoneNum: true,
         error: true,
-        phoneErrorMsg: `There seems to be some issue with the mobile number you entered.
-      Please check`,
+        phoneErrorMsg: `Please enter a valid mobile number`,
       };
     }
 
@@ -155,8 +152,7 @@ function GettingInTouch({
           ...errorTemp,
           alterPhoneNUmber: true,
           error: true,
-          alterPhoneErrorMsg: `There seems to be some issue with the mobile number your
-        entered. Please check`,
+          alterPhoneErrorMsg: `Please enter a valid mobile number`,
         };
       } 
       else if (phoneNum == alterPhoneNUmber) {

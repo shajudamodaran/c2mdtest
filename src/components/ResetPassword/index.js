@@ -94,30 +94,12 @@ function ResetPassword() {
         
         console.log("User exist", res?.data);
 
-        let params = {
-          "detail": {
-            "email": "shaju123456@gmail.com",
-            "mobileNumber": "919074810155",
-            "accessCountry": "0",
-            "dial_code": "91",
-            "countryCode": "IN",
-            "code": {
-              "name": "India",
-              "flag": "🇮🇳",
-              "code": "IN",
-              "dial_code": "+91"
-            }
-          },
-          "userType": "Patient",
-          "page": "reset"
-        }
-
         history.push({
           pathname: "/signup/verify",
           state: {
           "detail": {
             "email": "shaju123456@gmail.com",
-            "mobileNumber": "919074810155",
+            "mobileNumber": "",
             "accessCountry": "0",
             "dial_code": "91",
             "countryCode": "IN",

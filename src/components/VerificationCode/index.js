@@ -119,6 +119,8 @@ function VerificationCode() {
     onload(pages);
   };
 
+  console.log(pages);
+
   const verifyOtp = () => {
 
 

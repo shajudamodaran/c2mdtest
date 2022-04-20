@@ -8,7 +8,7 @@ import {
 import { fetch_DoctorDetail } from "../../actions/DoctorDetailsAction";
 import { Col } from "react-bootstrap";
 import "react-datepicker/dist/react-datepicker.css";
-import { useHistory } from "react-router";
+import { useHistory,useLocation } from "react-router";
 import {
   fetchReasonforVisit,
   fetchTypeofAppoinment,
@@ -127,6 +127,11 @@ function BookAppointmentQuestionare({setSummary}) {
   const settingsdata = useSelector(
     (state) => state.bookAppoinment.settingsdata
   );
+
+  let location=useLocation()
+
+  console.log(location);
+
 
   return (
     <div className={Style.book_appointment_topSection}>

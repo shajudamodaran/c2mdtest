@@ -62,7 +62,7 @@ function FaqContent() {
                 {" "}
                 8. Do I talk to real doctors{" "}
             </h3>
-            <p>Yes. Connect2MyDoctors are certified doctors licensed to practice medicine. We have a stringent doctor on boarding where all the doctorsâ€™ profiles and medical licenses are verified by a human. Only on successful verification process their profiles are made LIVE.</p>
+            <p>Yes. Connect2MyDoctors are certified doctors licensed to practice medicine. We have a stringent doctor on boarding where all the doctor's profiles and medical licenses are verified by a human. Only on successful verification process their profiles are made LIVE.</p>
 
 
             <h3 className={Style.headings}> 9. Is Connect2MyDoctor available 24x7?</h3>

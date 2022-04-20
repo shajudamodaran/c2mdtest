@@ -138,7 +138,7 @@ function Signin() {
       .then((res) => {
         if (res?.info === "New User") {
           let text =
-            values.loginType === "email" ? "email id" : "mobile number";
+            values.loginType === "email" ? "eMail id" : "mobile number";
           setErrorMsg(`You have entered an invalid username(${text}) `);
         } else {
           history.push({

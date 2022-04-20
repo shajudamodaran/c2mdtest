@@ -113,6 +113,7 @@ export const Links = [
   },
   {
     title:
-      "If you wish to link to or make any use of content on our Site other than that set out above, please contact support.connect2mydoctor.com",
+    <span>If you wish to link to or make any use of content on our Site other than that set out above, please contact  <a href="mailto:support@connect2my.doctor">support@connect2my.doctor</a>.</span>
+        
   },
 ];

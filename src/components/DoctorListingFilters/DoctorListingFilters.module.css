@@ -156,6 +156,27 @@
           align-items: center;
   z-index: 2;
   margin-top: 15px;
+  overflow: auto;
+}
+
+.doctor_listing_details_div .doctor_listing_byname_content::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.doctor_listing_details_div .doctor_listing_byname_content::-webkit-scrollbar-thumb {
+  background: #c7c7c7;
+  border-radius: 100px;
+}
+
+.doctor_listing_details_div .doctor_listing_byname_content::-webkit-scrollbar-track {
+  background: #ececec;
+  border-radius: 100px;
+}
+
+.doctor_listing_details_div .doctor_listing_byname_content {
+  scrollbar-face-color: #c7c7c7;
+  scrollbar-track-color: #ececec;
 }
 
 .doctor_listing_details_div .doctor_listing_byname_content .doctor_listing_search_by_name {

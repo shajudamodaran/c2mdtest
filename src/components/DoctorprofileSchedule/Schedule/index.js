@@ -277,7 +277,8 @@ function Schedule({ responsive, Typeofappointment, doctorId, DayCounter }) {
         routing: true,
       })
     );
-    if (DoctorFee == 0) {
+    if (DoctorFee == 0) 
+    {
       if (!toastOpen) {
         toast.error("Please contact our support team ", {
           position: toast.POSITION.TOP_CENTER,

@@ -178,6 +178,7 @@ export const loginwithotp =
     });
 
     console.log(res);
+
     if (res.data.data.info) {
       toast.error("Invalid username or password !", {
         position: "top-right",
@@ -191,7 +192,7 @@ export const loginwithotp =
     } else {
       dispatch({
         type: LOGIN_SUCCESS_ACTION,
-        payload: JSON.stringify(res.data.data),
+        payload: res.data.data,
       });
 
       //await localStorage.setItem("userData", JSON.stringify(res.data.data));

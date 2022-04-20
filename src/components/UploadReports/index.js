@@ -75,12 +75,62 @@ function UploadReports({
     }
   };
 
+  console.log(uploads);
+
   const onFileChange = (file) => {
     // const file = e.target.files[0];
 
     let imgSize = parseFloat(file?.size / (1024 * 1024)).toFixed(2);
 
-    if (uploads.length <= 4) {
+    if (uploads) {
+      if (uploads?.length <= 4) {
+        if (imgSize < 5) {
+          setError(false);
+          const formData = new FormData();
+          formData.append("name", file.name);
+          formData.append("file", file);
+
+          axios
+            .post(
+              "https://uat.c2mdr.com/c2mydrrestdemo/v1/c2mdapi/reportsuploads",
+              formData,
+              {}
+            )
+            .then((res) => {
+
+              console.log(res);
+              let imgname = res.data.data.fileName?.split("!");
+
+              setFileName([...fileItem, res.data && res.data.data.fileName]);
+              setShowError(false);
+              setUploads([
+                ...uploads,
+                {
+                  title: imgname[0],
+                  uploaded: moment().format("DD-MM-YYYY"),
+                  status: true,
+                  resName: res.data.data.fileName,
+                },
+              ]);
+            })
+            .catch((error) => { });
+        } else {
+          setError(true);
+        }
+      } else {
+        if (!toastOpen) {
+          toast.error("Only 5 files are allowed to upload", {
+            position: toast.POSITION.TOP_CENTER,
+            hideProgressBar: true,
+            onOpen: (props) => setToastOpen(true),
+            onClose: (props) => setToastOpen(false),
+          });
+        }
+      }
+
+    }
+    else{
+
       if (imgSize < 5) {
         setError(false);
         const formData = new FormData();
@@ -101,7 +151,7 @@ function UploadReports({
             setFileName([...fileItem, res.data && res.data.data.fileName]);
             setShowError(false);
             setUploads([
-              ...uploads,
+              
               {
                 title: imgname[0],
                 uploaded: moment().format("DD-MM-YYYY"),
@@ -114,17 +164,13 @@ function UploadReports({
       } else {
         setError(true);
       }
-    } else {
-      if (!toastOpen) {
-        toast.error("Only 5 files are allowed to upload", {
-          position: toast.POSITION.TOP_CENTER,
-          hideProgressBar: true,
-          onOpen: (props) => setToastOpen(true),
-          onClose: (props) => setToastOpen(false),
-        });
-      }
+
     }
+
+
   };
+
+  console.log(uploads);
 
   const fileUpload = (event) => {
     let files = [...event.dataTransfer.files];
@@ -273,9 +319,9 @@ function UploadReports({
                     );
                   })}
 
-                  {
-                    console.log(selectedFiles,uploads)
-                  }
+                {
+                  console.log(selectedFiles, uploads)
+                }
 
                 {selectedFiles &&
                   selectedFiles.map((item, index) => {
@@ -286,7 +332,7 @@ function UploadReports({
                         }
                       >
                         <span className={Style.upload_reports_count}>
-                          {index+uploads.length + 1}
+                          {index + uploads.length + 1}
                         </span>
                         <img
                           src={getFileTypeFromFileName(item.filename)}
@@ -295,7 +341,7 @@ function UploadReports({
                         <span className={Style.upload_reports_dropdown_content}>
                           <span>{item.title}</span>
                           <span className={Style.upload_reports_description}>
-                            {item.filename.toLowerCase()} - {item.dateOfReport} 
+                            {item.filename.toLowerCase()} - {item.dateOfReport}
                           </span>
                         </span>
                         <figure>
@@ -323,7 +369,7 @@ function UploadReports({
                   <input
                     type="file"
                     id="upload"
-                   
+
                     ref={fileInputRef}
                     onChange={(e) => {
                       e.stopPropagation()

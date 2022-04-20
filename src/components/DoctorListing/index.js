@@ -60,9 +60,13 @@ function DoctorListing({
       dispatch(
         fetchSpeciality(clinicId == undefined ? "" : clinicId)
       );
+
+
       dispatch(
         fetch_clientDetails(clinicId == undefined ? "" : clinicId)
       );
+
+      
     } else {
       // if (!speciality) {
       //   setSpeciality(specialityData[0].specialityName);
