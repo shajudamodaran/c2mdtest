@@ -15,7 +15,7 @@ function RecentActivityListItem({ data }) {
 
         if (data) {
 
-            data.appointmentDetails.bookingFrom = "Book";
+            data.appointmentDetails.bookingFrom = "Request";
             data.appointmentDetails.bookingType = "Book";
 
             //if (data.appointmentDetails.appointmentFor == "") {
@@ -70,13 +70,13 @@ function RecentActivityListItem({ data }) {
 
                 {/* <button className="recent-list-item-button-expired">Expired</button> */}
                 <button
-                    className={data.appointmentStatus === "Expired" ?
-                        "recent-list-item-button-expired" :
-                        "recent-list-item-button-active"
+                    className={data.appointmentStatus === "Accepted by doctor" ?
+                        "recent-list-item-button-active" :
+                        "recent-list-item-button-expired"
                     }
                     onClick={() => { bookappointment(data.appointmentStatus === "Expired" ? false : data) }}
 
-                >{data.appointmentStatus === "Expired" ? "Expired" : "Book Now"}</button>
+                >{data.appointmentStatus === "Accepted by doctor" ? "Book Now" : data.appointmentStatus}</button>
             </div>
         </div>
     )

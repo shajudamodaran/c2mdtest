@@ -243,6 +243,9 @@ function MobileDashboard() {
     }
 
 
+
+   
+
     let uploadReportsHandler = (e) => {
 
 
@@ -250,14 +253,15 @@ function MobileDashboard() {
         let formData = new FormData();
         formData.append("appintmentId", consultationToday?.appointmentId)
 
-
+        console.log("event",e);
         if (e.target.files[0]) {
             formData.append(`file`, e.target.files)
         }
+        console.log("formData",formData);
 
-        dispatch(
-            uploadReports({ formData, userData, dashboardData })
-        );
+        // dispatch(
+        //     uploadReports({ formData, userData, dashboardData })
+        // );
 
     }
 
