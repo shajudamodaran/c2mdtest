@@ -10,9 +10,9 @@ function RecentActivityListItem({ data }) {
     let dispatch=useDispatch()
     let history=useHistory()
 
-
+    
     let bookappointment = (data) => {
-
+        console.log("data",data);
         if (data) {
             // data.appointmentDetails.bookingFrom = "Request";
             data.appointmentDetails.bookingFrom = "Book";
@@ -71,13 +71,13 @@ function RecentActivityListItem({ data }) {
 
                 {/* <button className="recent-list-item-button-expired">Expired</button> */}
                 <button
-                    className={data.appointmentStatus === "Expired" ?
-                        "recent-list-item-button-expired" :
-                        "recent-list-item-button-active"
+                    className={data.appointmentStatus === "Accepted by doctor" || data.appointmentStatus === "Accepted by Doctor"  ?
+                        "recent-list-item-button-active" :
+                        "recent-list-item-button-expired"
                     }
-                    onClick={() => { bookappointment(data.appointmentStatus === "Expired" ? false : data) }}
+                    onClick={() => { bookappointment(data.appointmentStatus === "Accepted by doctor" || data.appointmentStatus === "Accepted by Doctor" ? data : false) }}
 
-                >{data.appointmentStatus === "Expired" ? "Expired" : "Book Now"}</button>
+                >{data.appointmentStatus === "Accepted by doctor" || data.appointmentStatus === "Accepted by Doctor" ? "Book Now": data.appointmentStatus}</button>
             </div>
         </div>
     )
