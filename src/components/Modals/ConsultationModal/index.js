@@ -6,6 +6,23 @@ function ConsultationModal({ state, setState}) {
 
     const history = useHistory();
 
+    let handleClose = () =>{
+
+        let close_msg="Your session has been disconnected."
+
+        if(state==close_msg)
+        {
+            setState(!state)
+            history.push("/dashboard");
+
+        }
+        else{
+
+            setState(!state)
+
+        }
+    }
+
 
    
     return (
@@ -24,7 +41,7 @@ function ConsultationModal({ state, setState}) {
                             </div>
 
                             <div className="c-modal-buttons">
-                                <button className='c-modal-cancel-btn btn dialog-btn filled green px-4 bootbox-accept' onClick={()=>{setState(!state)}}>OK</button>
+                                <button className='c-modal-cancel-btn btn dialog-btn filled green px-4 bootbox-accept' onClick={handleClose}>OK</button>
                                
                             </div>
                         </div>

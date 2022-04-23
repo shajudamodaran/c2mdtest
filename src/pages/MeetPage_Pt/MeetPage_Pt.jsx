@@ -502,9 +502,10 @@ export const MeetPage_Pt = () => {
                     console.log("Session disconnected...")
                     console.log(event)
                     setMessage(`Your session has been disconnected.`)
+    
                     setTimeout(function () {
                         history.push("/mobiledashboard");
-                    }.bind(this), 15000);
+                    }.bind(this), 0);
                     //  history.push("/mobiledashboard");
                 })
             }

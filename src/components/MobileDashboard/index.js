@@ -313,7 +313,11 @@ function MobileDashboard() {
 
         call201().then((res) => {
 
+
+            
             setActiveConsultation(res.data)
+
+
 
         })
 
@@ -328,13 +332,8 @@ function MobileDashboard() {
             if (activeConsultation.reports) {
 
 
-
                 activeConsultation.reports.length > 0 ?
-
-                    setReports([...activeConsultation.reports]) : console.log("No reports")
-
-
-
+                setReports([...activeConsultation.reports]) : console.log("No reports")
 
 
             }
@@ -378,6 +377,7 @@ function MobileDashboard() {
 
             call201().then((res) => {
 
+                console.log(typeof(res.data));
                 setActiveConsultation(res.data)
 
             })
@@ -446,21 +446,46 @@ function MobileDashboard() {
     }, [activeConsultation?.appointmentId])
 
 
+
+    useEffect(() => {
+
+        if (!activeConsultation?.appointmentId) {
+            call65().then((respo) => {
+
+                console.log("65 responce--->", respo.data?.appointmentDetail, "appointmentDetail");
+
+                if (respo.data) {
+
+                    console.log("*** There is consultation available in 65 😃 ***");
+                    setActiveConsultationDetails(respo.data)
+
+                }
+                else {
+                    console.log("***There is no consultation available in 65 😔 ***");
+                }
+            })
+
+        }
+        else {
+            console.log("***There is no consultation available in 201***");
+        }
+     
+    }, [activeConsultation])
+    
+
+
     let filterUpcomingAppointments = (appointmentsArray) => {
 
 
 
         if (appointmentsArray?.appointmentDetail.length > 0) {
-            let tempArray = appointmentsArray?.appointmentDetail.filter(element => element.status == "Upcoming" || element.status == "On-going")
+            let tempArray = appointmentsArray?.appointmentDetail.filter(element => element.status == "Upcoming" || element.status == "On-going" || element.status == "Completed")
 
 
             return tempArray
         }
 
     }
-
-
-    // console.log(activeConsultationDetails);
 
 
 
@@ -612,8 +637,6 @@ function MobileDashboard() {
 
 
 
-
-
                                                                     return (
                                                                         <div className="today_consultation_card">
 
@@ -724,6 +747,7 @@ function MobileDashboard() {
 
                                                 <div className="dash-card-footer">
 
+                                                
 
                                                     {
                                                         filterUpcomingAppointments(activeConsultationDetails)?.map((element, key) => {
@@ -731,17 +755,17 @@ function MobileDashboard() {
 
                                                             if (key == 0) {
 
-                                                                // console.log(element);
+                                                        
 
                                                                 return (
 
-                                                                    element.status === "Completed" ?
+                                                                    element.status === "Completed"?
 
                                                                         <div className="row p-0 m-0 w-100">
 
                                                                             <div className="col-md-12 col-sm-12 col-12 p-0 m-0 text-center">
                                                                                 {
-                                                                                    consultationToday.prescription ?
+                                                                                    consultationToday?.prescription ?
                                                                                         <DashButton action={consultationToday.prescription} onClick={openPrescription} text="Download Prescription" active />
                                                                                         :
                                                                                         <DashButton text="Download Prescription" inactive />
@@ -891,14 +915,7 @@ function MobileDashboard() {
                                                 </div>
 
 
-                                                {/* <div className="dash-card-footer">
-                                                    <div className="row p-0 m-0 w-100">
-                                                        <div className="col-md-12 col-sm-12 col-12 p-0 m-0 text-center">
-                                                            <DashButton text="View More" inactive />
-                                                        </div>
-
-                                                    </div>
-                                                </div> */}
+                                               
 
                                                 <div className="dash-card-footer">
                                                     <div className="row p-0 m-0 w-100">

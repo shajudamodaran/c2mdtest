@@ -166,7 +166,7 @@ padding: 0px 1.5rem;
     font-size: 14.5px;
     text-align: center;
     height: 90%;
-
+    flex:1;
     overflow-y: auto;
 }
 
