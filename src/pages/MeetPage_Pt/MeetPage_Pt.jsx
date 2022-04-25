@@ -17,7 +17,7 @@ import { useParams } from "react-router-dom";
 import './meetpatient.css'
 const { OTSession, OTPublisher, OTStreams, OTSubscriber, createSession } = require('opentok-react');
 
-
+//declaration
 let leftMenus = ["patientInfo", "Notes", "Invite"]
 
 
