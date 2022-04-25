@@ -1,0 +1,276 @@
+.interbranch-container {
+  width: 100%;
+  background-color: #F4F6F8;
+  min-height: 100vh;
+  overflow: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: .8rem 0rem;
+  height: 100vh;
+  position: relative;
+}
+
+.interbranch-container::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.interbranch-container::-webkit-scrollbar-thumb {
+  background: slategray;
+  border-radius: 100px;
+}
+
+.interbranch-container::-webkit-scrollbar-track {
+  background: #d4d9de;
+  border-radius: 100px;
+}
+
+.interbranch-container {
+  scrollbar-face-color: slategray;
+  scrollbar-track-color: #d4d9de;
+}
+
+.interbranch-container .left-container {
+  margin-left: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  min-height: 97vh;
+  min-width: 207px;
+  max-width: 207px;
+}
+
+.interbranch-container .left-container .letf-top {
+  width: 100%;
+}
+
+.interbranch-container .left-container .tittle {
+  font-size: 17px;
+  width: 100%;
+  text-align: left;
+  margin-bottom: .8rem;
+}
+
+.interbranch-container .left-container .list-tittle {
+  font-size: 15px;
+  font-weight: 500;
+  width: 100%;
+  text-align: left;
+  margin-top: 0rem;
+}
+
+.interbranch-container .left-container .side-nav {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.interbranch-container .left-container .side-nav .active {
+  font-weight: 500;
+}
+
+.interbranch-container .left-container .side-nav li {
+  padding: 0px;
+  margin: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  font-size: 15px;
+  margin-bottom: .8rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.interbranch-container .left-container .side-nav li .icon {
+  height: 35px;
+  width: 35px;
+  border-radius: 100px;
+  background-color: white;
+  margin-right: .9rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+          box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+
+.interbranch-container .right-container {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin-right: 25px;
+  margin-left: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  min-height: 97vh;
+  width: 77%;
+}
+
+.interbranch-container .right-container .right-menu-container {
+  width: 100%;
+  background-color: white;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.interbranch-container .right-container .right-menu-container .container_interbranch {
+  margin: 1rem;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.interbranch-container .header-card {
+  width: 100%;
+  background-color: white;
+  height: 75px;
+  border-radius: 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: .9rem 0px;
+}
+
+.interbranch-container .header-card span {
+  margin: 0px 2rem;
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.interbranch-container .header-card .caption {
+  margin: 0px 2rem;
+  font-size: 19px;
+  font-weight: 600;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  color: #0A8CE0;
+}
+
+.interbranch-container .logout {
+  height: 65px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 1.9rem 1.5rem !important;
+  margin-bottom: 0px;
+}
+
+.interbranch-container .logout .icon {
+  height: 35px;
+  width: 35px;
+  border-radius: 100px;
+  background-color: #F4F6F8;
+  margin-right: .9rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+          box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+/*# sourceMappingURL=interbranchadminhome.css.map */

@@ -1,0 +1,49 @@
+.consolidated-table {
+   
+      th{
+        padding: 0rem 1rem !important;
+        word-wrap: break-word;
+        white-space: pre;
+      
+      }
+
+    textArea {
+        outline: 0px;
+        border: 1px solid rgb(204, 204, 204);
+        border-radius: 5px;
+        width: 250px;
+        background-color: white;
+        padding: 0.5rem 0.8rem;
+
+        &:focus {
+            border: 1px solid rgb(0, 162, 255);
+        }
+    }
+}
+
+.consolidated-table-report {
+    padding: 0px;
+    margin: 0px;
+   
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    li {
+        font-weight: 500;
+        color: rgb(0, 162, 255);
+        list-style: none;
+        margin-right: 5px;
+
+
+    }
+
+    .add-report {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+       margin-left: 5px;
+        font-size: 13px;
+    }
+}

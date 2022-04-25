@@ -1,0 +1,352 @@
+.mis_report_container {
+  width: 100%;
+}
+
+.mis_report_container .appoinment-table {
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.mis_report_container .appoinment-table tr:nth-child(even) {
+  background-color: #F5F7FB;
+}
+
+.mis_report_container .appoinment-table tr:nth-child(even) .more-btn {
+  background-color: #ffffff;
+}
+
+.mis_report_container .appoinment-table .more-btn {
+  padding: .5rem .9rem;
+  background-color: #F4F6F8;
+  border: 0px;
+  outline: 0px;
+  border-radius: 5px;
+  -webkit-box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+          box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.mis_report_container .appoinment-table th {
+  text-align: start;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #F5F7FB;
+  height: 50px;
+  padding: .2rem 1rem;
+  border-spacing: 0;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.mis_report_container .appoinment-table td {
+  text-align: start;
+  font-size: 14px;
+  height: 50px;
+  padding: .5rem 1rem;
+  border-spacing: 0;
+  cursor: pointer;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.mis_report_container table tr :nth-child(4) {
+  white-space: pre-wrap !important;
+  min-width: 149px;
+}
+
+.mis_report_container table tr :nth-child(5) {
+  white-space: pre-wrap !important;
+  min-width: 149px;
+}
+
+.mis_report_container table textArea {
+  outline: 0px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  width: 250px;
+  background-color: white;
+  padding: 0.5rem 0.8rem;
+}
+
+.mis_report_container table textArea:focus {
+  border: 1px solid #00a2ff;
+}
+
+.mis_report_container .header {
+  border-bottom: 1px solid #e8ebed;
+  width: 100%;
+  padding: 0px 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 1.5rem;
+  font-size: 19.5px;
+  font-weight: 500;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.mis_report_container .header button {
+  padding: 0.5rem 1rem;
+  font-size: 16px;
+  font-weight: normal;
+  background-color: #f4f6f8;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  cursor: pointer;
+  outline: 0px;
+  border: 0px;
+}
+
+.mis_report_container .header button .icon {
+  border-radius: 100px;
+  background-color: white;
+  height: 35px;
+  width: 35px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-right: 1rem;
+}
+
+.mis_report_container .date-picker {
+  width: 220px !important;
+  margin-right: 0px !important;
+}
+
+.mis_report_container .filter-button {
+  padding: .5rem 1rem;
+  font-size: 16px;
+  font-weight: normal;
+  background-color: #F4F6F8;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  cursor: pointer;
+}
+
+.mis_report_container .filter-button .icon {
+  height: 35px;
+  width: 35px;
+  border-radius: 100px;
+  background-color: #ffffff;
+  margin-right: .9rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.pagination-container-mis-report {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.pagination-container-mis-report button {
+  padding: 0.5rem 1rem;
+  font-size: 16px;
+  font-weight: normal;
+  background-color: #f4f6f8;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  cursor: pointer;
+  outline: 0px;
+  border: 0px;
+}
+
+.pagination-container-mis-report button .icon {
+  border-radius: 100px;
+  background-color: white;
+  height: 40px;
+  width: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-right: 1rem;
+}
+
+.mis_report_table_container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.mis_report_table_container::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+}
+
+.mis_report_table_container::-webkit-scrollbar-thumb {
+  background: slategray;
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+.mis_report_table_container::-webkit-scrollbar-track {
+  background: #d4d9de;
+  border-radius: 100px;
+}
+
+.mis_report_table_container {
+  scrollbar-face-color: slategray;
+  scrollbar-track-color: #d4d9de;
+}
+
+.mis_report-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 1rem;
+  margin-right: 0.1rem;
+}
+
+.mis_report-table th {
+  background-color: #ecf5fc;
+  padding: 0.95rem;
+  font-weight: 500;
+  font-size: 15px;
+  border: 1px solid #d8d8d8;
+  border-bottom: 1.5px solid #d8d8d8;
+  text-align: start;
+  min-height: 50px;
+  white-space: pre;
+}
+
+.mis_report-table td {
+  font-weight: normal;
+  font-size: 14px;
+  border: 1px solid #d8d8d8;
+  text-align: center;
+  padding: 0rem 0.8rem;
+  height: 55px !important;
+  position: relative;
+}
+
+.mis_report-table td button {
+  padding: 0.5rem 1rem;
+  background-color: #101823;
+  border: 0px;
+  border-radius: 4px;
+  color: white;
+  margin: 0px 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  font-weight: bold;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s;
+          transition-duration: 0.4s;
+  min-width: -webkit-max-content;
+  min-width: -moz-max-content;
+  min-width: max-content;
+  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+/*# sourceMappingURL=misreport.css.map */

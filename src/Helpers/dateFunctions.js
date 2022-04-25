@@ -43,3 +43,30 @@ function setDateTime(date, time) {
 
   return date;
 }
+
+export const separaetdateAndTime = (date_string) => {
+
+
+  if (date_string) {
+    let arr = date_string.split(" ");
+    return {
+      date: arr[0],
+      time: arr[1]
+    }
+
+
+
+  }
+
+}
+
+
+export const convertDateToString = (_date) => {
+
+  if (_date) {
+
+   return moment(_date).format("DD-MMM-YYYY"); 
+
+  }
+
+}

@@ -1,0 +1,224 @@
+.appontment-history-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  position: relative;
+}
+
+.appontment-history-container .pagination-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.appontment-history-container .header {
+  border-bottom: 1px solid #E8EBED;
+  width: 100%;
+  padding: 0px .5rem;
+  padding-top: .5rem;
+  padding-bottom: 1.5rem;
+  font-size: 19.5px;
+  font-weight: 500;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.pagination-container-mis-report {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.pagination-container-mis-report button {
+  padding: 0.5rem 1rem;
+  font-size: 16px;
+  font-weight: normal;
+  background-color: #f4f6f8;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  cursor: pointer;
+  outline: 0px;
+  border: 0px;
+}
+
+.pagination-container-mis-report button .icon {
+  border-radius: 100px;
+  background-color: white;
+  height: 40px;
+  width: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-right: 1rem;
+}
+
+.todays_report_table_container {
+  width: 100%;
+  overflow-y: auto;
+}
+
+.todays_report_table_container::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+}
+
+.todays_report_table_container::-webkit-scrollbar-thumb {
+  background: slategray;
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+.todays_report_table_container::-webkit-scrollbar-track {
+  background: #d4d9de;
+  border-radius: 100px;
+}
+
+.todays_report_table_container {
+  scrollbar-face-color: slategray;
+  scrollbar-track-color: #d4d9de;
+}
+
+.todays_report_table_container .appoinment-table {
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.todays_report_table_container .appoinment-table tr:nth-child(even) {
+  background-color: #F5F7FB;
+}
+
+.todays_report_table_container .appoinment-table tr:nth-child(even) .more-btn {
+  background-color: #ffffff;
+}
+
+.todays_report_table_container .appoinment-table .more-btn {
+  padding: .5rem .9rem;
+  background-color: #F4F6F8;
+  border: 0px;
+  outline: 0px;
+  border-radius: 5px;
+  -webkit-box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+          box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.todays_report_table_container .appoinment-table th {
+  text-align: start;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #F5F7FB;
+  height: 50px;
+  padding: .2rem 1rem;
+  border-spacing: 0;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.todays_report_table_container .appoinment-table td {
+  text-align: start;
+  font-size: 14px;
+  height: 50px;
+  padding: .5rem 1rem;
+  border-spacing: 0;
+  cursor: pointer;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.todays_report_table_container table textArea {
+  outline: 0px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  width: 250px;
+  background-color: white;
+  padding: 0.5rem 0.8rem;
+}
+
+.todays_report_table_container table textArea:focus {
+  border: 1px solid #00a2ff;
+}
+
+.filter-button .date-picker {
+  width: 220px !important;
+  margin-right: 0px !important;
+}
+/*# sourceMappingURL=todaysreport.css.map */

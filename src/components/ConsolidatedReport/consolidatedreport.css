@@ -1,0 +1,56 @@
+.consolidated-table th {
+  padding: 0rem 1rem !important;
+  word-wrap: break-word;
+  white-space: pre;
+}
+
+.consolidated-table textArea {
+  outline: 0px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  width: 250px;
+  background-color: white;
+  padding: 0.5rem 0.8rem;
+}
+
+.consolidated-table textArea:focus {
+  border: 1px solid #00a2ff;
+}
+
+.consolidated-table-report {
+  padding: 0px;
+  margin: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.consolidated-table-report li {
+  font-weight: 500;
+  color: #00a2ff;
+  list-style: none;
+  margin-right: 5px;
+}
+
+.consolidated-table-report .add-report {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 5px;
+  font-size: 13px;
+}
+/*# sourceMappingURL=consolidatedreport.css.map */

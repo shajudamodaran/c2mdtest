@@ -47,6 +47,7 @@ const TermsandConditions = React.lazy(() =>
   import("../pages/TermsandConditions")
 );
 const ForDoctorPage = React.lazy(() => import("../pages/ForDoctor"));
+const AdminHome = React.lazy(() => import("../pages/InterbranchAdmin/InterbranchAdminHome"));
 const PrescriptionPolicyPage = React.lazy(() =>
   import("../pages/PrescriptionPolicy")
 );
@@ -84,6 +85,10 @@ function App() {
                 path="/signup/verify"
                 component={VerificationCodePage}
               />
+
+              <Route exact path="/admin" component={AdminHome} />
+
+
               <Route path="/partner-with-us" component={PartnerPage} />
               <Route path="/forpatients" component={ForPatient} />
               <Route path="/termsofUse/:typeId" component={TermsandConditions} />

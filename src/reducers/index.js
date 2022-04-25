@@ -10,6 +10,8 @@ import doctorListingReducer from "./doctorListingReducer";
 import clientDetailsReducer from "./clientDetailsReducer";
 import consultationReducer from "./consultationReducer";
 import appointmentHistoryReducer from "./appointmentHistoryReducer";
+import modalReducer from "./modalReducer";
+import InterbranchAdminreducer from "./InterbranchAdminreducer";
 
 
 const persistConfig = {
@@ -39,4 +41,6 @@ export default combineReducers({
   clientDetails: clientDetailsReducer,
   consultationDetails: consultationReducer,
   appointmentHistory:appointmentHistoryReducer,
+  interbranchModal:modalReducer,
+  interbranchAdmin:InterbranchAdminreducer
 });

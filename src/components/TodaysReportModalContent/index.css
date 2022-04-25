@@ -1,0 +1,72 @@
+.today-report-modal-content {
+  min-width: 700px;
+  width: 100%;
+  padding: 1.5rem;
+}
+
+.today-report-modal-content .header {
+  font-size: 20px;
+  font-weight: 500;
+  border-bottom: 2px solid #708090;
+  width: 100%;
+  padding-bottom: 0.8rem;
+}
+
+.todays-report-timeline {
+  width: 100%;
+  margin-top: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.todays_report_table {
+  width: 100%;
+}
+
+.todays_report_table .file_open_link {
+  color: #00a2ff;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.todays_report_table td {
+  padding: 0.5rem;
+  text-align: start;
+  vertical-align: middle;
+  word-wrap: break-word;
+  height: 50px;
+}
+
+.todays_report_table .title {
+  text-align: start;
+  vertical-align: middle;
+  max-width: 150px;
+  background-color: #f5f7fb;
+  width: 100%;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.todays_report_table .cell1 {
+  font-weight: 500;
+}
+
+.todays_report_table .cell2 {
+  width: 10px;
+}
+
+.todays_report_table .cell3 {
+  max-width: 220px;
+}
+/*# sourceMappingURL=index.css.map */
