@@ -39,9 +39,15 @@ const BookAppointmentPage = React.lazy(() =>
   import("../pages/BookAppointment")
 );
 const AboutUsPage = React.lazy(() => import("../pages/AboutUs"));
+
 const MobileDashboardPage = React.lazy(() =>
   import("../pages/MobileDashboard")
 );
+
+const Dashboard = React.lazy(() =>
+  import("../components/Dashboard/Dashboard")
+);
+
 // const Spinner = React.lazy(() => import('react-bootstrap/Spinner'));
 const TermsandConditions = React.lazy(() =>
   import("../pages/TermsandConditions")
@@ -96,7 +102,9 @@ function App() {
               <Route path="/signin" component={SigninPage} />
               <Route path="/login" component={LoginPage} />
               <Route path="/reset" component={ResetPasswordPage} />
-              <Route path="/dashboard" component={MobileDashboardPage} />
+
+              <Route path="/dashboard" component={Dashboard} />
+
               <Route path="/meet" component={MeetPage} />
 
               <Route path="/faq" component={Faq} />
