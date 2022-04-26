@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ADMIN_USER, USER_TYPE } from '../../constants/const'
+import { ADMIN_USER, USER_DATA, USER_TYPE } from '../../constants/const'
 import { getFromLocalStorage } from '../../Helpers/localStorageHelper'
 
 
@@ -17,9 +17,11 @@ function Dashboard() {
     let checUser = async () => {
 
 
-        getFromLocalStorage(USER_TYPE).then(res => setUserType(res))
+        getFromLocalStorage(USER_DATA).then(res => setUserType(JSON.parse(res).userType))
 
     }
+
+    console.log( getFromLocalStorage(USER_DATA));
 
 
     if(userType===ADMIN_USER)
