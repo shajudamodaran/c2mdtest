@@ -2,7 +2,7 @@ import { Pagination } from 'antd'
 import TextArea from 'antd/lib/input/TextArea'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { FETCH_CONSOLIDATED_REPORTS, updateConsolodatedReportComment } from '../../actions/InterbranchAdminActions'
+import { FETCH_CONSOLIDATED_REPORTS, updateConsolodatedReportComment, updateMisReportAttachments } from '../../actions/InterbranchAdminActions'
 import { AddIconV2 } from '../../assets/Logos/Icons'
 import './consolidatedreport.css'
 
@@ -29,9 +29,19 @@ function ConsolidatedReport() {
     }
 
 
-    let handleFileOnChnage = (e)=>{
+    let handleFileOnChnage = (para_appointment_id,e)=>{
 
       let Files=e.target.files
+      let dummy_file="https://images.unsplash.com"
+
+      dispatch(updateMisReportAttachments(para_appointment_id,dummy_file)).then((res)=>{
+
+        if(res)
+        {
+            dispatch(FETCH_CONSOLIDATED_REPORTS())
+        }
+
+    })
 
     }
 
@@ -94,7 +104,7 @@ function ConsolidatedReport() {
 
                                         if (key<=8) {
 
-                                            console.log(element);
+                                         
 
                                             return (
 
@@ -107,7 +117,7 @@ function ConsolidatedReport() {
                                                     <td>{element.Hospital_Gross_Fees}</td>
                                                     <td>{element.TDS}</td>
                                                     <td>{element.Hospital_Net_Fees}</td>
-                                                    <td><textArea onBlur={(e)=>{handleCommentChange(element.recordId,e)}} rows={1} /></td>
+                                                    <td><textArea onBlur={(e)=>{handleCommentChange(element.recordId,e)}} rows={1} >{element.Adjustments}</textArea></td>
                                                     <td>
                                                         <ul className='consolidated-table-report'>
 
@@ -119,7 +129,7 @@ function ConsolidatedReport() {
                                                             <label className="add-report" htmlFor="consolidated1">
                                                                 <AddIconV2 />
                                                                 &nbsp;Add new
-                                                                <input onChange={handleFileOnChnage} id='consolidated1' style={{ display: "none" }} type="file" name="" />
+                                                                <input onChange={(e)=>{handleFileOnChnage(element.recordId,e)}} id='consolidated1' style={{ display: "none" }} type="file" name="" />
                                                             </label>
                                                         </ul>
                                                     </td>

@@ -5,10 +5,10 @@ import { getFromLocalStorage } from "../Helpers/localStorageHelper";
 import authHeader from "./AuthHeader";
 import { INTERBRANCH_ADMIN_CONSOLIDATED, INTERBRANCH_ADMIN_DASHBOARD, INTERBRANCH_ADMIN_DASHBOARD_SELECTED, INTERBRANCH_ADMIN_DETAILED, INTERBRANCH_ADMIN_DETAILED_SELECTED } from "./type";
 
-export const FETCH_ADMIN_DASHBOARD_REPORT = () => async dispatch => {
+export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
 
     // let userToken = await getFromLocalStorage(USER_TOKEN)
-    
+
 
 
     let params = {
@@ -18,20 +18,20 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = () => async dispatch => {
         "data": {
             "operation": "find",
             "browserTimeZone": "GMT+05:30",
-            "Type": "excel",
+            // "Type": "excel",
             "startDate": "16-Mar-2022",
             "endDate": "17-Mar-2022",
             "clinic": "14",
-            "offset": "1"
+            "offset": _para?.offset ? _para.offset.toString() : "0"
         }
     }
 
 
 
 
-   let responce = await loginedApi.post("getappointments", params, { headers: authHeader() })
+    let responce = await loginedApi.post("getappointments", params, { headers: authHeader() })
 
-    console.log("getappointments responce ->",responce.data.data);
+    console.log("getappointments responce ->", responce.data.data);
 
     if (responce.status == 200) {
 
@@ -39,8 +39,8 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = () => async dispatch => {
         dispatch({
             type: INTERBRANCH_ADMIN_DASHBOARD,
             payload: {
-                data:responce.data.data,
-                totalPages:responce.data.totalNumberOfPages
+                data: responce.data.data,
+                totalPages: responce.data.totalNumberOfPages
             }
         });
 
@@ -66,17 +66,17 @@ export const FETCH_ADMIN_DETAILED_REPORT = (_para) => async (dispatch) => {
         "data": {
             "operation": "find",
             "browserTimeZone": "GMT+05:30",
-            "Type": "excel",
+            // "Type": "excel",
             "startDate": fromDate ? fromDate : "16-Mar-2022",
             "endDate": toDate ? toDate : "17-Mar-2022",
             "clinic": "14",
-            "offset": _para?.offset?_para.offset.toString():"0"
+            "offset": _para?.offset ? _para.offset.toString() : "0"
         }
     }
 
     let responce = await loginedApi.post("getsummaryreport", params, { headers: authHeader() })
 
-    console.log("getsummaryreport responce ->",responce.data.data);
+    console.log("getsummaryreport responce ->", responce.data.data);
 
     if (responce.status == 200) {
 
@@ -84,8 +84,8 @@ export const FETCH_ADMIN_DETAILED_REPORT = (_para) => async (dispatch) => {
         dispatch({
             type: INTERBRANCH_ADMIN_DETAILED,
             payload: {
-                data:responce.data.data.data,
-                totalPages:responce.data.data.totalNumberOfPages
+                data: responce.data.data.data,
+                totalPages: responce.data.data.totalNumberOfPages
             }
         });
 
@@ -221,6 +221,30 @@ export const updateMisReportComment = (_id, value) => async dispatch => {
 
 }
 
+export const updateMisReportAttachments = (_id, value) => async dispatch => {
+
+
+    let params = {
+
+        "requestType": "1046",
+        "data": {
+            "consolReportId": _id,
+            "uploadedFile": value
+        }
+    }
+
+    let responce = await c2mdApi.post("updateconsolreport", params)
+
+    if (responce.status == 200 && responce.data.data.info === "Successfully Updated") {
+
+        return true
+
+    }
+
+
+}
+
+
 
 export const updateConsolodatedReportComment = (_id, value) => async dispatch => {
 
@@ -246,36 +270,6 @@ export const updateConsolodatedReportComment = (_id, value) => async dispatch =>
 
 }
 
-export const UploadAttachment = (_id) => async dispatch => {
-
-    let params = {
-        "token": "token",
-        "requestType": "1041",
-        "version": "2.0",
-        "data": {
-            "appointmentId": _id,
-            "browserTimeZone": "GMT+05:30"
-        }
-    }
-
-    let responce = await c2mdApi.post("getdetailreport", params, { headers: authHeader() })
-
-
-
-    if (responce.status == 200) {
-
-        dispatch({
-            type: INTERBRANCH_ADMIN_DETAILED_SELECTED,
-            payload: responce.data.data
-        });
-
-        //    console.log(responce.data.data);
-        //    dispatch(setSelectedDash(responce.data.data))
-
-    }
-
-
-}
 
 
 
