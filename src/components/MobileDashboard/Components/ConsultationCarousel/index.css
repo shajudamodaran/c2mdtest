@@ -1,0 +1,33 @@
+.slick-slider{
+    height: fit-content;
+    
+}
+
+.slick-list{
+
+    height: fit-content;
+    
+
+}
+
+.slick-track{
+    height: fit-content;
+}
+
+.slick-slide {
+
+ display: flex !important;
+ flex-direction: row !important;
+ align-items: center !important;
+ justify-content: center !important;
+ height: fit-content;
+
+ 
+}
+
+.slick-slide  div {
+
+   width: 100% !important;
+   
+   
+   }

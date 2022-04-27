@@ -15,6 +15,7 @@ import { Radio, Input } from 'antd';
 import { getFileTypeFromFileName } from '../../Helpers/FileHelper';
 import { useParams } from "react-router-dom";
 import './meetpatient.css'
+import CustomPhoneInput from '../../components/CustomPhoneInput/CustomPhoneInput';
 const { OTSession, OTPublisher, OTStreams, OTSubscriber, createSession } = require('opentok-react');
 
 
@@ -112,11 +113,11 @@ let AppintmentDetails = ({ setSuperSubMenu, reports, setReports }) => {
 
 
                 </div>
-                
+
                 <div>&nbsp;</div>
 
                 <input ref={hiddenFileInput} style={{ display: "none" }} type='file' onChange={hanleFileChange} className="white-container-button p-0" />
-                <button for="file-upload" className="white-container-button" onClick={() => { hiddenFileInput.current.click() }} style={{marginTop:"10px !important"}}> <UploadIcon /> Upload a new file</button>
+                <button for="file-upload" className="white-container-button" onClick={() => { hiddenFileInput.current.click() }} style={{ marginTop: "10px !important" }}> <UploadIcon /> Upload a new file</button>
 
             </div>
         </div>
@@ -502,7 +503,7 @@ export const MeetPage_Pt = () => {
                     console.log("Session disconnected...")
                     console.log(event)
                     setMessage(`Your session has been disconnected.`)
-    
+
                     setTimeout(function () {
                         history.push("/mobiledashboard");
                     }.bind(this), 0);
@@ -688,7 +689,8 @@ export const MeetPage_Pt = () => {
                                         <PuffLoader color={"white"} loading={true} size={40} />
 
                                     </div>
-                                </div> : null
+                                </div>
+                                : null
                         }
 
                         <div className="top-menu-container" >
@@ -754,7 +756,7 @@ export const MeetPage_Pt = () => {
 
                                             <div className="user-profile2-footer">
                                                 {connectionDetails ? connectionDetails.doctorName : ""}
-                                                {/* <ThreeDotVerticalWhiteIcon /> */}
+
                                             </div>
 
                                         </div>
@@ -779,17 +781,7 @@ export const MeetPage_Pt = () => {
 
                                     </OTSession>
 
-                                    // <div className="user-profile2">
-                                    //     <div className="user-profile2-container">
-                                    //         <img src={consultation?.doctorDetails.doctorImage} className="user2-avatar" />
 
-                                    //         <div className="user-profile2-footer">
-                                    //         {consultation?.doctorDetails.doctorName}
-                                    //             {/* <ThreeDotVerticalWhiteIcon /> */}
-                                    //         </div>
-
-                                    //     </div>
-                                    // </div>
                                     :
                                     <div className="user-profile2">
                                         <div className="user-profile2-container">
@@ -798,7 +790,7 @@ export const MeetPage_Pt = () => {
 
                                             <div className="user-profile2-footer">
                                                 {connectionDetails ? connectionDetails.doctorName : ""}
-                                                {/* <ThreeDotVerticalWhiteIcon /> */}
+
                                             </div>
 
                                         </div>
@@ -822,7 +814,7 @@ export const MeetPage_Pt = () => {
 
                                             <div className="user-profile-footer">
                                                 {userdata.profileName}
-                                                {/* <ThreeDotVerticalWhiteIcon /> */}
+
                                             </div>
 
                                         </div>
@@ -837,7 +829,7 @@ export const MeetPage_Pt = () => {
                                             <OTPublisher properties={{
                                                 publishAudio: publisherProperties.audio,
                                                 publishVideo: publisherProperties.vedio,
-                                                // videoSource: true ? 'screen' : undefined
+
                                             }}
                                                 eventHandlers={publisherEventHandlers}
                                             />
@@ -853,7 +845,7 @@ export const MeetPage_Pt = () => {
 
                                                 <div className="user-profile-footer">
                                                     {userdata.profileName}
-                                                    {/* <ThreeDotVerticalWhiteIcon /> */}
+
                                                 </div>
 
                                             </div>
@@ -981,10 +973,17 @@ export const MeetPage_Pt = () => {
                                                             <Radio.Group>
                                                                 <Radio value={1}>eMail id</Radio>
                                                                 <Radio value={2}>Mobile Number</Radio>
-
                                                             </Radio.Group>
 
-                                                            <Input placeholder="eMail id" />
+                                                            {/* <Input placeholder="eMail id" /> */}
+                                                            <CustomPhoneInput
+                                                                size="small"
+                                                                country={"in"}
+                                                                value={null}
+                                                                name="mobile"
+                                                               
+                                                                
+                                                            />
 
                                                             <button className="medicines-list-add-btn" onClick={() => { handleInviteOnClick() }}>
 
@@ -1096,7 +1095,7 @@ export const MeetPage_Pt = () => {
 
 
 
-            <ConsultationModal state={message} setState={setMessage} />
+            <ConsultationModal state={false} setState={setMessage} />
 
 
 

@@ -12,6 +12,12 @@ import { MeetPage_Pt } from "../pages/MeetPage_Pt/MeetPage_Pt";
 import Homepage from "./HomePage/Homepage";
 import FaqContent from "./FAQ/FaqContent";
 import Faq from "./FAQ/Faq";
+import "slick-carousel/slick/slick.css";
+
+import "slick-carousel/slick/slick-theme.css";
+
+
+
 const Login = React.lazy(() => import("../pages/login"));
 const SpecialityPage = React.lazy(() => import("../pages/SpecialityListing"));
 const SignupPage = React.lazy(() => import("../pages/Signup"));
@@ -60,6 +66,9 @@ const PrescriptionPolicyPage = React.lazy(() =>
 
 const ForPatient = React.lazy(() => import("../pages/Forpatients"));
 const PartnerPage = React.lazy(() => import("../pages/PartnerPage"));
+
+
+
 function App() {
   return (
     <>

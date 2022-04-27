@@ -56,6 +56,7 @@ function RecentActivityListItem({ data }) {
 
     }
 
+   
 
     return (
         <div className="recent-list-item">

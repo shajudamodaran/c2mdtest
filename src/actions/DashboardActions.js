@@ -59,7 +59,9 @@ const doctorscountrycode = resp.data.data;
     requestType: "51",
     token: "C2MDVerificationToken",
     data
-  },{ headers: authHeader() });
+  });
+
+  console.log( response.data.data.data);
 
   if (response.status === 200) {
 
@@ -106,7 +108,7 @@ const doctorscountrycode = resp.data.data;
     requestType: "1039",
     token: "C2MDVerificationToken",
     data
-  },{ headers: authHeader() });
+  });
 
   // console.log("recent activities----",response)
 

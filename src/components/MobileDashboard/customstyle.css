@@ -339,8 +339,8 @@
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
 }
 
 .today_consultation_card .footer .reports-container .report-header {
@@ -397,6 +397,7 @@
   padding: 5px 5px 5px 0px;
   border-radius: 2px;
   color: #838383;
+  white-space: nowrap;
 }
 
 .dr-line {
