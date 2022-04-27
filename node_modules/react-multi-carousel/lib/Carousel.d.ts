@@ -23,6 +23,7 @@ declare class Carousel extends React.Component<CarouselProps, CarouselInternalSt
         centerMode: boolean;
         additionalTransfrom: number;
         pauseOnHover: boolean;
+        shouldResetAutoplay: boolean;
     };
     private readonly containerRef;
     private readonly listRef;
@@ -53,6 +54,7 @@ declare class Carousel extends React.Component<CarouselProps, CarouselInternalSt
     }): void;
     next(slidesHavePassed?: number): void;
     previous(slidesHavePassed?: number): void;
+    resetAutoplayInterval(): void;
     componentWillUnmount(): void;
     resetMoveStatus(): void;
     handleDown(e: React.MouseEvent | React.TouchEvent): void;

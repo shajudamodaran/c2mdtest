@@ -20,6 +20,7 @@ import { check_consultation, fetch_clientDetails } from "../../actions/Microsite
 import { isWithinMinutes } from "../../Helpers/dateFunctions";
 import { logoutAction } from "../../actions/LoginAction";
 import loginedApi from "../../apis";
+import ConsultationCarousel from "./Components/ConsultationCarousel/ConsultationCarousel";
 
 
 
@@ -115,27 +116,25 @@ function MobileDashboard() {
 
     }, [activeLeft])
 
-    let goToDoctorListing =async () =>{
+    let goToDoctorListing = async () => {
 
-        let clinicDetailsLocal= await JSON.parse(localStorage.getItem("ClinicDetails"))
+        let clinicDetailsLocal = await JSON.parse(localStorage.getItem("ClinicDetails"))
 
-        let _clinicUrl=null
+        let _clinicUrl = null
 
         console.log();
 
-        if(clientDetails?.clinicurl)
-        {
-            _clinicUrl=clientDetails?.clinicurl
+        if (clientDetails?.clinicurl) {
+            _clinicUrl = clientDetails?.clinicurl
         }
-        else if(clinicDetailsLocal)
-        {
-            _clinicUrl=clinicDetailsLocal.clinicurl
+        else if (clinicDetailsLocal) {
+            _clinicUrl = clinicDetailsLocal.clinicurl
         }
 
 
         // console.log(_clinicUrl);
 
-         if (activeLeft.menu === 0 && activeLeft.option === 0) {
+        if (activeLeft.menu === 0 && activeLeft.option === 0) {
             history.push(`./${_clinicUrl}`)
         }
 
@@ -314,7 +313,7 @@ function MobileDashboard() {
         call201().then((res) => {
 
 
-            
+
             setActiveConsultation(res.data)
 
 
@@ -326,23 +325,23 @@ function MobileDashboard() {
     }, [])
 
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        if (activeConsultation) {
-            if (activeConsultation.reports) {
-
-
-                activeConsultation.reports.length > 0 ?
-                setReports([...activeConsultation.reports]) : console.log("No reports")
+    //     if (activeConsultation) {
+    //         if (activeConsultation.reports) {
 
 
-            }
+    //             activeConsultation.reports.length > 0 ?
+    //                 setReports([...activeConsultation.reports]) : console.log("No reports")
 
 
-        }
+    //         }
 
 
-    }, [activeConsultation])
+    //     }
+
+
+    // }, [activeConsultation])
 
     let call201 = async () => {
 
@@ -377,7 +376,7 @@ function MobileDashboard() {
 
             call201().then((res) => {
 
-                console.log(typeof(res.data));
+                console.log(typeof (res.data));
                 setActiveConsultation(res.data)
 
             })
@@ -450,6 +449,7 @@ function MobileDashboard() {
     useEffect(() => {
 
         if (!activeConsultation?.appointmentId) {
+
             call65().then((respo) => {
 
                 console.log("65 responce--->", respo.data?.appointmentDetail, "appointmentDetail");
@@ -469,9 +469,9 @@ function MobileDashboard() {
         else {
             console.log("***There is no consultation available in 201***");
         }
-     
+
     }, [activeConsultation])
-    
+
 
 
     let filterUpcomingAppointments = (appointmentsArray) => {
@@ -621,9 +621,24 @@ function MobileDashboard() {
                                                 <div className="dash-card-tittle">
                                                     CONSULTATION TODAY ({moment().format('DD-MMM-YYYY')})
                                                 </div>
-
-
                                                 <div className="dash-card-body">
+                                                    {
+                                                        filterUpcomingAppointments(activeConsultationDetails)?.length > 0 ?
+
+                                                            <ConsultationCarousel 
+                                                            activeConsultation={activeConsultation}
+                                                            data={filterUpcomingAppointments(activeConsultationDetails)}  />
+                                                            :
+                                                            <div>THERE ARE NO CONSULTATIONS AVAILABLE FOR YOU NOW</div>
+
+                                                    }
+
+                                                </div>
+
+
+
+
+                                                {/* <div className="dash-card-body">
 
                                                     {
                                                         filterUpcomingAppointments(activeConsultationDetails)?.length > 0 ?
@@ -649,7 +664,7 @@ function MobileDashboard() {
                                                                                     <span className="dr_name">{element.doctorName}</span>
                                                                                     <span className="dr-caption">Appointment Time : {element.appointmentTimes}</span>
                                                                                     <span className="dr-caption">Appointment Reason : {element.reasonForVisit}</span>
-                                                                                    {/* <span className="dr-caption">Appointment Status : {consultationToday.status}</span> */}
+                                                                                  
 
                                                                                     <div class="dr-line">&nbsp;</div>
 
@@ -673,7 +688,7 @@ function MobileDashboard() {
                                                                                     }}>
 
                                                                                         <span>Reports :</span>
-                                                                                        {/* {localReports.length > 0 ? <button onClick={uploadReportsHandler} className="report_upload_button">Upload</button> : null} */}
+                                                                                      
 
 
                                                                                     </div>
@@ -737,15 +752,15 @@ function MobileDashboard() {
 
                                                             :
 
-                                                            " THERE ARE NO CONSULTATIONS AVAILABLE FOR YOU NOW"
+                                                            <div>THERE ARE NO CONSULTATIONS AVAILABLE FOR YOU NOW</div>
 
                                                     }
 
 
-                                                </div>
+                                                </div> */}
 
 
-                                                <div className="dash-card-footer">
+                                                {/* <div className="dash-card-footer">
 
                                                 
 
@@ -779,12 +794,13 @@ function MobileDashboard() {
                                                                         :
                                                                         <div className="row p-0 m-0 w-100">
 
-                                                                            {/* <div className="col-md-6 col-sm-12 col-12 p-0 m-0 text-center">
-                                                                        <DashButton text="Mute" inactive />
-                                                                    </div> */}
+                                                                       
 
                                                                             <div className="col-md-12 col-sm-12 col-12 p-0 m-0 text-center" onClick={() => { isWithinMinutes(element.appointmentDate, element.appointmentTimes) ? handlePageChange(`/meet_pt/${element.appointmentId}`) : console.log(""); }}>
-                                                                                <DashButton text="Join Now" active={isWithinMinutes(element.appointmentDate, element.appointmentTimes)} />
+                                                                                <DashButton text="Join Now" 
+                                                                                active={true}
+                                                                                // active={isWithinMinutes(element.appointmentDate, element.appointmentTimes)}
+                                                                                 />
                                                                             </div>
 
                                                                         </div>
@@ -802,7 +818,7 @@ function MobileDashboard() {
 
 
 
-                                                </div>
+                                                </div> */}
 
 
                                             </div>
@@ -907,7 +923,7 @@ function MobileDashboard() {
                                                                 })
 
 
-                                                                : "NO REQUESTED APPOINTMENTS AVAILABLE"
+                                                                : <div style={{ marginTop: "20%" }}>NO REQUESTED APPOINTMENTS AVAILABLE</div>
 
                                                             : null
                                                     }
@@ -915,7 +931,7 @@ function MobileDashboard() {
                                                 </div>
 
 
-                                               
+
 
                                                 <div className="dash-card-footer">
                                                     <div className="row p-0 m-0 w-100">

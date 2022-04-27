@@ -231,7 +231,7 @@
       flex-direction: row;
       align-items: center;
       justify-content: flex-start;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
 
       .report-header {
         font-size: 12px;
@@ -284,6 +284,7 @@
         padding: 5px 5px 5px 0px;
         border-radius: 2px;
         color: #838383;
+        white-space: nowrap;
       }
     }
   }

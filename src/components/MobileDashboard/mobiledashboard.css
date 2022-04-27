@@ -168,6 +168,7 @@ padding: 0px 1.5rem;
     height: 90%;
     flex:1;
     overflow-y: auto;
+    align-items: center !important;
 }
 
  .dash-card-footer{

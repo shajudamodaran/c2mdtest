@@ -9,10 +9,10 @@ export const isWithinMinutes = (date, time) => {
   var appointmentDate = moment(time, 'hh:mm A')._d
   var FIVE_MIN = 5 * 60 * 1000;
 
-  // console.log(appointmentDate-date,date,FIVE_MIN);
+   console.log(appointmentDate-date,date,FIVE_MIN);
 
 
-  if ((appointmentDate-date) < FIVE_MIN) {
+  if ((appointmentDate-date) > FIVE_MIN) {
     return true
   }
 

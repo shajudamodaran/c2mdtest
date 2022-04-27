@@ -7,7 +7,7 @@ import { getCountryArray } from '../../constants/country';
 import { Dropdown, Form } from 'react-bootstrap';
 
 
-function CustomPhoneInput({ onChange, onBlur, value, name }) {
+function CustomPhoneInput({ onChange, onBlur, value, name, size }) {
 
     let [selecedCountry, selectCountry] = useState({ "name": "India", "flag": "🇮🇳", "code": "IN", "dial_code": "+91" })
     let [isVisible, setVisible] = useState(true)

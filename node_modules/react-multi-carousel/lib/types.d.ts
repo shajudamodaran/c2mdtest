@@ -51,6 +51,7 @@ export interface CarouselProps {
     focusOnSelect?: boolean;
     additionalTransfrom?: number;
     pauseOnHover?: boolean;
+    shouldResetAutoplay?: boolean;
 }
 export declare type StateCallBack = CarouselInternalState;
 export declare type Direction = "left" | "right" | "" | undefined;
