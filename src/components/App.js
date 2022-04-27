@@ -66,6 +66,7 @@ const PrescriptionPolicyPage = React.lazy(() =>
 
 const ForPatient = React.lazy(() => import("../pages/Forpatients"));
 const PartnerPage = React.lazy(() => import("../pages/PartnerPage"));
+const PrescriptionCrPage = React.lazy(() => import("../pages/PriscriptionCr/Index"));
 
 
 
@@ -102,6 +103,9 @@ function App() {
               />
 
               <Route exact path="/admin" component={AdminHome} />
+              <Route exact path="/prescriptionCr" component={PrescriptionCrPage} />
+
+              
 
 
               <Route path="/partner-with-us" component={PartnerPage} />
