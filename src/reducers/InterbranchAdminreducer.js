@@ -3,7 +3,9 @@ import { DOCTOR_LISTING, INTERBRANCH_ADMIN_CONSOLIDATED, INTERBRANCH_ADMIN_DASHB
 const INITIAL_STATE = {
 
     dashboardTable: [],
+    dashboardTableTotalPages: 0,
     detailedReportTable:[],
+    detailedReportTableTotalPages: 0,
     dashboardSelected: null,
     detaiedSelected:null,
     consolidatedreport: []
@@ -17,14 +19,17 @@ export default (state = INITIAL_STATE, { type, payload }) => {
 
             return {
                 ...state,
-                dashboardTable: payload
+                dashboardTable: payload.data,
+                dashboardTableTotalPages:payload.totalPages
             };
 
             case INTERBRANCH_ADMIN_DETAILED:
 
+
                 return {
                     ...state,
-                    detailedReportTable: payload
+                    detailedReportTable: payload.data,
+                    detailedReportTableTotalPages:payload.totalPages
                 };
 
         case INTERBRANCH_ADMIN_DASHBOARD_SELECTED:
@@ -36,6 +41,8 @@ export default (state = INITIAL_STATE, { type, payload }) => {
 
 
             case INTERBRANCH_ADMIN_DETAILED_SELECTED:
+
+           
 
                 return {
                     ...state,

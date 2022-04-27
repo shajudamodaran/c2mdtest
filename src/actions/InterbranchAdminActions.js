@@ -22,7 +22,7 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = () => async dispatch => {
             "startDate": "16-Mar-2022",
             "endDate": "17-Mar-2022",
             "clinic": "14",
-            "offset": "0"
+            "offset": "1"
         }
     }
 
@@ -31,14 +31,17 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = () => async dispatch => {
 
    let responce = await loginedApi.post("getappointments", params, { headers: authHeader() })
 
-    console.log(responce.data.data);
+    console.log("getappointments responce ->",responce.data.data);
 
     if (responce.status == 200) {
 
 
         dispatch({
             type: INTERBRANCH_ADMIN_DASHBOARD,
-            payload: responce.data.data
+            payload: {
+                data:responce.data.data,
+                totalPages:responce.data.totalNumberOfPages
+            }
         });
 
 
@@ -67,20 +70,23 @@ export const FETCH_ADMIN_DETAILED_REPORT = (_para) => async (dispatch) => {
             "startDate": fromDate ? fromDate : "16-Mar-2022",
             "endDate": toDate ? toDate : "17-Mar-2022",
             "clinic": "14",
-            "offset": "0"
+            "offset": _para?.offset?_para.offset.toString():"0"
         }
     }
 
     let responce = await loginedApi.post("getsummaryreport", params, { headers: authHeader() })
 
-    console.log(responce.data.data);
+    console.log("getsummaryreport responce ->",responce.data.data);
 
     if (responce.status == 200) {
 
 
         dispatch({
             type: INTERBRANCH_ADMIN_DETAILED,
-            payload: responce.data.data.data
+            payload: {
+                data:responce.data.data.data,
+                totalPages:responce.data.data.totalNumberOfPages
+            }
         });
 
 
@@ -239,4 +245,37 @@ export const updateConsolodatedReportComment = (_id, value) => async dispatch =>
 
 
 }
+
+export const UploadAttachment = (_id) => async dispatch => {
+
+    let params = {
+        "token": "token",
+        "requestType": "1041",
+        "version": "2.0",
+        "data": {
+            "appointmentId": _id,
+            "browserTimeZone": "GMT+05:30"
+        }
+    }
+
+    let responce = await c2mdApi.post("getdetailreport", params, { headers: authHeader() })
+
+
+
+    if (responce.status == 200) {
+
+        dispatch({
+            type: INTERBRANCH_ADMIN_DETAILED_SELECTED,
+            payload: responce.data.data
+        });
+
+        //    console.log(responce.data.data);
+        //    dispatch(setSelectedDash(responce.data.data))
+
+    }
+
+
+}
+
+
 

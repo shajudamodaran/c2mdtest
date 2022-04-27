@@ -11,6 +11,8 @@ function MisReportModalContent() {
         window.open("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", "_blank")
     }
 
+    console.log(appointmentDetails);
+
     return (
         <div className='today-report-modal-content'>
             <div className="header">Appointment ID - {appointmentDetails?.appointmentid}</div>
@@ -100,12 +102,12 @@ function MisReportModalContent() {
 
                         <tr>
                             <td className='cell1 odd'>Email ID</td>
-                            <td className='cell3 odd'>*</td>
+                            <td className='cell3 odd'>{appointmentDetails?.PatientEmail}</td>
                         </tr>
 
                         <tr>
                             <td className='cell1 even'>Phone Number</td>
-                            <td className='cell3 even'>*</td>
+                            <td className='cell3 even'>{appointmentDetails?.PatientPhonenumber}</td>
                         </tr>
 
                     </tbody>

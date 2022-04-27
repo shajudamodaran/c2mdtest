@@ -21,6 +21,7 @@ function Misreport() {
 
 
     let misReports =useSelector(state => state.interbranchAdmin.detailedReportTable)
+    let misReportsPageLength =useSelector(state => state.interbranchAdmin.detailedReportTableTotalPages)
 
 
     let handleTableClick = (_id) => {
@@ -102,6 +103,12 @@ function Misreport() {
         })
        
 
+    }
+
+    let handlePaginationChange =(e) =>{
+
+        // console.log(e-1);
+        dispatch(FETCH_ADMIN_DETAILED_REPORT({offset:e-1}))
     }
 
 
@@ -212,7 +219,7 @@ function Misreport() {
             <div className="pagination-container-mis-report">
 
                 &nbsp;
-                <Pagination defaultCurrent={8} total={ misReports.length} />
+                <Pagination  onChange={handlePaginationChange} defaultCurrent={1} total={ misReportsPageLength?misReportsPageLength*8:0} />
             </div>
 
 

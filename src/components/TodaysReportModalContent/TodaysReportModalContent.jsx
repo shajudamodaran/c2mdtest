@@ -154,22 +154,22 @@ function TodaysReportModalContent() {
 
                         <tr>
                             <td className='cell1 odd'>Email ID</td>
-                            <td className='cell3 odd'>*</td>
+                            <td className='cell3 odd'>{appointmentDetails?.PatientEmail}</td>
                         </tr>
 
                         <tr>
                             <td className='cell1 even'>Phone Number</td>
-                            <td className='cell3 even'>*</td>
+                            <td className='cell3 even'>{appointmentDetails?.PatientPhonenumber}</td>
                         </tr>
 
                         <tr>
                             <td className='cell1 odd'>Timezone</td>
-                            <td className='cell3 odd'>GMT+05:30*</td>
+                            <td className='cell3 odd'>{appointmentDetails?.PatientTimeZone}</td>
                         </tr>
 
                         <tr>
                             <td className='cell1 even'>Booked By (For Loved One)</td>
-                            <td className='cell3 even'>*</td>
+                            <td className='cell3 even'>{appointmentDetails?.bookedBy}</td>
                         </tr>
 
 
@@ -205,12 +205,12 @@ function TodaysReportModalContent() {
 
                         <tr>
                             <td className='cell1 odd'>Email ID</td>
-                            <td className='cell3 odd'>{appointmentDetails?.Email}</td>
+                            <td className='cell3 odd'>{appointmentDetails?.DoctorEmail}</td>
                         </tr>
 
                         <tr>
                             <td className='cell1 even'>Phone Number</td>
-                            <td className='cell3 even'>{appointmentDetails?.Phonenumber}</td>
+                            <td className='cell3 even'>{appointmentDetails?.DoctorMobile}</td>
                         </tr>
 
 

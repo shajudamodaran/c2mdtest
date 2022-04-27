@@ -29,6 +29,16 @@ function ConsolidatedReport() {
     }
 
 
+    let handleFileOnChnage = (e)=>{
+
+      let Files=e.target.files
+
+    }
+
+
+   
+
+
     return (
         <div className='appontment-history-container'>
 
@@ -83,6 +93,9 @@ function ConsolidatedReport() {
                                    
 
                                         if (key<=8) {
+
+                                            console.log(element);
+
                                             return (
 
                                                 <tr key={key}>
@@ -97,6 +110,7 @@ function ConsolidatedReport() {
                                                     <td><textArea onBlur={(e)=>{handleCommentChange(element.recordId,e)}} rows={1} /></td>
                                                     <td>
                                                         <ul className='consolidated-table-report'>
+
                                                             <li>Report 1 </li>
                                                             <li>|</li>
                                                             <li>Report 2</li>
@@ -105,7 +119,7 @@ function ConsolidatedReport() {
                                                             <label className="add-report" htmlFor="consolidated1">
                                                                 <AddIconV2 />
                                                                 &nbsp;Add new
-                                                                <input id='consolidated1' style={{ display: "none" }} type="file" name="" />
+                                                                <input onChange={handleFileOnChnage} id='consolidated1' style={{ display: "none" }} type="file" name="" />
                                                             </label>
                                                         </ul>
                                                     </td>

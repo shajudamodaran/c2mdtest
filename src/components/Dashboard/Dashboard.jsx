@@ -21,7 +21,6 @@ function Dashboard() {
 
     }
 
-    console.log( getFromLocalStorage(USER_DATA));
 
 
     if(userType===ADMIN_USER)
