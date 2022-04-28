@@ -3,9 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { FETCH_ADMIN_DASHBOARD_REPORT, FETCH_ADMIN_DETAILED_REPORT, FETCH_CONSOLIDATED_REPORTS } from '../../actions/InterbranchAdminActions'
 import CustomeModal from '../../components/CustomeModal/CustomeModal'
 import MisReportModalContent from '../../components/MisReportModal/MisReportModalContent'
-import TodaysReport from '../../components/TodaysReport/TodaysReport'
+//import TodaysReport from '../../components/TodaysReport/TodaysReport'
 import TodaysReportModalContent from '../../components/TodaysReportModalContent/TodaysReportModalContent'
-import { interbranchAdminSideMenu } from './constants'
+import TemplateList from "../../components/PrescriptionTemplateList/prescriptionTemplateList";
+import PrescriptionDashboard from "../../components/PrescriptionDashboard/prescriptionDashboard";
+ 
+ 
+import { prescriptionAdminSideMenu } from './constants'
 import '../InterbranchAdmin/interbranchadminhome.css'
 
 function Index() {
@@ -48,7 +52,7 @@ function Index() {
 
 
                     {
-                        interbranchAdminSideMenu.map((object, menuKey) => {
+                        prescriptionAdminSideMenu.map((object, menuKey) => {
 
                             if (object.tittle !== "Dashboard") {
                                 return (
@@ -106,7 +110,7 @@ function Index() {
                     <span>
                         {
                             activeLeft.menu == "dashboard" ? "Dashboard" : activeLeft.menu == "consolidated" ? "Consolidated"
-                                : interbranchAdminSideMenu[activeLeft.menu].options[activeLeft.option].name
+                                : prescriptionAdminSideMenu[activeLeft.menu].options[activeLeft.option].name
                         }
                     </span>
 
@@ -188,11 +192,11 @@ function Index() {
 
                         {
 
-                            activeLeft.menu == "dashboard" ? <TodaysReport /> :
+                            activeLeft.menu == "dashboard" ? <PrescriptionDashboard /> :
                                 //  activeLeft.menu == "consolidated" ? <ConsolidatedReport /> :
 
-                                interbranchAdminSideMenu[activeLeft.menu].options[activeLeft.option].component ?
-                                    interbranchAdminSideMenu[activeLeft.menu].options[activeLeft.option].component : null
+                                prescriptionAdminSideMenu[activeLeft.menu].options[activeLeft.option].component ?
+                                    prescriptionAdminSideMenu[activeLeft.menu].options[activeLeft.option].component : null
 
 
 
