@@ -10,43 +10,51 @@ function ConsolidatedReport() {
 
 
     let appointmentDetails = useSelector(state => state.interbranchAdmin.consolidatedreport)
+    let consolidatedreportTotalPages = useSelector(state => state.interbranchAdmin.consolidatedreportTotalPages)
 
-    let dispatch=useDispatch()
+    let dispatch = useDispatch()
 
 
-    let handleCommentChange = (para_appointment_id,e) =>{
+    let handleCommentChange = (para_appointment_id, e) => {
 
-        dispatch(updateConsolodatedReportComment(para_appointment_id,e.target.value)).then((res)=>{
+        dispatch(updateConsolodatedReportComment(para_appointment_id, e.target.value)).then((res) => {
 
-            if(res)
-            {
+            if (res) {
                 dispatch(FETCH_CONSOLIDATED_REPORTS())
             }
 
         })
-       
+
 
     }
 
 
-    let handleFileOnChnage = (para_appointment_id,e)=>{
+    let handleFileOnChnage = (para_appointment_id, e) => {
 
-      let Files=e.target.files
-      let dummy_file="https://images.unsplash.com"
 
-      dispatch(updateMisReportAttachments(para_appointment_id,dummy_file)).then((res)=>{
+        let Files = e.target.files
+        let dummy_file = Files[0].name
 
-        if(res)
-        {
-            dispatch(FETCH_CONSOLIDATED_REPORTS())
-        }
 
-    })
+
+        dispatch(updateMisReportAttachments(para_appointment_id, dummy_file)).then((res) => {
+
+            if (res) {
+                dispatch(FETCH_CONSOLIDATED_REPORTS())
+            }
+
+        })
 
     }
 
+    let handlePaginationChange = (e) => {
 
-   
+        // console.log(e-1);
+        dispatch(FETCH_CONSOLIDATED_REPORTS({ offset: e - 1 }))
+    }
+
+
+
 
 
     return (
@@ -100,11 +108,9 @@ function ConsolidatedReport() {
 
                                     appointmentDetails.map((element, key) => {
 
-                                   
 
-                                        if (key<=8) {
 
-                                         
+                                        if (key <= 8) {
 
                                             return (
 
@@ -117,19 +123,40 @@ function ConsolidatedReport() {
                                                     <td>{element.Hospital_Gross_Fees}</td>
                                                     <td>{element.TDS}</td>
                                                     <td>{element.Hospital_Net_Fees}</td>
-                                                    <td><textArea onBlur={(e)=>{handleCommentChange(element.recordId,e)}} rows={1} >{element.Adjustments}</textArea></td>
+                                                    <td><textArea onBlur={(e) => { handleCommentChange(element.recordId, e) }} rows={1} >{element.Adjustments}</textArea></td>
                                                     <td>
                                                         <ul className='consolidated-table-report'>
 
-                                                            <li>Report 1 </li>
-                                                            <li>|</li>
-                                                            <li>Report 2</li>
+                                                            {
+                                                                element.uploadedFile.split(',').length > 0 ?
+
+                                                                    element.uploadedFile.split(',').map((file, key) => {
+
+                                                                        if (file && file !== "null") {
+                                                                            return (
+
+                                                                                <>
+                                                                                    <li>Rpt{key + 1}</li>
+                                                                                    {key + 1 == element.uploadedFile.split(',').lenhth ? "" : <li>|</li>}
+                                                                                </>
+
+                                                                            )
+
+                                                                        }
+
+                                                                    })
 
 
-                                                            <label className="add-report" htmlFor="consolidated1">
+                                                                    : null
+                                                            }
+
+
+
+
+                                                            <label className="add-report" htmlFor={element.recordId}>
                                                                 <AddIconV2 />
                                                                 &nbsp;Add new
-                                                                <input onChange={(e)=>{handleFileOnChnage(element.recordId,e)}} id='consolidated1' style={{ display: "none" }} type="file" name="" />
+                                                                <input onChange={(e) => { handleFileOnChnage(element.recordId, e) }} id={element.recordId} style={{ display: "none" }} type="file" name="" />
                                                             </label>
                                                         </ul>
                                                     </td>
@@ -160,7 +187,8 @@ function ConsolidatedReport() {
             <div className="pagination-container-mis-report">
 
                 &nbsp;
-                <Pagination defaultCurrent={10} total={appointmentDetails.length} />
+                <Pagination onChange={handlePaginationChange} defaultCurrent={1} total={consolidatedreportTotalPages ? consolidatedreportTotalPages * 8 : 0} />
+
             </div>
 
         </div>

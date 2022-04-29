@@ -161,32 +161,35 @@ export const FETCH_DETAILED_MORE = (_id) => async dispatch => {
 
 
 
-export const FETCH_CONSOLIDATED_REPORTS = () => async dispatch => {
+export const FETCH_CONSOLIDATED_REPORTS = (_para) => async dispatch => {
 
     let params = {
         "token": "token",
         "requestType": "1040",
         "version": "2.0",
         "data": {
-            "operation": "find",
+            "operation": "search",
             "browserTimeZone": "GMT+05:30",
             "Type": "excel",
             "startDate": "16-Mar-2022",
             "endDate": "17-Mar-2022",
             "clinic": "14",
-            "offset": "0"
+            "offset": _para?.offset ? _para.offset.toString() : "0"
         }
     }
 
     let responce = await c2mdApi.post("getconsolidatedreport", params, { headers: authHeader() })
 
-
+    console.log("getconsolidatedreport responce ->", responce.data.data);
 
     if (responce.status == 200) {
 
         dispatch({
             type: INTERBRANCH_ADMIN_CONSOLIDATED,
-            payload: responce.data.data.data
+            payload: {
+                data: responce.data.data.data,
+                totalPages: responce.data.data.totalNumberOfPages
+            }
         });
 
         //    console.log(responce.data.data);
@@ -228,8 +231,8 @@ export const updateMisReportAttachments = (_id, value) => async dispatch => {
 
         "requestType": "1046",
         "data": {
-            "consolReportId": _id,
-            "uploadedFile": value
+            "consolReportId":_id,
+            "uploadedFile":value
         }
     }
 

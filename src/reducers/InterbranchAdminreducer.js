@@ -8,7 +8,8 @@ const INITIAL_STATE = {
     detailedReportTableTotalPages: 0,
     dashboardSelected: null,
     detaiedSelected:null,
-    consolidatedreport: []
+    consolidatedreport: [],
+    consolidatedreportTotalPages:0
 
 };
 
@@ -53,7 +54,8 @@ export default (state = INITIAL_STATE, { type, payload }) => {
 
             return {
                 ...state,
-                consolidatedreport: payload
+                consolidatedreport: payload.data,
+                consolidatedreportTotalPages:payload.totalPages
             };
         default:
             return state;
