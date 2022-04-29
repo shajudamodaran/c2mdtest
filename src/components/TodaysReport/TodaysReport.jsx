@@ -69,11 +69,11 @@ function TodaysReport() {
     let handlePaginationChange = (e, s) => {
 
         // console.log(e,s);
-        dispatch(FETCH_ADMIN_DASHBOARD_REPORT({offset:e-1}))
+        // dispatch(FETCH_ADMIN_DASHBOARD_REPORT({offset:e-1}))
 
-        if (pagination < dashboardData.length) {
-            setPagination(pagination + 10)
-        }
+        // if (pagination < dashboardData.length) {
+        //     setPagination(pagination + 10)
+        // }
 
     }
 
@@ -163,7 +163,7 @@ function TodaysReport() {
             <div className="pagination-container-mis-report">
 
                 &nbsp;
-                <Pagination onChange={handlePaginationChange} defaultCurrent={1} total={ dashboardData?dashboardData*8:0}/>
+                {/* <Pagination onChange={handlePaginationChange} defaultCurrent={1} total={ dashboardData?dashboardData*8:0}/> */}
             </div>
 
         </div>

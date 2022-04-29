@@ -22,6 +22,7 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
             "startDate": "16-Mar-2022",
             "endDate": "17-Mar-2022",
             "clinic": "14",
+            "Type": "excel",
             "offset": _para?.offset ? _para.offset.toString() : "0"
         }
     }
@@ -53,6 +54,7 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
 
 export const FETCH_ADMIN_DETAILED_REPORT = (_para) => async (dispatch) => {
 
+    
 
     let fromDate = _para?.fromDate ? convertDateToString(_para.fromDate) : null
     let toDate = _para?.toDate ? convertDateToString(_para.toDate) : null
@@ -76,6 +78,7 @@ export const FETCH_ADMIN_DETAILED_REPORT = (_para) => async (dispatch) => {
 
     let responce = await loginedApi.post("getsummaryreport", params, { headers: authHeader() })
 
+    console.log("Summary report calling context==>",_para.context,_para?.offset);
     console.log("getsummaryreport responce ->", responce.data.data);
 
     if (responce.status == 200) {
@@ -224,6 +227,8 @@ export const updateMisReportComment = (_id, value) => async dispatch => {
 
 }
 
+
+
 export const updateMisReportAttachments = (_id, value) => async dispatch => {
 
 
@@ -246,8 +251,6 @@ export const updateMisReportAttachments = (_id, value) => async dispatch => {
 
 
 }
-
-
 
 export const updateConsolodatedReportComment = (_id, value) => async dispatch => {
 
@@ -272,6 +275,47 @@ export const updateConsolodatedReportComment = (_id, value) => async dispatch =>
 
 
 }
+
+export const downloadSummaryReport = (_para) => async (dispatch) => {
+
+
+    let fromDate = _para?.fromDate ? convertDateToString(_para.fromDate) : null
+    let toDate = _para?.toDate ? convertDateToString(_para.toDate) : null
+
+    console.log(fromDate, toDate);
+
+    let params = {
+        "token": "token",
+        "requestType": "1040",
+        "version": "2.0",
+        "data": {
+            "operation": "find",
+            "browserTimeZone": "GMT+05:30",
+            "Type": "excel",
+            "startDate": fromDate ? fromDate : "16-Mar-2022",
+            "endDate": toDate ? toDate : "17-Mar-2022",
+            "clinic": "14",
+        }
+    }
+
+    let responce = await loginedApi.post("getsummaryreport", params, { headers: authHeader() })
+
+    console.log("getsummaryreport responce ->", responce.data.data);
+
+    if (responce.status == 200) {
+
+        if(responce.data?.data?.filename)
+        {
+            return `https://uat.c2mdr.com/c2mydruat/Connect2MyDoctorRequest?requestType=256&uploadBy=ConsultationProcess&name=${responce.data?.data?.filename}&type=Attachement&uploadRefId=123&from=web`
+        }
+
+        
+
+    }
+
+
+}
+
 
 
 

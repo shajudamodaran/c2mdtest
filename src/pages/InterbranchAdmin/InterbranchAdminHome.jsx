@@ -28,7 +28,7 @@ function InterbranchAdminHome() {
     useEffect(() => {
 
         dispatch(FETCH_ADMIN_DASHBOARD_REPORT())
-        dispatch(FETCH_ADMIN_DETAILED_REPORT())
+        dispatch(FETCH_ADMIN_DETAILED_REPORT({context:"Admin Home useEffect"}))
         dispatch(FETCH_CONSOLIDATED_REPORTS())
 
     }, [])

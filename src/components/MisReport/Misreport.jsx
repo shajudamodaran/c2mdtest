@@ -1,12 +1,16 @@
 import { DatePicker, Modal, Pagination, Tooltip } from 'antd';
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import moment from "moment"
 import './misreport.css'
 import { useDispatch, useSelector } from 'react-redux';
 import StatusBadge from '../Badges/StatusBadge/StatusBadge';
-import { FETCH_ADMIN_DASHBOARD_REPORT, FETCH_ADMIN_DETAILED_REPORT, FETCH_DASHBOARD_MORE, FETCH_DETAILED_MORE, updateMisReportComment } from '../../actions/InterbranchAdminActions';
+import { downloadSummaryReport, FETCH_ADMIN_DASHBOARD_REPORT, FETCH_ADMIN_DETAILED_REPORT, FETCH_DASHBOARD_MORE, FETCH_DETAILED_MORE, updateMisReportComment } from '../../actions/InterbranchAdminActions';
 import { INTERBRANCH_MODAL } from '../../actions/type';
 import { convertDateToString } from '../../Helpers/dateFunctions';
+import { Input } from 'antd';
+import AdminTextArea from '../Common/AdminTextArea/AdminTextArea';
+
+const { TextArea } = Input;
 
 
 const { RangePicker } = DatePicker;
@@ -16,18 +20,20 @@ function Misreport() {
     const dateRef = useRef(null)
 
     let [isOpen, setOpen] = useState(false)
+    let [pagination, setPagination] = useState(null)
+    let [selectedDate, setSelectedDate] = useState({ from: null, to: null })
 
     const dispatch = useDispatch()
 
 
-    let misReports =useSelector(state => state.interbranchAdmin.detailedReportTable)
-    let misReportsPageLength =useSelector(state => state.interbranchAdmin.detailedReportTableTotalPages)
+    let misReports = useSelector(state => state.interbranchAdmin.detailedReportTable)
+    let misReportsPageLength = useSelector(state => state.interbranchAdmin.detailedReportTableTotalPages)
 
 
     let handleTableClick = (_id) => {
 
         dispatch(FETCH_DETAILED_MORE(_id))
-       
+
         dispatch({
             type: INTERBRANCH_MODAL,
             payload: {
@@ -36,7 +42,7 @@ function Misreport() {
             }
         });
 
-      
+
 
     }
 
@@ -56,7 +62,6 @@ function Misreport() {
 
             console.log(convertDateToString(prevDate));
 
-            console.log();
 
             if (startDate < prevDate) {
 
@@ -67,13 +72,14 @@ function Misreport() {
                     okText: 'Download Report',
                     cancelText: 'cancel',
                     onOk() {
-                        downloadReport(startDate, endDate)
+                        downloadReport()
                     },
                 });
             }
             else {
 
-                dispatch(FETCH_ADMIN_DETAILED_REPORT({fromDate:startDate,toDate:endDate}))
+                setSelectedDate({ from: startDate, to: endDate })
+                dispatch(FETCH_ADMIN_DETAILED_REPORT({ fromDate: startDate, toDate: endDate, offset: pagination , context:"Date Change"}))
                 //downloadReport(startDate, endDate)
             }
 
@@ -84,32 +90,44 @@ function Misreport() {
 
     }
 
-    let downloadReport = (startDate, endDate) => {
 
-        console.log("Ready to download report................");
 
+    let downloadReport = () => {
+
+        console.log("Downloading report..............");
+
+        dispatch(downloadSummaryReport({ fromDate: selectedDate.from, toDate: selectedDate.to })).then((resp) => {
+
+            if (resp) {
+                window.open(resp, '_blank');
+            }
+        })
     }
 
 
-    let handleCommentChange = (para_appointment_id,e) =>{
+    let handleCommentChange = (para_appointment_id, e) => {
 
-        dispatch(updateMisReportComment(para_appointment_id,e.target.value)).then((res)=>{
+        dispatch(updateMisReportComment(para_appointment_id, e.target.value)).then((res) => {
 
-            if(res)
-            {
-                dispatch(FETCH_ADMIN_DETAILED_REPORT())
+            if (res) {
+                dispatch(FETCH_ADMIN_DETAILED_REPORT({ offset: pagination, context:"Comment Change" }))
             }
 
         })
+
+
+    }
+
+    let handlePaginationChange = (e) => {
+
        
-
-    }
-
-    let handlePaginationChange =(e) =>{
-
+        dispatch(FETCH_ADMIN_DETAILED_REPORT({ offset: e-1, context:"Pagination Change" }))
+        setPagination(e - 1)
         // console.log(e-1);
-        dispatch(FETCH_ADMIN_DETAILED_REPORT({offset:e-1}))
     }
+
+  
+
 
 
 
@@ -119,7 +137,7 @@ function Misreport() {
 
             <div className="header">
 
-                <button>
+                <button onClick={() => { downloadReport() }}>
 
                     <div className="icon"><i class="far fa-download"></i></div> Download Report</button>
 
@@ -174,7 +192,9 @@ function Misreport() {
 
                                     misReports.map((element, key) => {
 
-                                      
+                                        if (key == 7) {
+                                            console.log(element.Comments);
+                                        }
 
                                         if (key <= 8) {
 
@@ -192,7 +212,12 @@ function Misreport() {
                                                     <td>{element.nettFees}</td>
                                                     <td><StatusBadge text="Completed" varient="completed" /></td>
                                                     <td>{element.paymentStatus}</td>
-                                                    <td><textArea onBlur={(e)=>{handleCommentChange(element.appointmentId,e)}} rows={1} >{element.Comments}</textArea></td>
+                                                    <td><AdminTextArea
+                                                        value={element.Comments}
+                                                        element={element}
+                                                        onBlur={handleCommentChange}
+                                                    /></td>
+                                                    {/* <td><TextArea  onBlur={(e) => { handleCommentChange(element.appointmentId, e) }} rows={1}></TextArea></td> */}
 
                                                     <td  ><button onClick={() => { handleTableClick(element.appointmentId) }} className='more-btn' >More</button></td>
 
@@ -219,7 +244,7 @@ function Misreport() {
             <div className="pagination-container-mis-report">
 
                 &nbsp;
-                <Pagination  onChange={handlePaginationChange} defaultCurrent={1} total={ misReportsPageLength?misReportsPageLength*8:0} />
+                <Pagination onChange={handlePaginationChange} defaultCurrent={1} total={misReportsPageLength ? misReportsPageLength * 8 : 0} />
             </div>
 
 
