@@ -120,7 +120,7 @@ function TemplateList() {
                     </tr>
                     </thead>
                     <tbody>
-                        {
+                        {/* {
                             dashboardData ?
                                 dashboardData.length > 0 ?
 
@@ -153,8 +153,8 @@ function TemplateList() {
                                     })
 
                                     : null
-                                : null
-                        }
+                                : null */}
+                        {/* } */}
 
 
                     </tbody>
