@@ -1,6 +1,7 @@
 import ConsolidatedReport from "../../components/ConsolidatedReport/ConsolidatedReport";
 //import Misreport from "../../components/MisReport/Misreport";
  import PrescriptionDashboard from "../../components/PrescriptionDashboard/prescriptionDashboard";
+import PriscriptionForm from "../../components/PrescriptionForm/PriscriptionForm";
 //import TodaysReport from "../../components/TodaysReport/TodaysReport";
 import TemplateList from "../../components/PrescriptionTemplateList/prescriptionTemplateList";
 import TodaysReport from "../../components/TodaysReport/TodaysReport";
@@ -32,7 +33,7 @@ export const prescriptionAdminSideMenu=[
             {
                 name:"Create Template",
                 ico:<i class="far fa-file-alt"></i>,
-                component:<ConsolidatedReport/>
+                component:<PriscriptionForm/>
 
             },
             {

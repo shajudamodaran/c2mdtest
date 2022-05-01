@@ -12,6 +12,7 @@ import consultationReducer from "./consultationReducer";
 import appointmentHistoryReducer from "./appointmentHistoryReducer";
 import modalReducer from "./modalReducer";
 import InterbranchAdminreducer from "./InterbranchAdminreducer";
+import presctiptionFormReducer from "./prescriptionFormreducer";
 
 
 const persistConfig = {
@@ -42,5 +43,6 @@ export default combineReducers({
   consultationDetails: consultationReducer,
   appointmentHistory:appointmentHistoryReducer,
   interbranchModal:modalReducer,
-  interbranchAdmin:InterbranchAdminreducer
+  interbranchAdmin:InterbranchAdminreducer,
+  presctiptionFormReducer:presctiptionFormReducer
 });
