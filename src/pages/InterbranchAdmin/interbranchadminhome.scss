@@ -72,7 +72,7 @@
         }
 
         .list-tittle{
-            font-size:15px;
+            font-size:17px;
             font-weight: 500;
             width: 100%;
             text-align: left;
@@ -87,7 +87,7 @@
             margin-top: 1rem;
         
            .active{
-               font-weight: 500;
+               font-weight: bold;
            }
           
         
@@ -99,7 +99,7 @@
                 flex-direction: row;
                 align-items: center;
                 justify-content: flex-start;
-                font-size: 15px;
+                font-size: 17px;
                 margin-bottom: .8rem;
                 cursor: pointer;
         

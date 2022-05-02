@@ -73,7 +73,7 @@
 }
 
 .interbranch-container .left-container .list-tittle {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 500;
   width: 100%;
   text-align: left;
@@ -89,7 +89,7 @@
 }
 
 .interbranch-container .left-container .side-nav .active {
-  font-weight: 500;
+  font-weight: bold;
 }
 
 .interbranch-container .left-container .side-nav li {
@@ -108,7 +108,7 @@
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  font-size: 15px;
+  font-size: 17px;
   margin-bottom: .8rem;
   cursor: pointer;
   white-space: nowrap;

@@ -7,6 +7,7 @@ import './prescriptiontemplatelist.css'
 import { INTERBRANCH_MODAL } from '../../actions/type';
 import { FETCH_ADMIN_DASHBOARD_REPORT, FETCH_DASHBOARD_MORE } from '../../actions/InterbranchAdminActions';
 import { separaetdateAndTime } from '../../Helpers/dateFunctions';
+import { EditIcon, ViewIcon } from '../../assets/Logos/Icons';
 
 
 const { RangePicker } = DatePicker;
@@ -116,10 +117,42 @@ function TemplateList() {
                         <th>Fees Paid</th>
                         <th>Consultation Status</th>
                         <th>Next Steps</th> */}
-                        <th></th>
+                        <th>Edit</th>
+                        <th>View</th>
+                
                     </tr>
                     </thead>
                     <tbody>
+
+                        <tr>
+                            <td>Data 1</td>
+                            <td>Data 2</td>
+                            <td>Data 3</td>
+                            <td>Data 4</td>
+                            <td>Data 5</td>
+                            <td><div className="edit-btn"><EditIcon/></div></td>
+                            <td><div className="edit-btn"><ViewIcon/></div></td>
+                        </tr>
+
+                        <tr>
+                            <td>Data 1</td>
+                            <td>Data 2</td>
+                            <td>Data 3</td>
+                            <td>Data 4</td>
+                            <td>Data 5</td>
+                            <td><div className="edit-btn"><EditIcon/></div></td>
+                            <td><div className="edit-btn"><ViewIcon/></div></td>
+                        </tr>
+
+                        <tr>
+                            <td>Data 1</td>
+                            <td>Data 2</td>
+                            <td>Data 3</td>
+                            <td>Data 4</td>
+                            <td>Data 5</td>
+                            <td><div className="edit-btn"><EditIcon/></div></td>
+                            <td><div className="edit-btn"><ViewIcon/></div></td>
+                        </tr>
                         {/* {
                             dashboardData ?
                                 dashboardData.length > 0 ?

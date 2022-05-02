@@ -20,14 +20,14 @@ function PrescriptionDashboard() {
     const dispatch = useDispatch()
 
 
-    let misReports =useSelector(state => state.interbranchAdmin.detailedReportTable)
-    let misReportsPageLength =useSelector(state => state.interbranchAdmin.detailedReportTableTotalPages)
+    let misReports = useSelector(state => state.interbranchAdmin.detailedReportTable)
+    let misReportsPageLength = useSelector(state => state.interbranchAdmin.detailedReportTableTotalPages)
 
 
     let handleTableClick = (_id) => {
 
         dispatch(FETCH_DETAILED_MORE(_id))
-       
+
         dispatch({
             type: INTERBRANCH_MODAL,
             payload: {
@@ -36,7 +36,7 @@ function PrescriptionDashboard() {
             }
         });
 
-      
+
 
     }
 
@@ -73,7 +73,7 @@ function PrescriptionDashboard() {
             }
             else {
 
-                dispatch(FETCH_ADMIN_DETAILED_REPORT({fromDate:startDate,toDate:endDate}))
+                dispatch(FETCH_ADMIN_DETAILED_REPORT({ fromDate: startDate, toDate: endDate }))
                 //downloadReport(startDate, endDate)
             }
 
@@ -91,24 +91,23 @@ function PrescriptionDashboard() {
     }
 
 
-    let handleCommentChange = (para_appointment_id,e) =>{
+    let handleCommentChange = (para_appointment_id, e) => {
 
-        dispatch(updateMisReportComment(para_appointment_id,e.target.value)).then((res)=>{
+        dispatch(updateMisReportComment(para_appointment_id, e.target.value)).then((res) => {
 
-            if(res)
-            {
+            if (res) {
                 dispatch(FETCH_ADMIN_DETAILED_REPORT())
             }
 
         })
-       
+
 
     }
 
-    let handlePaginationChange =(e) =>{
+    let handlePaginationChange = (e) => {
 
         // console.log(e-1);
-        dispatch(FETCH_ADMIN_DETAILED_REPORT({offset:e-1}))
+        dispatch(FETCH_ADMIN_DETAILED_REPORT({ offset: e - 1 }))
     }
 
 
@@ -119,9 +118,9 @@ function PrescriptionDashboard() {
 
             <div className="header">
 
-                {/* <button> */}
+                <button>
 
-                    {/* <div className="icon"><i class="far fa-download"></i></div> Download Report</button> */}
+                    <div className="icon"><i class="far fa-sync"></i></div>Sync Lab Test & Medicine</button>
 
                 <div className="filter-button" >
 
@@ -148,6 +147,10 @@ function PrescriptionDashboard() {
 
             <div className='mis_report_table_container'>
 
+                <div className="search-container">
+                    <input type="text" name="" id="" placeholder='Search' />
+                </div>
+
 
                 <table className='appoinment-table'>
                     <tr>
@@ -163,54 +166,42 @@ function PrescriptionDashboard() {
                         {/* <th>Consultation Status</th>
                         <th>Payment Status</th>
                         <th>Notes</th> */}
-                        <th></th>
+
                     </tr>
 
-                    {/* <tbody>
+                    <tbody>
 
-                        {
-                            misReports ?
-                                misReports.length > 0 ?
+                        <tr>
+                            <td>{"1"}</td>
+                            <td>{"Data 1"}</td>
+                            <td>{"Data 2"}</td>
+                            <td>{"Data 3"}</td>
+                            <td>{"Data 4"}</td>
+                            <td>{"Data 5"}</td>
+                        </tr>
 
-                                    misReports.map((element, key) => {
+                        <tr>
+                            <td>{"1"}</td>
+                            <td>{"Data 1"}</td>
+                            <td>{"Data 2"}</td>
+                            <td>{"Data 3"}</td>
+                            <td>{"Data 4"}</td>
+                            <td>{"Data 5"}</td>
+                        </tr>
 
-                                      
-
-                                        if (key <= 8) {
-
-                                            return (
-
-                                                <tr>
-                                                    <td>{element.appointmentId}</td>
-                                                    <td>{element.appointmentDate}</td>
-                                                    <td>{element.appointmentTime}</td>
-                                                    <td>{element.patientName}</td>
-                                                    <td>{element.doctorName}</td>
-                                                    <td>Bethany Hospital</td>
-                                                    <td>{element.feesPaid}</td>
-                                                    <td>{element.c2mdFees}</td>
-                                                    <td>{element.nettFees}</td>
-                                                    <td><StatusBadge text="Completed" varient="completed" /></td>
-                                                    <td>{element.paymentStatus}</td>
-                                                    <td><textArea onBlur={(e)=>{handleCommentChange(element.appointmentId,e)}} rows={1} >{element.Comments}</textArea></td>
-
-                                                    <td  ><button onClick={() => { handleTableClick(element.appointmentId) }} className='more-btn' >More</button></td>
-
-                                                </tr>
-                                            )
-                                        }
-                                    })
-
-                                    : console.log("length ", misReports.length)
-                                : console.log("no mis report")
-                        }
+                        <tr>
+                            <td>{"1"}</td>
+                            <td>{"Data 1"}</td>
+                            <td>{"Data 2"}</td>
+                            <td>{"Data 3"}</td>
+                            <td>{"Data 4"}</td>
+                            <td>{"Data 5"}</td>
+                        </tr>
 
 
 
 
-
-
-                    </tbody> */}
+                    </tbody>
                 </table>
 
             </div>
@@ -219,7 +210,7 @@ function PrescriptionDashboard() {
             <div className="pagination-container-mis-report">
 
                 &nbsp;
-                <Pagination  onChange={handlePaginationChange} defaultCurrent={1} total={ misReportsPageLength?misReportsPageLength*8:0} />
+                <Pagination onChange={handlePaginationChange} defaultCurrent={1} total={misReportsPageLength ? misReportsPageLength * 8 : 0} />
             </div>
 
 

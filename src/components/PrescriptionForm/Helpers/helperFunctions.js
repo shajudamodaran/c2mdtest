@@ -208,7 +208,7 @@ export const getAddInvestigationButtonText=(length)=>{
     }
     else if(length>0)
     {
-        return ("Add more investigation")
+        return ("Add Investigations")
     }
 
 }

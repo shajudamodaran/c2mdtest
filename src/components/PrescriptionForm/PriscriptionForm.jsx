@@ -1122,7 +1122,7 @@ function PriscriptionForm() {
 
     {/* Newly added dropdowns......................................................................... */}
 
-                            <ul className='report-list'>
+                            <ul className='report-list shadow-underline'>
                                 <li>
                                     <div>
                                         <span className='form-small-tittle' >Speciality </span>
@@ -1134,7 +1134,7 @@ function PriscriptionForm() {
 
 
                                         <MuiDropdown
-                                            style={{ width: "365px" }}
+                                            style={{ width: "227px" }}
                                             // value={submissionData.height?.unit}
                                             placeholder="Select speciality"
                                             data={['Data 1', 'Data 2', 'Data 3']}
@@ -1150,7 +1150,7 @@ function PriscriptionForm() {
 
                                 <li>
                                     <div>
-                                        <span className='form-small-tittle' >Choose Doctor </span>
+                                        <span className='form-small-tittle' >Select Doctor </span>
                                         <span className='form-caption' ></span>
                                     </div>
 
@@ -1158,7 +1158,7 @@ function PriscriptionForm() {
 
 
                                         <MuiDropdown
-                                            style={{ width: "365px" }}
+                                            style={{ width: "227px" }}
                                             // value={submissionData.weight?.unit}
                                             placeholder="Select doctor"
                                             data={['Data 1', 'Data 2', 'Data 3']}
@@ -1172,6 +1172,30 @@ function PriscriptionForm() {
 
 
                                 </li>
+
+                                <li>
+                                        <div>
+                                            <span className='form-small-tittle' >Template Name </span>
+                                            <span className='form-caption' ></span>
+                                        </div>
+
+                                        <div className='form-light-background'>
+                                            <input
+                                              
+                                              
+                                                type="text"
+                                                className='form-input-text'
+                                                placeholder='Enter template name'
+                                                style={{width: "227px" }}
+                                                />
+
+                                            
+
+                                        </div>
+
+
+
+                                    </li>
 
 
 
