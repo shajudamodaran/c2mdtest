@@ -119,9 +119,9 @@ function PrescriptionDashboard() {
 
             <div className="header">
 
-                <button>
+                {/* <button> */}
 
-                    <div className="icon"><i class="far fa-download"></i></div> Download Report</button>
+                    {/* <div className="icon"><i class="far fa-download"></i></div> Download Report</button> */}
 
                 <div className="filter-button" >
 
@@ -151,14 +151,14 @@ function PrescriptionDashboard() {
 
                 <table className='appoinment-table'>
                     <tr>
-                        <th>Appointment Id</th>
-                        <th>Patient Name</th>
-                        <th>Doctor Name</th>
-                        <th>Appointment Date & Time</th>
+                        <th>App Id</th>
+                        <th>Patient</th>
+                        <th>Doctor</th>
+                        <th>App Date & Time</th>
                         {/* <th>Appointment Time</th> */}
-                        <th>Prescription File</th>
-                        <th>Send Time</th>
-                        <th>Received Time</th>
+                        <th>Prescription</th>
+                        {/* <th>Send Time</th>
+                        <th>Received Time</th> */}
                         <th>Sync Status</th>
                         {/* <th>Consultation Status</th>
                         <th>Payment Status</th>

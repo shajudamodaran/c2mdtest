@@ -1055,9 +1055,9 @@ function PriscriptionForm() {
                             Prescription
 
                             <div style={{ display: "flex", flexDirection: "row" }}>
-                                <button className={`${preloadPrescription ? "add-investigation-btn" : "add-investigation-btn-disabled-v2"}`} style={{ marginRight: "1rem" }} onClick={() => { populatePreloadData() }}>LOAD LAST PRESCRIPTION</button>
+                                {/* <button className={`${preloadPrescription ? "add-investigation-btn" : "add-investigation-btn-disabled-v2"}`} style={{ marginRight: "1rem" }} onClick={() => { populatePreloadData() }}>LOAD LAST PRESCRIPTION</button> */}
 
-                                <MuiDropdown
+                                {/* <MuiDropdown
                                     style={{ width: "150px" }}
                                     value={null}
                                     placeholder="Select template"
@@ -1066,7 +1066,7 @@ function PriscriptionForm() {
                                     name="unit"
                                     // onChange={updateMedicineTable}
                                     isMedTable
-                                />
+                                /> */}
 
                             </div>
 

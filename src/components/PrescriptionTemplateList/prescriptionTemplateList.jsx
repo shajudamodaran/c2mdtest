@@ -110,7 +110,7 @@ function TemplateList() {
                         <th>Template Name</th>
                         <th>Created Date</th>
                         <th>Updated Date</th>
-                        <th>Template Files</th>
+                        {/* <th>Template Files</th> */}
                         <th>Assigned To</th>
 {/* 
                         <th>Fees Paid</th>
