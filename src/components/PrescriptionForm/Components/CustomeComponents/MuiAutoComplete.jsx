@@ -109,7 +109,7 @@ const Placeholder = ({ children }) => {
 };
 
 
-function MuiAutoComplete({ value, data, name, onChange, id, placeholder }) {
+function MuiAutoComplete({ value, data, name, onChange, id, placeholder, isObject }) {
 
   const classes = useStyles();
   const [answer, setAnswer] = React.useState("");

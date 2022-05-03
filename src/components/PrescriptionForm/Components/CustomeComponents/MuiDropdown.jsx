@@ -44,7 +44,7 @@ const Placeholder = ({ children }) => {
 
 
 
-function MuiDropdown({ onChange, name, data, isMedTable, id, placeholder, value, style }) {
+function MuiDropdown({ onChange, name, data, isMedTable, id, placeholder, value, style, isObject, populationName,populationId }) {
 
     const [answer, setAnswer] = React.useState("");
 
@@ -76,17 +76,36 @@ function MuiDropdown({ onChange, name, data, isMedTable, id, placeholder, value,
             }
         >
             {
-                data ?
+                isObject ?
 
-                    data.map((element, key) => {
-                        return (
+                    data ?
 
-                            <MenuItem key={key} value={element}>{element}</MenuItem>
+                        data.map((element, key) => {
+                            return (
 
-                        )
-                    })
+                                <MenuItem key={key} value={element[populationId?populationId:id]}>{element[populationName?populationName:name]}</MenuItem>
 
-                    : null
+                            )
+                        })
+
+                        : null
+
+
+                    :
+
+
+                    data ?
+
+                        data.map((element, key) => {
+                            return (
+
+                                <MenuItem key={key} value={element}>{element}</MenuItem>
+
+                            )
+                        })
+
+                        : null
+
             }
 
         </Select>

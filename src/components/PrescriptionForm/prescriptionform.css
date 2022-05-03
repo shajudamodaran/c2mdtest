@@ -154,6 +154,19 @@
   min-width: 40%;
 }
 
+.form-light-background .ant-select-selector{
+
+  border: 0px !important;
+  padding: 9px 10px;
+
+}
+
+.form-light-background .MuiAutocomplete-hasPopupIcon.css-16awh2u-MuiAutocomplete-root .MuiOutlinedInput-root, .MuiAutocomplete-hasClearIcon.css-16awh2u-MuiAutocomplete-root .MuiOutlinedInput-root{
+
+  height: 48px;
+    width: 230px;
+}
+
 .form-light-background-big {
   background-color: #ecf5fc;
   border-radius: 4px;

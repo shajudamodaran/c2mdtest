@@ -32,6 +32,8 @@ import MuiDatePicker from './Components/CustomeComponents/MuiDatePicker';
 import LmpdatePicker from './Components/CustomeComponents/LmpdatePicker';
 import FailiureModal from './Components/FailiureModal/FailiureModal';
 import { SET_SUBMISSION_DATA_PRESCRIPTION, UPDATE_INVESTIGATION_TABLE_DATA, UPDATE_MEDICINE_TABLE_DATA, UPDATE_REDUX_PRESCRIPTION } from '../../actions/type';
+import { getDepartments, getDoctors } from '../../actions/PrescriptionFormActions';
+import AutoCompleteWithCheckbox from './Components/CustomeComponents/AutoCompleteWithCheckbox';
 // import NetworkErrorModal from './Components/NetworkErrorModal/NetworkErrorModal';
 
 
@@ -197,6 +199,15 @@ function PriscriptionForm() {
 
     let [preloadPrescription, setPreloadPrescription] = useState(null)
 
+    let [departmentsArray, setDepartmentsArray] = useState([])
+    let [selectedDepartment, setSelectedDepartment] = useState(null)
+
+    let [doctorsArray, setDoctors] = useState([])
+    let [selectedDr,setDr]=useState([])
+    
+
+    let selectedDoctor=[]
+
 
 
 
@@ -205,6 +216,8 @@ function PriscriptionForm() {
         loadmedicine()
         loadtest()
         checkForLastPrescription()
+        loadDepartments()
+
 
     }, []);
 
@@ -1034,7 +1047,125 @@ function PriscriptionForm() {
 
     }
 
-    console.log(test)
+    let loadDepartments = () => {
+
+        dispatch(getDepartments()).then((res) => {
+
+            console.log(res);
+
+            setDepartmentsArray(res)
+
+        })
+
+    }
+
+    let loadDoctors = (_id) => {
+
+        dispatch(getDoctors({ department_id: _id })).then((res) => {
+
+            console.log(res);
+
+            setDoctors(res)
+
+        })
+
+    }
+
+
+    let departmentObjectToArray = (obj) => {
+
+        let result = []
+
+        if (obj) {
+            obj.map((element) => {
+
+                result.push(element.departmentName)
+
+            })
+        }
+
+        return result
+
+
+    }
+
+    let doctorObjectToArray = (obj) => {
+
+        let result = []
+
+        if (obj) {
+            obj.map((element) => {
+
+                result.push(element.doctorName)
+
+            })
+        }
+
+        return result
+
+
+    }
+
+
+
+    let handleDepartmentOnChange = (data) => {
+        console.log(data.data);
+
+        let dep_id = departmentsArray.filter((element) => element.departmentName == data.data)
+        console.log(dep_id[0].departmentId);
+        setSelectedDepartment(dep_id[0])
+
+        loadDoctors(dep_id[0].departmentId)
+
+    }
+
+
+    let createPrescription = () => {
+
+       
+
+        let dataToSubmit = {
+            "data": {
+                "prescriptionDetails": {
+                    "attachementArrs": [],
+                    "consultationDetails": {
+                        "doctor_suggestion": "",
+                        chiefcomplaints: submissionData.chiefComplaints != null ? submissionData.chiefComplaints : "",
+                        diagnosis: submissionData.diagnosis != null ? submissionData.diagnosis : "",
+                        investigation: submissionData.examination != null ? submissionData.examination : "",
+                        notes: submissionData.releventPoint != null ? submissionData.releventPoint : "",
+                        instruction: submissionData.additionalInstruction != null ? submissionData.additionalInstruction : "",
+                        share: true,
+                        privateMessage: "",
+                        weight: submissionData.weight.value != null ? submissionData.weight.value + " " + submissionData.weight.unit : "",
+                        height: submissionData.height.value != null ? submissionData.height.value + " " + submissionData.height.unit : "",
+                        lmp: submissionData.lmp != null ? submissionData.lmp : "",
+                        medicine: selectmedicine,
+                        labTest: selectlabtest
+                    },
+                    "basicinfo": {
+                        "departmentId": selectedDepartment?.departmentId,
+                        "doctorId": "selectedDr",
+                        "templateName": "FEVER2"
+                    }
+                },
+                "browserTimeZone": ""
+            },
+            "browserTimeZone": "",
+            "requestType": 1061
+        }
+
+
+        console.log(dataToSubmit);
+
+    }
+
+
+    let handleDoctorChange = (e) =>{
+
+       
+
+    }
 
 
     return (
@@ -1095,7 +1226,7 @@ function PriscriptionForm() {
 
                             <div></div>
 
-    {/* Old name and other details......................................................................... */}
+                            {/* Old name and other details......................................................................... */}
 
                             {/* <ul onClick={() => { setActiveLeft(leftMenus[0].name) }} className='details-list'>
 
@@ -1120,7 +1251,7 @@ function PriscriptionForm() {
                                 </li>
                             </ul> */}
 
-    {/* Newly added dropdowns......................................................................... */}
+                            {/* Newly added dropdowns......................................................................... */}
 
                             <ul className='report-list shadow-underline'>
                                 <li>
@@ -1131,16 +1262,17 @@ function PriscriptionForm() {
 
                                     <div className='form-light-background'>
 
+                                        <MuiAutoComplete
+
+                                            placeholder="Select medicine"
+                                            // id={key}
+                                            value={selectedDepartment?.departmentName}
+                                            data={departmentsArray.length > 0 ? departmentObjectToArray(departmentsArray) : []}
+                                            onChange={handleDepartmentOnChange}
+                                            name='name' />
 
 
-                                        <MuiDropdown
-                                            style={{ width: "227px" }}
-                                            // value={submissionData.height?.unit}
-                                            placeholder="Select speciality"
-                                            data={['Data 1', 'Data 2', 'Data 3']}
-                                            name=""
-                                            //onChange={onChangeSubmissiondataHeightWidthUnit} 
-                                            />
+
 
 
 
@@ -1157,14 +1289,18 @@ function PriscriptionForm() {
                                     <div className='form-light-background'>
 
 
-                                        <MuiDropdown
+                                        {/* <MuiDropdown
                                             style={{ width: "227px" }}
                                             // value={submissionData.weight?.unit}
                                             placeholder="Select doctor"
                                             data={['Data 1', 'Data 2', 'Data 3']}
                                             name=""
-                                            //onChange={onChangeSubmissiondataHeightWidthUnit} 
-                                            />
+                                        //onChange={onChangeSubmissiondataHeightWidthUnit} 
+                                        /> */}
+                                        <AutoCompleteWithCheckbox
+                                            data={doctorsArray.length > 0 ? doctorObjectToArray(doctorsArray) : []}
+                                            onChangeValue={handleDoctorChange}
+                                        />
 
 
                                     </div>
@@ -1174,28 +1310,30 @@ function PriscriptionForm() {
                                 </li>
 
                                 <li>
-                                        <div>
-                                            <span className='form-small-tittle' >Template Name </span>
-                                            <span className='form-caption' ></span>
-                                        </div>
+                                    <div>
+                                        <span className='form-small-tittle' >Template Name </span>
+                                        <span className='form-caption' ></span>
+                                    </div>
 
-                                        <div className='form-light-background'>
-                                            <input
-                                              
-                                              
-                                                type="text"
-                                                className='form-input-text'
-                                                placeholder='Enter template name'
-                                                style={{width: "227px" }}
-                                                />
+                                    <div className='form-light-background'>
+                                        <input
 
-                                            
 
-                                        </div>
+                                            type="text"
+                                            className='form-input-text'
+                                            placeholder='Enter template name'
+                                            style={{ width: "227px" }}
+                                        />
 
 
 
-                                    </li>
+                                    </div>
+
+
+
+                                </li>
+
+
 
 
 
@@ -1868,7 +2006,7 @@ function PriscriptionForm() {
                 isReadyToSubmit ?
 
                     <div className="button-container">
-                        <button disabled={isLoading} onClick={() => { saveprescription() }} className={isLoading ? 'save-rescription-btn-disabled' : 'save-rescription-btn'} > <LabelIcon_Prescription />  SAVE PRESCRIPTION</button>
+                        <button disabled={isLoading} onClick={() => { createPrescription() }} className={isLoading ? 'save-rescription-btn-disabled' : 'save-rescription-btn'} > <LabelIcon_Prescription />  SAVE PRESCRIPTION</button>
                     </div> : null
             }
         </div >
