@@ -31,7 +31,7 @@ import MuiDropdown from './Components/CustomeComponents/MuiDropdown';
 import MuiDatePicker from './Components/CustomeComponents/MuiDatePicker';
 import LmpdatePicker from './Components/CustomeComponents/LmpdatePicker';
 import FailiureModal from './Components/FailiureModal/FailiureModal';
-import { SET_SUBMISSION_DATA_PRESCRIPTION, UPDATE_INVESTIGATION_TABLE_DATA, UPDATE_MEDICINE_TABLE_DATA, UPDATE_REDUX_PRESCRIPTION } from '../../actions/type';
+import { SET_DOCTORS, SET_SELECTED_DOCTORS, SET_SUBMISSION_DATA_PRESCRIPTION, UPDATE_INVESTIGATION_TABLE_DATA, UPDATE_MEDICINE_TABLE_DATA, UPDATE_REDUX_PRESCRIPTION } from '../../actions/type';
 import { getDepartments, getDoctors } from '../../actions/PrescriptionFormActions';
 import AutoCompleteWithCheckbox from './Components/CustomeComponents/AutoCompleteWithCheckbox';
 // import NetworkErrorModal from './Components/NetworkErrorModal/NetworkErrorModal';
@@ -120,7 +120,7 @@ function PriscriptionForm() {
 
 
     const { selectedDataInvestigation, selectedDataMedicines, submissionData, investigationData, medicinesData } = useSelector((state) => state?.presctiptionFormReducer)
-
+    const { selectedDoctors} = useSelector((state) => state?.presctiptionFormReducer)
     let leftMenus =
         [
             { name: "Patient Reports", icon: <UserOutlined /> },
@@ -1065,6 +1065,16 @@ function PriscriptionForm() {
 
             console.log(res);
 
+            dispatch({
+                type: SET_SELECTED_DOCTORS,
+                payload: doctorObjectToArray(res)
+            });
+
+            dispatch({
+                type: SET_DOCTORS,
+                payload: doctorObjectToArray(res)
+            });
+          
             setDoctors(res)
 
         })
@@ -1145,7 +1155,7 @@ function PriscriptionForm() {
                     },
                     "basicinfo": {
                         "departmentId": selectedDepartment?.departmentId,
-                        "doctorId": "selectedDr",
+                        "doctorId": selectedDoctors,
                         "templateName": "FEVER2"
                     }
                 },
@@ -1163,6 +1173,12 @@ function PriscriptionForm() {
 
     let handleDoctorChange = (e) =>{
 
+        console.log(e);
+
+       if(e)
+       {
+            setDr(e)
+       }
        
 
     }
@@ -1299,7 +1315,7 @@ function PriscriptionForm() {
                                         /> */}
                                         <AutoCompleteWithCheckbox
                                             data={doctorsArray.length > 0 ? doctorObjectToArray(doctorsArray) : []}
-                                            onChangeValue={handleDoctorChange}
+                                            setSelected={handleDoctorChange}
                                         />
 
 
