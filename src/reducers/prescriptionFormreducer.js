@@ -1,4 +1,4 @@
-import { INVESTIGATION_HEAD, SET_SUBMISSION_DATA_PRESCRIPTION, UPDATE_INVESTIGATION_TABLE_DATA, UPDATE_MEDICINE_TABLE_DATA, UPDATE_REDUX_PRESCRIPTION } from "../actions/type";
+import { INVESTIGATION_HEAD, SET_DOCTORS, SET_SELECTED_DOCTORS, SET_SUBMISSION_DATA_PRESCRIPTION, UPDATE_INVESTIGATION_TABLE_DATA, UPDATE_MEDICINE_TABLE_DATA, UPDATE_REDUX_PRESCRIPTION } from "../actions/type";
 
 const INITIAL_STATE = {
 
@@ -73,7 +73,9 @@ const INITIAL_STATE = {
             instructions: null
         },
 
-    ]
+    ],
+    selectedDoctors: [],
+    doctorsList:[]
 
 };
 
@@ -155,6 +157,24 @@ export default (state = INITIAL_STATE, { type, payload }) => {
             return {
                 ...state,
                 medicinesData: payload
+
+            };
+
+
+        case SET_SELECTED_DOCTORS:
+
+            return {
+                ...state,
+                selectedDoctors: payload
+
+            };
+
+
+        case SET_DOCTORS:
+
+            return {
+                ...state,
+                doctorsList: payload
 
             };
 

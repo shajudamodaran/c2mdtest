@@ -74,3 +74,4 @@ export const getDoctors = ({department_id}) => async dispatch => {
 
 
 }
+
