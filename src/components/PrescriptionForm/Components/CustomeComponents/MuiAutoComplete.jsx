@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import TextField from '@mui/material/TextField';
 import Autocomplete,{ createFilterOptions }  from '@mui/material/Autocomplete';
 import { FormControl, InputLabel } from '@mui/material';
@@ -109,7 +109,7 @@ const Placeholder = ({ children }) => {
 };
 
 
-function MuiAutoComplete({ value, data, name, onChange, id, placeholder, isObject }) {
+function MuiAutoComplete({ value, data, name, onChange, id, placeholder,isSpeciality, selected }) {
 
   const classes = useStyles();
   const [answer, setAnswer] = React.useState("");
@@ -142,6 +142,7 @@ function MuiAutoComplete({ value, data, name, onChange, id, placeholder, isObjec
   // });
 
 
+  
 
   return (
 
@@ -152,6 +153,8 @@ function MuiAutoComplete({ value, data, name, onChange, id, placeholder, isObjec
         minWidth: 150,
         width: "100%"
       }}
+      inputValue={value}
+      defaultValue={value}
       value={value}
       filterOptions={data?filterOptions:null}
       onChange={handleOnachange}
@@ -159,7 +162,6 @@ function MuiAutoComplete({ value, data, name, onChange, id, placeholder, isObjec
       id="combo-box-demo"
       options={data ? data : null}
       renderInput={(params) => {
-
 
         return (
           <TextField

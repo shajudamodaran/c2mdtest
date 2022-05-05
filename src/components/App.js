@@ -67,6 +67,7 @@ const PrescriptionPolicyPage = React.lazy(() =>
 const ForPatient = React.lazy(() => import("../pages/Forpatients"));
 const PartnerPage = React.lazy(() => import("../pages/PartnerPage"));
 const PrescriptionCrPage = React.lazy(() => import("../pages/PriscriptionCr/Index"));
+const ViewPrescription = React.lazy(() => import("../components/PrescriptionForm/ViewPrescription/ViewPrescription"));
 
 
 
@@ -104,10 +105,9 @@ function App() {
 
               <Route exact path="/admin" component={AdminHome} />
               <Route exact path="/prescriptionCr" component={PrescriptionCrPage} />
+              <Route exact path="/viewprescription/:prname" component={ViewPrescription} />
 
               
-
-
               <Route path="/partner-with-us" component={PartnerPage} />
               <Route path="/forpatients" component={ForPatient} />
               <Route path="/termsofUse/:typeId" component={TermsandConditions} />
@@ -115,15 +115,10 @@ function App() {
               <Route path="/signin" component={SigninPage} />
               <Route path="/login" component={LoginPage} />
               <Route path="/reset" component={ResetPasswordPage} />
-
               <Route path="/dashboard" component={Dashboard} />
-
               <Route path="/meet" component={MeetPage} />
-
               <Route path="/faq" component={Faq} />
-
               <Route path="/meet_dr" component={MeetPage_Dr} />
-
               <Route path="/meet_pt/:appointmentId" component={MeetPage_Pt} />
               <Route
                 exact
