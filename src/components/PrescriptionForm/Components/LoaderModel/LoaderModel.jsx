@@ -1,6 +1,7 @@
 import React from 'react'
 import { PuffLoader, SyncLoader } from 'react-spinners';
 import ClipLoader from "react-spinners/ClipLoader";
+import '../Modal/modal.css'
 
 function LoaderModel({ state, setState }) {
 
@@ -11,8 +12,8 @@ function LoaderModel({ state, setState }) {
             {state ?
 
                 <div className="modal-loader" >
-                    <div className="modal-body">
-                        <div className="modal-content">
+                    <div className="modal-body-prescription">
+                        <div className="modal-content-prescription">
                             {/* when loader starts, cant able to call the API again even again clicks on the SAVE button */}
                             Saving prescription. Please wait ...
 

@@ -75,3 +75,41 @@ export const getDoctors = ({department_id}) => async dispatch => {
 
 }
 
+export const getTemplateList = () => async dispatch => {
+
+    // let userToken = await getFromLocalStorage(USER_TOKEN)
+
+    // dispatch({
+    //     type: UPDATE_REDUX_PRESCRIPTION,
+    //     payload: {
+    //         data: responce.data.data,
+    //         totalPages: responce.data.totalNumberOfPages
+    //     }
+    // });
+
+
+    let params = {
+        requestType: "1062",
+        browserTimeZone:"",
+        data: {
+            type:"templatelist"
+        },
+    };
+   
+
+    const response = await loginedApi.post("gettemplates", params);
+
+    if(response.status=="200")
+    {
+
+        if(response.data?.data)
+        {
+            return response.data.data
+        }
+    }
+
+
+}
+
+
+

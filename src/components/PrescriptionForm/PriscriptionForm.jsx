@@ -109,7 +109,7 @@ const useStyles = makeStyles(theme => ({
 
 const { Option } = Select;
 
-function PriscriptionForm() {
+function PriscriptionForm({preloadData}) {
 
     const dispatch = useDispatch()
     let history = useHistory()
@@ -120,7 +120,7 @@ function PriscriptionForm() {
 
 
     const { selectedDataInvestigation, selectedDataMedicines, submissionData, investigationData, medicinesData } = useSelector((state) => state?.presctiptionFormReducer)
-    const { selectedDoctors} = useSelector((state) => state?.presctiptionFormReducer)
+    const { selectedDoctors } = useSelector((state) => state?.presctiptionFormReducer)
     let leftMenus =
         [
             { name: "Patient Reports", icon: <UserOutlined /> },
@@ -157,6 +157,7 @@ function PriscriptionForm() {
     let [deletingFrom, setDeletingFrom] = useState(null)
 
     let [isSuccess, setSuccess] = useState(false)
+    let [successMessage, setSuccessMessage] = useState("")
     let [isFailed, setFailed] = useState(false)
     let [isdisabled, setDisabled] = useState(false)
     let [test, settest] = useState(false)
@@ -197,16 +198,18 @@ function PriscriptionForm() {
 
     let [selectedLmp, setSelectedLmp] = useState(null)
 
-    let [preloadPrescription, setPreloadPrescription] = useState(null)
+    let [preloadPrescription, setPreloadPrescription] = useState(preloadData)
 
     let [departmentsArray, setDepartmentsArray] = useState([])
     let [selectedDepartment, setSelectedDepartment] = useState(null)
 
     let [doctorsArray, setDoctors] = useState([])
-    let [selectedDr,setDr]=useState([])
-    
+    let [selectedDr, setDr] = useState([])
 
-    let selectedDoctor=[]
+    let [templateName, setTemplateName] = useState(null)
+
+
+    let selectedDoctor = []
 
 
 
@@ -217,6 +220,11 @@ function PriscriptionForm() {
         loadtest()
         checkForLastPrescription()
         loadDepartments()
+
+        if(preloadPrescription)
+        {
+            populatePreloadData()
+        }
 
 
     }, []);
@@ -1072,9 +1080,9 @@ function PriscriptionForm() {
 
             dispatch({
                 type: SET_DOCTORS,
-                payload: doctorObjectToArray(res)
+                payload: res
             });
-          
+
             setDoctors(res)
 
         })
@@ -1106,7 +1114,7 @@ function PriscriptionForm() {
         if (obj) {
             obj.map((element) => {
 
-                result.push(element.doctorName)
+                result.push(element.doctorId)
 
             })
         }
@@ -1132,7 +1140,43 @@ function PriscriptionForm() {
 
     let createPrescription = () => {
 
-       
+        setLoading(true)
+
+        let _selectlabtest = []
+
+        investigationData.map(savedLabTest => {
+            if (savedLabTest.name != null) {
+                _selectlabtest.push({
+                    testType: savedLabTest.name,
+                    testNames: "",
+                    testComment: savedLabTest.comment != null ? savedLabTest.comment : ""
+                })
+            }
+        })
+
+
+        let _selectmedicine = []
+
+        medicinesData.map((obj, key) => {
+
+            if (obj.name != null) {
+                _selectmedicine.push({
+                    StartVal: obj.date !== null ? obj.date : "",
+                    StrengthVal: '',
+                    displayTablet: obj.freequancy != null ? obj.freequancy : "",
+                    isPermitted: false,
+                    measurement: obj.unit != null ? obj.unit : "",
+                    mediComment: obj.instructions != null ? obj.instructions : "",
+                    medtakeMethod: obj.when != null ? obj.when : "",
+                    name: obj.name,
+                    quandity: obj.quantity != null ? obj.quantity : "",
+                    totalDays: obj.days != null ? obj.days : "",
+                    type: "DRUGS"
+                })
+            }
+        });
+
+
 
         let dataToSubmit = {
             "data": {
@@ -1150,13 +1194,13 @@ function PriscriptionForm() {
                         weight: submissionData.weight.value != null ? submissionData.weight.value + " " + submissionData.weight.unit : "",
                         height: submissionData.height.value != null ? submissionData.height.value + " " + submissionData.height.unit : "",
                         lmp: submissionData.lmp != null ? submissionData.lmp : "",
-                        medicine: selectmedicine,
-                        labTest: selectlabtest
+                        labTest: _selectlabtest,
+                        medicine: _selectmedicine
                     },
                     "basicinfo": {
                         "departmentId": selectedDepartment?.departmentId,
-                        "doctorId": selectedDoctors,
-                        "templateName": "FEVER2"
+                        "doctorIds": selectedDoctors,
+                        "templateName": templateName
                     }
                 },
                 "browserTimeZone": ""
@@ -1165,23 +1209,46 @@ function PriscriptionForm() {
             "requestType": 1061
         }
 
+        try {
+            axios.post("https://uat.c2mdr.com/c2mydrrestuat/v1/c2mdapi/createtemplate", dataToSubmit)
+                .then((result) => {
 
-        console.log(dataToSubmit);
+                    console.log(result);
+
+                    setLoading(false)
+                    setSuccessMessage(result.data.data.info)
+                    setSuccess(true)
+                   
+
+
+
+                })
+
+        } catch (error) {
+
+            console.log(error);
+            setSuccess(true)
+        }
+
+
+
 
     }
 
 
-    let handleDoctorChange = (e) =>{
+    let handleDoctorChange = (e) => {
 
         console.log(e);
 
-       if(e)
-       {
+        if (e) {
             setDr(e)
-       }
-       
+        }
+
 
     }
+
+
+
 
 
     return (
@@ -1280,7 +1347,7 @@ function PriscriptionForm() {
 
                                         <MuiAutoComplete
 
-                                            placeholder="Select medicine"
+                                            placeholder="Select speciality"
                                             // id={key}
                                             value={selectedDepartment?.departmentName}
                                             data={departmentsArray.length > 0 ? departmentObjectToArray(departmentsArray) : []}
@@ -1333,8 +1400,8 @@ function PriscriptionForm() {
 
                                     <div className='form-light-background'>
                                         <input
-
-
+                                            value={templateName}
+                                            onChange={(e) => { setTemplateName(e.target.value) }}
                                             type="text"
                                             className='form-input-text'
                                             placeholder='Enter template name'
@@ -1363,172 +1430,7 @@ function PriscriptionForm() {
                             <div onClick={() => { setActiveLeft(leftMenus[0].name) }} className='report-list-container'>
 
 
-                                <ul className='report-list'>
-                                    <li>
-                                        <div>
-                                            <span className='form-small-tittle' >Height </span>
-                                            <span className='form-caption'>(Whenever applicable)</span>
-                                        </div>
 
-                                        <div className='form-light-background'>
-                                            <input
-                                                id="height"
-                                                type="number"
-                                                max={9999999999}
-                                                onKeyPress={validateNumberOnKeyPress}
-                                                value={submissionData.height.value}
-                                                className='form-input-text'
-                                                placeholder='Enter Height'
-                                                style={{ marginRight: ".44rem", width: "120px" }}
-
-                                                onChange={(e) => {
-
-                                                    // setPrescriptioninfo({ ...presciptioninfor, height: e })
-                                                    onChangeSubmissiondataHeightWidth(e.target.id, e.target.value)
-
-                                                }} />
-
-                                            {/* <FormControl fullWidth variant="standard">
-
-                                                <MUISelect
-                                                    input={<BootstrapInput placeholder='Select height' />}
-                                                    // MenuProps={{ classes: { paper: classes.selectPaper } }}
-                                                    labelId="demo-simple-select-label"
-                                                    id="demo-simple-select"
-                                                    // value={age}
-                                                    label="Age"
-                                                    placeholder='Select height'
-                                                   
-                                                    renderValue={(selected) => {
-                                                        if (selected.length === 0) {
-                                                          return <span style={{colro:"red"}}>Placeholder</span>;
-                                                        }
-                                            
-                                                        return selected;
-                                                      }}
-                                                // onChange={handleChange}
-                                                >
-                                                    <MenuItem value={10}>Ten</MenuItem>
-                                                    <MenuItem value={20}>Twenty</MenuItem>
-                                                    <MenuItem value={30}>Thirty</MenuItem>
-                                                </MUISelect>
-
-                                            </FormControl> */}
-
-                                            <MuiDropdown
-                                                value={submissionData.height?.unit}
-                                                placeholder="Select unit"
-                                                data={['ft', 'in', 'cm']}
-                                                name="height"
-                                                onChange={onChangeSubmissiondataHeightWidthUnit} />
-
-
-                                            {/* <Select
-
-                                                placeholder="Select unit"
-                                                getPopupContainer={trigger => trigger.parentNode}
-                                                style={{ width: 120 }}
-                                                onChange={(value) => {
-
-                                                    onChangeSubmissiondataHeightWidthUnit("height", value)
-
-                                                }}>
-                                                <Option value="ft">ft</Option>
-                                                <Option value="in">in</Option>
-                                                <Option value="cm">cm</Option>
-
-                                            </Select> */}
-                                        </div>
-
-                                    </li>
-
-                                    <li>
-                                        <div>
-                                            <span className='form-small-tittle' >Weight </span>
-                                            <span className='form-caption' >(Whenever applicable)</span>
-                                        </div>
-
-                                        <div className='form-light-background'>
-                                            <input
-                                                id='weight'
-                                                value={submissionData?.weight?.value}
-                                                onKeyPress={validateNumberOnKeyPress}
-                                                type="text"
-                                                className='form-input-text'
-                                                placeholder='Enter Weight'
-                                                style={{ marginRight: ".44rem", width: "110px" }}
-                                                onChange={(e) => {
-                                                    // setPrescriptioninfo({ ...presciptioninfor, weight: e })
-                                                    onChangeSubmissiondataHeightWidth(e.target.id, e.target.value)
-                                                }} />
-
-                                            <MuiDropdown
-                                                value={submissionData.weight?.unit}
-                                                placeholder="Select unit"
-                                                data={['kg', 'lbs']}
-                                                name="weight"
-                                                onChange={onChangeSubmissiondataHeightWidthUnit} />
-
-                                            {/* <Select
-                                                getPopupContainer={trigger => trigger.parentNode}
-                                                placeholder="Select unit"
-                                                style={{ width: 120 }}
-                                                onChange={(unit) => { onChangeSubmissiondataHeightWidthUnit("weight", unit) }}>
-
-                                                <Option value="Kg">kg</Option>
-                                                <Option value="Lbs">lbs</Option>
-
-
-                                            </Select> */}
-                                        </div>
-
-
-
-                                    </li>
-
-                                    <li>
-                                        <div style={{
-                                            display: "flex",
-                                            flexDirection: "row",
-                                            alignItems: "center",
-                                            justifyContent: "flex-start"
-                                        }}>
-                                            <span className='form-small-tittle' style={{}} >LMP&nbsp;</span>
-                                            <span className='form-caption' style={{}}>(Whenever applicable) </span>
-
-                                            {
-                                                selectedLmp ? <div className='clear-date' onClick={() => { setSelectedLmp(null) }}>  clear date</div> : null
-                                            }
-
-                                        </div>
-
-                                        <div className='form-light-background' >
-                                            {/* <input type="text" className='form-input-text' placeholder='Select date' /> */}
-
-                                            {/* <DatePicker 
-                                                inputReadOnly
-                                                getPopupContainer={trigger => trigger.parentNode}
-                                                format={"DD-MMM-YYYY"}
-                                                style={{ width: 190, margin: 0, cursor: "pointer" }}
-                                                onChange={(date, dateString) => { onChangeSubmissiondata("lmp", dateString) }}
-                                                disabledDate={current => {
-                                                    return current > moment();
-                                                }} /> */}
-
-                                            <LmpdatePicker
-                                                setState={setSelectedLmp}
-                                                state={selectedLmp}
-                                                maxDate={new Date()}
-                                                onChange={onChangeSubmissiondata}
-                                                placeholder="Select date"
-                                                name="lmp" />
-
-
-                                        </div>
-
-                                    </li>
-
-                                </ul>
 
 
                                 <div style={{ padding: "0rem", display: "flex", flexDirection: "row", flexWrap: "wrap", marginTop: "1rem", width: "100%", justifyContent: "space-between" }}>
@@ -2013,7 +1915,7 @@ function PriscriptionForm() {
             </div>
             <Modal deletingFrom={deletingFrom} state={isConfirmDelete} setState={setConfirmDelete} data={investigationData} removeIndex={deleteIndex} />
             <Modal deletingFrom={deletingFrom} state={isConfirmDeleteMedicine} setState={setConfirmDeleteMedicine} data={medicinesData} removeIndex={deleteIndexMedicine} />
-            <SuccessModal state={isSuccess} setState={setSuccess} />
+            <SuccessModal state={isSuccess} setState={setSuccess} successMessage={successMessage} />
             <FailiureModal state={isFailed} setState={setFailed} />
             <LoaderModel state={isLoading} />
             {/* <NetworkErrorModal state={isNetworkError} setState={setNetworkError} refresh={refreshPage} /> */}

@@ -8,6 +8,7 @@ import { INTERBRANCH_MODAL } from '../../actions/type';
 import { FETCH_ADMIN_DASHBOARD_REPORT, FETCH_DASHBOARD_MORE } from '../../actions/InterbranchAdminActions';
 import { separaetdateAndTime } from '../../Helpers/dateFunctions';
 import { EditIcon, ViewIcon } from '../../assets/Logos/Icons';
+import { getDepartments, getTemplateList } from '../../actions/PrescriptionFormActions';
 
 
 const { RangePicker } = DatePicker;
@@ -78,6 +79,25 @@ function TemplateList() {
 
     }
 
+
+    //Version 2 ...................................................................................
+
+    let [templateList,setTemplateList]=useState([])
+    let [isEditMode,setEditMode]=useState(null)
+
+    useEffect(() => {
+
+        dispatch(getTemplateList()).then((res) => {
+
+            console.log(res);
+
+            setTemplateList(res)
+        })
+     
+    }, [])
+    
+    
+
     return (
         <div className='appontment-history-container'>
 
@@ -124,35 +144,31 @@ function TemplateList() {
                     </thead>
                     <tbody>
 
-                        <tr>
-                            <td>Data 1</td>
-                            <td>Data 2</td>
-                            <td>Data 3</td>
-                            <td>Data 4</td>
-                            <td>Data 5</td>
-                            <td><div className="edit-btn"><EditIcon/></div></td>
-                            <td><div className="edit-btn"><ViewIcon/></div></td>
-                        </tr>
+                        {
+                            templateList.length>0?
+                            templateList.map((element,key)=>{
 
-                        <tr>
-                            <td>Data 1</td>
-                            <td>Data 2</td>
-                            <td>Data 3</td>
-                            <td>Data 4</td>
-                            <td>Data 5</td>
-                            <td><div className="edit-btn"><EditIcon/></div></td>
-                            <td><div className="edit-btn"><ViewIcon/></div></td>
-                        </tr>
+                                return(
 
-                        <tr>
-                            <td>Data 1</td>
-                            <td>Data 2</td>
-                            <td>Data 3</td>
-                            <td>Data 4</td>
-                            <td>Data 5</td>
-                            <td><div className="edit-btn"><EditIcon/></div></td>
-                            <td><div className="edit-btn"><ViewIcon/></div></td>
-                        </tr>
+                                    <tr>
+                                    <td>{element.tempId}</td>
+                                    <td>{element.tempName}</td>
+                                    <td>{element.createdDate}</td>
+                                    <td>*</td>
+                                    <td>{element.assignedDoctors}</td>
+                                    <td><div className="edit-btn"><EditIcon/></div></td>
+                                    <td><div className="edit-btn"><ViewIcon/></div></td>
+                                </tr>
+
+                                )
+
+                            })
+                            :null
+                        }
+
+                       
+
+                       
                         {/* {
                             dashboardData ?
                                 dashboardData.length > 0 ?

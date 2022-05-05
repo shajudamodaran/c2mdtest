@@ -29,8 +29,8 @@ function AutoCompleteWithCheckbox(props) {
       for (let i = 0; i<para_data.length; i++) {
 
         _options.push({
-          label: `${para_data[i]}`,
-          value: para_data[i],
+          label: `${para_data[i].doctorName}`,
+          value: para_data[i].doctorId,
         });
       }
 
@@ -48,12 +48,14 @@ function AutoCompleteWithCheckbox(props) {
     style: {
       width: '230px',
     },
-    placeholder: 'Select Item...',
+    placeholder: 'Select doctor',
     maxTagCount: 'responsive',
   };
 
 
   let handleOnchange = (newValue) => {
+
+    console.log(newValue);
 
    
 
