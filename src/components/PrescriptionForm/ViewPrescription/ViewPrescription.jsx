@@ -7,7 +7,7 @@ function ViewPrescription() {
     let finalInvestigations = []
     let finalMedicinesdata = []
 
-
+//viewing the prescription cr
     return (
         <div className="prescription-form-main-container full-height">
 
