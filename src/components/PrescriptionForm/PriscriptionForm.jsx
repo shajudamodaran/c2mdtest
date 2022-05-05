@@ -109,7 +109,7 @@ const useStyles = makeStyles(theme => ({
 
 const { Option } = Select;
 
-function PriscriptionForm({preloadData}) {
+function PriscriptionForm({ preloadData }) {
 
     const dispatch = useDispatch()
     let history = useHistory()
@@ -202,6 +202,7 @@ function PriscriptionForm({preloadData}) {
 
     let [departmentsArray, setDepartmentsArray] = useState([])
     let [selectedDepartment, setSelectedDepartment] = useState(null)
+    let [selectedDepartmentName, setSelectedDepartmentName] = useState(null)
 
     let [doctorsArray, setDoctors] = useState([])
     let [selectedDr, setDr] = useState([])
@@ -218,16 +219,20 @@ function PriscriptionForm({preloadData}) {
 
         loadmedicine()
         loadtest()
-        checkForLastPrescription()
+        //checkForLastPrescription()
         loadDepartments()
 
-        if(preloadPrescription)
-        {
+    }, []);
+
+    useEffect(() => {
+
+        if (preloadPrescription) {
+            console.log(preloadPrescription);
             populatePreloadData()
         }
-
-
-    }, []);
+     
+    }, [preloadPrescription])
+    
 
 
 
@@ -293,7 +298,7 @@ function PriscriptionForm({preloadData}) {
         })
             .then((result) => {
 
-                console.log(result.data.data);
+
                 result.data.data.map((obj2, key) => {
 
                     tests.push(obj2.testname);
@@ -515,8 +520,6 @@ function PriscriptionForm({preloadData}) {
     let validateForSubmitButton = () => {
 
         let result = validateFormData(submissionData, investigationData, medicinesData)
-
-        console.log(result);
         result ? setRedyToSubmit(true) : setRedyToSubmit(false)
 
     }
@@ -977,6 +980,31 @@ function PriscriptionForm({preloadData}) {
     let populatePreloadData = () => {
 
         if (preloadPrescription) {
+
+          
+
+            let dep_id = null
+
+            console.log(departmentsArray.length);
+
+            departmentsArray.map((element)=>{
+
+                if(element.departmentId===preloadPrescription.basicinfo.departmentId)
+                {
+                    dep_id=element
+                }
+
+            })
+
+            console.log(dep_id);
+
+            setSelectedDepartment(dep_id)
+            setSelectedDepartmentName(dep_id?.departmentName)
+            loadDoctors(dep_id?.departmentId)
+
+            setTemplateName(preloadPrescription.basicinfo.templateName)
+
+
             setParams(
                 {
                     ...params,
@@ -994,11 +1022,11 @@ function PriscriptionForm({preloadData}) {
 
             if (preloadPrescription?.consultationDetails?.chiefcomplaints) { onChangeSubmissiondata("chiefComplaints", preloadPrescription?.consultationDetails?.chiefcomplaints) }
 
-            if (preloadPrescription?.consultationDetails?.releventPoint) { onChangeSubmissiondata("releventPoint", preloadPrescription?.consultationDetails?.releventPoint) }
+            if (preloadPrescription?.consultationDetails?.releventPoint) { onChangeSubmissiondata("releventPoint", preloadPrescription?.consultationDetails?.notes) }
 
             if (preloadPrescription?.consultationDetails?.diagnosis) { onChangeSubmissiondata("diagnosis", preloadPrescription?.consultationDetails?.diagnosis) }
 
-            if (preloadPrescription?.consultationDetails?.examination) { onChangeSubmissiondata("examination", preloadPrescription?.consultationDetails?.examination) }
+            if (preloadPrescription?.consultationDetails?.examination) { onChangeSubmissiondata("examination", preloadPrescription?.consultationDetails?.investigation) }
 
             //Investigation table population
             if (preloadPrescription?.consultationDetails?.labTest && preloadPrescription?.consultationDetails?.labTest.length > 0) {
@@ -1017,7 +1045,13 @@ function PriscriptionForm({preloadData}) {
 
                 })
 
+
+
                 //dispatch(setInvestigationRedux(newArray))
+                dispatch({
+                    type: UPDATE_INVESTIGATION_TABLE_DATA,
+                    payload: newArray
+                });
             }
 
             //Medicine table population
@@ -1043,6 +1077,10 @@ function PriscriptionForm({preloadData}) {
                 })
 
                 //dispatch(setMedicinesRedux(newArray))
+                dispatch({
+                    type: UPDATE_MEDICINE_TABLE_DATA,
+                    payload: newArray
+                });
 
             }
 
@@ -1060,8 +1098,9 @@ function PriscriptionForm({preloadData}) {
         dispatch(getDepartments()).then((res) => {
 
             console.log(res);
-
             setDepartmentsArray(res)
+
+           
 
         })
 
@@ -1179,8 +1218,8 @@ function PriscriptionForm({preloadData}) {
 
 
         let dataToSubmit = {
-            "data": {
-                "prescriptionDetails": {
+            data: {
+                prescriptionDetails: {
                     "attachementArrs": [],
                     "consultationDetails": {
                         "doctor_suggestion": "",
@@ -1197,7 +1236,7 @@ function PriscriptionForm({preloadData}) {
                         labTest: _selectlabtest,
                         medicine: _selectmedicine
                     },
-                    "basicinfo": {
+                    basicinfo: {
                         "departmentId": selectedDepartment?.departmentId,
                         "doctorIds": selectedDoctors,
                         "templateName": templateName
@@ -1206,11 +1245,17 @@ function PriscriptionForm({preloadData}) {
                 "browserTimeZone": ""
             },
             "browserTimeZone": "",
-            "requestType": 1061
+            "requestType": preloadData?1066:1061
+        }
+
+        if(preloadData)
+        {
+            dataToSubmit.data.prescriptionDetails.basicinfo.templateId=preloadData.tempId
+
         }
 
         try {
-            axios.post("https://uat.c2mdr.com/c2mydrrestuat/v1/c2mdapi/createtemplate", dataToSubmit)
+            axios.post(`https://uat.c2mdr.com/c2mydrrestuat/v1/c2mdapi/${preloadData?"updatetemplate":"createtemplate"}`, dataToSubmit)
                 .then((result) => {
 
                     console.log(result);
@@ -1218,7 +1263,7 @@ function PriscriptionForm({preloadData}) {
                     setLoading(false)
                     setSuccessMessage(result.data.data.info)
                     setSuccess(true)
-                   
+
 
 
 
@@ -1236,6 +1281,8 @@ function PriscriptionForm({preloadData}) {
     }
 
 
+  
+
     let handleDoctorChange = (e) => {
 
         console.log(e);
@@ -1246,7 +1293,6 @@ function PriscriptionForm({preloadData}) {
 
 
     }
-
 
 
 
@@ -1339,25 +1385,20 @@ function PriscriptionForm({preloadData}) {
                             <ul className='report-list shadow-underline'>
                                 <li>
                                     <div>
-                                        <span className='form-small-tittle' >Speciality </span>
+                                        <span className='form-small-tittle' >Choose Speciality <span style={{color:"red"}}>*</span> </span>
                                         <span className='form-caption'></span>
                                     </div>
 
                                     <div className='form-light-background'>
 
+                               
                                         <MuiAutoComplete
-
                                             placeholder="Select speciality"
                                             // id={key}
-                                            value={selectedDepartment?.departmentName}
+                                            value={selectedDepartmentName}
                                             data={departmentsArray.length > 0 ? departmentObjectToArray(departmentsArray) : []}
                                             onChange={handleDepartmentOnChange}
                                             name='name' />
-
-
-
-
-
 
                                     </div>
 
@@ -1365,7 +1406,7 @@ function PriscriptionForm({preloadData}) {
 
                                 <li>
                                     <div>
-                                        <span className='form-small-tittle' >Select Doctor </span>
+                                        <span className='form-small-tittle' >Choose Doctor <span style={{color:"red"}}>*</span></span>
                                         <span className='form-caption' ></span>
                                     </div>
 
@@ -1394,7 +1435,7 @@ function PriscriptionForm({preloadData}) {
 
                                 <li>
                                     <div>
-                                        <span className='form-small-tittle' >Template Name </span>
+                                        <span className='form-small-tittle' >Template Name <span style={{color:"red"}}>*</span></span>
                                         <span className='form-caption' ></span>
                                     </div>
 
@@ -1617,7 +1658,7 @@ function PriscriptionForm({preloadData}) {
                                                             id={key}
                                                             value={obj.name}
                                                             data={test ? test : []}
-                                                            onChange={test ? updateInvestigationTable : console.log("No investigation found !!!")}
+                                                            onChange={test && updateInvestigationTable }
                                                             name='name' />
                                                     </td>
                                                     <td>
@@ -1924,7 +1965,7 @@ function PriscriptionForm({preloadData}) {
                 isReadyToSubmit ?
 
                     <div className="button-container">
-                        <button disabled={isLoading} onClick={() => { createPrescription() }} className={isLoading ? 'save-rescription-btn-disabled' : 'save-rescription-btn'} > <LabelIcon_Prescription />  SAVE PRESCRIPTION</button>
+                        <button disabled={isLoading} onClick={() => { createPrescription()}} className={isLoading ? 'save-rescription-btn-disabled' : 'save-rescription-btn'} > <LabelIcon_Prescription />  {preloadData?"UPDATE":"SAVE"} PRESCRIPTION</button>
                     </div> : null
             }
         </div >
