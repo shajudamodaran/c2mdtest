@@ -113,15 +113,13 @@ function TemplateList() {
 
        
 
-        let hostName=`${window.location.hostname}/viewprescription/:${rowData.basicinfo.templateName}`
-
-        console.log(hostName);
-
+        let url=`/viewprescription/${rowData.basicinfo.templateId}`
+      
+        window.open(url,"_blank")
         // history.push({
         //     pathname:`viewprescription/:${rowData.basicinfo.templateName}`,
         //     state:{rowData,tempId}
         // })
-
     }
 
 

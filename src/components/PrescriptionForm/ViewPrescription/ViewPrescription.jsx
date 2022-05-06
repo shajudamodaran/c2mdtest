@@ -1,11 +1,48 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { viewTemplate } from '../../../actions/PrescriptionFormActions'
 import '../prescriptionform.css'
 
-function ViewPrescription() {
+function ViewPrescription({location}) {
 
 
-    let finalInvestigations = []
-    let finalMedicinesdata = []
+    let [finalInvestigations,setFinalInvestigationData] = useState([])
+    let [finalMedicinesdata,setFinalMedicinesdata] = useState([])
+
+    let [template,setTemplate]=useState(null)
+
+    const { prname } = useParams();
+    let dispatch=useDispatch()
+
+    useEffect(() => {
+     
+        loadTemplateDetails()
+
+    }, [])
+
+
+    let loadTemplateDetails=()=>{
+
+        dispatch(viewTemplate(prname)).then((res)=>{
+
+            if(res)
+            {
+                setFinalInvestigationData(res[0]?.tempData?.consultationDetails?.labTest)
+                setFinalMedicinesdata(res[0]?.tempData?.consultationDetails?.medicine)
+                setTemplate(res[0])
+            }
+           
+        })
+
+
+
+    }
+
+    
+ 
+    console.log(template);
+
 
 //viewing the prescription cr
     return (
@@ -72,7 +109,7 @@ function ViewPrescription() {
                                         <span className='form-caption'></span>
                                     </div>
 
-                                    <b>Speciality</b>
+                                    <b>{template?.tempData?.basicinfo?.departmentId}</b>
 
 
                                 </li>
@@ -83,7 +120,15 @@ function ViewPrescription() {
                                         <span className='form-caption' ></span>
                                     </div>
 
-                                    <b>Doctor 1, Doctor 2</b>
+                                    <b>
+                                        {
+                                            template?.tempData?.basicinfo?.doctorIds?.map((element)=>{
+
+                                                return `${element}, `
+
+                                            })
+                                        }
+                                    </b>
 
 
 
@@ -97,7 +142,7 @@ function ViewPrescription() {
                                     </div>
 
                                   
-                                        <b>Template name</b>
+                                        <b>{template?.tempData?.basicinfo?.templateName}</b>
 
 
                                 </li>
@@ -239,8 +284,8 @@ function ViewPrescription() {
 
                                                 <tr>
                                                     <td>{key + 1}</td>
-                                                    <td>{obj.name}</td>
-                                                    <td>{obj.comment ? obj.comment : ""}</td>
+                                                    <td>{obj.testType}</td>
+                                                    <td>{obj.testComment ? obj.testComment : ""}</td>
 
 
                                                 </tr>
