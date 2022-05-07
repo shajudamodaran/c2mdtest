@@ -7,8 +7,8 @@ import MisReportModalContent from '../../components/MisReportModal/MisReportModa
 import TodaysReportModalContent from '../../components/TodaysReportModalContent/TodaysReportModalContent'
 import TemplateList from "../../components/PrescriptionTemplateList/prescriptionTemplateList";
 import PrescriptionDashboard from "../../components/PrescriptionDashboard/prescriptionDashboard";
- 
- 
+
+
 import { prescriptionAdminSideMenu } from './constants'
 import '../InterbranchAdmin/interbranchadminhome.css'
 
@@ -66,7 +66,7 @@ function Index() {
                                             {
                                                 object.options.map((element, optionKey) => {
                                                     return (
-                                                        <li key={optionKey}  className={activeLeft.menu === menuKey && activeLeft.option === optionKey ? "active" : null} onClick={() => {
+                                                        <li key={optionKey} className={activeLeft.menu === menuKey && activeLeft.option === optionKey ? "active" : null} onClick={() => {
                                                             setActiveleft({ menu: menuKey, option: optionKey })
                                                             // dispatch(setSelectedAppointmentRedux(null))
 
@@ -92,14 +92,16 @@ function Index() {
                         })
                     }
 
+                    <div className="header-card logout" style={{marginTop:"2.5rem"}}>
+                        <div className="icon">&nbsp;</div>
+                        SIGN OUT
+                    </div>
+
                     {/* <div className="tittle list-tittle" onClick={() => { setActiveleft({ menu: "consolidated", option: 0 }) }} style={{ fontWeight: activeLeft.menu == "consolidated" ? "500" : "normal", cursor: "pointer" }} >Consolidate Report</div> */}
                 </div>
 
 
-                <div className="header-card logout">
-                    <div className="icon">&nbsp;</div>
-                    SIGN OUT
-                </div>
+
 
 
 
@@ -132,7 +134,7 @@ function Index() {
                         isRight
                     />
 
-                    
+
 
                     <CustomeModal
                         width={700}

@@ -1,8 +1,8 @@
-.prescription-form-main-container {
+.prescription-form-main-container-view {
   min-width: 100%;
   max-width: 100%;
 
-  background-color: #f7f7f7;
+  background-color: #c5e7fd;
 
   display: flex;
   flex-direction: column;
@@ -10,7 +10,41 @@
   justify-content: flex-start;
 
   position: relative;
-  max-height: 83vh;
+  max-height: 100vh;
+
+  overflow: hidden;
+}
+.full-height {
+
+  min-height: 100vh;
+  align-items: flex-start !important;
+}
+
+.prescription-form-container-view {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  position: relative;
+  padding: 0rem;
+}
+
+.prescription-form-main-container {
+  min-width: 100%;
+  max-width: 100%;
+
+  background-color: #c5e7fd;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  position: relative;
+  max-height: 100vh;
 
   overflow: hidden;
 }
@@ -21,8 +55,7 @@
 }
 
 .prescription-form-container {
-  min-width: 99%;
-  max-width: 99%;
+  width: 100%;
 
   display: flex;
   flex-direction: row;
@@ -148,6 +181,7 @@
 .form-light-background {
   background-color: #ecf5fc;
   border-radius: 4px;
+  border-color: #ecf5fc;
 
   margin-top: 0.5rem;
 
@@ -157,6 +191,25 @@
   padding: 0.4rem 0.4rem;
 
   min-width: 40%;
+}
+
+.form-error{
+
+  border: 1px solid red;
+
+}
+
+.form-ok{
+
+  border: 0px solid red;
+
+}
+
+.prescription-form-error{
+  font-size: 12px;
+  margin-top: .2rem;
+  color: red;
+ 
 }
 
 .form-light-background .ant-select-selector{
@@ -950,5 +1003,5 @@ th {
 
 .shadow-underline{
   border-bottom: 1.2px solid #0A8CE0;
-  padding-bottom: 1rem;
+  padding-bottom: .5rem;
 }

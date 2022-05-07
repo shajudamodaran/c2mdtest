@@ -142,6 +142,17 @@ function MuiAutoComplete({ value, data, name, onChange, id, placeholder,isSpecia
   // });
 
 
+  useEffect(() => {
+
+    if(isSpeciality)
+    {
+      console.log(value);
+
+    }
+   
+  }, [])
+  
+
   
 
   return (
@@ -153,8 +164,7 @@ function MuiAutoComplete({ value, data, name, onChange, id, placeholder,isSpecia
         minWidth: 150,
         width: "100%"
       }}
-      inputValue={value}
-      defaultValue={value}
+    
       value={value}
       filterOptions={data?filterOptions:null}
       onChange={handleOnachange}

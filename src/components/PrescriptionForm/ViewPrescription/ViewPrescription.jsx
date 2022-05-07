@@ -4,51 +4,53 @@ import { useParams } from 'react-router-dom'
 import { viewTemplate } from '../../../actions/PrescriptionFormActions'
 import '../prescriptionform.css'
 
-function ViewPrescription({location}) {
+function ViewPrescription({ location }) {
 
 
-    let [finalInvestigations,setFinalInvestigationData] = useState([])
-    let [finalMedicinesdata,setFinalMedicinesdata] = useState([])
+    let [finalInvestigations, setFinalInvestigationData] = useState([])
+    let [finalMedicinesdata, setFinalMedicinesdata] = useState([])
 
-    let [template,setTemplate]=useState(null)
+    let [template, setTemplate] = useState(null)
 
     const { prname } = useParams();
-    let dispatch=useDispatch()
+    let dispatch = useDispatch()
 
     useEffect(() => {
-     
+
         loadTemplateDetails()
 
     }, [])
 
 
-    let loadTemplateDetails=()=>{
+    let loadTemplateDetails = () => {
 
-        dispatch(viewTemplate(prname)).then((res)=>{
+        dispatch(viewTemplate(prname)).then((res) => {
 
-            if(res)
-            {
+            if (res) {
                 setFinalInvestigationData(res[0]?.tempData?.consultationDetails?.labTest)
                 setFinalMedicinesdata(res[0]?.tempData?.consultationDetails?.medicine)
                 setTemplate(res[0])
             }
-           
+
         })
 
 
 
     }
 
-    
- 
+
+
+<<<<<<< HEAD
+//viewing the prescription cr
+=======
     console.log(template);
 
 
-//viewing the prescription cr
+>>>>>>> a2269fd30dfdbc3a6480e99329fbd83d3471a3ea
     return (
-        <div className="prescription-form-main-container full-height">
+        <div className="prescription-form-main-container-view full-height">
 
-            <div className='prescription-form-container full-height '>
+            <div className='prescription-form-container-view full-height '>
 
 
                 <div className="prescription-form-content-container" style={{ height: "100vh" }}>
@@ -109,7 +111,15 @@ function ViewPrescription({location}) {
                                         <span className='form-caption'></span>
                                     </div>
 
-                                    <b>{template?.tempData?.basicinfo?.departmentId}</b>
+                                    <div className='form-light-background-big'>
+                                        <input id="releventPoint"
+                                            style={{ width: "170px" }}
+                                            value={template?.assignedDepartments}
+                                            className='form-input-text'
+                                            placeholder="Type here"
+                                            readOnly
+                                        />
+                                    </div>
 
 
                                 </li>
@@ -120,15 +130,27 @@ function ViewPrescription({location}) {
                                         <span className='form-caption' ></span>
                                     </div>
 
+                                    <div className='form-light-background-big'>
+                                        <input id="releventPoint"
+                                            style={{ maxWidth: "250px", minWidth:"170px" }}
+                                            value={ template?.assignedDoctors.toString()}
+                                            className='form-input-text'
+                                            placeholder="Type here"
+                                            readOnly
+                                        />
+                                    </div>
+
+
+{/* 
                                     <b>
                                         {
-                                            template?.tempData?.basicinfo?.doctorIds?.map((element)=>{
+                                            template?.tempData?.basicinfo?.doctorIds?.map((element) => {
 
                                                 return `${element}, `
 
                                             })
                                         }
-                                    </b>
+                                    </b> */}
 
 
 
@@ -141,8 +163,18 @@ function ViewPrescription({location}) {
                                         <span className='form-caption' ></span>
                                     </div>
 
-                                  
-                                        <b>{template?.tempData?.basicinfo?.templateName}</b>
+                                    <div className='form-light-background-big'>
+                                        <input id="releventPoint"
+                                            style={{ width: "170px" }}
+                                            value={template?.tempData?.basicinfo?.templateName}
+                                            className='form-input-text'
+                                            placeholder="Type here"
+                                            readOnly
+                                        />
+                                    </div>
+
+
+
 
 
                                 </li>
@@ -172,7 +204,7 @@ function ViewPrescription({location}) {
                                         <div className='form-light-background-big'>
                                             <textarea
                                                 id="chiefComplaints"
-                                                value={null}
+                                                value={template?.tempData?.consultationDetails?.chiefcomplaints}
                                                 className='form-input-text-area'
                                                 name="chiefcomplaints"
                                                 placeholder="Type here"
@@ -187,7 +219,7 @@ function ViewPrescription({location}) {
 
                                         <div className='form-light-background-big'>
                                             <textarea id="releventPoint"
-                                                value={null}
+                                               value={template?.tempData?.consultationDetails?.notes}
                                                 className='form-input-text-area'
                                                 rows={4} placeholder="Type here"
                                                 readOnly
@@ -204,7 +236,9 @@ function ViewPrescription({location}) {
                                         <span className='form-small-tittle' >Diagnosis or Provisional Diagnosis</span>
 
                                         <div className='form-light-background-big'>
-                                            <textarea value={null} id="diagnosis" className='form-input-text-area' rows={4} placeholder="Type here" onChange={(e) => {
+                                            <textarea 
+                                             value={template?.tempData?.consultationDetails?.diagnosis}
+                                             id="diagnosis" className='form-input-text-area' rows={4} placeholder="Type here" onChange={(e) => {
                                                 // setPrescriptioninfo({ ...presciptioninfor, diagnosis: e.target.value })
 
                                             }} readOnly />
@@ -215,7 +249,9 @@ function ViewPrescription({location}) {
                                         <span className='form-small-tittle' >Examination/Lab Findings</span>
 
                                         <div className='form-light-background-big'>
-                                            <textarea id="examination" value={null} className='form-input-text-area' rows={4} placeholder="Type here" onChange={(e) => {
+                                            <textarea id="examination" 
+                                             value={template?.tempData?.consultationDetails?.investigation}
+                                             className='form-input-text-area' rows={4} placeholder="Type here" onChange={(e) => {
                                                 // setPrescriptioninfo({ ...presciptioninfor, examinationlabfindings: e.target.value })
 
 
@@ -395,7 +431,9 @@ function ViewPrescription({location}) {
                             </div>
 
                             <div className='form-light-background' style={{ width: "45%" }}>
-                                <textarea value={null} className='form-input-text-area' rows={3} placeholder='Type here' style={{ width: "100%" }} readOnly />
+                                <textarea 
+                                value={template?.tempData?.consultationDetails?.instruction}
+                                 className='form-input-text-area' rows={3} placeholder='Type here' style={{ width: "100%" }} readOnly />
                             </div>
 
 
