@@ -40,13 +40,9 @@ function ViewPrescription({ location }) {
 
 
 
-<<<<<<< HEAD
-//viewing the prescription cr
-=======
     console.log(template);
 
 
->>>>>>> a2269fd30dfdbc3a6480e99329fbd83d3471a3ea
     return (
         <div className="prescription-form-main-container-view full-height">
 
