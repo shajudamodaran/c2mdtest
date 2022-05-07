@@ -1,6 +1,20 @@
 import React from 'react'
 
-function SuccessModal({ state,setState,successMessage }) {
+function SuccessModal({ state,setState,successMessage, isPreload, setEditMode }) {
+
+
+    let handleOkClick =()=>{
+
+        setState(false)
+
+        if(isPreload)
+        {
+            setEditMode(false)
+        }
+
+    }
+
+
     return (
 
         <>
@@ -13,7 +27,7 @@ function SuccessModal({ state,setState,successMessage }) {
                         </div>
 
                         <div className="modal-buttons-prescription" style={{width:"100%",display:"flex", flexDirection:"row", justifyContent:"center"}}>
-                            <button className='modal-ok-btn-prescription' onClick={() => { setState(false) }}>Ok</button>
+                            <button className='modal-ok-btn-prescription' onClick={handleOkClick}>Ok</button>
                         </div>
                     </div>
                 </div> : null}

@@ -31,7 +31,7 @@ import MuiDropdown from './Components/CustomeComponents/MuiDropdown';
 import MuiDatePicker from './Components/CustomeComponents/MuiDatePicker';
 import LmpdatePicker from './Components/CustomeComponents/LmpdatePicker';
 import FailiureModal from './Components/FailiureModal/FailiureModal';
-import { SET_DOCTORS, SET_SELECTED_DOCTORS, SET_SUBMISSION_DATA_PRESCRIPTION, UPDATE_INVESTIGATION_TABLE_DATA, UPDATE_MEDICINE_TABLE_DATA, UPDATE_REDUX_PRESCRIPTION } from '../../actions/type';
+import { CLEAR_PRESCRIPTION, SET_DOCTORS, SET_SELECTED_DEPARTMENT, SET_SELECTED_DOCTORS, SET_SUBMISSION_DATA_PRESCRIPTION, UPDATE_INVESTIGATION_TABLE_DATA, UPDATE_MEDICINE_TABLE_DATA, UPDATE_REDUX_PRESCRIPTION } from '../../actions/type';
 import { getDepartments, getDoctors } from '../../actions/PrescriptionFormActions';
 import AutoCompleteWithCheckbox from './Components/CustomeComponents/AutoCompleteWithCheckbox';
 // import NetworkErrorModal from './Components/NetworkErrorModal/NetworkErrorModal';
@@ -109,7 +109,7 @@ const useStyles = makeStyles(theme => ({
 
 const { Option } = Select;
 
-function PriscriptionForm({ preloadData }) {
+function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
     const dispatch = useDispatch()
     let history = useHistory()
@@ -120,7 +120,7 @@ function PriscriptionForm({ preloadData }) {
 
 
     const { selectedDataInvestigation, selectedDataMedicines, submissionData, investigationData, medicinesData } = useSelector((state) => state?.presctiptionFormReducer)
-    const { selectedDoctors } = useSelector((state) => state?.presctiptionFormReducer)
+    const { selectedDoctors, selectedDepartment } = useSelector((state) => state?.presctiptionFormReducer)
     let leftMenus =
         [
             { name: "Patient Reports", icon: <UserOutlined /> },
@@ -201,13 +201,22 @@ function PriscriptionForm({ preloadData }) {
     let [preloadPrescription, setPreloadPrescription] = useState(preloadData)
 
     let [departmentsArray, setDepartmentsArray] = useState([])
-    let [selectedDepartment, setSelectedDepartment] = useState(null)
+
     let [selectedDepartmentName, setSelectedDepartmentName] = useState(null)
 
     let [doctorsArray, setDoctors] = useState([])
     let [selectedDr, setDr] = useState([])
 
+
     let [templateName, setTemplateName] = useState(null)
+
+    let [validationError, setvalidatoinError] = useState(
+        {
+            department: null,
+            doctors: null,
+            templateName: null
+        }
+    )
 
 
     let selectedDoctor = []
@@ -224,15 +233,21 @@ function PriscriptionForm({ preloadData }) {
 
     }, []);
 
+
+
     useEffect(() => {
 
         if (preloadPrescription) {
-            console.log(preloadPrescription);
+
             populatePreloadData()
+
         }
-     
+        else {
+            clearPrepopulateddate()
+        }
+
     }, [preloadPrescription])
-    
+
 
 
 
@@ -388,7 +403,10 @@ function PriscriptionForm({ preloadData }) {
                 id: investigationData.length
             }]
 
-            //dispatch(setInvestigationRedux(newArray))
+            dispatch({
+                type: UPDATE_INVESTIGATION_TABLE_DATA,
+                payload: newArray
+            });
 
 
         }
@@ -402,7 +420,10 @@ function PriscriptionForm({ preloadData }) {
                 id: investigationData[investigationData.length - 1].id + 1
             }]
 
-            //dispatch(setInvestigationRedux(newArray))
+            dispatch({
+                type: UPDATE_INVESTIGATION_TABLE_DATA,
+                payload: newArray
+            });
 
 
         }
@@ -454,7 +475,10 @@ function PriscriptionForm({ preloadData }) {
                 instructions: null
             }]
 
-            //dispatch(setMedicinesRedux(newArray))
+            dispatch({
+                type: UPDATE_MEDICINE_TABLE_DATA,
+                payload: newArray
+            });
 
             MedicineElement.current.scrollLeft = 0
 
@@ -478,7 +502,10 @@ function PriscriptionForm({ preloadData }) {
                 instructions: null
             }]
 
-            //dispatch(setMedicinesRedux(newArray))
+            dispatch({
+                type: UPDATE_MEDICINE_TABLE_DATA,
+                payload: newArray
+            });
 
             MedicineElement.current.scrollLeft = 0
 
@@ -526,7 +553,7 @@ function PriscriptionForm({ preloadData }) {
 
     useEffect(() => {
         validateForSubmitButton()
-    }, [submissionData, investigationData, medicinesData])
+    }, [investigationData, medicinesData])
 
 
 
@@ -819,6 +846,8 @@ function PriscriptionForm({ preloadData }) {
 
     let onChangeSubmissiondata = (key, value) => {
 
+
+
         if (key === "additionalInstruction") {
             pointToSection(3)
         }
@@ -831,6 +860,7 @@ function PriscriptionForm({ preloadData }) {
             payload: { [key]: value }
         });
 
+        validateForSubmitButton()
 
 
         //dispatch(setSubmissionData({ [key]: value }))
@@ -979,28 +1009,21 @@ function PriscriptionForm({ preloadData }) {
 
     let populatePreloadData = () => {
 
-        if (preloadPrescription) {
+        console.log(preloadPrescription);
 
-          
+        if (preloadPrescription) {
 
             let dep_id = null
 
-            console.log(departmentsArray.length);
+            setSelectedDepartmentName(preloadPrescription?.departmentName)
 
-            departmentsArray.map((element)=>{
+            dispatch({
+                type: SET_SELECTED_DEPARTMENT,
+                payload: preloadPrescription.basicinfo.departmentId
+            });
 
-                if(element.departmentId===preloadPrescription.basicinfo.departmentId)
-                {
-                    dep_id=element
-                }
 
-            })
-
-            console.log(dep_id);
-
-            setSelectedDepartment(dep_id)
-            setSelectedDepartmentName(dep_id?.departmentName)
-            loadDoctors(dep_id?.departmentId)
+            loadDoctors(preloadPrescription.basicinfo.departmentId)
 
             setTemplateName(preloadPrescription.basicinfo.templateName)
 
@@ -1093,14 +1116,22 @@ function PriscriptionForm({ preloadData }) {
 
     }
 
+
+
+    let clearPrepopulateddate = () => {
+
+        dispatch({type: CLEAR_PRESCRIPTION})
+
+    }
+
+
+
     let loadDepartments = () => {
 
         dispatch(getDepartments()).then((res) => {
 
             console.log(res);
             setDepartmentsArray(res)
-
-           
 
         })
 
@@ -1169,119 +1200,132 @@ function PriscriptionForm({ preloadData }) {
         console.log(data.data);
 
         let dep_id = departmentsArray.filter((element) => element.departmentName == data.data)
-        console.log(dep_id[0].departmentId);
-        setSelectedDepartment(dep_id[0])
+
+        dispatch({
+            type: SET_SELECTED_DEPARTMENT,
+            payload: dep_id[0]
+        });
+        setSelectedDepartmentName(dep_id[0].departmentName)
 
         loadDoctors(dep_id[0].departmentId)
+
 
     }
 
 
     let createPrescription = () => {
 
-        setLoading(true)
 
-        let _selectlabtest = []
-
-        investigationData.map(savedLabTest => {
-            if (savedLabTest.name != null) {
-                _selectlabtest.push({
-                    testType: savedLabTest.name,
-                    testNames: "",
-                    testComment: savedLabTest.comment != null ? savedLabTest.comment : ""
-                })
-            }
-        })
+        let submitStatus = validateForm()
 
 
-        let _selectmedicine = []
+        if (submitStatus) {
+            setLoading(true)
 
-        medicinesData.map((obj, key) => {
+            let _selectlabtest = []
 
-            if (obj.name != null) {
-                _selectmedicine.push({
-                    StartVal: obj.date !== null ? obj.date : "",
-                    StrengthVal: '',
-                    displayTablet: obj.freequancy != null ? obj.freequancy : "",
-                    isPermitted: false,
-                    measurement: obj.unit != null ? obj.unit : "",
-                    mediComment: obj.instructions != null ? obj.instructions : "",
-                    medtakeMethod: obj.when != null ? obj.when : "",
-                    name: obj.name,
-                    quandity: obj.quantity != null ? obj.quantity : "",
-                    totalDays: obj.days != null ? obj.days : "",
-                    type: "DRUGS"
-                })
-            }
-        });
+            investigationData.map(savedLabTest => {
+                if (savedLabTest.name != null) {
+                    _selectlabtest.push({
+                        testType: savedLabTest.name,
+                        testNames: "",
+                        testComment: savedLabTest.comment != null ? savedLabTest.comment : ""
+                    })
+                }
+            })
 
 
+            let _selectmedicine = []
 
-        let dataToSubmit = {
-            data: {
-                prescriptionDetails: {
-                    "attachementArrs": [],
-                    "consultationDetails": {
-                        "doctor_suggestion": "",
-                        chiefcomplaints: submissionData.chiefComplaints != null ? submissionData.chiefComplaints : "",
-                        diagnosis: submissionData.diagnosis != null ? submissionData.diagnosis : "",
-                        investigation: submissionData.examination != null ? submissionData.examination : "",
-                        notes: submissionData.releventPoint != null ? submissionData.releventPoint : "",
-                        instruction: submissionData.additionalInstruction != null ? submissionData.additionalInstruction : "",
-                        share: true,
-                        privateMessage: "",
-                        weight: submissionData.weight.value != null ? submissionData.weight.value + " " + submissionData.weight.unit : "",
-                        height: submissionData.height.value != null ? submissionData.height.value + " " + submissionData.height.unit : "",
-                        lmp: submissionData.lmp != null ? submissionData.lmp : "",
-                        labTest: _selectlabtest,
-                        medicine: _selectmedicine
+            medicinesData.map((obj, key) => {
+
+                if (obj.name != null) {
+                    _selectmedicine.push({
+                        StartVal: obj.date !== null ? obj.date : "",
+                        StrengthVal: '',
+                        displayTablet: obj.freequancy != null ? obj.freequancy : "",
+                        isPermitted: false,
+                        measurement: obj.unit != null ? obj.unit : "",
+                        mediComment: obj.instructions != null ? obj.instructions : "",
+                        medtakeMethod: obj.when != null ? obj.when : "",
+                        name: obj.name,
+                        quandity: obj.quantity != null ? obj.quantity : "",
+                        totalDays: obj.days != null ? obj.days : "",
+                        type: "DRUGS"
+                    })
+                }
+            });
+
+
+
+            let dataToSubmit = {
+                data: {
+                    prescriptionDetails: {
+                        "attachementArrs": [],
+                        "consultationDetails": {
+                            "doctor_suggestion": "",
+                            chiefcomplaints: submissionData.chiefComplaints != null ? submissionData.chiefComplaints : "",
+                            diagnosis: submissionData.diagnosis != null ? submissionData.diagnosis : "",
+                            investigation: submissionData.examination != null ? submissionData.examination : "",
+                            notes: submissionData.releventPoint != null ? submissionData.releventPoint : "",
+                            instruction: submissionData.additionalInstruction != null ? submissionData.additionalInstruction : "",
+                            share: true,
+                            privateMessage: "",
+                            weight: submissionData.weight.value != null ? submissionData.weight.value + " " + submissionData.weight.unit : "",
+                            height: submissionData.height.value != null ? submissionData.height.value + " " + submissionData.height.unit : "",
+                            lmp: submissionData.lmp != null ? submissionData.lmp : "",
+                            labTest: _selectlabtest,
+                            medicine: _selectmedicine
+                        },
+                        basicinfo: {
+                            "departmentId": selectedDepartment?.departmentId,
+                            "doctorIds": selectedDoctors,
+                            "templateName": templateName
+                        }
                     },
-                    basicinfo: {
-                        "departmentId": selectedDepartment?.departmentId,
-                        "doctorIds": selectedDoctors,
-                        "templateName": templateName
-                    }
+                    "browserTimeZone": ""
                 },
-                "browserTimeZone": ""
-            },
-            "browserTimeZone": "",
-            "requestType": preloadData?1066:1061
+                "browserTimeZone": "",
+                "requestType": preloadData ? 1066 : 1061
+            }
+
+            if (preloadData) {
+                dataToSubmit.data.prescriptionDetails.basicinfo.templateId = preloadData.tempId
+
+            }
+
+            try {
+                axios.post(`https://uat.c2mdr.com/c2mydrrestuat/v1/c2mdapi/${preloadData ? "updatetemplate" : "createtemplate"}`, dataToSubmit)
+                    .then((result) => {
+
+                        console.log(result);
+
+                        setLoading(false)
+                        setSuccessMessage(result.data.data.info)
+                        setSuccess(true)
+
+
+
+
+                    })
+
+            } catch (error) {
+
+                console.log(error);
+                setSuccess(true)
+            }
+
+
         }
+        else {
 
-        if(preloadData)
-        {
-            dataToSubmit.data.prescriptionDetails.basicinfo.templateId=preloadData.tempId
-
+            ScrollElement.current.scrollTop = 0
         }
-
-        try {
-            axios.post(`https://uat.c2mdr.com/c2mydrrestuat/v1/c2mdapi/${preloadData?"updatetemplate":"createtemplate"}`, dataToSubmit)
-                .then((result) => {
-
-                    console.log(result);
-
-                    setLoading(false)
-                    setSuccessMessage(result.data.data.info)
-                    setSuccess(true)
-
-
-
-
-                })
-
-        } catch (error) {
-
-            console.log(error);
-            setSuccess(true)
-        }
-
 
 
 
     }
 
-
-  
 
     let handleDoctorChange = (e) => {
 
@@ -1295,13 +1339,81 @@ function PriscriptionForm({ preloadData }) {
     }
 
 
+    let validateForm = () => {
 
+
+        let _validationError = {
+            department: null,
+            doctors: null,
+            templateName: null
+        }
+
+        //validate departmentName......................................
+        if (!selectedDepartmentName) {
+            _validationError.department = "* Please select department."
+        }
+        else {
+
+            _validationError.department = null
+
+        }
+
+
+        //validate templateName......................................
+        if (!templateName) {
+
+            _validationError.templateName = "* Template name can't be empty."
+        }
+        else {
+            _validationError.templateName = null
+        }
+
+
+        //validate doctors................................................
+        if (selectedDoctors.length <= 0) {
+
+            _validationError.doctors = "*Please select doctors."
+        }
+        else {
+
+            _validationError.doctors = null
+        }
+
+
+
+        setvalidatoinError(_validationError)
+
+        if (_validationError.department || _validationError.doctors || _validationError.templateName) {
+            return false
+        }
+        else {
+            return true
+        }
+
+
+    }
+
+    let EmptySpace = () => {
+        return (
+            <span>&nbsp;&nbsp;</span>
+        )
+    }
+
+    let getDepartmentNameFromId = (_id, searchArray) => {
+
+        let obj = searchArray.filter((element) => element.departmentId == _id)
+
+        setSelectedDepartmentName(obj[0]?.departmentName)
+
+
+
+    }
 
     return (
         <div className="prescription-form-main-container">
 
 
-            <div className='prescription-form-container'>
+            <div className='prescription-form-container' style={{ width: "100%" }}>
 
 
 
@@ -1385,32 +1497,37 @@ function PriscriptionForm({ preloadData }) {
                             <ul className='report-list shadow-underline'>
                                 <li>
                                     <div>
-                                        <span className='form-small-tittle' >Choose Speciality <span style={{color:"red"}}>*</span> </span>
+                                        <span className='form-small-tittle' >Choose Speciality <span style={{ color: "red" }}>*</span> </span>
                                         <span className='form-caption'></span>
                                     </div>
 
-                                    <div className='form-light-background'>
+                                    <div className={`form-light-background ${validationError.department ? "form-error" : null}`}>
 
-                               
+
                                         <MuiAutoComplete
                                             placeholder="Select speciality"
                                             // id={key}
+                                            isSpeciality
                                             value={selectedDepartmentName}
                                             data={departmentsArray.length > 0 ? departmentObjectToArray(departmentsArray) : []}
                                             onChange={handleDepartmentOnChange}
                                             name='name' />
 
+
                                     </div>
+                                    <span className='prescription-form-error'>
+                                        {validationError.department ? validationError.department : <EmptySpace />}
+                                    </span>
 
                                 </li>
 
                                 <li>
                                     <div>
-                                        <span className='form-small-tittle' >Choose Doctor <span style={{color:"red"}}>*</span></span>
+                                        <span className='form-small-tittle' >Choose Doctor <span style={{ color: "red" }}>*</span></span>
                                         <span className='form-caption' ></span>
                                     </div>
 
-                                    <div className='form-light-background'>
+                                    <div className={`form-light-background ${validationError.doctors ? "form-error" : null}`}>
 
 
                                         {/* <MuiDropdown
@@ -1429,17 +1546,21 @@ function PriscriptionForm({ preloadData }) {
 
                                     </div>
 
+                                    <span className='prescription-form-error'>
+                                        {validationError.doctors ? validationError.doctors : <EmptySpace />}
+                                    </span>
+
 
 
                                 </li>
 
                                 <li>
                                     <div>
-                                        <span className='form-small-tittle' >Template Name <span style={{color:"red"}}>*</span></span>
+                                        <span className='form-small-tittle' >Template Name <span style={{ color: "red" }}>*</span></span>
                                         <span className='form-caption' ></span>
                                     </div>
 
-                                    <div className='form-light-background'>
+                                    <div className={`form-light-background ${validationError.templateName ? "form-error" : "form-ok"}`}>
                                         <input
                                             value={templateName}
                                             onChange={(e) => { setTemplateName(e.target.value) }}
@@ -1452,6 +1573,11 @@ function PriscriptionForm({ preloadData }) {
 
 
                                     </div>
+
+
+                                    <span className='prescription-form-error'>
+                                        {validationError.templateName ? validationError.templateName : <EmptySpace />}
+                                    </span>
 
 
 
@@ -1482,7 +1608,7 @@ function PriscriptionForm({ preloadData }) {
                                         <div className='form-light-background-big'>
                                             <textarea
                                                 id="chiefComplaints"
-                                                value={submissionData.chiefComplaints}
+                                                value={submissionData.chiefComplaints?submissionData.chiefComplaints:""}
                                                 className='form-input-text-area'
                                                 name="chiefcomplaints"
                                                 placeholder="Type here"
@@ -1499,7 +1625,7 @@ function PriscriptionForm({ preloadData }) {
 
                                         <div className='form-light-background-big'>
                                             <textarea id="releventPoint"
-                                                value={submissionData.releventPoint}
+                                                value={submissionData.releventPoint?submissionData.releventPoint:""}
                                                 className='form-input-text-area'
                                                 rows={4} placeholder="Type here"
                                                 onChange={(e) => {
@@ -1518,7 +1644,7 @@ function PriscriptionForm({ preloadData }) {
                                         <span className='form-small-tittle' >Diagnosis or Provisional Diagnosis</span>
 
                                         <div className='form-light-background-big'>
-                                            <textarea value={submissionData.diagnosis} id="diagnosis" className='form-input-text-area' rows={4} placeholder="Type here" onChange={(e) => {
+                                            <textarea value={submissionData.diagnosis?submissionData.diagnosis:""} id="diagnosis" className='form-input-text-area' rows={4} placeholder="Type here" onChange={(e) => {
                                                 // setPrescriptioninfo({ ...presciptioninfor, diagnosis: e.target.value })
                                                 onChangeSubmissiondata(e.target.id, e.target.value)
                                             }} />
@@ -1529,7 +1655,7 @@ function PriscriptionForm({ preloadData }) {
                                         <span className='form-small-tittle' >Examination/Lab Findings</span>
 
                                         <div className='form-light-background-big'>
-                                            <textarea id="examination" value={submissionData.examination} className='form-input-text-area' rows={4} placeholder="Type here" onChange={(e) => {
+                                            <textarea id="examination" value={submissionData.examination?submissionData.examination:""} className='form-input-text-area' rows={4} placeholder="Type here" onChange={(e) => {
                                                 // setPrescriptioninfo({ ...presciptioninfor, examinationlabfindings: e.target.value })
 
                                                 onChangeSubmissiondata(e.target.id, e.target.value)
@@ -1658,7 +1784,7 @@ function PriscriptionForm({ preloadData }) {
                                                             id={key}
                                                             value={obj.name}
                                                             data={test ? test : []}
-                                                            onChange={test && updateInvestigationTable }
+                                                            onChange={test && updateInvestigationTable}
                                                             name='name' />
                                                     </td>
                                                     <td>
@@ -1921,7 +2047,7 @@ function PriscriptionForm({ preloadData }) {
                             </div>
 
                             <div onClick={() => { setActiveLeft(leftMenus[3].name) }} className='form-light-background' style={{ width: "45%" }}>
-                                <textarea value={submissionData.additionalInstruction} ref={AddInstructionElement} className='form-input-text-area' rows={3} placeholder='Type here' style={{ width: "100%" }} onChange={(e) => {
+                                <textarea value={submissionData.additionalInstruction?submissionData.additionalInstruction:""} ref={AddInstructionElement} className='form-input-text-area' rows={3} placeholder='Type here' style={{ width: "100%" }} onChange={(e) => {
                                     onChangeSubmissiondata("additionalInstruction", e.target.value)
                                 }} />
                             </div>
@@ -1956,7 +2082,7 @@ function PriscriptionForm({ preloadData }) {
             </div>
             <Modal deletingFrom={deletingFrom} state={isConfirmDelete} setState={setConfirmDelete} data={investigationData} removeIndex={deleteIndex} />
             <Modal deletingFrom={deletingFrom} state={isConfirmDeleteMedicine} setState={setConfirmDeleteMedicine} data={medicinesData} removeIndex={deleteIndexMedicine} />
-            <SuccessModal state={isSuccess} setState={setSuccess} successMessage={successMessage} />
+            <SuccessModal isPreload={preloadData} setEditMode={setEditMode} state={isSuccess} setState={setSuccess} successMessage={successMessage} />
             <FailiureModal state={isFailed} setState={setFailed} />
             <LoaderModel state={isLoading} />
             {/* <NetworkErrorModal state={isNetworkError} setState={setNetworkError} refresh={refreshPage} /> */}
@@ -1965,7 +2091,7 @@ function PriscriptionForm({ preloadData }) {
                 isReadyToSubmit ?
 
                     <div className="button-container">
-                        <button disabled={isLoading} onClick={() => { createPrescription()}} className={isLoading ? 'save-rescription-btn-disabled' : 'save-rescription-btn'} > <LabelIcon_Prescription />  {preloadData?"UPDATE":"SAVE"} PRESCRIPTION</button>
+                        <button disabled={isLoading} onClick={() => { createPrescription() }} className={isLoading ? 'save-rescription-btn-disabled' : 'save-rescription-btn'} > <LabelIcon_Prescription />  {preloadData ? "UPDATE" : "SAVE"} PRESCRIPTION</button>
                     </div> : null
             }
         </div >

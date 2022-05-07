@@ -71,7 +71,7 @@ export const getDoctors = ({ department_id }) => async dispatch => {
 
 }
 
-export const getTemplateList = () => async dispatch => {
+export const getTemplateList = ({offset}) => async dispatch => {
 
     // let userToken = await getFromLocalStorage(USER_TOKEN)
 
@@ -85,10 +85,11 @@ export const getTemplateList = () => async dispatch => {
 
 
     let params = {
-        requestType: "1062",
+        requestType: "1070",
         browserTimeZone: "",
         data: {
-            type: "templatelist"
+            type: "templatelist",
+            offset:offset?offset:0
         },
     };
 
@@ -97,8 +98,13 @@ export const getTemplateList = () => async dispatch => {
 
     if (response.status == "200") {
 
-        if (response.data?.data) {
-            return response.data.data
+        console.log(response);
+    
+        if (response.data?.data?.data) {
+            return {
+                data:response.data.data.data,
+                total:response.data.data.totalNumberOfPages
+            }
         }
     }
 

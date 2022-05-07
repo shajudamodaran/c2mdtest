@@ -7,7 +7,7 @@ import './prescriptiontemplatelist.css'
 import { INTERBRANCH_MODAL } from '../../actions/type';
 import { FETCH_ADMIN_DASHBOARD_REPORT, FETCH_DASHBOARD_MORE } from '../../actions/InterbranchAdminActions';
 import { separaetdateAndTime } from '../../Helpers/dateFunctions';
-import { EditIcon, ViewIcon } from '../../assets/Logos/Icons';
+import { BackArrow, EditIcon, ViewIcon } from '../../assets/Logos/Icons';
 import { getDepartments, getTemplateList } from '../../actions/PrescriptionFormActions';
 import PrescriptionForm from '../PrescriptionForm/PriscriptionForm'
 import { useHistory, useLocation } from 'react-router-dom';
@@ -24,7 +24,7 @@ function TemplateList() {
 
 
     let [isOpen, setOpen] = useState(false)
-    let [pagination, setPagination] = useState(1)
+    let [pagination, setPagination] = useState(0)
 
 
     useEffect(() => {
@@ -35,87 +35,63 @@ function TemplateList() {
 
 
 
-    let handleTableClick = (_id) => {
 
-        dispatch(FETCH_DASHBOARD_MORE(_id))
-
-        dispatch({
-            type: INTERBRANCH_MODAL,
-            payload: {
-                name: "todaysReportModal",
-                value: true
-            }
-        });
-
-        // dispatch(setModalRedux({
-        //     name: "todaysReportModal",
-        //     value: true
-        // }))
-
-    }
-
-
-    let filterOnClick = () => {
-
-        // dateRef.current.focus();
-
-        setOpen(!isOpen)
-    }
-
-
-
-    let handledateChange = () => {
-
-        setOpen(!isOpen)
-
-    }
-
-    let handlePaginationChange = (e, s) => {
-
-        // console.log(e,s);
-        dispatch(FETCH_ADMIN_DASHBOARD_REPORT({ offset: e - 1 }))
-
-        if (pagination < dashboardData.length) {
-            setPagination(pagination + 10)
-        }
-
-    }
 
 
     //Version 2 ...................................................................................
 
     let [templateList, setTemplateList] = useState([])
+    let [templateTotalPage, setTemplateTotalPage] = useState(0)
     let [isEditMode, setEditMode] = useState(false)
-    let history=useHistory()
+    let history = useHistory()
     const location = useLocation();
 
 
     useEffect(() => {
 
-        dispatch(getTemplateList()).then((res) => {
+        dispatch(getTemplateList({ offset: 0 })).then((res) => {
 
-            console.log(res);
-            setTemplateList(res)
-
+            setTemplateList(res.data)
+            setTemplateTotalPage(res.total)
         })
 
     }, [])
 
 
-    let handleEditOnClick = (rowData,tempId) => {
 
-        setEditMode({...rowData,tempId})
+    let handlePaginationChange = (e, s) => {
+
+        dispatch(getTemplateList({ offset: e - 1 })).then((res) => {
+
+            setTemplateList(res.data)
+            setTemplateTotalPage(res.total)
+
+        })
+
+        // dispatch(FETCH_ADMIN_DASHBOARD_REPORT({ offset: e - 1 }))
+
+        // if (pagination < dashboardData.length) {
+        //     setPagination(pagination + 10)
+        // }
+
+    }
+
+
+    let handleEditOnClick = (rowData, element) => {
+
+        setEditMode({ ...rowData, tempId: element.tempId, departmentName: element.assignedDepartments })
         //console.log(rowData);
 
     }
 
-    let handleViewOnClick =(rowData,tempId) =>{
+    let handleViewOnClick = (rowData, tempId) => {
 
-       
-
-        let url=`/viewprescription/${rowData.basicinfo.templateId}`
       
-        window.open(url,"_blank")
+        let url = `/viewprescription/${rowData.basicinfo.templateId}`
+
+        console.log(url);
+
+        window.open(url, "_blank")
         // history.push({
         //     pathname:`viewprescription/:${rowData.basicinfo.templateName}`,
         //     state:{rowData,tempId}
@@ -149,71 +125,74 @@ function TemplateList() {
             </div>
 
             {
-                isEditMode?
+                isEditMode ?
 
-                <div style={{
-                    display:"flex",
-                    flexDirection:"column",
-                    justifyContent:"center",
-                    width:"100%"
-                }}>
-                    <div style={{marginBottom:".8rem", marginTop:".8rem", cursor:"pointer"}} onClick={()=>{setEditMode(null)}}>
-                        Back
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        width: "100%"
+                    }}>
+                        <div style={{ marginBottom: ".8rem", marginTop: ".8rem", cursor: "pointer" }} onClick={() => { setEditMode(null) }}>
+                            <BackArrow size={14} />
+                            <b style={{ marginLeft: ".5rem" }}>Back</b>
+                        </div>
+
+                        <PrescriptionForm
+                            setEditMode={setEditMode}
+                            preloadData={isEditMode} />
                     </div>
 
-                    <PrescriptionForm preloadData={isEditMode}/>
-                </div>
 
+                    :
+                    <div className="todays_report_table_container">
 
-                :
-                <div className="todays_report_table_container">
-
-                <table className='appoinment-table'>
-                    <thead>
-                        <tr>
-                            <th>Template ID</th>
-                            <th>Template Name</th>
-                            <th>Created Date</th>
-                            <th>Updated Date</th>
-                            {/* <th>Template Files</th> */}
-                            <th>Assigned To</th>
-                            {/* 
+                        <table className='appoinment-table'>
+                            <thead>
+                                <tr>
+                                    <th>Template ID</th>
+                                    <th>Template Name</th>
+                                    <th>Created Date</th>
+                                    <th>Updated Date</th>
+                                    {/* <th>Template Files</th> */}
+                                    <th>Assigned To</th>
+                                    {/* 
                         <th>Fees Paid</th>
                         <th>Consultation Status</th>
                         <th>Next Steps</th> */}
-                            <th>Edit</th>
-                            <th>View</th>
+                                    <th>Edit</th>
+                                    <th>View</th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                        {
-                            templateList.length > 0 ?
-                                templateList.map((element, key) => {
+                                {
+                                    templateList.length > 0 ?
+                                        templateList.map((element, key) => {
 
-                                    return (
+                                            return (
 
-                                        <tr>
-                                            <td>{element.tempId}</td>
-                                            <td>{element.tempName}</td>
-                                            <td>{element.createdDate}</td>
-                                            <td>*</td>
-                                            <td>{element.assignedDoctors}</td>
-                                            <td><div className="edit-btn" onClick={(()=>{handleEditOnClick(element.tempData,element.tempId)})}><EditIcon /></div></td>
-                                            <td><div className="edit-btn" onClick={()=>{handleViewOnClick(element.tempData,element.tempId)}}><ViewIcon /></div></td>
-                                        </tr>
+                                                <tr>
+                                                    <td>{element.tempId}</td>
+                                                    <td>{element.tempName}</td>
+                                                    <td>{element.createdDate}</td>
+                                                    <td>{element.updatedDate}</td>
+                                                    <td>{element.assignedDoctors}</td>
+                                                    <td><div className="edit-btn" onClick={(() => { handleEditOnClick(element.tempData, element) })}><EditIcon /></div></td>
+                                                    <td><div className="edit-btn" onClick={() => { handleViewOnClick(element.tempData, element.tempId) }}><ViewIcon /></div></td>
+                                                </tr>
 
-                                    )
+                                            )
 
-                                })
-                                : null
-                        }
-
-
+                                        })
+                                        : null
+                                }
 
 
-                        {/* {
+
+
+                                {/* {
                             dashboardData ?
                                 dashboardData.length > 0 ?
 
@@ -247,19 +226,19 @@ function TemplateList() {
 
                                     : null
                                 : null */}
-                        {/* } */}
+                                {/* } */}
 
 
-                    </tbody>
-                </table>
+                            </tbody>
+                        </table>
 
-            </div>
+                    </div>
             }
 
 
             <div className="pagination-container-mis-report">
                 &nbsp;
-                <Pagination onChange={handlePaginationChange} defaultCurrent={1} total={dashboardData ? dashboardData * 8 : 0} />
+                <Pagination onChange={handlePaginationChange} defaultCurrent={1} total={templateTotalPage ? templateTotalPage : 0} />
             </div>
 
         </div>

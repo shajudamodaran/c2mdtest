@@ -719,6 +719,16 @@ export const ViewIcon = () => {
     )
 }
 
+export const BackArrow = ({size}) => {
+    return (
+        <svg width={size?size:20} height={size?size:20} viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M64 28H15.32L37.68 5.64L32 0L0 32L32 64L37.64 58.36L15.32 36H64V28Z" fill="black" />
+        </svg>
+
+    )
+}
+
+
 
 
 
