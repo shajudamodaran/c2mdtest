@@ -75,7 +75,7 @@ function App() {
   return (
     <>
       {/* <Router basename={'/ROOT/'}> */}
-      <Router basename={"/c2mydrnew/"}>
+      <Router basename={"/c2mydruat/"}>
         <div>
           <Suspense fallback={<></>}>
             <ScrollToTop />
@@ -104,7 +104,7 @@ function App() {
               />
 
               <Route exact path="/admin" component={AdminHome} />
-              <Route exact path="/prescriptionCr" component={PrescriptionCrPage} />
+              <Route exact path="/admindashboard" component={PrescriptionCrPage} />
               <Route exact path="/viewprescription/:prname" component={ViewPrescription} />
 
               

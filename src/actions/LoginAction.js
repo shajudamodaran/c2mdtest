@@ -4,6 +4,7 @@ import CryptoJS from "crypto-js";
 import axios from "axios";
 import { LOGIN_SUCCESS_ACTION, LOG_OUT_ACTION, UPDATE_LOGIN } from "./type";
 import { ADMIN_USER } from "../constants/const";
+import { CLINIC_ADMIN_USER } from "../constants/const";
 const qs = require('qs')
 const FormData = require('form-data');
 
@@ -73,8 +74,8 @@ export const loginAction =
       dispatch({ type: LOGIN_SUCCESS_ACTION, payload: res.data.data });
 
       await localStorage.setItem("userData", JSON.stringify(res.data.data));
-
-      if (res.data?.data?.userType == "Patient" || res.data?.data?.userType == ADMIN_USER) {
+     
+      if (res.data?.data?.userType == "Patient") {
         console.log(backupData);
         if (backupData && backupData?.redirection) {
           history.push(backupData?.redirection);
@@ -83,7 +84,12 @@ export const loginAction =
         } else {
           history.push("/dashboard");
         }
-      } else {
+      }
+      else if ( res.data?.data?.userType == CLINIC_ADMIN_USER) {
+        history.push("/admindashboard");
+      }
+      
+      else {
        // history.push("/dashboard");
         // setDrSign(true)
 
