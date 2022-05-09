@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from "react-router";
 import { FETCH_ADMIN_DASHBOARD_REPORT, FETCH_ADMIN_DETAILED_REPORT, FETCH_CONSOLIDATED_REPORTS } from '../../actions/InterbranchAdminActions'
 import CustomeModal from '../../components/CustomeModal/CustomeModal'
 import MisReportModalContent from '../../components/MisReportModal/MisReportModalContent'
@@ -7,8 +8,8 @@ import MisReportModalContent from '../../components/MisReportModal/MisReportModa
 import TodaysReportModalContent from '../../components/TodaysReportModalContent/TodaysReportModalContent'
 import TemplateList from "../../components/PrescriptionTemplateList/prescriptionTemplateList";
 import PrescriptionDashboard from "../../components/PrescriptionDashboard/prescriptionDashboard";
-
-
+import { TittleCard } from '../../components/Styled/TittleCard'
+import { logoutAction } from "../../actions/LoginAction";
 import { prescriptionAdminSideMenu } from './constants'
 import '../InterbranchAdmin/interbranchadminhome.css'
 
@@ -16,6 +17,7 @@ function Index() {
 
     //Declerations..............................................................................
     let dispatch = useDispatch()
+    let history = useHistory()
 
     //States....................................................................................
     let [activeLeft, setActiveleft] = useState({ menu: "dashboard", option: 0 })
@@ -26,7 +28,9 @@ function Index() {
     //Refs......................................................................................
     const ref = useRef(null)
 
-
+    const userData = useSelector(
+        (state) => state.login.user
+    );
     //Functions................................................................................
 
     useEffect(() => {
@@ -37,7 +41,15 @@ function Index() {
 
     }, [])
 
+    let logoutFunction = () => {
 
+        dispatch(
+            logoutAction(userData)
+        );
+
+        history.push("home")
+
+    }
 
     return (
         <div className='interbranch-container'>
@@ -45,7 +57,12 @@ function Index() {
 
                 <div className="letf-top">
                     <div className="header-card" style={{ marginBottom: "2.5rem" }}>
-                        &nbsp;
+                    <TittleCard
+                                className="d-flex flex-column justify-content-start align-items-center mt-2" style={{ width: "100%", height: "79.14px" }}>
+
+                                <div className="dr-name-home text-start w-100" style={{fontWeight:"bold"}} >{userData ? userData.profileName : "---"}</div>
+                                <div className="dr-id-home text-start w-100" style={{fontWeight:"bold"}}>ID: {userData ? userData.profileId : "---"}</div>
+                            </TittleCard>
                     </div>
 
                     <div className="tittle" onClick={() => { setActiveleft({ menu: "dashboard", option: 0 }) }} style={{ fontWeight: activeLeft.menu == "dashboard" ? "bold" : "normal", cursor: "pointer" }} >Dashboard</div>
@@ -92,7 +109,7 @@ function Index() {
                         })
                     }
 
-                    <div className="header-card logout" style={{marginTop:"2.5rem"}}>
+                    <div className="header-card logout" style={{marginTop:"2.5rem",coursor:"pointer"}} onClick={logoutFunction}>
                         <div className="icon">&nbsp;</div>
                         SIGN OUT
                     </div>

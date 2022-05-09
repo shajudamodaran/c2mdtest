@@ -1279,7 +1279,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                         },
                         basicinfo: {
                             "departmentId": selectedDepartment?.departmentId,
-                            "doctorIds": selectedDoctors,
+                            "doctorIds": selectedDoctors.toString(),
                             "templateName": templateName
                         }
                     },

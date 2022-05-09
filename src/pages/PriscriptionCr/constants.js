@@ -7,20 +7,20 @@ import TemplateList from "../../components/PrescriptionTemplateList/prescription
 import TodaysReport from "../../components/TodaysReport/TodaysReport";
 
 export const prescriptionAdminSideMenu=[
-    {
-        tittle:"Dashboard",
-        options:[
-            {
-                name:"Dashboard",
-                ico:<i class="fal fa-book-medical"></i>,
+    // {
+    //     tittle:"Dashboard",
+    //     options:[
+    //         {
+    //             name:"Dashboard",
+    //             ico:<i class="fal fa-book-medical"></i>,
             
-                component:<prescriptionTemplateList/>,
-                date:"10, February, 2021 - Wednesday"
-            },
+    //             component:<prescriptionTemplateList/>,
+    //             date:"10, February, 2021 - Wednesday"
+    //         },
            
             
-        ]
-    },
+    //     ]
+    // },
     {
         tittle:" Template",
         options:[

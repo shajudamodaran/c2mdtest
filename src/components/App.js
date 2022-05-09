@@ -107,13 +107,12 @@ function App() {
               <Route exact path="/admindashboard" component={PrescriptionCrPage} />
               <Route exact path="/viewprescription/:prname" component={ViewPrescription} />
 
-              
               <Route path="/partner-with-us" component={PartnerPage} />
               <Route path="/forpatients" component={ForPatient} />
               <Route path="/termsofUse/:typeId" component={TermsandConditions} />
               <Route path="/termsofUse" component={TermsandConditions} />
               <Route path="/signin" component={SigninPage} />
-              <Route path="/login" component={LoginPage} />
+              <Route path="/login" component={SigninPage} />
               <Route path="/reset" component={ResetPasswordPage} />
               <Route path="/dashboard" component={Dashboard} />
               <Route path="/meet" component={MeetPage} />

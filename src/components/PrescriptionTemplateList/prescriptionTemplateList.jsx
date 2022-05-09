@@ -87,9 +87,10 @@ function TemplateList() {
     let handleViewOnClick = (rowData, tempId) => {
 
       
-        let url = `/viewprescription/${rowData.basicinfo.templateId}`
+        let url = `viewprescription/${rowData.basicinfo.templateId}`
 
         console.log(url);
+        console.log(rowData);
 
         window.open(url, "_blank")
         // history.push({
@@ -180,7 +181,8 @@ function TemplateList() {
                                                     <td>{element.updatedDate}</td>
                                                     <td>{element.assignedDoctors}</td>
                                                     <td><div className="edit-btn" onClick={(() => { handleEditOnClick(element.tempData, element) })}><EditIcon /></div></td>
-                                                    <td><div className="edit-btn" onClick={() => { handleViewOnClick(element.tempData, element.tempId) }}><ViewIcon /></div></td>
+                                                    {/* <td><div className="edit-btn" onClick={() => { handleViewOnClick(element.tempData, element.tempId) }}><ViewIcon /></div></td> */}
+                                                    <td><a href={"viewprescription/"+element.tempId} target="_blank"><ViewIcon /></a></td>
                                                 </tr>
 
                                             )
