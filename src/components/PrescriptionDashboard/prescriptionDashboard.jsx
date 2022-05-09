@@ -22,7 +22,7 @@ function PrescriptionDashboard() {
 
     let misReports = useSelector(state => state.interbranchAdmin.detailedReportTable)
     let misReportsPageLength = useSelector(state => state.interbranchAdmin.detailedReportTableTotalPages)
-
+// hiden for now
 
     let handleTableClick = (_id) => {
 
