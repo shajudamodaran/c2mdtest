@@ -1,3 +1,4 @@
+import { Popover } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -41,6 +42,26 @@ function ViewPrescription({ location }) {
 
 
     console.log(template);
+
+    const Content = ({data}) => {
+
+       
+        return (
+            <div>
+               {
+                   data.split(",")?.length>0?
+
+                   data.split(",").map((element,key)=>{
+                       return(
+                           <span>{element}{key>data.split(",").length-1?"":","} </span>
+                       )
+                   })
+
+                   :null
+               }
+            </div>
+        )
+    }
 
 
     return (
@@ -126,18 +147,20 @@ function ViewPrescription({ location }) {
                                         <span className='form-caption' ></span>
                                     </div>
 
-                                    <div className='form-light-background-big'>
-                                        <input id="releventPoint"
-                                            style={{ maxWidth: "250px", minWidth:"170px" }}
-                                            value={ template?.assignedDoctors.toString()}
-                                            className='form-input-text'
-                                            placeholder="Type here"
-                                            readOnly
-                                        />
-                                    </div>
+                                    <Popover content={<Content data={template?.assignedDoctors}/>} title={`Doctors list (${template?.assignedDoctors.split(",").length})`}>
+                                        <div className='form-light-background-big'>
+                                            <input id="releventPoint"
+                                                style={{ maxWidth: "250px", minWidth: "170px" }}
+                                                value={template?.assignedDoctors.toString()}
+                                                className='form-input-text'
+                                                placeholder="Type here"
+                                                readOnly
+                                            />
+                                        </div>
+                                    </Popover>
 
 
-{/* 
+                                    {/* 
                                     <b>
                                         {
                                             template?.tempData?.basicinfo?.doctorIds?.map((element) => {
@@ -215,7 +238,7 @@ function ViewPrescription({ location }) {
 
                                         <div className='form-light-background-big'>
                                             <textarea id="releventPoint"
-                                               value={template?.tempData?.consultationDetails?.notes}
+                                                value={template?.tempData?.consultationDetails?.notes}
                                                 className='form-input-text-area'
                                                 rows={4} placeholder="Type here"
                                                 readOnly
@@ -232,12 +255,12 @@ function ViewPrescription({ location }) {
                                         <span className='form-small-tittle' >Diagnosis or Provisional Diagnosis</span>
 
                                         <div className='form-light-background-big'>
-                                            <textarea 
-                                             value={template?.tempData?.consultationDetails?.diagnosis}
-                                             id="diagnosis" className='form-input-text-area' rows={4} placeholder="Type here" onChange={(e) => {
-                                                // setPrescriptioninfo({ ...presciptioninfor, diagnosis: e.target.value })
+                                            <textarea
+                                                value={template?.tempData?.consultationDetails?.diagnosis}
+                                                id="diagnosis" className='form-input-text-area' rows={4} placeholder="Type here" onChange={(e) => {
+                                                    // setPrescriptioninfo({ ...presciptioninfor, diagnosis: e.target.value })
 
-                                            }} readOnly />
+                                                }} readOnly />
                                         </div>
                                     </div>
 
@@ -245,13 +268,13 @@ function ViewPrescription({ location }) {
                                         <span className='form-small-tittle' >Examination/Lab Findings</span>
 
                                         <div className='form-light-background-big'>
-                                            <textarea id="examination" 
-                                             value={template?.tempData?.consultationDetails?.investigation}
-                                             className='form-input-text-area' rows={4} placeholder="Type here" onChange={(e) => {
-                                                // setPrescriptioninfo({ ...presciptioninfor, examinationlabfindings: e.target.value })
+                                            <textarea id="examination"
+                                                value={template?.tempData?.consultationDetails?.investigation}
+                                                className='form-input-text-area' rows={4} placeholder="Type here" onChange={(e) => {
+                                                    // setPrescriptioninfo({ ...presciptioninfor, examinationlabfindings: e.target.value })
 
 
-                                            }} readOnly />
+                                                }} readOnly />
                                         </div>
                                     </div>
 
@@ -427,9 +450,9 @@ function ViewPrescription({ location }) {
                             </div>
 
                             <div className='form-light-background' style={{ width: "45%" }}>
-                                <textarea 
-                                value={template?.tempData?.consultationDetails?.instruction}
-                                 className='form-input-text-area' rows={3} placeholder='Type here' style={{ width: "100%" }} readOnly />
+                                <textarea
+                                    value={template?.tempData?.consultationDetails?.instruction}
+                                    className='form-input-text-area' rows={3} placeholder='Type here' style={{ width: "100%" }} readOnly />
                             </div>
 
 

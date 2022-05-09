@@ -1121,7 +1121,9 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
     let clearPrepopulateddate = () => {
 
         dispatch({type: CLEAR_PRESCRIPTION})
-
+        setSelectedDepartmentName(null)
+        setTemplateName("")
+      
     }
 
 
@@ -2082,7 +2084,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
             </div>
             <Modal deletingFrom={deletingFrom} state={isConfirmDelete} setState={setConfirmDelete} data={investigationData} removeIndex={deleteIndex} />
             <Modal deletingFrom={deletingFrom} state={isConfirmDeleteMedicine} setState={setConfirmDeleteMedicine} data={medicinesData} removeIndex={deleteIndexMedicine} />
-            <SuccessModal isPreload={preloadData} setEditMode={setEditMode} state={isSuccess} setState={setSuccess} successMessage={successMessage} />
+            <SuccessModal clearData={clearPrepopulateddate} isPreload={preloadData} setEditMode={setEditMode} state={isSuccess} setState={setSuccess} successMessage={successMessage} />
             <FailiureModal state={isFailed} setState={setFailed} />
             <LoaderModel state={isLoading} />
             {/* <NetworkErrorModal state={isNetworkError} setState={setNetworkError} refresh={refreshPage} /> */}

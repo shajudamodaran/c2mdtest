@@ -1,6 +1,10 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { CLEAR_PRESCRIPTION } from '../../../../actions/type'
 
-function SuccessModal({ state,setState,successMessage, isPreload, setEditMode }) {
+function SuccessModal({ state,setState,successMessage, isPreload, setEditMode, clearData }) {
+
+    let dispatch=useDispatch()
 
 
     let handleOkClick =()=>{
@@ -10,6 +14,9 @@ function SuccessModal({ state,setState,successMessage, isPreload, setEditMode })
         if(isPreload)
         {
             setEditMode(false)
+        }
+        else{
+       clearData()
         }
 
     }

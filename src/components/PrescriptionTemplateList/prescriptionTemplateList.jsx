@@ -58,6 +58,18 @@ function TemplateList() {
     }, [])
 
 
+    useEffect(() => {
+
+        dispatch(getTemplateList({ offset: pagination })).then((res) => {
+
+            setTemplateList(res.data)
+            setTemplateTotalPage(res.total)
+        })
+
+    }, [isEditMode])
+
+
+
 
     let handlePaginationChange = (e, s) => {
 
@@ -65,6 +77,7 @@ function TemplateList() {
 
             setTemplateList(res.data)
             setTemplateTotalPage(res.total)
+            setPagination(e - 1)
 
         })
 
@@ -86,7 +99,7 @@ function TemplateList() {
 
     let handleViewOnClick = (rowData, tempId) => {
 
-      
+
         let url = `viewprescription/${rowData.basicinfo.templateId}`
 
         console.log(url);
@@ -178,11 +191,11 @@ function TemplateList() {
                                                     <td>{element.tempId}</td>
                                                     <td>{element.tempName}</td>
                                                     <td>{element.createdDate}</td>
-                                                    <td>{element.updatedDate}</td>
-                                                    <td>{element.assignedDoctors}</td>
+                                                    <td>{element.updatedDate ? element.updatedDate : "No Data Available"}</td>
+                                                    <td>{element.assignedDoctors ? element.assignedDoctors : "No Data Available"}</td>
                                                     <td><div className="edit-btn" onClick={(() => { handleEditOnClick(element.tempData, element) })}><EditIcon /></div></td>
                                                     {/* <td><div className="edit-btn" onClick={() => { handleViewOnClick(element.tempData, element.tempId) }}><ViewIcon /></div></td> */}
-                                                    <td><a href={"viewprescription/"+element.tempId} target="_blank"><ViewIcon /></a></td>
+                                                    <td><a href={"viewprescription/" + element.tempId} target="_blank"><ViewIcon /></a></td>
                                                 </tr>
 
                                             )
@@ -240,7 +253,7 @@ function TemplateList() {
 
             <div className="pagination-container-mis-report">
                 &nbsp;
-                <Pagination onChange={handlePaginationChange} defaultCurrent={1} total={templateTotalPage ? templateTotalPage : 0} />
+                <Pagination onChange={handlePaginationChange} defaultCurrent={1} total={templateTotalPage ? templateTotalPage * 10 : 0} />
             </div>
 
         </div>

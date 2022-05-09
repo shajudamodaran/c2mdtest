@@ -20,7 +20,7 @@ function Index() {
     let history = useHistory()
 
     //States....................................................................................
-    let [activeLeft, setActiveleft] = useState({ menu: "dashboard", option: 0 })
+    let [activeLeft, setActiveleft] = useState({ menu: 0, option: 0 })
 
     const { ApointmentHistoryModal, ViewFileModal, deleteFileModel, commonDeleteModal, PatientDetailsModal, todaysReportModal, misReportModal } = useSelector((state) => state.interbranchModal)
 
@@ -65,7 +65,7 @@ function Index() {
                             </TittleCard>
                     </div>
 
-                    <div className="tittle" onClick={() => { setActiveleft({ menu: "dashboard", option: 0 }) }} style={{ fontWeight: activeLeft.menu == "dashboard" ? "bold" : "normal", cursor: "pointer" }} >Dashboard</div>
+                    {/* <div className="tittle" onClick={() => { setActiveleft({ menu: "dashboard", option: 0 }) }} style={{ fontWeight: activeLeft.menu == "dashboard" ? "bold" : "normal", cursor: "pointer" }} >Dashboard</div> */}
 
 
                     {
