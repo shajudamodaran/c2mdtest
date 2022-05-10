@@ -719,11 +719,24 @@ export const ViewIcon = () => {
     )
 }
 
-export const BackArrow = ({size}) => {
+export const BackArrow = ({ size }) => {
     return (
-        <svg width={size?size:20} height={size?size:20} viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width={size ? size : 20} height={size ? size : 20} viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M64 28H15.32L37.68 5.64L32 0L0 32L32 64L37.64 58.36L15.32 36H64V28Z" fill="black" />
         </svg>
+
+    )
+}
+
+
+export const CompletedGreen = ({ size }) => {
+    return (
+        <svg width="50" height="50" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="11.5" cy="11.5" r="11.5" fill="#2BB673" />
+            <line x1="6.53033" y1="12.2316" x2="9.14938" y2="14.8507" stroke="white" stroke-width="1.5" />
+            <line x1="17.5303" y1="7.53033" x2="9.14938" y2="15.9113" stroke="white" stroke-width="1.5" />
+        </svg>
+
 
     )
 }

@@ -109,7 +109,7 @@ const Placeholder = ({ children }) => {
 };
 
 
-function MuiAutoComplete({ value, data, name, onChange, id, placeholder,isSpeciality, selected }) {
+function MuiAutoComplete({ value, data, name, onChange, id, placeholder,isSpeciality, selected,style }) {
 
   const classes = useStyles();
   const [answer, setAnswer] = React.useState("");
@@ -161,7 +161,7 @@ function MuiAutoComplete({ value, data, name, onChange, id, placeholder,isSpecia
       // classes={{ notchedOutline: classes.input }}
       popoverProps={{ style: { width: 'auto' } }}
       style={{
-        minWidth: 150,
+        minWidth: 300,
         width: "100%"
       }}
     

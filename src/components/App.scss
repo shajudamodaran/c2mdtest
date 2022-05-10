@@ -2,3 +2,45 @@
     position: absolute;
     width: 50%;
 }
+
+.prescription_sync_status_indicator{
+
+    height: 30px;
+        width: 30px;
+
+    div{
+        height: 30px;
+        width: 30px;
+        border-radius: 100px;
+    }
+
+    .completed{
+        background-color: green;
+    }
+    .pending{
+        background-color: red;
+    }
+
+}
+
+
+.rotate {
+    animation: rotation 1.8s infinite linear;
+  }
+
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+
+  .link-style{
+    color: #208ce1;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
