@@ -20,9 +20,8 @@ function PrescriptionDashboard() {
     const dispatch = useDispatch()
 
 
-    let misReports = useSelector(state => state.interbranchAdmin.detailedReportTable)
-    let misReportsPageLength = useSelector(state => state.interbranchAdmin.detailedReportTableTotalPages)
-// hiden for now
+    const { crDashboard } = useSelector((state) => state.presctiptionFormReducer)
+
 
     let handleTableClick = (_id) => {
 
@@ -171,35 +170,31 @@ function PrescriptionDashboard() {
 
                     <tbody>
 
-                        <tr>
-                            <td>{"1"}</td>
-                            <td>{"Data 1"}</td>
-                            <td>{"Data 2"}</td>
-                            <td>{"Data 3"}</td>
-                            <td>{"Data 4"}</td>
-                            <td>{"Data 5"}</td>
-                        </tr>
+                        {
+                            crDashboard?.prescriptionlist.length>0?
 
-                        <tr>
-                            <td>{"1"}</td>
-                            <td>{"Data 1"}</td>
-                            <td>{"Data 2"}</td>
-                            <td>{"Data 3"}</td>
-                            <td>{"Data 4"}</td>
-                            <td>{"Data 5"}</td>
-                        </tr>
+                            crDashboard.prescriptionlist.map((element,key)=>{
 
-                        <tr>
-                            <td>{"1"}</td>
-                            <td>{"Data 1"}</td>
-                            <td>{"Data 2"}</td>
-                            <td>{"Data 3"}</td>
-                            <td>{"Data 4"}</td>
-                            <td>{"Data 5"}</td>
-                        </tr>
+                                return(
+
+                                    <tr>
+                                    <td>{element.appointmentID}</td>
+                                    <td>{element.patientName}</td>
+                                    <td>{element.doctorname}</td>
+                                    <td>{`${element.appointmentDate}, ${element.appointmentTime}`}</td>
+                                    <td><span className="view-link">View</span></td>
+                                    <td>{"Data 5"}</td>
+                                </tr>
+
+                                )
+
+                            })
 
 
+                            :null
+                        }
 
+                       
 
                     </tbody>
                 </table>
@@ -210,7 +205,7 @@ function PrescriptionDashboard() {
             <div className="pagination-container-mis-report">
 
                 &nbsp;
-                <Pagination onChange={handlePaginationChange} defaultCurrent={1} total={misReportsPageLength ? misReportsPageLength * 8 : 0} />
+                {/* <Pagination onChange={handlePaginationChange} defaultCurrent={1} total={misReportsPageLength ? misReportsPageLength * 8 : 0} /> */}
             </div>
 
 

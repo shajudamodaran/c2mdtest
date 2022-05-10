@@ -12,6 +12,8 @@ import { TittleCard } from '../../components/Styled/TittleCard'
 import { logoutAction } from "../../actions/LoginAction";
 import { prescriptionAdminSideMenu } from './constants'
 import '../InterbranchAdmin/interbranchadminhome.css'
+import { SET_CR_DASHBOARD } from '../../actions/type';
+import { FETCH_PR_ADMIN_DASHBOARD_REPORT } from '../../actions/PrescriptionFormActions';
 
 function Index() {
 
@@ -20,10 +22,12 @@ function Index() {
     let history = useHistory()
 
     //States....................................................................................
-    let [activeLeft, setActiveleft] = useState({ menu: 0, option: 0 })
+    let [activeLeft, setActiveleft] = useState({ menu: "dashboard", option: 0 })
 
     const { ApointmentHistoryModal, ViewFileModal, deleteFileModel, commonDeleteModal, PatientDetailsModal, todaysReportModal, misReportModal } = useSelector((state) => state.interbranchModal)
 
+
+ 
 
     //Refs......................................................................................
     const ref = useRef(null)
@@ -35,9 +39,7 @@ function Index() {
 
     useEffect(() => {
 
-        dispatch(FETCH_ADMIN_DASHBOARD_REPORT())
-        dispatch(FETCH_ADMIN_DETAILED_REPORT())
-        dispatch(FETCH_CONSOLIDATED_REPORTS())
+        dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT())
 
     }, [])
 
@@ -50,6 +52,8 @@ function Index() {
         history.push("home")
 
     }
+
+    console.log();
 
     return (
         <div className='interbranch-container'>
@@ -65,7 +69,7 @@ function Index() {
                             </TittleCard>
                     </div>
 
-                    {/* <div className="tittle" onClick={() => { setActiveleft({ menu: "dashboard", option: 0 }) }} style={{ fontWeight: activeLeft.menu == "dashboard" ? "bold" : "normal", cursor: "pointer" }} >Dashboard</div> */}
+                    <div className="tittle" onClick={() => { setActiveleft({ menu: "dashboard", option: 0 }) }} style={{ fontWeight: activeLeft.menu == "dashboard" ? "bold" : "normal", cursor: "pointer" }} >Dashboard</div>
 
 
                     {
