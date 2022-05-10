@@ -1,5 +1,5 @@
 import loginedApi from "../apis";
-import { INTERBRANCH_ADMIN_DASHBOARD, UPDATE_REDUX_PRESCRIPTION } from "./type";
+import { INTERBRANCH_ADMIN_DASHBOARD, SET_CR_DASHBOARD, UPDATE_REDUX_PRESCRIPTION } from "./type";
 
 
 export const getDepartments = () => async dispatch => {
@@ -71,7 +71,7 @@ export const getDoctors = ({ department_id }) => async dispatch => {
 
 }
 
-export const getTemplateList = ({offset}) => async dispatch => {
+export const getTemplateList = ({ offset }) => async dispatch => {
 
     // let userToken = await getFromLocalStorage(USER_TOKEN)
 
@@ -89,7 +89,7 @@ export const getTemplateList = ({offset}) => async dispatch => {
         browserTimeZone: "",
         data: {
             type: "templatelist",
-            offset:offset?offset:0
+            offset: offset ? offset : 0
         },
     };
 
@@ -99,11 +99,11 @@ export const getTemplateList = ({offset}) => async dispatch => {
     if (response.status == "200") {
 
         console.log(response);
-    
+
         if (response.data?.data?.data) {
             return {
-                data:response.data.data.data,
-                total:response.data.data.totalNumberOfPages
+                data: response.data.data.data,
+                total: response.data.data.totalNumberOfPages
             }
         }
     }
@@ -138,6 +138,51 @@ export const viewTemplate = (par_tempId) => async dispatch => {
 
 
 }
+
+export const FETCH_PR_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
+
+    // let userToken = await getFromLocalStorage(USER_TOKEN)
+
+
+
+    let params = {
+        "data": {
+            "userID": "98278532",
+            "operation": "find",
+            "startDate": "01-Mar-2022",
+            "endDate": "07-May-2022",
+            "browserTimeZone": "GMT+05:30"
+        },
+        "browserTimeZone": "",
+        "requestType": 236
+    }
+
+
+    let responce = await loginedApi.post("getbethanyprescriptionlist", params)
+
+    console.log("getbethanyprescriptionlist responce ->", responce.data.data);
+
+    if (responce.status == 200) {
+
+        console.log();
+
+        dispatch({
+            type: SET_CR_DASHBOARD,
+            payload: responce.data.data
+        });
+
+
+    }
+}
+
+
+
+
+
+
+
+
+
 
 
 
