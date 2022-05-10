@@ -54,7 +54,7 @@ export const getDoctors = ({ department_id }) => async dispatch => {
         browserTimeZone: "",
         data: {
             "type": "doctor",
-            "departmentId": "D01"
+            "departmentId": department_id
         },
     };
 
@@ -139,7 +139,7 @@ export const viewTemplate = (par_tempId) => async dispatch => {
 
 }
 
-export const FETCH_PR_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
+export const FETCH_PR_ADMIN_DASHBOARD_REPORT = (props) => async dispatch => {
 
     // let userToken = await getFromLocalStorage(USER_TOKEN)
 
@@ -149,8 +149,8 @@ export const FETCH_PR_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
         "data": {
             "userID": "98278532",
             "operation": "find",
-            "startDate": "01-Mar-2022",
-            "endDate": "07-May-2022",
+            "startDate": props?.fromDate?props.fromDate:"01-Mar-2022",
+            "endDate": props?.toDate?props.toDate:"07-May-2022",
             "browserTimeZone": "GMT+05:30"
         },
         "browserTimeZone": "",
@@ -160,7 +160,7 @@ export const FETCH_PR_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
 
     let responce = await loginedApi.post("getbethanyprescriptionlist", params)
 
-    console.log("getbethanyprescriptionlist responce ->", responce.data.data);
+    console.log("getbethanyprescriptionlist responce ->", responce);
 
     if (responce.status == 200) {
 
@@ -174,6 +174,61 @@ export const FETCH_PR_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
 
     }
 }
+
+export const syncLabAndMedicine = () => async dispatch => {
+
+    // let userToken = await getFromLocalStorage(USER_TOKEN)
+
+    // dispatch({
+    //     type: UPDATE_REDUX_PRESCRIPTION,
+    //     payload: {
+    //         data: responce.data.data,
+    //         totalPages: responce.data.totalNumberOfPages
+    //     }
+    // });
+
+
+    let params = {"data":{"userID":"98278532","browserTimeZone":"GMT+05:30"},"browserTimeZone":"","requestType":238}
+
+
+    const response = await loginedApi.post("bethanysynclabmedicine", params);
+
+    if (response.status == "200") {
+
+            return response.data.data
+    }
+
+
+}
+
+
+export const pushToHisCall = (_id) => async dispatch => {
+
+    // let userToken = await getFromLocalStorage(USER_TOKEN)
+
+    // dispatch({
+    //     type: UPDATE_REDUX_PRESCRIPTION,
+    //     payload: {
+    //         data: responce.data.data,
+    //         totalPages: responce.data.totalNumberOfPages
+    //     }
+    // });
+
+
+    let params = {"data":{"userID":"98278532","listid":_id},"browserTimeZone":"","requestType":237}
+
+    const response = await loginedApi.post("bethanysynclabmedicine", params);
+
+    if (response.status == "200") {
+
+        console.log(response);
+
+            return response.data.data
+    }
+
+
+}
+
 
 
 

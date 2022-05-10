@@ -381,4 +381,33 @@
   }
 
 
+  .view-link{
+   
+    font-weight: normal;
+    background-color: #0077ee00;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    outline: 0px;
+    border: 0px;
+    margin-left: -10px;
+  }
+
+  .view-link-icon{
+    border-radius: 100px;
+    background-color: white;
+    height: 35px;
+    width: 35px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: .5rem;
+}
+
+
   

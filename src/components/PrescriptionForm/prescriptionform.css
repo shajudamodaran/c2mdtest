@@ -1005,3 +1005,9 @@ th {
   border-bottom: 1.2px solid #0A8CE0;
   padding-bottom: .5rem;
 }
+
+
+.form-light-background .MuiAutocomplete-hasPopupIcon.css-16awh2u-MuiAutocomplete-root .MuiOutlinedInput-root, .MuiAutocomplete-hasClearIcon.css-16awh2u-MuiAutocomplete-root .MuiOutlinedInput-root {
+  height: 48px;
+  width: 299px;
+}

@@ -27,7 +27,7 @@ function Index() {
     const { ApointmentHistoryModal, ViewFileModal, deleteFileModel, commonDeleteModal, PatientDetailsModal, todaysReportModal, misReportModal } = useSelector((state) => state.interbranchModal)
 
 
- 
+
 
     //Refs......................................................................................
     const ref = useRef(null)
@@ -61,12 +61,15 @@ function Index() {
 
                 <div className="letf-top">
                     <div className="header-card" style={{ marginBottom: "2.5rem" }}>
-                    <TittleCard
-                                className="d-flex flex-column justify-content-start align-items-center mt-2" style={{ width: "100%", height: "79.14px" }}>
+                        <TittleCard className="d-flex flex-column justify-content-start align-items-center mt-2" style={{ 
+                            width: "100%",
+                             height: "79.14px",
+                            
+                              }}>
 
-                                <div className="dr-name-home text-start w-100" style={{fontWeight:"bold"}} >{userData ? userData.profileName : "---"}</div>
-                                <div className="dr-id-home text-start w-100" style={{fontWeight:"bold"}}>ID: {userData ? userData.profileId : "---"}</div>
-                            </TittleCard>
+                            <div className="dr-name-home text-start w-100" style={{ fontWeight: "bold" }} >{userData ? userData.profileName : "---"}</div>
+                            <div className="dr-id-home text-start w-100" style={{ fontWeight: "bold" }}>ID: {userData ? userData.profileId : "---"}</div>
+                        </TittleCard>
                     </div>
 
                     <div className="tittle" onClick={() => { setActiveleft({ menu: "dashboard", option: 0 }) }} style={{ fontWeight: activeLeft.menu == "dashboard" ? "bold" : "normal", cursor: "pointer" }} >Dashboard</div>
@@ -113,7 +116,7 @@ function Index() {
                         })
                     }
 
-                    <div className="header-card logout" style={{marginTop:"2.5rem",coursor:"pointer"}} onClick={logoutFunction}>
+                    <div className="header-card logout" style={{ marginTop: "2.5rem", coursor: "pointer" }} onClick={logoutFunction}>
                         <div className="icon">&nbsp;</div>
                         SIGN OUT
                     </div>

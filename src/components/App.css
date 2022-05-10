@@ -2,4 +2,61 @@
   position: absolute;
   width: 50%;
 }
+
+.prescription_sync_status_indicator {
+  height: 30px;
+  width: 30px;
+  
+
+
+}
+
+.prescription_sync_status_indicator div {
+  height: 30px;
+  width: 30px;
+  border-radius: 100px;
+}
+
+.prescription_sync_status_indicator .completed {
+  background-color: green;
+}
+
+.prescription_sync_status_indicator .pending {
+  background-color: red;
+}
+
+.rotate {
+  -webkit-animation: rotation 1.8s infinite linear;
+          animation: rotation 1.8s infinite linear;
+}
+
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+
+@keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+
+.link-style {
+  color: #208ce1;
+}
+
+.link-style:hover {
+  text-decoration: underline;
+}
 /*# sourceMappingURL=App.css.map */

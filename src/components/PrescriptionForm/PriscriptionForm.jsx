@@ -1045,11 +1045,11 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
             if (preloadPrescription?.consultationDetails?.chiefcomplaints) { onChangeSubmissiondata("chiefComplaints", preloadPrescription?.consultationDetails?.chiefcomplaints) }
 
-            if (preloadPrescription?.consultationDetails?.releventPoint) { onChangeSubmissiondata("releventPoint", preloadPrescription?.consultationDetails?.notes) }
+            if (preloadPrescription?.consultationDetails?.notes) { onChangeSubmissiondata("releventPoint", preloadPrescription?.consultationDetails?.notes) }
 
             if (preloadPrescription?.consultationDetails?.diagnosis) { onChangeSubmissiondata("diagnosis", preloadPrescription?.consultationDetails?.diagnosis) }
 
-            if (preloadPrescription?.consultationDetails?.examination) { onChangeSubmissiondata("examination", preloadPrescription?.consultationDetails?.investigation) }
+            if (preloadPrescription?.consultationDetails?.investigation) { onChangeSubmissiondata("examination", preloadPrescription?.consultationDetails?.investigation) }
 
             //Investigation table population
             if (preloadPrescription?.consultationDetails?.labTest && preloadPrescription?.consultationDetails?.labTest.length > 0) {
@@ -1569,7 +1569,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                                             type="text"
                                             className='form-input-text'
                                             placeholder='Enter template name'
-                                            style={{ width: "227px" }}
+                                            style={{ width: "299px" }}
                                         />
 
 

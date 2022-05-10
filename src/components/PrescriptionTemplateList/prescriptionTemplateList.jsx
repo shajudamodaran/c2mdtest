@@ -1,4 +1,4 @@
-import { Pagination, Tooltip } from 'antd'
+import { Pagination, Popover, Tooltip } from 'antd'
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { DatePicker, Space } from 'antd';
@@ -27,11 +27,6 @@ function TemplateList() {
     let [pagination, setPagination] = useState(0)
 
 
-    useEffect(() => {
-
-        setPagination(10)
-
-    }, [dashboardData])
 
 
 
@@ -43,6 +38,7 @@ function TemplateList() {
     let [templateList, setTemplateList] = useState([])
     let [templateTotalPage, setTemplateTotalPage] = useState(0)
     let [isEditMode, setEditMode] = useState(false)
+ 
     let history = useHistory()
     const location = useLocation();
 
@@ -112,7 +108,39 @@ function TemplateList() {
         // })
     }
 
+    let convertToArray = (data) => {
 
+        if (data) {
+            return data.split(",")
+        }
+
+    }
+
+    const Content = ({data}) => {
+
+       
+        return (
+            <div>
+               {
+                   data.split(",")?.length>0?
+
+                   data.split(",").map((element,key)=>{
+                       return(
+                           <>
+                            <span>{element}{key>data.split(",").length-1?"":","} </span><br />
+                           </>
+                          
+                       )
+                   })
+
+                   :null
+               }
+            </div>
+        )
+    }
+
+
+    console.log(templateList.length);
 
     return (
         <div className='appontment-history-container'>
@@ -192,7 +220,14 @@ function TemplateList() {
                                                     <td>{element.tempName}</td>
                                                     <td>{element.createdDate}</td>
                                                     <td>{element.updatedDate ? element.updatedDate : "No Data Available"}</td>
-                                                    <td>{element.assignedDoctors ? element.assignedDoctors : "No Data Available"}</td>
+                                                    <td>{element.assignedDoctors ?
+                                                        convertToArray(element.assignedDoctors).length > 2 ?
+
+                                                            <Popover content={<Content data={element?.assignedDoctors} />} title={`Doctors list (${element?.assignedDoctors.split(",").length})`}>
+                                                                {convertToArray(element.assignedDoctors)[0]} +{convertToArray(element.assignedDoctors).length - 1}
+                                                            </Popover>
+                                                            : element.assignedDoctors
+                                                        : "No Data Available"}</td>
                                                     <td><div className="edit-btn" onClick={(() => { handleEditOnClick(element.tempData, element) })}><EditIcon /></div></td>
                                                     {/* <td><div className="edit-btn" onClick={() => { handleViewOnClick(element.tempData, element.tempId) }}><ViewIcon /></div></td> */}
                                                     <td><a href={"viewprescription/" + element.tempId} target="_blank"><ViewIcon /></a></td>

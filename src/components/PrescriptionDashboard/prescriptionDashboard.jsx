@@ -7,6 +7,9 @@ import StatusBadge from '../Badges/StatusBadge/StatusBadge';
 import { FETCH_ADMIN_DASHBOARD_REPORT, FETCH_ADMIN_DETAILED_REPORT, FETCH_DASHBOARD_MORE, FETCH_DETAILED_MORE, updateMisReportComment } from '../../actions/InterbranchAdminActions';
 import { INTERBRANCH_MODAL } from '../../actions/type';
 import { convertDateToString } from '../../Helpers/dateFunctions';
+import { FETCH_PR_ADMIN_DASHBOARD_REPORT, pushToHisCall, syncLabAndMedicine } from '../../actions/PrescriptionFormActions';
+import CustomeModal from '../CustomeModal/CustomeModal';
+import SyncSuccessModal from '../PrescriptionForm/Components/SyncSuccessModal/SyncSuccessModal';
 
 
 const { RangePicker } = DatePicker;
@@ -14,16 +17,19 @@ const { RangePicker } = DatePicker;
 function PrescriptionDashboard() {
 
     const dateRef = useRef(null)
+    const { crDashboard } = useSelector((state) => state.presctiptionFormReducer)
 
     let [isOpen, setOpen] = useState(false)
     let [searchKey, setSearchKey] = useState(null)
     let [filterData, setFilterData] = useState([])
+    let [isSyncing, setSyncing] = useState(false)
+    let [syncSuccess, setSyncSuccess] = useState(false)
+
+    let [_isSyncing, _setSyncing] = useState(false)
+    let [_syncSuccess, _setSyncSuccess] = useState(false)
+    let [individualSync, setIndividualSync] = useState(null)
 
     const dispatch = useDispatch()
-
-
-    const { crDashboard } = useSelector((state) => state.presctiptionFormReducer)
-
 
     let handleTableClick = (_id) => {
 
@@ -74,7 +80,9 @@ function PrescriptionDashboard() {
             }
             else {
 
-                dispatch(FETCH_ADMIN_DETAILED_REPORT({ fromDate: startDate, toDate: endDate }))
+                // dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT({ fromDate: startDate, toDate: endDate }))
+
+                // dispatch(FETCH_ADMIN_DETAILED_REPORT({ fromDate: startDate, toDate: endDate }))
                 //downloadReport(startDate, endDate)
             }
 
@@ -93,11 +101,16 @@ function PrescriptionDashboard() {
 
 
 
+
+
+    useEffect(() => {
+        setFilterData(crDashboard.prescriptionlist)
+    }, [crDashboard])
+
+
     useEffect(() => {
 
-        if (searchKey) {
-            handleSearch(searchKey)
-        }
+        handleSearch(searchKey ? searchKey : null)
 
     }, [searchKey])
 
@@ -106,40 +119,88 @@ function PrescriptionDashboard() {
 
         let oldData = crDashboard?.prescriptionlist
 
-        if (value && value!="") 
-        {
-            console.log("Have search key...",value.length);
+        if (value && value != "") {
+            console.log("Have search key...", value.length);
 
             let filteredData = oldData.filter((element) => {
+
                 if (element.appointmentID.includes(value.toString())) {
+                    return true
+                }
+
+                if (element.patientName.toLowerCase().includes(value.toString().toLowerCase())) {
+                    return true
+                }
+                if (element.doctorname.toLowerCase().includes(value.toString().toLowerCase())) {
                     return true
                 }
             })
 
             setFilterData(filteredData)
         }
-        else{
-            console.log("No search key...");
-            setFilterData([])
-        }
-
-
-
-
-    }
-
-    let dataToDisplay = () => {
-
-        if (filterData && filterData?.length > 0) {
-            return filterData
-        }
         else {
-
-            return crDashboard.prescriptionlist
+            console.log("No search key...");
+            setFilterData(crDashboard.prescriptionlist ? crDashboard.prescriptionlist : [])
         }
 
     }
 
+    let handleDownloadClick = (link) => {
+
+        if (link) {
+            window.open(link, "_blank")
+        }
+
+    }
+
+    let syncTM = () => {
+
+        if (!isSyncing) {
+
+            console.log("Start sync");
+            setSyncing(true)
+
+            dispatch(syncLabAndMedicine()).then((res) => {
+
+                setSyncing(false)
+                console.log(res);
+                setSyncSuccess(true)
+
+            })
+
+
+        }
+
+    }
+
+
+    let pushToHis = (_id) => {
+
+        if (!_isSyncing) {
+
+            setIndividualSync(_id)
+            console.log("Start sync individual");
+            _setSyncing(true)
+
+            dispatch(pushToHisCall(_id)).then((res) => {
+
+                _setSyncing(false)
+                console.log(res);
+                setSyncSuccess(true)
+
+            })
+
+
+        }
+
+    }
+
+
+    let reloadData= () =>{
+
+        dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT())
+
+    }
 
 
 
@@ -148,9 +209,9 @@ function PrescriptionDashboard() {
 
             <div className="header">
 
-                <button>
+                <button onClick={syncTM}>
 
-                    <div className="icon"><i class="far fa-sync"></i></div>Sync Lab Test & Medicine</button>
+                    <div className={`icon ${isSyncing ? "rotate" : ""}`}><i class="far fa-sync"></i></div>{isSyncing ? "Syncing..." : "Sync Lab Test & Medicine"}</button>
 
                 <div className="filter-button" >
 
@@ -206,17 +267,43 @@ function PrescriptionDashboard() {
 
 
 
-                                dataToDisplay().map((element, key) => {
+                                filterData.map((element, key) => {
 
                                     return (
 
                                         <tr>
-                                            <td>{element.appointmentID}</td>
+                                            <td>
+                                                {element.appointmentID}
+
+                                            </td>
                                             <td>{element.patientName}</td>
                                             <td>{element.doctorname}</td>
                                             <td>{`${element.appointmentDate}, ${element.appointmentTime}`}</td>
-                                            <td><span className="view-link">View</span></td>
-                                            <td>{"Data 5"}</td>
+                                            <td>
+                                                <div onClick={() => { handleDownloadClick(element.prescriptionFile) }} className="link-style">Download</div>
+                                            </td>
+                                            <td >
+                                                <div style={{
+                                                    display: "flex",
+                                                    flexDirection: "row",
+                                                    alignItems: "center"
+                                                }}>
+                                                    <div className="prescription_sync_status_indicator ">
+                                                        <div className={`${element.pushstatus === "true" ? "completed" : "pending"}`}></div>
+
+                                                    </div>
+
+                                                    &nbsp; &nbsp;
+
+                                                    {
+                                                        element.pushstatus == "true" ? "" :
+
+                                                            individualSync == element.id && _isSyncing ?
+                                                                <div className={`icon rotate`}><i class="far fa-sync"></i></div> :
+                                                                <span onClick={() => { pushToHis(element.id) }} className="link-style">Push to HIS</span>
+                                                    }
+                                                </div>
+                                            </td>
                                         </tr>
 
                                     )
@@ -242,6 +329,8 @@ function PrescriptionDashboard() {
             </div>
 
 
+
+            <SyncSuccessModal onOk={reloadData} state={syncSuccess} setState={setSyncSuccess} />
 
         </div>
     )
