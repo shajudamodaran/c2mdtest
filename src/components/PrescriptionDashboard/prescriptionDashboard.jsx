@@ -1,5 +1,5 @@
 import { DatePicker, Modal, Pagination, Tooltip } from 'antd';
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import moment from "moment"
 import './prescriptiondashboard.css'
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,6 +16,8 @@ function PrescriptionDashboard() {
     const dateRef = useRef(null)
 
     let [isOpen, setOpen] = useState(false)
+    let [searchKey, setSearchKey] = useState(null)
+    let [filterData, setFilterData] = useState([])
 
     const dispatch = useDispatch()
 
@@ -90,23 +92,52 @@ function PrescriptionDashboard() {
     }
 
 
-    let handleCommentChange = (para_appointment_id, e) => {
 
-        dispatch(updateMisReportComment(para_appointment_id, e.target.value)).then((res) => {
+    useEffect(() => {
 
-            if (res) {
-                dispatch(FETCH_ADMIN_DETAILED_REPORT())
-            }
+        if (searchKey) {
+            handleSearch(searchKey)
+        }
 
-        })
+    }, [searchKey])
+
+
+    let handleSearch = (value) => {
+
+        let oldData = crDashboard?.prescriptionlist
+
+        if (value && value!="") 
+        {
+            console.log("Have search key...",value.length);
+
+            let filteredData = oldData.filter((element) => {
+                if (element.appointmentID.includes(value.toString())) {
+                    return true
+                }
+            })
+
+            setFilterData(filteredData)
+        }
+        else{
+            console.log("No search key...");
+            setFilterData([])
+        }
+
+
 
 
     }
 
-    let handlePaginationChange = (e) => {
+    let dataToDisplay = () => {
 
-        // console.log(e-1);
-        dispatch(FETCH_ADMIN_DETAILED_REPORT({ offset: e - 1 }))
+        if (filterData && filterData?.length > 0) {
+            return filterData
+        }
+        else {
+
+            return crDashboard.prescriptionlist
+        }
+
     }
 
 
@@ -147,7 +178,7 @@ function PrescriptionDashboard() {
             <div className='mis_report_table_container'>
 
                 <div className="search-container">
-                    <input type="text" name="" id="" placeholder='Search' />
+                    <input value={searchKey} onChange={(e) => { setSearchKey(e.target.value) }} type="text" name="" id="" placeholder='Search' />
                 </div>
 
 
@@ -171,30 +202,32 @@ function PrescriptionDashboard() {
                     <tbody>
 
                         {
-                            crDashboard?.prescriptionlist.length>0?
-
-                            crDashboard.prescriptionlist.map((element,key)=>{
-
-                                return(
-
-                                    <tr>
-                                    <td>{element.appointmentID}</td>
-                                    <td>{element.patientName}</td>
-                                    <td>{element.doctorname}</td>
-                                    <td>{`${element.appointmentDate}, ${element.appointmentTime}`}</td>
-                                    <td><span className="view-link">View</span></td>
-                                    <td>{"Data 5"}</td>
-                                </tr>
-
-                                )
-
-                            })
+                            crDashboard?.prescriptionlist?.length > 0 ?
 
 
-                            :null
+
+                                dataToDisplay().map((element, key) => {
+
+                                    return (
+
+                                        <tr>
+                                            <td>{element.appointmentID}</td>
+                                            <td>{element.patientName}</td>
+                                            <td>{element.doctorname}</td>
+                                            <td>{`${element.appointmentDate}, ${element.appointmentTime}`}</td>
+                                            <td><span className="view-link">View</span></td>
+                                            <td>{"Data 5"}</td>
+                                        </tr>
+
+                                    )
+
+                                })
+
+
+                                : null
                         }
 
-                       
+
 
                     </tbody>
                 </table>
