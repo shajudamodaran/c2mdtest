@@ -1015,15 +1015,20 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
             let dep_id = null
 
-            setSelectedDepartmentName(preloadPrescription?.departmentName)
+            setSelectedDepartmentName(preloadPrescription?.department.Name)
 
             dispatch({
                 type: SET_SELECTED_DEPARTMENT,
-                payload: preloadPrescription.basicinfo.departmentId
+                payload: preloadPrescription.department.Id
             });
 
 
-            loadDoctors(preloadPrescription.basicinfo.departmentId)
+            loadDoctors(preloadPrescription.department.Id)
+
+            dispatch({
+                type: SET_SELECTED_DOCTORS,
+                payload: getElementArray(preloadPrescription?.doctors, "Id")
+            });
 
             setTemplateName(preloadPrescription.basicinfo.templateName)
 
@@ -1061,7 +1066,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
                     newArray.push({
                         name: element.testType,
-                        comment: element.testNames,
+                        comment: element.testComment,
                         id: key
                     })
 
@@ -1086,14 +1091,14 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
                     newArray.push({
                         id: key,
-                        type: null,
+                        type: element.type,
                         name: element.name,
-                        when: null,
-                        freequancy: null,
-                        quantity: element.quantity,
-                        unit: null,
-                        date: null,
-                        days: null,
+                        when: element.medtakeMethod,
+                        freequancy: element.displayTablet,
+                        quantity: element.quandity,
+                        unit: element.measurement,
+                        date: element.StartVal,
+                        days: element.totalDays,
                         instructions: element.mediComment
                     })
 
@@ -1120,10 +1125,10 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
     let clearPrepopulateddate = () => {
 
-        dispatch({type: CLEAR_PRESCRIPTION})
+        dispatch({ type: CLEAR_PRESCRIPTION })
         setSelectedDepartmentName(null)
         setTemplateName("")
-      
+
     }
 
 
@@ -1145,10 +1150,12 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
             console.log(res);
 
-            dispatch({
-                type: SET_SELECTED_DOCTORS,
-                payload: doctorObjectToArray(res)
-            });
+            if (!preloadPrescription) {
+                dispatch({
+                    type: SET_SELECTED_DOCTORS,
+                    payload: doctorObjectToArray(res)
+                });
+            }
 
             dispatch({
                 type: SET_DOCTORS,
@@ -1273,8 +1280,8 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                             instruction: submissionData.additionalInstruction != null ? submissionData.additionalInstruction : "",
                             share: true,
                             privateMessage: "",
-                            weight: submissionData.weight.value != null ? submissionData.weight.value + " " + submissionData.weight.unit : "",
-                            height: submissionData.height.value != null ? submissionData.height.value + " " + submissionData.height.unit : "",
+                            //weight: submissionData.weight.value != null ? submissionData.weight.value + " " + submissionData.weight.unit : "",
+                            //height: submissionData.height.value != null ? submissionData.height.value + " " + submissionData.height.unit : "",
                             lmp: submissionData.lmp != null ? submissionData.lmp : "",
                             labTest: _selectlabtest,
                             medicine: _selectmedicine
@@ -1408,6 +1415,23 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
         setSelectedDepartmentName(obj[0]?.departmentName)
 
 
+
+    }
+
+    let getElementArray = (data, key) => {
+
+        let newArray = []
+
+        if (data) {
+            data.map((element) => {
+
+                newArray.push(element[key])
+
+            })
+
+            return newArray
+
+        }
 
     }
 
@@ -1610,7 +1634,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                                         <div className='form-light-background-big'>
                                             <textarea
                                                 id="chiefComplaints"
-                                                value={submissionData.chiefComplaints?submissionData.chiefComplaints:""}
+                                                value={submissionData.chiefComplaints ? submissionData.chiefComplaints : ""}
                                                 className='form-input-text-area'
                                                 name="chiefcomplaints"
                                                 placeholder="Type here"
@@ -1627,7 +1651,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
                                         <div className='form-light-background-big'>
                                             <textarea id="releventPoint"
-                                                value={submissionData.releventPoint?submissionData.releventPoint:""}
+                                                value={submissionData.releventPoint ? submissionData.releventPoint : ""}
                                                 className='form-input-text-area'
                                                 rows={4} placeholder="Type here"
                                                 onChange={(e) => {
@@ -1646,7 +1670,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                                         <span className='form-small-tittle' >Diagnosis or Provisional Diagnosis</span>
 
                                         <div className='form-light-background-big'>
-                                            <textarea value={submissionData.diagnosis?submissionData.diagnosis:""} id="diagnosis" className='form-input-text-area' rows={4} placeholder="Type here" onChange={(e) => {
+                                            <textarea value={submissionData.diagnosis ? submissionData.diagnosis : ""} id="diagnosis" className='form-input-text-area' rows={4} placeholder="Type here" onChange={(e) => {
                                                 // setPrescriptioninfo({ ...presciptioninfor, diagnosis: e.target.value })
                                                 onChangeSubmissiondata(e.target.id, e.target.value)
                                             }} />
@@ -1657,7 +1681,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                                         <span className='form-small-tittle' >Examination/Lab Findings</span>
 
                                         <div className='form-light-background-big'>
-                                            <textarea id="examination" value={submissionData.examination?submissionData.examination:""} className='form-input-text-area' rows={4} placeholder="Type here" onChange={(e) => {
+                                            <textarea id="examination" value={submissionData.examination ? submissionData.examination : ""} className='form-input-text-area' rows={4} placeholder="Type here" onChange={(e) => {
                                                 // setPrescriptioninfo({ ...presciptioninfor, examinationlabfindings: e.target.value })
 
                                                 onChangeSubmissiondata(e.target.id, e.target.value)
@@ -2049,7 +2073,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                             </div>
 
                             <div onClick={() => { setActiveLeft(leftMenus[3].name) }} className='form-light-background' style={{ width: "45%" }}>
-                                <textarea value={submissionData.additionalInstruction?submissionData.additionalInstruction:""} ref={AddInstructionElement} className='form-input-text-area' rows={3} placeholder='Type here' style={{ width: "100%" }} onChange={(e) => {
+                                <textarea value={submissionData.additionalInstruction ? submissionData.additionalInstruction : ""} ref={AddInstructionElement} className='form-input-text-area' rows={3} placeholder='Type here' style={{ width: "100%" }} onChange={(e) => {
                                     onChangeSubmissiondata("additionalInstruction", e.target.value)
                                 }} />
                             </div>

@@ -44,3 +44,19 @@
       text-decoration: underline;
     }
   }
+
+
+  .empty-table-data{
+
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: rgb(128, 128, 128);
+    font-size: 15px;
+    letter-spacing: .5px;
+    margin-top: 1rem;
+
+  }

@@ -1,4 +1,5 @@
 import loginedApi from "../apis";
+import { convertDateToString } from "../Helpers/dateFunctions";
 import { INTERBRANCH_ADMIN_DASHBOARD, SET_CR_DASHBOARD, UPDATE_REDUX_PRESCRIPTION } from "./type";
 
 
@@ -139,9 +140,16 @@ export const viewTemplate = (par_tempId) => async dispatch => {
 
 }
 
-export const FETCH_PR_ADMIN_DASHBOARD_REPORT = (props) => async dispatch => {
+export const FETCH_PR_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
 
     // let userToken = await getFromLocalStorage(USER_TOKEN)
+
+    let fromDate = _para?.fromDate ? convertDateToString(_para.fromDate) : null
+    let toDate = _para?.toDate ? convertDateToString(_para.toDate) : null
+
+    let todayDate=convertDateToString(new Date())
+
+    console.log(todayDate);
 
 
 
@@ -149,8 +157,8 @@ export const FETCH_PR_ADMIN_DASHBOARD_REPORT = (props) => async dispatch => {
         "data": {
             "userID": "98278532",
             "operation": "find",
-            "startDate": props?.fromDate?props.fromDate:"01-Mar-2022",
-            "endDate": props?.toDate?props.toDate:"07-May-2022",
+            "startDate": fromDate?fromDate:todayDate,
+            "endDate": toDate?toDate:todayDate,
             "browserTimeZone": "GMT+05:30"
         },
         "browserTimeZone": "",

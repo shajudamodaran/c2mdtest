@@ -88,7 +88,7 @@ function TemplateList() {
 
     let handleEditOnClick = (rowData, element) => {
 
-        setEditMode({ ...rowData, tempId: element.tempId, departmentName: element.assignedDepartments })
+        setEditMode({ ...rowData, tempId: element.tempId, departmentName: element.assignedDepartments, doctors:element.Doctors, department:element.Departments[0] })
         //console.log(rowData);
 
     }
@@ -116,6 +116,20 @@ function TemplateList() {
 
     }
 
+    let convertStringWithSpace = (data) => {
+
+        let array=data.split(",")
+        let newArray=[]
+
+    
+        array.map((element)=>{
+            newArray.push(`${element}  `)
+        })
+
+        return newArray.toString()
+    }
+
+
     const Content = ({data}) => {
 
        
@@ -140,7 +154,7 @@ function TemplateList() {
     }
 
 
-    console.log(templateList.length);
+    console.log(templateList);
 
     return (
         <div className='appontment-history-container'>
@@ -221,12 +235,12 @@ function TemplateList() {
                                                     <td>{element.createdDate}</td>
                                                     <td>{element.updatedDate ? element.updatedDate : "No Data Available"}</td>
                                                     <td>{element.assignedDoctors ?
-                                                        convertToArray(element.assignedDoctors).length > 2 ?
+                                                        convertToArray(element.assignedDoctors).length > 1 ?
 
                                                             <Popover content={<Content data={element?.assignedDoctors} />} title={`Doctors list (${element?.assignedDoctors.split(",").length})`}>
                                                                 {convertToArray(element.assignedDoctors)[0]} +{convertToArray(element.assignedDoctors).length - 1}
                                                             </Popover>
-                                                            : element.assignedDoctors
+                                                            :convertStringWithSpace(element.assignedDoctors) 
                                                         : "No Data Available"}</td>
                                                     <td><div className="edit-btn" onClick={(() => { handleEditOnClick(element.tempData, element) })}><EditIcon /></div></td>
                                                     {/* <td><div className="edit-btn" onClick={() => { handleViewOnClick(element.tempData, element.tempId) }}><ViewIcon /></div></td> */}

@@ -54,6 +54,7 @@ function PrescriptionDashboard() {
     }
 
     let handledateChange = (e) => {
+        
 
 
         if (e) {
@@ -63,30 +64,36 @@ function PrescriptionDashboard() {
 
             console.log(convertDateToString(prevDate));
 
-            console.log();
+            console.log({ fromDate: startDate, toDate: endDate });
 
-            if (startDate < prevDate) {
+             dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT({ fromDate: startDate, toDate: endDate }))
 
-                Modal.confirm({
-                    title: 'Confirm',
-                    // icon: <ExclamationCircleOutlined />,
-                    content: 'You can only view report within a 3 month span. Do you want to download the report before 3 months?',
-                    okText: 'Download Report',
-                    cancelText: 'cancel',
-                    onOk() {
-                        downloadReport(startDate, endDate)
-                    },
-                });
-            }
-            else {
+            // if (startDate < prevDate) {
 
-                // dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT({ fromDate: startDate, toDate: endDate }))
+            //     Modal.confirm({
+            //         title: 'Confirm',
+            //         // icon: <ExclamationCircleOutlined />,
+            //         content: 'You can only view report within a 3 month span. Do you want to download the report before 3 months?',
+            //         okText: 'Download Report',
+            //         cancelText: 'cancel',
+            //         onOk() {
+            //             downloadReport(startDate, endDate)
+            //         },
+            //     });
+            // }
+            // else {
 
-                // dispatch(FETCH_ADMIN_DETAILED_REPORT({ fromDate: startDate, toDate: endDate }))
-                //downloadReport(startDate, endDate)
-            }
+            //     // dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT({ fromDate: startDate, toDate: endDate }))
+
+            //     // dispatch(FETCH_ADMIN_DETAILED_REPORT({ fromDate: startDate, toDate: endDate }))
+            //     //downloadReport(startDate, endDate)
+            // }
 
 
+
+        }
+        else{
+            dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT())
 
         }
 
@@ -311,7 +318,11 @@ function PrescriptionDashboard() {
                                 })
 
 
-                                : null
+                                : <tr>
+                                    <td colSpan={6}>
+                                        <div className="empty-table-data">(No data to display)</div>
+                                    </td>
+                                </tr>
                         }
 
 
