@@ -61,14 +61,15 @@ function Index() {
 
                 <div className="letf-top">
                     <div className="header-card" style={{ marginBottom: "2.5rem" }}>
-                        <TittleCard className="d-flex flex-column justify-content-start align-items-center mt-2" style={{ 
+                        <TittleCard className="d-flex flex-column justify-content-center align-items-center mt-2" style={{ 
                             width: "100%",
                              height: "79.14px",
+                             color:"rgba(0, 0, 0, 0.85)"
                             
                               }}>
 
-                            <div className="dr-name-home text-start w-100" style={{ fontWeight: "bold" }} >{userData ? userData.profileName : "---"}</div>
-                            <div className="dr-id-home text-start w-100" style={{ fontWeight: "bold" }}>ID: {userData ? userData.profileId : "---"}</div>
+                            <div className="dr-name-home text-center w-100" style={{ fontWeight: "500" }} >{userData ? userData.profileName : "---"}</div>
+                            <div className="dr-id-home text-center w-100" style={{ fontWeight: "500" }}>ID: {userData ? userData.profileId : "---"}</div>
                         </TittleCard>
                     </div>
 

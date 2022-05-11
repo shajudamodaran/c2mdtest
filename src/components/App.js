@@ -16,6 +16,9 @@ import "slick-carousel/slick/slick.css";
 
 import "slick-carousel/slick/slick-theme.css";
 
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+
 
 
 const Login = React.lazy(() => import("../pages/login"));
@@ -71,9 +74,60 @@ const ViewPrescription = React.lazy(() => import("../components/PrescriptionForm
 
 
 
+
 function App() {
+
+  const customTheme = createMuiTheme({
+
+
+    overrides: 
+    {
+      MuiInput: 
+      {
+        input: {
+          "&::placeholder": {
+            color: 'rgb(119, 119, 119)!important',
+            opacity: '1 !important',
+            fontSize: "14px !important"
+          },
+          color: "black", // if you also want to change the color of the input, this is the prop you'd use
+        }
+      },
+  
+      MuiPickersToolbar: {
+        toolbar: {
+          backgroundColor: "#0a8ce0",
+        },
+      },
+      MuiPickersCalendarHeader: {
+        switchHeader: {
+          // backgroundColor: lightBlue.A200,
+          // color: "white",
+        },
+      },
+      MuiPickersDay: {
+        day: {
+          color: "#0a8ce0",
+        },
+        daySelected: {
+          backgroundColor:'#0a8ce0',
+  
+          '&:hover':{
+  
+            backgroundColor:'#0a8ce0',
+  
+          }
+        },
+       
+      },
+     
+    }
+  });
+
+
   return (
     <>
+    <ThemeProvider theme={customTheme}>
       {/* <Router basename={'/ROOT/'}> */}
       <Router basename={"/c2mydruat/"}>
         <div>
@@ -192,6 +246,7 @@ function App() {
           </Suspense>
         </div>
       </Router>
+      </ThemeProvider>
     </>
   );
 }

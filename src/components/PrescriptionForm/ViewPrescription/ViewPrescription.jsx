@@ -130,7 +130,7 @@ function ViewPrescription({ location }) {
 
                                     <div className='form-light-background-big'>
                                         <input id="releventPoint"
-                                            style={{ width: "170px" }}
+                                            style={{ width: "290px" }}
                                             value={template?.assignedDepartments}
                                             className='form-input-text'
                                             placeholder="Type here"
@@ -150,7 +150,7 @@ function ViewPrescription({ location }) {
                                     <Popover content={<Content data={template?.assignedDoctors}/>} title={`Doctors list (${template?.assignedDoctors.split(",").length})`}>
                                         <div className='form-light-background-big'>
                                             <input id="releventPoint"
-                                                style={{ maxWidth: "250px", minWidth: "170px" }}
+                                                style={{ maxWidth: "290px", minWidth: "290px" }}
                                                 value={template?.assignedDoctors.toString()}
                                                 className='form-input-text'
                                                 placeholder="Type here"
@@ -184,7 +184,7 @@ function ViewPrescription({ location }) {
 
                                     <div className='form-light-background-big'>
                                         <input id="releventPoint"
-                                            style={{ width: "170px" }}
+                                            style={{ width: "290px" }}
                                             value={template?.tempData?.basicinfo?.templateName}
                                             className='form-input-text'
                                             placeholder="Type here"
@@ -405,13 +405,13 @@ function ViewPrescription({ location }) {
 
                                                             </td> */}
                                                             <td>{obj.name}</td>
-                                                            <td>{obj.when}</td>
-                                                            <td>{obj.freequancy}</td>
-                                                            <td>{obj.quantity} </td>
-                                                            <td>{obj.unit}</td>
-                                                            <td>{obj.date}</td>
-                                                            <td>{obj.days}</td>
-                                                            <td>{obj.instructions}</td>
+                                                            <td>{obj.medtakeMethod}</td>
+                                                            <td>{obj.displayTablet}</td>
+                                                            <td>{obj.quandity} </td>
+                                                            <td>{obj.measurement}</td>
+                                                            <td>{obj.StartVal}</td>
+                                                            <td>{obj.totalDays}</td>
+                                                            <td>{obj.mediComment}</td>
                                                         </tr>
 
                                                     )
