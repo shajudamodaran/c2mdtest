@@ -9,6 +9,8 @@ import { INTERBRANCH_MODAL } from '../../actions/type';
 import { convertDateToString } from '../../Helpers/dateFunctions';
 import { Input } from 'antd';
 import AdminTextArea from '../Common/AdminTextArea/AdminTextArea';
+import { getFromLocalStorage } from '../../Helpers/localStorageHelper';
+import { ADMIN_USER, USER_DATA } from '../../constants/const';
 
 const { TextArea } = Input;
 
@@ -28,6 +30,10 @@ function Misreport() {
 
     let misReports = useSelector(state => state.interbranchAdmin.detailedReportTable)
     let misReportsPageLength = useSelector(state => state.interbranchAdmin.detailedReportTableTotalPages)
+
+    let userData= localStorage.getItem(USER_DATA)
+    userData=JSON.parse(userData)
+    let {userType}=userData
 
 
     let handleTableClick = (_id) => {
@@ -174,7 +180,10 @@ function Misreport() {
                         <th>Appointment Time</th>
                         <th>Patient Name</th>
                         <th>Doctor Name</th>
-                        <th>Hospital Name</th>
+                        {
+                            userType===ADMIN_USER? <th>Hospital Name</th>:null
+                        }
+                       
                         <th>Fees Paid</th>
                         <th>C2MD Fees</th>
                         <th>Nett Fees</th>
@@ -206,7 +215,10 @@ function Misreport() {
                                                     <td>{element.appointmentTime}</td>
                                                     <td>{element.patientName}</td>
                                                     <td>{element.doctorName}</td>
-                                                    <td>Bethany Hospital</td>
+                                                    {
+                                                         userType===ADMIN_USER?<td>{element.hospital}</td>:null
+                                                    }
+                                                    
                                                     <td>{element.feesPaid}</td>
                                                     <td>{element.c2mdFees}</td>
                                                     <td>{element.nettFees}</td>

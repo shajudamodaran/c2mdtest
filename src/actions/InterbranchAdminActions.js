@@ -5,9 +5,17 @@ import { getFromLocalStorage } from "../Helpers/localStorageHelper";
 import authHeader from "./AuthHeader";
 import { INTERBRANCH_ADMIN_CONSOLIDATED, INTERBRANCH_ADMIN_DASHBOARD, INTERBRANCH_ADMIN_DASHBOARD_SELECTED, INTERBRANCH_ADMIN_DETAILED, INTERBRANCH_ADMIN_DETAILED_SELECTED } from "./type";
 
+import {ADMIN_USER, USER_DATA} from '../constants/const'
+
+
+
 export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
 
     // let userToken = await getFromLocalStorage(USER_TOKEN)
+    let userData= await getFromLocalStorage(USER_DATA)
+    userData=JSON.parse(userData)
+    let {userType}=userData
+
 
 
 
@@ -27,10 +35,28 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
         }
     }
 
+ 
+
+
+    let params_for_clinic={
+
+        "token": "token",
+        "requestType": "509",
+        "version": "2.0",
+        "browserTimeZone": "GMT+05:30",
+        "data": {
+            "operation": "find",
+            "reportType":"today",
+            // "Type": "excel",
+            "clinic": userData?.clinicname
+        }
+
+    }
 
 
 
-    let responce = await loginedApi.post("getappointments", params, { headers: authHeader() })
+
+    let responce = await loginedApi.post("getappointments",userType===ADMIN_USER?params:params_for_clinic, { headers: authHeader() })
 
     console.log("getappointments responce ->", responce.data.data);
 
@@ -54,6 +80,11 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
 
 export const FETCH_ADMIN_DETAILED_REPORT = (_para) => async (dispatch) => {
 
+    let userData= await getFromLocalStorage(USER_DATA)
+    userData=JSON.parse(userData)
+    let {userType, clinicId}=userData
+
+
     
 
     let fromDate = _para?.fromDate ? convertDateToString(_para.fromDate) : null
@@ -71,7 +102,7 @@ export const FETCH_ADMIN_DETAILED_REPORT = (_para) => async (dispatch) => {
             // "Type": "excel",
             "startDate": fromDate ? fromDate : "16-Mar-2022",
             "endDate": toDate ? toDate : "17-Mar-2022",
-            "clinic": "14",
+            "clinic": clinicId,
             "offset": _para?.offset ? _para.offset.toString() : "0"
         }
     }
@@ -100,6 +131,8 @@ export const FETCH_ADMIN_DETAILED_REPORT = (_para) => async (dispatch) => {
 
 
 export const FETCH_DASHBOARD_MORE = (_id) => async dispatch => {
+
+    
 
     let params = {
         "token": "token",
@@ -132,6 +165,8 @@ export const FETCH_DASHBOARD_MORE = (_id) => async dispatch => {
 }
 
 export const FETCH_DETAILED_MORE = (_id) => async dispatch => {
+
+    
 
     let params = {
         "token": "token",
@@ -166,6 +201,10 @@ export const FETCH_DETAILED_MORE = (_id) => async dispatch => {
 
 export const FETCH_CONSOLIDATED_REPORTS = (_para) => async dispatch => {
 
+    let userData= await getFromLocalStorage(USER_DATA)
+    userData=JSON.parse(userData)
+    let {userType, clinicId}=userData
+
     let params = {
         "token": "token",
         "requestType": "1040",
@@ -176,7 +215,7 @@ export const FETCH_CONSOLIDATED_REPORTS = (_para) => async dispatch => {
             "Type": "excel",
             "startDate": "16-Mar-2022",
             "endDate": "17-Mar-2022",
-            "clinic": "14",
+            "clinic": clinicId,
             "offset": _para?.offset ? _para.offset.toString() : "0"
         }
     }
