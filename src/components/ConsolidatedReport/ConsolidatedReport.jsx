@@ -4,6 +4,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { FETCH_CONSOLIDATED_REPORTS, updateConsolodatedReportComment, updateMisReportAttachments } from '../../actions/InterbranchAdminActions'
 import { AddIconV2 } from '../../assets/Logos/Icons'
+import EmptyTableData from '../Common/EmptyTableData/EmptyTableData'
 import './consolidatedreport.css'
 
 function ConsolidatedReport() {
@@ -172,7 +173,11 @@ function ConsolidatedReport() {
 
                                     })
 
-                                    : null
+                                    : <tr>
+                                        <td colSpan={12}>
+                                            <EmptyTableData />
+                                        </td>
+                                    </tr>
                                 : null
                         }
 

@@ -57,6 +57,34 @@
        flex-direction: row;
        align-items: center;
        justify-content: space-between;
+
+       button {
+        padding: 0.7rem 1.5rem;
+        font-size: 16px;
+        font-weight: normal;
+        background-color: #f4f6f8;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        cursor: pointer;
+        outline: 0px;
+        border: 0px;
+
+        .icon{
+            border-radius: 100px;
+            background-color: white;
+            height: 35px;
+            width: 35px;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+    }
       
    }
 }
@@ -102,6 +130,7 @@
 .todays_report_table_container {
   width: 100%;
   overflow-y: auto;
+  min-height: 625px;
   @include scrollbars(10px, slategray);
 
   .appoinment-table{

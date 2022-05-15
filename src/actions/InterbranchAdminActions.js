@@ -14,12 +14,15 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
     // let userToken = await getFromLocalStorage(USER_TOKEN)
     let userData= await getFromLocalStorage(USER_DATA)
     userData=JSON.parse(userData)
-    let {userType}=userData
+    let {userType,clinicId}=userData
+
+    let todayDate=convertDateToString(new Date())
 
 
 
 
-    let params = {
+    let params = 
+    {
         "token": "token",
         "requestType": "1040",
         "version": "2.0",
@@ -27,9 +30,11 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
             "operation": "find",
             "browserTimeZone": "GMT+05:30",
             // "Type": "excel",
-            "startDate": "16-Mar-2022",
-            "endDate": "17-Mar-2022",
-            "clinic": "14",
+            "startDate": todayDate,
+            "endDate": todayDate,
+            // "startDate": "16-Mar-2022",
+            // "endDate": "17-Mar-2022",
+            // "clinic": clinicId?clinicId:"14",
             "Type": "excel",
             "offset": _para?.offset ? _para.offset.toString() : "0"
         }
@@ -38,25 +43,11 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
  
 
 
-    let params_for_clinic={
-
-        "token": "token",
-        "requestType": "509",
-        "version": "2.0",
-        "browserTimeZone": "GMT+05:30",
-        "data": {
-            "operation": "find",
-            "reportType":"today",
-            // "Type": "excel",
-            "clinic": userData?.clinicname
-        }
-
-    }
+   
 
 
 
-
-    let responce = await loginedApi.post("getappointments",userType===ADMIN_USER?params:params_for_clinic, { headers: authHeader() })
+    let responce = await loginedApi.post("getappointments",params, { headers: authHeader() })
 
     console.log("getappointments responce ->", responce.data.data);
 
@@ -82,7 +73,9 @@ export const FETCH_ADMIN_DETAILED_REPORT = (_para) => async (dispatch) => {
 
     let userData= await getFromLocalStorage(USER_DATA)
     userData=JSON.parse(userData)
-    let {userType, clinicId}=userData
+    let {userType,clinicId}=userData
+
+    let todayDate=convertDateToString(new Date())
 
 
     
@@ -100,13 +93,22 @@ export const FETCH_ADMIN_DETAILED_REPORT = (_para) => async (dispatch) => {
             "operation": "find",
             "browserTimeZone": "GMT+05:30",
             // "Type": "excel",
-            "startDate": fromDate ? fromDate : "16-Mar-2022",
-            "endDate": toDate ? toDate : "17-Mar-2022",
-            "clinic": clinicId,
+            // "startDate": "16-Mar-2022",
+            // "endDate": "17-Mar-2022",
+            "startDate": fromDate ? fromDate : todayDate,
+            "endDate": toDate ? toDate : todayDate,
             "offset": _para?.offset ? _para.offset.toString() : "0"
         }
+
     }
 
+   
+    if(clinicId)
+    {
+        params.data.clinic=clinicId
+    }
+
+ 
     let responce = await loginedApi.post("getsummaryreport", params, { headers: authHeader() })
 
     console.log("Summary report calling context==>",_para.context,_para?.offset);
@@ -205,6 +207,8 @@ export const FETCH_CONSOLIDATED_REPORTS = (_para) => async dispatch => {
     userData=JSON.parse(userData)
     let {userType, clinicId}=userData
 
+    let todayDate=convertDateToString(new Date())
+
     let params = {
         "token": "token",
         "requestType": "1040",
@@ -213,11 +217,15 @@ export const FETCH_CONSOLIDATED_REPORTS = (_para) => async dispatch => {
             "operation": "search",
             "browserTimeZone": "GMT+05:30",
             "Type": "excel",
-            "startDate": "16-Mar-2022",
-            "endDate": "17-Mar-2022",
-            "clinic": clinicId,
+            "startDate": todayDate,
+            "endDate": todayDate,
             "offset": _para?.offset ? _para.offset.toString() : "0"
         }
+    }
+
+    if(clinicId)
+    {
+        params.data.clinic=clinicId
     }
 
     let responce = await c2mdApi.post("getconsolidatedreport", params, { headers: authHeader() })

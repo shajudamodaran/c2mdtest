@@ -264,6 +264,7 @@
 .mis_report_table_container {
   width: 100%;
   overflow-x: auto;
+  min-height: 580px;
 }
 
 .mis_report_table_container::-webkit-scrollbar {
