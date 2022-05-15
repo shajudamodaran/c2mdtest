@@ -239,6 +239,7 @@
 .mis_report_table_container {
     width: 100%;
     overflow-x: auto;
+    min-height: 580px;
     @include scrollbars(10px, slategray);
 }
 

@@ -22,8 +22,9 @@
 }
 
 .interbranch-container::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: 0px;
+  height: 0px;
+  display: none;
 }
 
 .interbranch-container::-webkit-scrollbar-thumb {

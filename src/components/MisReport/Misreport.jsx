@@ -9,6 +9,10 @@ import { INTERBRANCH_MODAL } from '../../actions/type';
 import { convertDateToString } from '../../Helpers/dateFunctions';
 import { Input } from 'antd';
 import AdminTextArea from '../Common/AdminTextArea/AdminTextArea';
+import { getFromLocalStorage } from '../../Helpers/localStorageHelper';
+import { ADMIN_USER, USER_DATA } from '../../constants/const';
+import { FolderEmpty } from '../../assets/Logos/Icons';
+import EmptyTableData from '../Common/EmptyTableData/EmptyTableData';
 
 const { TextArea } = Input;
 
@@ -28,6 +32,10 @@ function Misreport() {
 
     let misReports = useSelector(state => state.interbranchAdmin.detailedReportTable)
     let misReportsPageLength = useSelector(state => state.interbranchAdmin.detailedReportTableTotalPages)
+
+    let userData = localStorage.getItem(USER_DATA)
+    userData = JSON.parse(userData)
+    let { userType } = userData
 
 
     let handleTableClick = (_id) => {
@@ -79,7 +87,7 @@ function Misreport() {
             else {
 
                 setSelectedDate({ from: startDate, to: endDate })
-                dispatch(FETCH_ADMIN_DETAILED_REPORT({ fromDate: startDate, toDate: endDate, offset: pagination , context:"Date Change"}))
+                dispatch(FETCH_ADMIN_DETAILED_REPORT({ fromDate: startDate, toDate: endDate, offset: pagination, context: "Date Change" }))
                 //downloadReport(startDate, endDate)
             }
 
@@ -110,7 +118,7 @@ function Misreport() {
         dispatch(updateMisReportComment(para_appointment_id, e.target.value)).then((res) => {
 
             if (res) {
-                dispatch(FETCH_ADMIN_DETAILED_REPORT({ offset: pagination, context:"Comment Change" }))
+                dispatch(FETCH_ADMIN_DETAILED_REPORT({ offset: pagination, context: "Comment Change", fromDate: selectedDate.from, toDate: selectedDate.to }))
             }
 
         })
@@ -120,13 +128,14 @@ function Misreport() {
 
     let handlePaginationChange = (e) => {
 
-       
-        dispatch(FETCH_ADMIN_DETAILED_REPORT({ offset: e-1, context:"Pagination Change" }))
+
+        dispatch(FETCH_ADMIN_DETAILED_REPORT({ offset: e - 1, context: "Pagination Change", fromDate: selectedDate.from, toDate: selectedDate.to }))
         setPagination(e - 1)
         // console.log(e-1);
     }
 
-  
+
+
 
 
 
@@ -174,7 +183,10 @@ function Misreport() {
                         <th>Appointment Time</th>
                         <th>Patient Name</th>
                         <th>Doctor Name</th>
-                        <th>Hospital Name</th>
+                        {
+                            userType === ADMIN_USER ? <th>Hospital Name</th> : null
+                        }
+
                         <th>Fees Paid</th>
                         <th>C2MD Fees</th>
                         <th>Nett Fees</th>
@@ -206,7 +218,10 @@ function Misreport() {
                                                     <td>{element.appointmentTime}</td>
                                                     <td>{element.patientName}</td>
                                                     <td>{element.doctorName}</td>
-                                                    <td>Bethany Hospital</td>
+                                                    {
+                                                        userType === ADMIN_USER ? <td>{element.hospital}</td> : null
+                                                    }
+
                                                     <td>{element.feesPaid}</td>
                                                     <td>{element.c2mdFees}</td>
                                                     <td>{element.nettFees}</td>
@@ -226,7 +241,11 @@ function Misreport() {
                                         }
                                     })
 
-                                    : console.log("length ", misReports.length)
+                                    : <tr>
+                                        <td colSpan={12}>
+                                            <EmptyTableData />
+                                        </td>
+                                    </tr>
                                 : console.log("no mis report")
                         }
 
@@ -235,8 +254,18 @@ function Misreport() {
 
 
 
+
+
+
                     </tbody>
+
+
+
+
+
                 </table>
+
+
 
             </div>
 
