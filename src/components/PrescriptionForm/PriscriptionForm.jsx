@@ -1723,8 +1723,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                             </div>
 
 
-
-
+                          
                             {finalInvestigations.length > 0 ?
 
 
@@ -1818,7 +1817,6 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
 
                                                         <textarea
-
                                                             rows={1}
                                                             value={obj.comment ? obj.comment : ""}
                                                             placeholder='Type here'
@@ -2117,7 +2115,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                 isReadyToSubmit ?
 
                     <div className="button-container">
-                        <button disabled={isLoading} onClick={() => { createPrescription() }} className={isLoading ? 'save-rescription-btn-disabled' : 'save-rescription-btn'} > <LabelIcon_Prescription />  {preloadData ? "UPDATE" : "SAVE"} PRESCRIPTION</button>
+                        <button disabled={isLoading} onClick={() => { createPrescription() }} className={isLoading ? 'save-rescription-btn-disabled' : 'save-rescription-btn'} > <LabelIcon_Prescription />  {preloadData ? "UPDATE" : "SAVE"} TEMPLATE</button>
                     </div> : null
             }
         </div >

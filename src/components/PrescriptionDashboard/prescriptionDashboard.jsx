@@ -10,6 +10,7 @@ import { convertDateToString } from '../../Helpers/dateFunctions';
 import { FETCH_PR_ADMIN_DASHBOARD_REPORT, pushToHisCall, syncLabAndMedicine } from '../../actions/PrescriptionFormActions';
 import CustomeModal from '../CustomeModal/CustomeModal';
 import SyncSuccessModal from '../PrescriptionForm/Components/SyncSuccessModal/SyncSuccessModal';
+import EmptyTableData from '../Common/EmptyTableData/EmptyTableData';
 
 
 const { RangePicker } = DatePicker;
@@ -253,7 +254,7 @@ function PrescriptionDashboard() {
                 <table className='appoinment-table'>
                     <tr>
                         <th>App Id</th>
-                        <th>Patient</th>
+                        <th style={{width:"230px"}}>Patient</th>
                         <th>Doctor</th>
                         <th>App Date & Time</th>
                         {/* <th>Appointment Time</th> */}
@@ -319,10 +320,10 @@ function PrescriptionDashboard() {
 
 
                                 : <tr>
-                                    <td colSpan={6}>
-                                        <div className="empty-table-data">(No data to display)</div>
-                                    </td>
-                                </tr>
+                                <td colSpan={6}>
+                                    <EmptyTableData />
+                                </td>
+                            </tr>
                         }
 
 

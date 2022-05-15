@@ -93,6 +93,17 @@ function App() {
           color: "black", // if you also want to change the color of the input, this is the prop you'd use
         }
       },
+      MuiAutoComplete: 
+      {
+        input: {
+          "&::placeholder": {
+            color: 'rgb(119, 119, 119)!important',
+            opacity: '1 !important',
+            fontSize: "14px !important"
+          },
+          color: "black", // if you also want to change the color of the input, this is the prop you'd use
+        }
+      },
   
       MuiPickersToolbar: {
         toolbar: {

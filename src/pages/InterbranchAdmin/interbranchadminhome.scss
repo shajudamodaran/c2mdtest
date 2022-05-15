@@ -23,13 +23,39 @@
     }
   }
 
+  @mixin scrollbarsHidden($size, $foreground-color, $background-color: mix($foreground-color, white,  30%)) {
+    // For Google Chrome
+    &::-webkit-scrollbar {
+      width:  $size;
+      height: $size;
+      display: none;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background: $foreground-color;
+      border-radius: 100px;
+    }
+  
+    &::-webkit-scrollbar-track {
+      background: $background-color;
+      border-radius: 100px;
+    }
+  
+    // For Internet Explorer
+    & {
+      scrollbar-face-color: $foreground-color;
+      scrollbar-track-color: $background-color;
+    }
+  }
+
+
 
 .interbranch-container{
     width: 100%;
     background-color: #F4F6F8;
     min-height: 100vh;
     overflow: auto;
-    @include scrollbars(4px, slategray);
+    @include scrollbarsHidden(0px, slategray);
   
     display: flex;
     flex-direction: row;

@@ -11,6 +11,7 @@ import { BackArrow, EditIcon, ViewIcon } from '../../assets/Logos/Icons';
 import { getDepartments, getTemplateList } from '../../actions/PrescriptionFormActions';
 import PrescriptionForm from '../PrescriptionForm/PriscriptionForm'
 import { useHistory, useLocation } from 'react-router-dom';
+import EmptyTableData from '../Common/EmptyTableData/EmptyTableData';
 
 
 const { RangePicker } = DatePicker;
@@ -250,7 +251,11 @@ function TemplateList() {
                                             )
 
                                         })
-                                        : null
+                                        :  <tr>
+                                        <td colSpan={7}>
+                                            <EmptyTableData />
+                                        </td>
+                                    </tr>
                                 }
 
 

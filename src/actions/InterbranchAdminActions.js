@@ -5,7 +5,7 @@ import { getFromLocalStorage } from "../Helpers/localStorageHelper";
 import authHeader from "./AuthHeader";
 import { INTERBRANCH_ADMIN_CONSOLIDATED, INTERBRANCH_ADMIN_DASHBOARD, INTERBRANCH_ADMIN_DASHBOARD_SELECTED, INTERBRANCH_ADMIN_DETAILED, INTERBRANCH_ADMIN_DETAILED_SELECTED } from "./type";
 
-import {ADMIN_USER, USER_DATA} from '../constants/const'
+import {ADMIN_USER, CLINIC_ADMIN_USER, USER_DATA} from '../constants/const'
 
 
 
@@ -24,7 +24,7 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
     let params = 
     {
         "token": "token",
-        "requestType": "1040",
+        "requestType": userType==CLINIC_ADMIN_USER?"518":"1040",
         "version": "2.0",
         "data": {
             "operation": "find",
@@ -329,6 +329,11 @@ export const downloadSummaryReport = (_para) => async (dispatch) => {
     let fromDate = _para?.fromDate ? convertDateToString(_para.fromDate) : null
     let toDate = _para?.toDate ? convertDateToString(_para.toDate) : null
 
+    let userData= await getFromLocalStorage(USER_DATA)
+    userData=JSON.parse(userData)
+    let {userType, clinicId}=userData
+
+
     console.log(fromDate, toDate);
 
     let params = {
@@ -341,7 +346,7 @@ export const downloadSummaryReport = (_para) => async (dispatch) => {
             "Type": "excel",
             "startDate": fromDate ? fromDate : "16-Mar-2022",
             "endDate": toDate ? toDate : "17-Mar-2022",
-            "clinic": "14",
+            "clinic": clinicId,
         }
     }
 

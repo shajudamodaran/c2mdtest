@@ -53,7 +53,7 @@ function ViewPrescription({ location }) {
 
                    data.split(",").map((element,key)=>{
                        return(
-                           <span>{element}{key>data.split(",").length-1?"":","} </span>
+                           <span>{element}{key>data.split(",").length-2?"":","} </span>
                        )
                    })
 
@@ -133,7 +133,7 @@ function ViewPrescription({ location }) {
                                             style={{ width: "290px" }}
                                             value={template?.assignedDepartments}
                                             className='form-input-text'
-                                            placeholder="Type here"
+                                          
                                             readOnly
                                         />
                                     </div>
@@ -153,7 +153,7 @@ function ViewPrescription({ location }) {
                                                 style={{ maxWidth: "290px", minWidth: "290px" }}
                                                 value={template?.assignedDoctors.toString()}
                                                 className='form-input-text'
-                                                placeholder="Type here"
+                                              
                                                 readOnly
                                             />
                                         </div>
@@ -187,7 +187,7 @@ function ViewPrescription({ location }) {
                                             style={{ width: "290px" }}
                                             value={template?.tempData?.basicinfo?.templateName}
                                             className='form-input-text'
-                                            placeholder="Type here"
+                                            
                                             readOnly
                                         />
                                     </div>
@@ -226,7 +226,7 @@ function ViewPrescription({ location }) {
                                                 value={template?.tempData?.consultationDetails?.chiefcomplaints}
                                                 className='form-input-text-area'
                                                 name="chiefcomplaints"
-                                                placeholder="Type here"
+                                              
                                                 rows={4}
                                                 readOnly={true}
                                             />
@@ -240,7 +240,7 @@ function ViewPrescription({ location }) {
                                             <textarea id="releventPoint"
                                                 value={template?.tempData?.consultationDetails?.notes}
                                                 className='form-input-text-area'
-                                                rows={4} placeholder="Type here"
+                                                rows={4} 
                                                 readOnly
                                             />
                                         </div>
@@ -257,7 +257,7 @@ function ViewPrescription({ location }) {
                                         <div className='form-light-background-big'>
                                             <textarea
                                                 value={template?.tempData?.consultationDetails?.diagnosis}
-                                                id="diagnosis" className='form-input-text-area' rows={4} placeholder="Type here" onChange={(e) => {
+                                                id="diagnosis" className='form-input-text-area' rows={4} onChange={(e) => {
                                                     // setPrescriptioninfo({ ...presciptioninfor, diagnosis: e.target.value })
 
                                                 }} readOnly />
@@ -270,7 +270,7 @@ function ViewPrescription({ location }) {
                                         <div className='form-light-background-big'>
                                             <textarea id="examination"
                                                 value={template?.tempData?.consultationDetails?.investigation}
-                                                className='form-input-text-area' rows={4} placeholder="Type here" onChange={(e) => {
+                                                className='form-input-text-area' rows={4} onChange={(e) => {
                                                     // setPrescriptioninfo({ ...presciptioninfor, examinationlabfindings: e.target.value })
 
 
@@ -452,7 +452,7 @@ function ViewPrescription({ location }) {
                             <div className='form-light-background' style={{ width: "45%" }}>
                                 <textarea
                                     value={template?.tempData?.consultationDetails?.instruction}
-                                    className='form-input-text-area' rows={3} placeholder='Type here' style={{ width: "100%" }} readOnly />
+                                    className='form-input-text-area' rows={3}  style={{ width: "100%" }} readOnly />
                             </div>
 
 
