@@ -55,7 +55,7 @@ function PrescriptionDashboard() {
     }
 
     let handledateChange = (e) => {
-        
+
 
 
         if (e) {
@@ -67,7 +67,7 @@ function PrescriptionDashboard() {
 
             console.log({ fromDate: startDate, toDate: endDate });
 
-             dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT({ fromDate: startDate, toDate: endDate }))
+            dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT({ fromDate: startDate, toDate: endDate }))
 
             // if (startDate < prevDate) {
 
@@ -93,7 +93,7 @@ function PrescriptionDashboard() {
 
 
         }
-        else{
+        else {
             dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT())
 
         }
@@ -204,7 +204,7 @@ function PrescriptionDashboard() {
     }
 
 
-    let reloadData= () =>{
+    let reloadData = () => {
 
         dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT())
 
@@ -227,7 +227,10 @@ function PrescriptionDashboard() {
 
 
                     <RangePicker
+                        style={{ width: "250px" }}
                         // open={isOpen}
+                        inputReadOnly
+                        format="DD-MMM-YYYY"
                         ref={dateRef}
                         bordered={false}
                         className="date-picker"
@@ -254,7 +257,7 @@ function PrescriptionDashboard() {
                 <table className='appoinment-table'>
                     <tr>
                         <th>App Id</th>
-                        <th style={{width:"230px"}}>Patient</th>
+                        <th style={{ width: "230px" }}>Patient</th>
                         <th>Doctor</th>
                         <th>App Date & Time</th>
                         {/* <th>Appointment Time</th> */}
@@ -320,10 +323,10 @@ function PrescriptionDashboard() {
 
 
                                 : <tr>
-                                <td colSpan={6}>
-                                    <EmptyTableData />
-                                </td>
-                            </tr>
+                                    <td colSpan={6}>
+                                        <EmptyTableData />
+                                    </td>
+                                </tr>
                         }
 
 

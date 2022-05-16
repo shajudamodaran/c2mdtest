@@ -117,7 +117,7 @@ function Index() {
                         })
                     }
 
-                    <div className="header-card logout" style={{ marginTop: "2.5rem", coursor: "pointer" }} onClick={logoutFunction}>
+                    <div className="header-card logout" style={{ marginTop: "2.5rem", coursor: "pointer !important" }} onClick={logoutFunction}>
                         <div className="icon">&nbsp;</div>
                         SIGN OUT
                     </div>

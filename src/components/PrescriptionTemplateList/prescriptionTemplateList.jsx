@@ -39,7 +39,10 @@ function TemplateList() {
     let [templateList, setTemplateList] = useState([])
     let [templateTotalPage, setTemplateTotalPage] = useState(0)
     let [isEditMode, setEditMode] = useState(false)
- 
+
+    let [searchKey, setSearchKey] = useState(null)
+    let [filterData, setFilterData] = useState([])
+
     let history = useHistory()
     const location = useLocation();
 
@@ -66,8 +69,6 @@ function TemplateList() {
     }, [isEditMode])
 
 
-
-
     let handlePaginationChange = (e, s) => {
 
         dispatch(getTemplateList({ offset: e - 1 })).then((res) => {
@@ -89,7 +90,7 @@ function TemplateList() {
 
     let handleEditOnClick = (rowData, element) => {
 
-        setEditMode({ ...rowData, tempId: element.tempId, departmentName: element.assignedDepartments, doctors:element.Doctors, department:element.Departments[0] })
+        setEditMode({ ...rowData, tempId: element.tempId, departmentName: element.assignedDepartments, doctors: element.Doctors, department: element.Departments[0] })
         //console.log(rowData);
 
     }
@@ -119,37 +120,78 @@ function TemplateList() {
 
     let convertStringWithSpace = (data) => {
 
-        let array=data.split(",")
-        let newArray=[]
+        let array = data.split(",")
+        let newArray = []
 
-    
-        array.map((element)=>{
+
+        array.map((element) => {
             newArray.push(`${element}  `)
         })
 
         return newArray.toString()
     }
 
+    useEffect(() => {
+        setFilterData(templateList)
+    }, [templateList])
 
-    const Content = ({data}) => {
+    useEffect(() => {
 
-       
+        handleSearch(searchKey ? searchKey : null)
+
+    }, [searchKey])
+
+    let handleSearch = (value) => {
+
+        let oldData = templateList
+
+        if (value && value != "") {
+            
+
+            let filteredData = oldData.filter((element) => {
+
+                if (element.tempId.includes(value.toString())) {
+                    return true
+                }
+
+                // if (element.patientName.toLowerCase().includes(value.toString().toLowerCase())) {
+                //     return true
+                // }
+                // if (element.doctorname.toLowerCase().includes(value.toString().toLowerCase())) {
+                //     return true
+                // }
+            })
+
+            setFilterData(filteredData)
+        }
+        else {
+            console.log("No search key...");
+            setFilterData(templateList ? templateList: [])
+        }
+
+    }
+
+
+
+    const Content = ({ data }) => {
+
+
         return (
             <div>
-               {
-                   data.split(",")?.length>0?
+                {
+                    data.split(",")?.length > 0 ?
 
-                   data.split(",").map((element,key)=>{
-                       return(
-                           <>
-                            <span>{element}{key>data.split(",").length-1?"":","} </span><br />
-                           </>
-                          
-                       )
-                   })
+                        data.split(",").map((element, key) => {
+                            return (
+                                <>
+                                    <span>{element}{key > data.split(",").length - 2 ? "" : ""} </span><br />
+                                </>
 
-                   :null
-               }
+                            )
+                        })
+
+                        : null
+                }
             </div>
         )
     }
@@ -160,25 +202,9 @@ function TemplateList() {
     return (
         <div className='appontment-history-container'>
 
-            <div className="header">
 
-
-                {/* &nbsp; */}
-
-                {/* <Tooltip placement="topLeft" title={"For more than past 3 months report please use Download Report button."}>
-                    <div className="filter-button" >
-                        <div className="icon" onClick={filterOnClick}><i class="far fa-calendar-alt"></i></div>
-                        <RangePicker open={isOpen}
-                            ref={dateRef}
-                            bordered={false}
-                            className="date-picker"
-                            suffixIcon={null}
-                            onChange={handledateChange}
-
-                        />
-                    </div>
-                </Tooltip> */}
-
+            <div className="search-container">
+                <input value={searchKey} onChange={(e) => { setSearchKey(e.target.value) }} type="text" name="" id="" placeholder='Search' />
             </div>
 
             {
@@ -204,21 +230,22 @@ function TemplateList() {
                     :
                     <div className="todays_report_table_container">
 
-                        <table className='appoinment-table'>
+                        <table className='appoinment-table' >
                             <thead>
                                 <tr>
                                     <th>Template ID</th>
                                     <th>Template Name</th>
-                                    <th>Created Date</th>
-                                    <th>Updated Date</th>
+                                    <th>Speciality</th>
+                                    <th>Created On</th>
+                                    <th>Last Updated On</th>
                                     {/* <th>Template Files</th> */}
                                     <th>Assigned To</th>
                                     {/* 
                         <th>Fees Paid</th>
                         <th>Consultation Status</th>
                         <th>Next Steps</th> */}
-                                    <th>Edit</th>
-                                    <th>View</th>
+                                    <th><div className='center'>Edit</div></th>
+                                    <th><div className='center'>View</div></th>
 
                                 </tr>
                             </thead>
@@ -226,36 +253,37 @@ function TemplateList() {
 
                                 {
                                     templateList.length > 0 ?
-                                        templateList.map((element, key) => {
+                                        filterData.map((element, key) => {
 
                                             return (
 
                                                 <tr>
                                                     <td>{element.tempId}</td>
                                                     <td>{element.tempName}</td>
+                                                    <td>{element.Departments[0]?.Name}</td>
                                                     <td>{element.createdDate}</td>
                                                     <td>{element.updatedDate ? element.updatedDate : "No Data Available"}</td>
                                                     <td>{element.assignedDoctors ?
                                                         convertToArray(element.assignedDoctors).length > 1 ?
 
                                                             <Popover content={<Content data={element?.assignedDoctors} />} title={`Doctors list (${element?.assignedDoctors.split(",").length})`}>
-                                                                {convertToArray(element.assignedDoctors)[0]} +{convertToArray(element.assignedDoctors).length - 1}
+                                                                {convertToArray(element.assignedDoctors)[0]}, +{convertToArray(element.assignedDoctors).length - 1}
                                                             </Popover>
-                                                            :convertStringWithSpace(element.assignedDoctors) 
+                                                            : convertStringWithSpace(element.assignedDoctors)
                                                         : "No Data Available"}</td>
-                                                    <td><div className="edit-btn" onClick={(() => { handleEditOnClick(element.tempData, element) })}><EditIcon /></div></td>
+                                                    <td><div className="edit-btn center" onClick={(() => { handleEditOnClick(element.tempData, element) })}><EditIcon /></div></td>
                                                     {/* <td><div className="edit-btn" onClick={() => { handleViewOnClick(element.tempData, element.tempId) }}><ViewIcon /></div></td> */}
-                                                    <td><a href={"viewprescription/" + element.tempId} target="_blank"><ViewIcon /></a></td>
+                                                    <td><a className='center' href={"viewprescription/" + element.tempId} target="_blank"><ViewIcon /></a></td>
                                                 </tr>
 
                                             )
 
                                         })
-                                        :  <tr>
-                                        <td colSpan={7}>
-                                            <EmptyTableData />
-                                        </td>
-                                    </tr>
+                                        : <tr>
+                                            <td colSpan={7}>
+                                                <EmptyTableData />
+                                            </td>
+                                        </tr>
                                 }
 
 

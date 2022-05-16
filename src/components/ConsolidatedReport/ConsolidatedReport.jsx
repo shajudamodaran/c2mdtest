@@ -1,13 +1,20 @@
-import { Pagination } from 'antd'
+import { DatePicker, Pagination } from 'antd'
 import TextArea from 'antd/lib/input/TextArea'
-import React from 'react'
+import moment from 'moment'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { FETCH_CONSOLIDATED_REPORTS, updateConsolodatedReportComment, updateMisReportAttachments } from '../../actions/InterbranchAdminActions'
 import { AddIconV2 } from '../../assets/Logos/Icons'
+import { convertDateToString } from '../../Helpers/dateFunctions'
 import EmptyTableData from '../Common/EmptyTableData/EmptyTableData'
 import './consolidatedreport.css'
 
+const { RangePicker } = DatePicker;
+
 function ConsolidatedReport() {
+
+    let [selectedDate, setSelectedDate] = useState({ from: null, to: null })
+    let [pagination, setPagination] = useState(null)
 
 
     let appointmentDetails = useSelector(state => state.interbranchAdmin.consolidatedreport)
@@ -51,7 +58,50 @@ function ConsolidatedReport() {
     let handlePaginationChange = (e) => {
 
         // console.log(e-1);
-        dispatch(FETCH_CONSOLIDATED_REPORTS({ offset: e - 1 }))
+        setPagination(e - 1)
+        dispatch(FETCH_CONSOLIDATED_REPORTS({ offset: e - 1, fromDate: selectedDate.from, toDate: selectedDate.to }))
+    }
+
+    let handledateChange = (e) => {
+
+
+        if (e) {
+            let [startDate, endDate] = e
+
+            let prevDate = moment().subtract(3, 'months')
+
+            console.log(convertDateToString(prevDate));
+
+            setSelectedDate({ from: startDate, to: endDate })
+            dispatch(FETCH_CONSOLIDATED_REPORTS({ fromDate: startDate, toDate: endDate, offset: pagination, context: "Date Change" }))
+            // downloadReport(startDate, endDate)
+
+
+            if (startDate < prevDate) {
+
+                // Modal.confirm({
+                //     title: 'Confirm',
+                //     // icon: <ExclamationCircleOutlined />,
+                //     content: 'You can only view report within a 3 month span. Do you want to download the report before 3 months?',
+                //     okText: 'Download Report',
+                //     cancelText: 'cancel',
+                //     onOk() {
+                //         downloadReport()
+                //     },
+                // });
+            }
+            else {
+
+                //setSelectedDate({ from: startDate, to: endDate })
+                //dispatch(FETCH_ADMIN_DETAILED_REPORT({ fromDate: startDate, toDate: endDate, offset: pagination, context: "Date Change" }))
+                //downloadReport(startDate, endDate)
+            }
+
+
+
+        }
+
+
     }
 
 
@@ -79,6 +129,26 @@ function ConsolidatedReport() {
                         />
                     </div>
                 </Tooltip> */}
+                <div>&nbsp;</div>
+
+                <div className="filter-button" >
+
+                    <div className="icon"><i class="far fa-calendar-alt"></i></div>
+
+
+                    <RangePicker
+                        // open={isOpen}
+                        bordered={false}
+                        className="date-picker"
+                        suffixIcon={null}
+                        // disabledDate={(current) => {
+                        //     return moment().add(-3, 'month') >= current
+                        //     // ||
+                        //     //  moment().add(1, 'month')  <= current;
+                        // }}
+                        onChange={handledateChange}
+                    />
+                </div>
 
             </div>
 
