@@ -1,89 +1,106 @@
 import loginedApi, { c2mdApi } from "../apis"
 // import { USER_TOKEN } from "../constants/const";
-import { convertDateToString } from "../Helpers/dateFunctions";
+import { convertDateToString, convertDateToStringOneYear, convertDateToStringThreeMonthBack } from "../Helpers/dateFunctions";
 import { getFromLocalStorage } from "../Helpers/localStorageHelper";
 import authHeader from "./AuthHeader";
 import { INTERBRANCH_ADMIN_CONSOLIDATED, INTERBRANCH_ADMIN_DASHBOARD, INTERBRANCH_ADMIN_DASHBOARD_SELECTED, INTERBRANCH_ADMIN_DETAILED, INTERBRANCH_ADMIN_DETAILED_SELECTED } from "./type";
 
-import {ADMIN_USER, CLINIC_ADMIN_USER, USER_DATA} from '../constants/const'
+import { ADMIN_USER, CLINIC_ADMIN_USER, USER_DATA } from '../constants/const'
 
 
 
 export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
 
     // let userToken = await getFromLocalStorage(USER_TOKEN)
-    let userData= await getFromLocalStorage(USER_DATA)
-    userData=JSON.parse(userData)
-    let {userType,clinicId}=userData
-
-    let todayDate=convertDateToString(new Date())
-
+    let userData = await getFromLocalStorage(USER_DATA)
+    userData = JSON.parse(userData)
+    let { userType, clinicId } = userData
+    let todayDate = convertDateToString(new Date())
 
 
+    if (userType == ADMIN_USER) {
 
-    let params = 
-    {
-        "token": "token",
-        "requestType": userType==CLINIC_ADMIN_USER?"518":"1040",
-        "version": "2.0",
-        "data": {
-            "operation": "find",
-            "browserTimeZone": "GMT+05:30",
-            // "Type": "excel",
-            "startDate": todayDate,
-            "endDate": todayDate,
-            // "startDate": "16-Mar-2022",
-            // "endDate": "17-Mar-2022",
-            // "clinic": clinicId?clinicId:"14",
-            "Type": "excel",
-            "offset": _para?.offset ? _para.offset.toString() : "0"
-        }
-    }
-
- 
-
-
-   
-
-
-
-    let responce = await loginedApi.post("getappointments",params, { headers: authHeader() })
-
-    console.log("getappointments responce ->", responce.data.data);
-
-    if (responce.status == 200) {
-
-
-        dispatch({
-            type: INTERBRANCH_ADMIN_DASHBOARD,
-            payload: {
-                data: responce.data.data,
-                totalPages: responce.data.totalNumberOfPages
+        let params =
+        {
+            "token": "token",
+            "requestType": 509,
+            "version": "2.0",
+            "data": {
+                "operation": "find",
+                "browserTimeZone": "GMT+05:30",
+                "startDate": todayDate,
+                "endDate": todayDate,
+                "Type": "excel",
             }
-        });
+        }
+
+
+        let responce = await loginedApi.post("getappointments", params, { headers: authHeader() })
+
+        console.log("getappointments responce ->", responce.data.data);
+
+        if (responce.status == 200) {
+
+            dispatch({
+                type: INTERBRANCH_ADMIN_DASHBOARD,
+                payload: {
+                    data: responce.data.data,
+                    totalPages: responce.data.totalNumberOfPages
+                }
+            });
+
+        }
+
+    }
+    else if (userType == CLINIC_ADMIN_USER) {
+
+        let params =
+        {
+            "data": {
+                "Type": null,
+                "operation": "find",
+                "startDate": todayDate,
+                "endDate": todayDate,
+                "browserTimeZone": "GMT+05:30",
+                "clinicId": clinicId
+            },
+            "browserTimeZone": "",
+            "requestType": 518,
+            "version": "2.0"
+        }
+
+        let responce = await loginedApi.post("getclinicappointments", params, { headers: authHeader() })
+
+        console.log("getclinicappointments responce ->", responce.data.data);
+
+        if (responce.status == 200) {
+
+            dispatch({
+                type: INTERBRANCH_ADMIN_DASHBOARD,
+                payload: {
+                    data: responce.data.data,
+                    totalPages: responce.data.totalNumberOfPages
+                }
+            });
+
+        }
+
 
 
     }
-
 
 }
 
 
 export const FETCH_ADMIN_DETAILED_REPORT = (_para) => async (dispatch) => {
 
-    let userData= await getFromLocalStorage(USER_DATA)
-    userData=JSON.parse(userData)
-    let {userType,clinicId}=userData
+    let userData = await getFromLocalStorage(USER_DATA)
+    userData = JSON.parse(userData)
+    let { userType, clinicId } = userData
 
-    let todayDate=convertDateToString(new Date())
-
-
-    
-
+    let todayDate = convertDateToString(new Date())
     let fromDate = _para?.fromDate ? convertDateToString(_para.fromDate) : null
     let toDate = _para?.toDate ? convertDateToString(_para.toDate) : null
-
-    console.log(fromDate, toDate);
 
     let params = {
         "token": "token",
@@ -93,25 +110,30 @@ export const FETCH_ADMIN_DETAILED_REPORT = (_para) => async (dispatch) => {
             "operation": "find",
             "browserTimeZone": "GMT+05:30",
             // "Type": "excel",
-            // "startDate": "16-Mar-2022",
-            // "endDate": "17-Mar-2022",
-            "startDate": fromDate ? fromDate : todayDate,
+            "startDate": fromDate ? fromDate : convertDateToStringThreeMonthBack(todayDate),
             "endDate": toDate ? toDate : todayDate,
             "offset": _para?.offset ? _para.offset.toString() : "0"
         }
 
     }
 
-   
-    if(clinicId)
-    {
-        params.data.clinic=clinicId
+
+    if (userType == ADMIN_USER) {
+    }
+    else if (userType == CLINIC_ADMIN_USER) {
+
+        params.data.clinic = clinicId
+
     }
 
- 
+
+
+
+
+
+
     let responce = await loginedApi.post("getsummaryreport", params, { headers: authHeader() })
 
-    console.log("Summary report calling context==>",_para.context,_para?.offset);
     console.log("getsummaryreport responce ->", responce.data.data);
 
     if (responce.status == 200) {
@@ -134,7 +156,7 @@ export const FETCH_ADMIN_DETAILED_REPORT = (_para) => async (dispatch) => {
 
 export const FETCH_DASHBOARD_MORE = (_id) => async dispatch => {
 
-    
+
 
     let params = {
         "token": "token",
@@ -168,7 +190,7 @@ export const FETCH_DASHBOARD_MORE = (_id) => async dispatch => {
 
 export const FETCH_DETAILED_MORE = (_id) => async dispatch => {
 
-    
+
 
     let params = {
         "token": "token",
@@ -203,11 +225,17 @@ export const FETCH_DETAILED_MORE = (_id) => async dispatch => {
 
 export const FETCH_CONSOLIDATED_REPORTS = (_para) => async dispatch => {
 
-    let userData= await getFromLocalStorage(USER_DATA)
-    userData=JSON.parse(userData)
-    let {userType, clinicId}=userData
+    let userData = await getFromLocalStorage(USER_DATA)
+    userData = JSON.parse(userData)
+    let { userType, clinicId } = userData
 
-    let todayDate=convertDateToString(new Date())
+    console.log(_para);
+
+
+    let todayDate = convertDateToString(new Date())
+
+    let fromDate = _para?.fromDate ? convertDateToString(_para.fromDate) : convertDateToStringOneYear(todayDate)
+    let toDate = _para?.endDate ? convertDateToString(_para.endDate) : todayDate
 
     let params = {
         "token": "token",
@@ -217,15 +245,14 @@ export const FETCH_CONSOLIDATED_REPORTS = (_para) => async dispatch => {
             "operation": "search",
             "browserTimeZone": "GMT+05:30",
             "Type": "excel",
-            "startDate": todayDate,
-            "endDate": todayDate,
+            "startDate": fromDate,
+            "endDate": toDate,
             "offset": _para?.offset ? _para.offset.toString() : "0"
         }
     }
 
-    if(clinicId)
-    {
-        params.data.clinic=clinicId
+    if (clinicId) {
+        params.data.clinic = clinicId
     }
 
     let responce = await c2mdApi.post("getconsolidatedreport", params, { headers: authHeader() })
@@ -283,8 +310,8 @@ export const updateMisReportAttachments = (_id, value) => async dispatch => {
 
         "requestType": "1046",
         "data": {
-            "consolReportId":_id,
-            "uploadedFile":value
+            "consolReportId": _id,
+            "uploadedFile": value
         }
     }
 
@@ -329,9 +356,9 @@ export const downloadSummaryReport = (_para) => async (dispatch) => {
     let fromDate = _para?.fromDate ? convertDateToString(_para.fromDate) : null
     let toDate = _para?.toDate ? convertDateToString(_para.toDate) : null
 
-    let userData= await getFromLocalStorage(USER_DATA)
-    userData=JSON.parse(userData)
-    let {userType, clinicId}=userData
+    let userData = await getFromLocalStorage(USER_DATA)
+    userData = JSON.parse(userData)
+    let { userType, clinicId } = userData
 
 
     console.log(fromDate, toDate);
@@ -356,12 +383,11 @@ export const downloadSummaryReport = (_para) => async (dispatch) => {
 
     if (responce.status == 200) {
 
-        if(responce.data?.data?.filename)
-        {
+        if (responce.data?.data?.filename) {
             return `https://uat.c2mdr.com/c2mydruat/Connect2MyDoctorRequest?requestType=256&uploadBy=ConsultationProcess&name=${responce.data?.data?.filename}&type=Attachement&uploadRefId=123&from=web`
         }
 
-        
+
 
     }
 

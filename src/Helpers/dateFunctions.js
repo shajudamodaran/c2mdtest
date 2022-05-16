@@ -70,3 +70,23 @@ export const convertDateToString = (_date) => {
   }
 
 }
+
+export const convertDateToStringThreeMonthBack = (_date) => {
+
+  if (_date) {
+
+   return moment(_date).subtract(3, 'months').format("DD-MMM-YYYY"); 
+
+  }
+
+}
+
+export const convertDateToStringOneYear = (_date) => {
+
+  if (_date) {
+
+   return moment(_date).subtract(1, 'year').format("DD-MMM-YYYY"); 
+
+  }
+
+}

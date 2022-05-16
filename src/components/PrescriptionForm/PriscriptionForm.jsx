@@ -1449,27 +1449,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                         // onScroll={(e) => { setScrollAmount(e.target.scrollTop) }}
                         className="prescription-form-content" ref={ScrollElement}>
 
-                        <div className='form-heading'>
-                            Prescription
-
-                            <div style={{ display: "flex", flexDirection: "row" }}>
-                                {/* <button className={`${preloadPrescription ? "add-investigation-btn" : "add-investigation-btn-disabled-v2"}`} style={{ marginRight: "1rem" }} onClick={() => { populatePreloadData() }}>LOAD LAST PRESCRIPTION</button> */}
-
-                                {/* <MuiDropdown
-                                    style={{ width: "150px" }}
-                                    value={null}
-                                    placeholder="Select template"
-                                    id={0}
-                                    data={["Temp1", "Temp2"]}
-                                    name="unit"
-                                    // onChange={updateMedicineTable}
-                                    isMedTable
-                                /> */}
-
-                            </div>
-
-                        </div>
-
+                       
 
 
 
@@ -1817,6 +1797,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
 
                                                         <textarea
+                                                            
                                                             rows={1}
                                                             value={obj.comment ? obj.comment : ""}
                                                             placeholder='Type here'

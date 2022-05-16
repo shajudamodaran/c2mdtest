@@ -153,7 +153,7 @@ function TodaysReport() {
 
                                                 dashboardData.map((eachRow, key) => {
 
-                                                    if (key <= 10 && eachRow.appointmentId) {
+                                                    if ( eachRow.appointmentId) {
                                                         return (
 
                                                             <tr>
