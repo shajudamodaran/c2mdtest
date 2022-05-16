@@ -110,12 +110,7 @@ function PrescriptionDashboard() {
     }
 
 
-
-<<<<<<< HEAD
 //dashboard
-
-=======
->>>>>>> 578158ebe9f01a6376c11d4067e0adc6905a49ac
     useEffect(() => {
         setFilterData(crDashboard.prescriptionlist)
     }, [crDashboard])
