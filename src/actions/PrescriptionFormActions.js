@@ -149,24 +149,23 @@ export const FETCH_PR_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
 
     let todayDate=convertDateToString(new Date())
 
-    console.log(todayDate);
-
-
-
-    let params = {
+    let params={
         "data": {
-            "userID": "98278532",
+            "userID": 98278532,
             "operation": "find",
             "startDate": fromDate?fromDate:todayDate,
             "endDate": toDate?toDate:todayDate,
-            "browserTimeZone": "GMT+05:30"
+            "browserTimeZone": "GMT+05:30",
+            offset:_para.offset?_para.offset:"0"
         },
         "browserTimeZone": "",
         "requestType": 236
     }
+   
 
+   
 
-    let responce = await loginedApi.post("getbethanyprescriptionlist", params)
+    let responce = await loginedApi.post("getbethanyprescriptions", params)
 
     console.log("getbethanyprescriptionlist responce ->", responce);
 
@@ -176,7 +175,10 @@ export const FETCH_PR_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
 
         dispatch({
             type: SET_CR_DASHBOARD,
-            payload: responce.data.data
+            payload: {
+                data: responce.data.data,
+                total: responce.data.data.totalNumberOfPages
+            }
         });
 
 

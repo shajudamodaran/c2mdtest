@@ -154,9 +154,21 @@ function TemplateList() {
                     return true
                 }
 
-                // if (element.patientName.toLowerCase().includes(value.toString().toLowerCase())) {
-                //     return true
-                // }
+                if (element.tempName.toLowerCase().includes(value.toString().toLowerCase())) {
+                    return true
+                }
+
+                if (element.Departments[0].Name.toLowerCase().includes(value.toString().toLowerCase())) {
+                    return true
+                }
+
+                if (element.createdDate.toLowerCase().includes(value.toString().toLowerCase())) {
+                    return true
+                }
+
+                if (element.updatedDate.toLowerCase().includes(value.toString().toLowerCase())) {
+                    return true
+                }
                 // if (element.doctorname.toLowerCase().includes(value.toString().toLowerCase())) {
                 //     return true
                 // }
