@@ -18,7 +18,7 @@ const { RangePicker } = DatePicker;
 function PrescriptionDashboard() {
 
     const dateRef = useRef(null)
-    const { crDashboard } = useSelector((state) => state.presctiptionFormReducer)
+    const { crDashboard,crDashboardTotal } = useSelector((state) => state.presctiptionFormReducer)
 
     let [isOpen, setOpen] = useState(false)
     let [searchKey, setSearchKey] = useState(null)
@@ -29,6 +29,8 @@ function PrescriptionDashboard() {
     let [_isSyncing, _setSyncing] = useState(false)
     let [_syncSuccess, _setSyncSuccess] = useState(false)
     let [individualSync, setIndividualSync] = useState(null)
+
+    let [pagination, setPagination] = useState(0)
 
     const dispatch = useDispatch()
 
@@ -106,8 +108,6 @@ function PrescriptionDashboard() {
         console.log("Ready to download report................");
 
     }
-
-
 
 
 
@@ -203,12 +203,28 @@ function PrescriptionDashboard() {
 
     }
 
-
     let reloadData = () => {
 
         dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT())
 
     }
+
+    let handlePaginationChange = (e, s) => {
+
+        dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT({})).then((res) => {
+
+            setPagination(e - 1)
+
+        })
+
+        // dispatch(FETCH_ADMIN_DASHBOARD_REPORT({ offset: e - 1 }))
+
+        // if (pagination < dashboardData.length) {
+        //     setPagination(pagination + 10)
+        // }
+
+    }
+
 
 
 
@@ -340,7 +356,7 @@ function PrescriptionDashboard() {
             <div className="pagination-container-mis-report">
 
                 &nbsp;
-                {/* <Pagination onChange={handlePaginationChange} defaultCurrent={1} total={misReportsPageLength ? misReportsPageLength * 8 : 0} /> */}
+                <Pagination onChange={handlePaginationChange} defaultCurrent={1} total={crDashboardTotal ? crDashboardTotal * 10 : 0} />
             </div>
 
 

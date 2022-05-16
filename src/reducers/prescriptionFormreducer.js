@@ -77,7 +77,8 @@ const INITIAL_STATE = {
     selectedDepartment: null,
     selectedDoctors: [],
     doctorsList: [],
-    crDashboard:[]
+    crDashboard:[],
+    crDashboardTotal:0
     
 };
 
@@ -193,7 +194,8 @@ export default (state = INITIAL_STATE, { type, payload }) => {
 
             return {
                 ...state,
-                crDashboard: payload
+                crDashboard: payload.data,
+                crDashboardTotal:payload.total
 
             };
 
