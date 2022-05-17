@@ -18,7 +18,7 @@ const { RangePicker } = DatePicker;
 function PrescriptionDashboard() {
 
     const dateRef = useRef(null)
-    const { crDashboard,crDashboardTotal } = useSelector((state) => state.presctiptionFormReducer)
+    const { crDashboard,crDashboardTotal, isLoading } = useSelector((state) => state.presctiptionFormReducer)
 
     let [isOpen, setOpen] = useState(false)
     let [searchKey, setSearchKey] = useState(null)
@@ -31,6 +31,13 @@ function PrescriptionDashboard() {
     let [individualSync, setIndividualSync] = useState(null)
 
     let [pagination, setPagination] = useState(0)
+    let [dateRange,setDaterange]=useState({fromDate: "", toDate: ""})
+
+    let [isInitialLoading,setInitialLoading]=useState(true)
+   
+    
+
+
 
     const dispatch = useDispatch()
 
@@ -69,6 +76,8 @@ function PrescriptionDashboard() {
 
             console.log({ fromDate: startDate, toDate: endDate });
 
+            setDaterange({ fromDate: startDate, toDate: endDate })
+
             dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT({ fromDate: startDate, toDate: endDate }))
 
             // if (startDate < prevDate) {
@@ -92,8 +101,6 @@ function PrescriptionDashboard() {
             //     //downloadReport(startDate, endDate)
             // }
 
-
-
         }
         else {
             dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT())
@@ -112,13 +119,17 @@ function PrescriptionDashboard() {
 
 
     useEffect(() => {
-        setFilterData(crDashboard.prescriptionlist)
+        setFilterData(crDashboard?.prescriptionlist?crDashboard?.prescriptionlist:[])
     }, [crDashboard])
 
 
     useEffect(() => {
 
-        handleSearch(searchKey ? searchKey : null)
+        if(crDashboard?.prescriptionlist)
+        {
+            handleSearch(searchKey ? searchKey : null)
+        }
+       
 
     }, [searchKey])
 
@@ -205,13 +216,13 @@ function PrescriptionDashboard() {
 
     let reloadData = () => {
 
-        dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT())
+        dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT({...dateRange,offset:pagination}))
 
     }
 
     let handlePaginationChange = (e, s) => {
 
-        dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT({})).then((res) => {
+        dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT({...dateRange,offset:e-1})).then((res) => {
 
             setPagination(e - 1)
 
@@ -290,11 +301,11 @@ function PrescriptionDashboard() {
                     <tbody>
 
                         {
-                            crDashboard?.prescriptionlist?.length > 0 ?
+                           
 
 
 
-                                filterData.map((element, key) => {
+                                filterData.length>0?filterData.map((element, key) => {
 
                                     return (
 
@@ -340,7 +351,7 @@ function PrescriptionDashboard() {
 
                                 : <tr>
                                     <td colSpan={6}>
-                                        <EmptyTableData />
+                                        <EmptyTableData isLoading={isLoading} />
                                     </td>
                                 </tr>
                         }

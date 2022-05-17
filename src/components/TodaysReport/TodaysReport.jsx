@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { DatePicker, Space } from 'antd';
 import './todaysreport.css'
 // import { FETCH_MIS_REPORT, GET_DASHBOARD_MORE } from '../../Redux/Slice/DetailedReportSlice';
-import { INTERBRANCH_MODAL } from '../../actions/type';
+import { INTERBRANCH_ADMIN_DASHBOARD_SELECTED, INTERBRANCH_MODAL } from '../../actions/type';
 import { FETCH_ADMIN_DASHBOARD_REPORT, FETCH_DASHBOARD_MORE } from '../../actions/InterbranchAdminActions';
 import { separaetdateAndTime } from '../../Helpers/dateFunctions';
 import { getFromLocalStorage } from '../../Helpers/localStorageHelper';
@@ -35,9 +35,16 @@ function TodaysReport() {
 
 
 
-    let handleTableClick = (_id) => {
+    let handleTableClick = (data) => {
 
-        dispatch(FETCH_DASHBOARD_MORE(_id))
+        console.log(data);
+
+        dispatch({
+            type: INTERBRANCH_ADMIN_DASHBOARD_SELECTED,
+            payload: data
+        });
+
+        // dispatch(FETCH_DASHBOARD_MORE(_id))
 
         dispatch({
             type: INTERBRANCH_MODAL,
@@ -169,7 +176,7 @@ function TodaysReport() {
                                                                 <td>{eachRow.doctorstatus}</td>
                                                                 <td>{eachRow.patientstatus}</td>
                                                                 <td>{eachRow.followupdetails}</td>
-                                                                <td ><button onClick={() => { handleTableClick(eachRow.appointmentId) }} className='more-btn' >More</button></td>
+                                                                <td ><button onClick={() => { handleTableClick(eachRow) }} className='more-btn' >More</button></td>
 
                                                             </tr>
 
@@ -230,7 +237,7 @@ function TodaysReport() {
                                                                 <td>{eachRow.fees}</td>
                                                                 <td>{eachRow.appointmentStatus}</td>
                                                                 <td>{eachRow.followupdetails}</td>
-                                                                <td ><button onClick={() => { handleTableClick(eachRow.appointmentId) }} className='more-btn' >More</button></td>
+                                                                <td ><button onClick={() => { handleTableClick(eachRow) }} className='more-btn' >More</button></td>
 
                                                             </tr>
 

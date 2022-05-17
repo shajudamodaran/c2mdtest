@@ -1,6 +1,6 @@
 import loginedApi from "../apis";
 import { convertDateToString } from "../Helpers/dateFunctions";
-import { INTERBRANCH_ADMIN_DASHBOARD, SET_CR_DASHBOARD, UPDATE_REDUX_PRESCRIPTION } from "./type";
+import { INTERBRANCH_ADMIN_DASHBOARD, REDUX_LOADING, SET_CR_DASHBOARD, UPDATE_REDUX_PRESCRIPTION } from "./type";
 
 
 export const getDepartments = () => async dispatch => {
@@ -144,6 +144,11 @@ export const FETCH_PR_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
 
     // let userToken = await getFromLocalStorage(USER_TOKEN)
 
+    dispatch({
+        type: REDUX_LOADING,
+        payload: true
+    });
+
     let fromDate = _para?.fromDate ? convertDateToString(_para.fromDate) : null
     let toDate = _para?.toDate ? convertDateToString(_para.toDate) : null
 
@@ -156,7 +161,7 @@ export const FETCH_PR_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
             "startDate": fromDate?fromDate:todayDate,
             "endDate": toDate?toDate:todayDate,
             "browserTimeZone": "GMT+05:30",
-            offset:_para.offset?_para.offset:"0"
+            offset:_para?.offset?_para.offset:"0"
         },
         "browserTimeZone": "",
         "requestType": 236
@@ -180,6 +185,11 @@ export const FETCH_PR_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
                 total: responce.data.data.totalNumberOfPages
             }
         });
+
+         dispatch({
+        type: REDUX_LOADING,
+        payload: false
+    });
 
 
     }

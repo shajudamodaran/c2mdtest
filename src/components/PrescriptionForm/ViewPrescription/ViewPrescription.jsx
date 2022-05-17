@@ -10,8 +10,19 @@ function ViewPrescription({ location }) {
 
     let [finalInvestigations, setFinalInvestigationData] = useState([])
     let [finalMedicinesdata, setFinalMedicinesdata] = useState([])
-
     let [template, setTemplate] = useState(null)
+
+    let [consultationDetails, setConsultationDetails] = useState(null)
+
+    useEffect(() => {
+        setConsultationDetails(template?.tempData?.consultationDetails)
+    }, [template])
+
+
+
+
+    let NO_DATA_MESSAGE = "No data available"
+    let NO_DATA_MESSAGE2 = "-"
 
     const { prname } = useParams();
     let dispatch = useDispatch()
@@ -41,27 +52,28 @@ function ViewPrescription({ location }) {
 
 
 
-    console.log(template);
+    console.log(consultationDetails);
 
-    const Content = ({data}) => {
+    const Content = ({ data }) => {
 
-       
+
         return (
             <div>
-               {
-                   data.split(",")?.length>0?
+                {
+                    data.split(",")?.length > 0 ?
 
-                   data.split(",").map((element,key)=>{
-                       return(
-                           <span>{element}{key>data.split(",").length-2?"":","} </span>
-                       )
-                   })
+                        data.split(",").map((element, key) => {
+                            return (
+                                <span>{element}{key > data.split(",").length - 2 ? "" : ","} </span>
+                            )
+                        })
 
-                   :null
-               }
+                        : null
+                }
             </div>
         )
     }
+
 
 
     return (
@@ -133,7 +145,6 @@ function ViewPrescription({ location }) {
                                             style={{ width: "290px" }}
                                             value={template?.assignedDepartments}
                                             className='form-input-text'
-                                          
                                             readOnly
                                         />
                                     </div>
@@ -147,13 +158,13 @@ function ViewPrescription({ location }) {
                                         <span className='form-caption' ></span>
                                     </div>
 
-                                    <Popover content={<Content data={template?.assignedDoctors}/>} title={`Doctors list (${template?.assignedDoctors.split(",").length})`}>
+                                    <Popover content={<Content data={template?.assignedDoctors} />} title={`Doctors list (${template?.assignedDoctors.split(",").length})`}>
                                         <div className='form-light-background-big'>
                                             <input id="releventPoint"
                                                 style={{ maxWidth: "290px", minWidth: "290px" }}
                                                 value={template?.assignedDoctors.toString()}
                                                 className='form-input-text'
-                                              
+
                                                 readOnly
                                             />
                                         </div>
@@ -187,7 +198,7 @@ function ViewPrescription({ location }) {
                                             style={{ width: "290px" }}
                                             value={template?.tempData?.basicinfo?.templateName}
                                             className='form-input-text'
-                                            
+
                                             readOnly
                                         />
                                     </div>
@@ -212,9 +223,6 @@ function ViewPrescription({ location }) {
                             <div className='report-list-container'>
 
 
-
-
-
                                 <div style={{ padding: "0rem", display: "flex", flexDirection: "row", flexWrap: "wrap", marginTop: "1rem", width: "100%", justifyContent: "space-between" }}>
 
                                     <div style={{ display: "fex", flexDirection: "column" }}>
@@ -223,10 +231,10 @@ function ViewPrescription({ location }) {
                                         <div className='form-light-background-big'>
                                             <textarea
                                                 id="chiefComplaints"
-                                                value={template?.tempData?.consultationDetails?.chiefcomplaints}
+                                                value={consultationDetails ? consultationDetails.chiefcomplaints : NO_DATA_MESSAGE}
                                                 className='form-input-text-area'
                                                 name="chiefcomplaints"
-                                              
+
                                                 rows={4}
                                                 readOnly={true}
                                             />
@@ -238,9 +246,9 @@ function ViewPrescription({ location }) {
 
                                         <div className='form-light-background-big'>
                                             <textarea id="releventPoint"
-                                                value={template?.tempData?.consultationDetails?.notes}
+                                                value={consultationDetails?.notes ? consultationDetails.notes : NO_DATA_MESSAGE}
                                                 className='form-input-text-area'
-                                                rows={4} 
+                                                rows={4}
                                                 readOnly
                                             />
                                         </div>
@@ -256,7 +264,8 @@ function ViewPrescription({ location }) {
 
                                         <div className='form-light-background-big'>
                                             <textarea
-                                                value={template?.tempData?.consultationDetails?.diagnosis}
+                                                value={consultationDetails?.diagnosis ? consultationDetails.diagnosis : NO_DATA_MESSAGE}
+
                                                 id="diagnosis" className='form-input-text-area' rows={4} onChange={(e) => {
                                                     // setPrescriptioninfo({ ...presciptioninfor, diagnosis: e.target.value })
 
@@ -269,7 +278,8 @@ function ViewPrescription({ location }) {
 
                                         <div className='form-light-background-big'>
                                             <textarea id="examination"
-                                                value={template?.tempData?.consultationDetails?.investigation}
+                                                value={consultationDetails?.investigation ? consultationDetails.investigation : NO_DATA_MESSAGE}
+
                                                 className='form-input-text-area' rows={4} onChange={(e) => {
                                                     // setPrescriptioninfo({ ...presciptioninfor, examinationlabfindings: e.target.value })
 
@@ -339,8 +349,8 @@ function ViewPrescription({ location }) {
 
                                                 <tr>
                                                     <td>{key + 1}</td>
-                                                    <td>{obj.testType}</td>
-                                                    <td>{obj.testComment ? obj.testComment : ""}</td>
+                                                    <td>{obj.testType?obj.testType:NO_DATA_MESSAGE2}</td>
+                                                    <td>{obj.testComment ? obj.testComment : NO_DATA_MESSAGE2}</td>
 
 
                                                 </tr>
@@ -404,14 +414,14 @@ function ViewPrescription({ location }) {
                                                                 DRUGS
 
                                                             </td> */}
-                                                            <td>{obj.name}</td>
-                                                            <td>{obj.medtakeMethod}</td>
-                                                            <td>{obj.displayTablet}</td>
-                                                            <td>{obj.quandity} </td>
-                                                            <td>{obj.measurement}</td>
-                                                            <td>{obj.StartVal}</td>
-                                                            <td>{obj.totalDays}</td>
-                                                            <td>{obj.mediComment}</td>
+                                                            <td>{obj.name?obj.name:NO_DATA_MESSAGE2}</td>
+                                                            <td>{obj.medtakeMethod?obj.medtakeMethod:NO_DATA_MESSAGE2}</td>
+                                                            <td>{obj.displayTablet?obj.displayTablet:NO_DATA_MESSAGE2}</td>
+                                                            <td>{obj.quandity?obj.quandity:NO_DATA_MESSAGE2} </td>
+                                                            <td>{obj.measurement?obj.measurement:NO_DATA_MESSAGE2}</td>
+                                                            <td>{obj.StartVal?obj.StartVal:NO_DATA_MESSAGE2}</td>
+                                                            <td>{obj.totalDays?obj.totalDays:NO_DATA_MESSAGE2}</td>
+                                                            <td>{obj.mediComment?obj.mediComment:NO_DATA_MESSAGE2}</td>
                                                         </tr>
 
                                                     )
@@ -451,8 +461,9 @@ function ViewPrescription({ location }) {
 
                             <div className='form-light-background' style={{ width: "45%" }}>
                                 <textarea
-                                    value={template?.tempData?.consultationDetails?.instruction}
-                                    className='form-input-text-area' rows={3}  style={{ width: "100%" }} readOnly />
+                                value={consultationDetails?.instruction ? consultationDetails.instruction : NO_DATA_MESSAGE}
+                                   
+                                    className='form-input-text-area' rows={3} style={{ width: "100%" }} readOnly />
                             </div>
 
 
