@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import CryptoJS from "crypto-js";
 import axios from "axios";
 import { LOGIN_SUCCESS_ACTION, LOG_OUT_ACTION, UPDATE_LOGIN } from "./type";
-import { ADMIN_USER } from "../constants/const";
+import { ADMIN_USER, BETHANY_CLINIC_ID } from "../constants/const";
 import { CLINIC_ADMIN_USER } from "../constants/const";
 const qs = require('qs')
 const FormData = require('form-data');
@@ -89,7 +89,16 @@ export const loginAction =
         history.push("/dashboard");
       }
       else if ( res.data?.data?.userType == CLINIC_ADMIN_USER ) {
-        history.push("/dashboard");
+
+        if(res.data?.data?.clinicId==BETHANY_CLINIC_ID)
+        {
+          history.push("/admindashboard");
+        }
+        else{
+          history.push("/dashboard");
+
+        }
+        
       }
       // else if ( res.data?.data?.userType == CLINIC_ADMIN_USER) {
       //   history.push("/admindashboard");

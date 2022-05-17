@@ -146,7 +146,7 @@ function TemplateList() {
         let oldData = templateList
 
         if (value && value != "") {
-            
+
 
             let filteredData = oldData.filter((element) => {
 
@@ -178,10 +178,12 @@ function TemplateList() {
         }
         else {
             console.log("No search key...");
-            setFilterData(templateList ? templateList: [])
+            setFilterData(templateList ? templateList : [])
         }
 
     }
+
+
 
 
 
@@ -209,15 +211,36 @@ function TemplateList() {
     }
 
 
-    console.log(templateList);
+    let [isLoading, setIsLoading] = useState(false)
+
+    useEffect(() => {
+
+        console.log("Start loading....................");
+        setIsLoading(true)
+
+    }, [])
+
+    useEffect(() => {
+
+        if (filterData.length > 0) {
+
+            console.log("Stop loading....................");
+            setIsLoading(false)
+        }
+
+    }, [filterData])
+
 
     return (
         <div className='appontment-history-container'>
 
+            {
+                !isEditMode ?
 
-            <div className="search-container">
-                <input value={searchKey} onChange={(e) => { setSearchKey(e.target.value) }} type="text" name="" id="" placeholder='Search' />
-            </div>
+                    <div className="search-container">
+                        <input value={searchKey} onChange={(e) => { setSearchKey(e.target.value) }} type="text" name="" id="" placeholder='Search' />
+                    </div> : null
+            }
 
             {
                 isEditMode ?
@@ -228,7 +251,7 @@ function TemplateList() {
                         justifyContent: "center",
                         width: "100%"
                     }}>
-                        <div style={{ marginBottom: ".8rem", marginTop: ".8rem", cursor: "pointer" }} onClick={() => { setEditMode(null) }}>
+                        <div style={{ marginBottom: ".8rem", marginTop: ".8rem", cursor: "pointer", width: "fit-content" }} onClick={() => { setEditMode(null) }}>
                             <BackArrow size={14} />
                             <b style={{ marginLeft: ".5rem" }}>Back</b>
                         </div>
@@ -264,36 +287,36 @@ function TemplateList() {
                             <tbody>
 
                                 {
-                                    templateList.length > 0 ?
-                                        filterData.map((element, key) => {
 
-                                            return (
+                                    filterData.length > 0 ? filterData.map((element, key) => {
 
-                                                <tr>
-                                                    <td>{element.tempId}</td>
-                                                    <td>{element.tempName}</td>
-                                                    <td>{element.Departments[0]?.Name}</td>
-                                                    <td>{element.createdDate}</td>
-                                                    <td>{element.updatedDate ? element.updatedDate : "No Data Available"}</td>
-                                                    <td>{element.assignedDoctors ?
-                                                        convertToArray(element.assignedDoctors).length > 1 ?
+                                        return (
 
-                                                            <Popover content={<Content data={element?.assignedDoctors} />} title={`Doctors list (${element?.assignedDoctors.split(",").length})`}>
-                                                                {convertToArray(element.assignedDoctors)[0]}, +{convertToArray(element.assignedDoctors).length - 1}
-                                                            </Popover>
-                                                            : convertStringWithSpace(element.assignedDoctors)
-                                                        : "No Data Available"}</td>
-                                                    <td><div className="edit-btn center" onClick={(() => { handleEditOnClick(element.tempData, element) })}><EditIcon /></div></td>
-                                                    {/* <td><div className="edit-btn" onClick={() => { handleViewOnClick(element.tempData, element.tempId) }}><ViewIcon /></div></td> */}
-                                                    <td><a className='center' href={"viewprescription/" + element.tempId} target="_blank"><ViewIcon /></a></td>
-                                                </tr>
+                                            <tr>
+                                                <td>{element.tempId}</td>
+                                                <td>{element.tempName}</td>
+                                                <td>{element.Departments[0]?.Name}</td>
+                                                <td>{element.createdDate}</td>
+                                                <td>{element.updatedDate ? element.updatedDate : "No Data Available"}</td>
+                                                <td>{element.assignedDoctors ?
+                                                    convertToArray(element.assignedDoctors).length > 1 ?
 
-                                            )
+                                                        <Popover content={<Content data={element?.assignedDoctors} />} title={`Doctors list (${element?.assignedDoctors.split(",").length})`}>
+                                                            {convertToArray(element.assignedDoctors)[0]}, +{convertToArray(element.assignedDoctors).length - 1}
+                                                        </Popover>
+                                                        : convertStringWithSpace(element.assignedDoctors)
+                                                    : "No Data Available"}</td>
+                                                <td><div className="edit-btn center" onClick={(() => { handleEditOnClick(element.tempData, element) })}><EditIcon /></div></td>
+                                                {/* <td><div className="edit-btn" onClick={() => { handleViewOnClick(element.tempData, element.tempId) }}><ViewIcon /></div></td> */}
+                                                <td><a className='center' href={"viewprescription/" + element.tempId} target="_blank"><ViewIcon /></a></td>
+                                            </tr>
 
-                                        })
+                                        )
+
+                                    })
                                         : <tr>
                                             <td colSpan={7}>
-                                                <EmptyTableData />
+                                                <EmptyTableData isLoading={isLoading} />
                                             </td>
                                         </tr>
                                 }

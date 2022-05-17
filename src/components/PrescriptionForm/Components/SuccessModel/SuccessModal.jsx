@@ -16,11 +16,23 @@ function SuccessModal({ state,setState,successMessage, isPreload, setEditMode, c
             setEditMode(false)
         }
         else{
-       clearData()
+
+             if(successMessage.includes("successfully")){
+
+                    clearData()
+    
+                }
+          
+
+           
+
+           
         }
 
+       
     }
 
+    console.log(successMessage);
 
     return (
 

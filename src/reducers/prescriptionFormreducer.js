@@ -1,4 +1,4 @@
-import { CLEAR_PRESCRIPTION, INVESTIGATION_HEAD, SET_CR_DASHBOARD, SET_DOCTORS, SET_SELECTED_DEPARTMENT, SET_SELECTED_DOCTORS, SET_SUBMISSION_DATA_PRESCRIPTION, UPDATE_INVESTIGATION_TABLE_DATA, UPDATE_MEDICINE_TABLE_DATA, UPDATE_REDUX_PRESCRIPTION } from "../actions/type";
+import { CLEAR_PRESCRIPTION, INVESTIGATION_HEAD, REDUX_LOADING, SET_CR_DASHBOARD, SET_DOCTORS, SET_SELECTED_DEPARTMENT, SET_SELECTED_DOCTORS, SET_SUBMISSION_DATA_PRESCRIPTION, UPDATE_INVESTIGATION_TABLE_DATA, UPDATE_MEDICINE_TABLE_DATA, UPDATE_REDUX_PRESCRIPTION } from "../actions/type";
 
 const INITIAL_STATE = {
 
@@ -78,7 +78,8 @@ const INITIAL_STATE = {
     selectedDoctors: [],
     doctorsList: [],
     crDashboard:[],
-    crDashboardTotal:0
+    crDashboardTotal:0,
+    isLoading:false
     
 };
 
@@ -280,10 +281,17 @@ export default (state = INITIAL_STATE, { type, payload }) => {
                 ],
                 selectedDepartment: null,
                 selectedDoctors: [],
-                doctorsList: []
+                doctorsList: [],
+                isLoading:false
 
             };
 
+            case REDUX_LOADING:
+
+                return {
+                    ...state,
+                    isLoading: payload,
+                };
 
 
         //case INTERBRANCH_ADMIN_DETAILED:
