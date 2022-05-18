@@ -226,37 +226,37 @@ export const FETCH_PR_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
 
     console.log("getbethanyprescriptionlist responce ->", responce);
 
-    if (responce.status == 200) {
+    // if (responce.status == 200) {
 
-        console.log();
+    //     console.log();
 
-        if (response.data.errorType!="FAILURE" && response.data?.data) {
+    //     if (response.data.errorType!="FAILURE" && response.data?.data) {
 
-            dispatch({
-                type: SET_CR_DASHBOARD,
-                payload: {
-                    data: responce.data.data,
-                    total: responce.data.data.totalNumberOfPages
-                }
-            });
+    //         dispatch({
+    //             type: SET_CR_DASHBOARD,
+    //             payload: {
+    //                 data: responce.data.data,
+    //                 total: responce.data.data.totalNumberOfPages
+    //             }
+    //         });
     
-             dispatch({
-            type: REDUX_LOADING,
-            payload: false
-        });
-          }
-          else
-          {
-            //dispatch({ type: LOG_OUT_ACTION });
+    //          dispatch({
+    //         type: REDUX_LOADING,
+    //         payload: false
+    //     });
+    //       }
+    //       else
+    //       {
+    //         //dispatch({ type: LOG_OUT_ACTION });
       
-            localStorage.clear();
-            localStorage.removeItem("userData");
-            window.location.href = '/home'; 
-          }
+    //         localStorage.clear();
+    //         localStorage.removeItem("userData");
+    //         window.location.href = '/home'; 
+    //       }
        
 
 
-    }
+  // }
 }
 
 export const syncLabAndMedicine = () => async dispatch => {
