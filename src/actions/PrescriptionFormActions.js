@@ -20,7 +20,7 @@ export const getDepartments = () => async dispatch => {
     //     }
     // });
 
-
+//params
     let params = {
         requestType: "1062",
         browserTimeZone: "",
