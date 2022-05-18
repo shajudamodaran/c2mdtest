@@ -191,14 +191,16 @@ function TemplateList() {
 
 
         return (
-            <div>
+            <div className='view-prescription-doctor-list-container-small'>
+
+                <ul>
                 {
                     data.split(",")?.length > 0 ?
 
                         data.split(",").map((element, key) => {
                             return (
                                 <>
-                                    <span>{element}{key > data.split(",").length - 2 ? "" : ""} </span><br />
+                                    <li>{element}{key > data.split(",").length - 2 ? "" : ""} </li>
                                 </>
 
                             )
@@ -206,6 +208,8 @@ function TemplateList() {
 
                         : null
                 }
+                </ul>
+                
             </div>
         )
     }
@@ -227,6 +231,11 @@ function TemplateList() {
             console.log("Stop loading....................");
             setIsLoading(false)
         }
+        if (filterData.length < 0) {
+
+            console.log("Stop loading....................");
+            setIsLoading(false)
+        }
 
     }, [filterData])
 
@@ -234,13 +243,13 @@ function TemplateList() {
     return (
         <div className='appontment-history-container'>
 
-            {
+            {/* {
                 !isEditMode ?
 
                     <div className="search-container">
                         <input value={searchKey} onChange={(e) => { setSearchKey(e.target.value) }} type="text" name="" id="" placeholder='Search' />
                     </div> : null
-            }
+            } */}
 
             {
                 isEditMode ?

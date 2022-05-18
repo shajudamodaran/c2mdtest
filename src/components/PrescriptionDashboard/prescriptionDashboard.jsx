@@ -237,6 +237,13 @@ function PrescriptionDashboard() {
     }
 
 
+    useEffect(() => {
+        
+        return () => {
+            dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT())
+        }
+    }, [])
+
 
 
     return (
@@ -276,9 +283,9 @@ function PrescriptionDashboard() {
 
             <div className='mis_report_table_container'>
 
-                <div className="search-container">
+                {/* <div className="search-container">
                     <input value={searchKey} onChange={(e) => { setSearchKey(e.target.value) }} type="text" name="" id="" placeholder='Search' />
-                </div>
+                </div> */}
 
 
                 <table className='appoinment-table'>
@@ -351,7 +358,7 @@ function PrescriptionDashboard() {
 
                                 : <tr>
                                     <td colSpan={6}>
-                                        <EmptyTableData isLoading={isLoading} />
+                                        <EmptyTableData marginTop={200} isLoading={isLoading} />
                                     </td>
                                 </tr>
                         }
@@ -367,7 +374,7 @@ function PrescriptionDashboard() {
             <div className="pagination-container-mis-report">
 
                 &nbsp;
-                <Pagination onChange={handlePaginationChange} defaultCurrent={1} total={crDashboardTotal ? crDashboardTotal * 10 : 0} />
+                <Pagination showSizeChanger={false} onChange={handlePaginationChange} defaultCurrent={1} total={crDashboardTotal ? crDashboardTotal * 10 : 0} />
             </div>
 
 

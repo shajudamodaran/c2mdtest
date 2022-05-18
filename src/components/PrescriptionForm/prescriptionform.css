@@ -1012,8 +1012,33 @@ th {
   padding-bottom: 0.5rem;
 }
 
-.form-light-background .MuiAutocomplete-hasPopupIcon.css-16awh2u-MuiAutocomplete-root .MuiOutlinedInput-root,
-.MuiAutocomplete-hasClearIcon.css-16awh2u-MuiAutocomplete-root .MuiOutlinedInput-root {
-  height: 48px;
-  width: 299px;
+.form-light-background .MuiOutlinedInput-root {
+  height: 48px !important;
+  width: 364px !important;
 }
+
+.wrapper-popover-view{
+  width: 300px;
+ 
+}
+
+.view-prescription-doctor-list-container{
+  max-height: 500px;
+  overflow-x: auto;
+}
+
+
+.view-prescription-doctor-list-container-small{
+  max-height: 250px;
+  overflow-x: auto;
+  width: 300px;
+  max-width: 300px;
+}
+
+.view-prescription-doctor-list-container-small ul{
+
+  list-style: none;
+  padding: 0px;
+
+}
+

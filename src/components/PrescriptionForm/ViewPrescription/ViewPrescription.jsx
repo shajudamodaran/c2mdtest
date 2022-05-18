@@ -58,23 +58,48 @@ function ViewPrescription({ location }) {
 
 
         return (
-            <div>
-                {
-                    data.split(",")?.length > 0 ?
+            <div className='view-prescription-doctor-list-container-small'>
+                <ul>
+                    {
+                        data.split(",")?.length > 0 ?
 
-                        data.split(",").map((element, key) => {
-                            return (
-                                <span>{element}{key > data.split(",").length - 2 ? "" : ","} </span>
-                            )
-                        })
+                            data.split(",").map((element, key) => {
+                                return (
+                                    <li>{element}{key > data.split(",").length - 2 ? "" : ""} </li>
+                                )
+                            })
 
-                        : null
-                }
+                            : null
+                    }
+                </ul>
+
             </div>
         )
     }
 
 
+    let convertToArray = (data, context) => {
+
+        if (context == "first") {
+
+            if (data) {
+                return data.split(",")[0]
+            }
+            else {
+                return null
+            }
+        }
+        else {
+
+            if (data) {
+                return data.split(",")
+            }
+            else return[]
+        }
+
+
+
+    }
 
     return (
         <div className="prescription-form-main-container-view full-height">
@@ -87,26 +112,7 @@ function ViewPrescription({ location }) {
                         // onScroll={(e) => { setScrollAmount(e.target.scrollTop) }}
                         className="prescription-form-content">
 
-                        <div className='form-heading'>
-                            Prescription
-
-                            <div style={{ display: "flex", flexDirection: "row" }}>
-                                {/* <button className={`${preloadPrescription ? "add-investigation-btn" : "add-investigation-btn-disabled-v2"}`} style={{ marginRight: "1rem" }} onClick={() => { populatePreloadData() }}>LOAD LAST PRESCRIPTION</button> */}
-
-                                {/* <MuiDropdown
-                                    style={{ width: "150px" }}
-                                    value={null}
-                                    placeholder="Select template"
-                                    id={0}
-                                    data={["Temp1", "Temp2"]}
-                                    name="unit"
-                                    // onChange={updateMedicineTable}
-                                    isMedTable
-                                /> */}
-
-                            </div>
-
-                        </div>
+                        
 
 
 
@@ -158,11 +164,21 @@ function ViewPrescription({ location }) {
                                         <span className='form-caption' ></span>
                                     </div>
 
-                                    <Popover content={<Content data={template?.assignedDoctors} />} title={`Doctors list (${template?.assignedDoctors.split(",").length})`}>
+                                    <Popover overlayClassName="wrapper-popover-view" content={  convertToArray(template?.assignedDoctors).length>1?<Content data={template?.assignedDoctors} />:null} 
+                                    title={convertToArray(template?.assignedDoctors).length>1?`Doctors list (${template?.assignedDoctors.split(",").length})`:null}>
                                         <div className='form-light-background-big'>
                                             <input id="releventPoint"
                                                 style={{ maxWidth: "290px", minWidth: "290px" }}
-                                                value={template?.assignedDoctors.toString()}
+                                                // value={template?.assignedDoctors.toString()}
+                                                value={
+
+                                                    convertToArray(template?.assignedDoctors).length>1?
+                                                    `${convertToArray(template?.assignedDoctors, "first")}, + ${convertToArray(template?.assignedDoctors)?.length - 1}`
+                                                    : `${convertToArray(template?.assignedDoctors, "first")}`
+
+
+                                                    
+                                                    }
                                                 className='form-input-text'
 
                                                 readOnly
@@ -349,7 +365,7 @@ function ViewPrescription({ location }) {
 
                                                 <tr>
                                                     <td>{key + 1}</td>
-                                                    <td>{obj.testType?obj.testType:NO_DATA_MESSAGE2}</td>
+                                                    <td>{obj.testType ? obj.testType : NO_DATA_MESSAGE2}</td>
                                                     <td>{obj.testComment ? obj.testComment : NO_DATA_MESSAGE2}</td>
 
 
@@ -414,14 +430,14 @@ function ViewPrescription({ location }) {
                                                                 DRUGS
 
                                                             </td> */}
-                                                            <td>{obj.name?obj.name:NO_DATA_MESSAGE2}</td>
-                                                            <td>{obj.medtakeMethod?obj.medtakeMethod:NO_DATA_MESSAGE2}</td>
-                                                            <td>{obj.displayTablet?obj.displayTablet:NO_DATA_MESSAGE2}</td>
-                                                            <td>{obj.quandity?obj.quandity:NO_DATA_MESSAGE2} </td>
-                                                            <td>{obj.measurement?obj.measurement:NO_DATA_MESSAGE2}</td>
-                                                            <td>{obj.StartVal?obj.StartVal:NO_DATA_MESSAGE2}</td>
-                                                            <td>{obj.totalDays?obj.totalDays:NO_DATA_MESSAGE2}</td>
-                                                            <td>{obj.mediComment?obj.mediComment:NO_DATA_MESSAGE2}</td>
+                                                            <td>{obj.name ? obj.name : NO_DATA_MESSAGE2}</td>
+                                                            <td>{obj.medtakeMethod ? obj.medtakeMethod : NO_DATA_MESSAGE2}</td>
+                                                            <td>{obj.displayTablet ? obj.displayTablet : NO_DATA_MESSAGE2}</td>
+                                                            <td>{obj.quandity ? obj.quandity : NO_DATA_MESSAGE2} </td>
+                                                            <td>{obj.measurement ? obj.measurement : NO_DATA_MESSAGE2}</td>
+                                                            <td>{obj.StartVal ? obj.StartVal : NO_DATA_MESSAGE2}</td>
+                                                            <td>{obj.totalDays ? obj.totalDays : NO_DATA_MESSAGE2}</td>
+                                                            <td>{obj.mediComment ? obj.mediComment : NO_DATA_MESSAGE2}</td>
                                                         </tr>
 
                                                     )
@@ -461,8 +477,8 @@ function ViewPrescription({ location }) {
 
                             <div className='form-light-background' style={{ width: "45%" }}>
                                 <textarea
-                                value={consultationDetails?.instruction ? consultationDetails.instruction : NO_DATA_MESSAGE}
-                                   
+                                    value={consultationDetails?.instruction ? consultationDetails.instruction : NO_DATA_MESSAGE}
+
                                     className='form-input-text-area' rows={3} style={{ width: "100%" }} readOnly />
                             </div>
 
