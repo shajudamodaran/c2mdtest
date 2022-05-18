@@ -46,7 +46,7 @@ function AutoCompleteWithCheckbox(props) {
   const selectProps = {
     mode: 'multiple',
     style: {
-      width: '364px',
+      width: '300px',
     },
     placeholder: 'Select doctor',
     maxTagCount: 'responsive',

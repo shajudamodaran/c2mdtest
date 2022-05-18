@@ -216,8 +216,7 @@
   padding: 9px 10px;
 }
 
-.form-light-background .MuiAutocomplete-hasPopupIcon.css-16awh2u-MuiAutocomplete-root .MuiOutlinedInput-root,
-.MuiAutocomplete-hasClearIcon.css-16awh2u-MuiAutocomplete-root .MuiOutlinedInput-root {
+.form-light-background .MuiOutlinedInput-root {
   height: 48px;
   width: 230px;
 }
@@ -1014,7 +1013,7 @@ th {
 
 .form-light-background .MuiOutlinedInput-root {
   height: 48px !important;
-  width: 364px !important;
+  width: 300px !important;
 }
 
 .wrapper-popover-view{
