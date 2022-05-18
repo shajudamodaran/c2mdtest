@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkconnect2mydoctor=self.webpackChunkconnect2mydoctor||[]).push([[3999],{13999:function(n,e,t){t.r(e);var c=t(72791),r=t(80184),u=c.lazy((function(){return t.e(2026).then(t.bind(t,42026))})),o=c.lazy((function(){return Promise.all([t.e(7175),t.e(3549)]).then(t.bind(t,63549))}));e.default=function(){return(0,r.jsx)(u,{children:(0,r.jsx)(o,{})})}}}]);
-//# sourceMappingURL=3999.5cdc2a85.chunk.js.map
