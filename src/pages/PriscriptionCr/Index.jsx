@@ -14,6 +14,7 @@ import { prescriptionAdminSideMenu } from './constants'
 import '../InterbranchAdmin/interbranchadminhome.css'
 import { SET_CR_DASHBOARD } from '../../actions/type';
 import { FETCH_PR_ADMIN_DASHBOARD_REPORT } from '../../actions/PrescriptionFormActions';
+import { LogoutSVG } from '../../assets/Logos/Icons';
 
 function Index() {
 
@@ -118,7 +119,7 @@ function Index() {
                     }
 
                     <div className="header-card logout" style={{ marginTop: "2.5rem", coursor: "pointer !important" }} onClick={logoutFunction}>
-                        <div className="icon">&nbsp;</div>
+                        <div className="icon"><LogoutSVG/></div>
                         SIGN OUT
                     </div>
 

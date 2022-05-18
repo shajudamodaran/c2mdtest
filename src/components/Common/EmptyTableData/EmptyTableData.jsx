@@ -2,14 +2,17 @@ import React from 'react'
 import { ClipLoader, PuffLoader } from 'react-spinners'
 import { FolderEmpty } from '../../../assets/Logos/Icons'
 
-function EmptyTableData({ isLoading }) {
+function EmptyTableData({ isLoading,marginTop }) {
     return (
         <div className="empty-table-data top-margin-50">
-            <div className="empty-table-body" >
+            <div className="empty-table-body" style={{
+                height:isLoading&&70,
+                width:isLoading&&70
+            }} >
                 {
                     isLoading ?
 
-                        <PuffLoader color={"#ffffff"} loading={true} size={120} />
+                        <PuffLoader color={"#ffffff"} loading={true} size={70} />
                         :
                         <FolderEmpty />
                 }

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import './prescriptionform.css'
 import axios from "axios";
 
-import { notification, Popover } from 'antd';
+import { notification, Popover, Tooltip } from 'antd';
 import { AddIcon_Prescription, DeleteIcon_Prescription, LabelIcon_Prescription } from '../../assets/Logos/Icons';
 import Modal from './Components/Modal/Modal';
 
@@ -117,6 +117,12 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
     let [finalInvestigations, setFinalInvestigation] = useState([])
     let [finalMedicinesdata, setFinalMedicinesdata] = useState([])
     let [params, setParams] = useState(JSON.parse(localStorage.getItem("basicinfo")))
+
+    let [isreadyToValidate, setReadyToValidate] = useState({
+        templateName: false,
+        doctos: false,
+        department: false
+    })
 
 
     const { selectedDataInvestigation, selectedDataMedicines, submissionData, investigationData, medicinesData } = useSelector((state) => state?.presctiptionFormReducer)
@@ -1119,6 +1125,8 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
         }
 
+
+
     }
 
 
@@ -1128,6 +1136,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
         dispatch({ type: CLEAR_PRESCRIPTION })
         setSelectedDepartmentName(null)
         setTemplateName("")
+
 
     }
 
@@ -1150,12 +1159,11 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
             console.log(res);
 
-            if (!preloadPrescription) {
-                dispatch({
-                    type: SET_SELECTED_DOCTORS,
-                    payload: doctorObjectToArray(res)
-                });
-            }
+            dispatch({
+                type: SET_SELECTED_DOCTORS,
+                payload: doctorObjectToArray(res)
+            });
+
 
             dispatch({
                 type: SET_DOCTORS,
@@ -1226,6 +1234,12 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
 
         let submitStatus = validateForm()
+
+        setReadyToValidate({
+            templateName: true,
+            doctos: true,
+            department: true
+        })
 
 
         if (submitStatus) {
@@ -1313,14 +1327,24 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                         setSuccessMessage(result.data.data.info)
                         setSuccess(true)
 
+                        setReadyToValidate({
+                            templateName: false,
+                            doctos: false,
+                            department: false
+                        })
+
 
 
 
                     })
 
+
+
+
             } catch (error) {
 
                 console.log(error);
+
                 setSuccess(true)
             }
 
@@ -1346,6 +1370,8 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
 
     }
+
+
 
 
     let validateForm = () => {
@@ -1402,6 +1428,59 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
     }
 
+
+
+    useEffect(() => {
+
+        if (isreadyToValidate.templateName) {
+            if (!templateName) {
+
+                setvalidatoinError({ ...validationError, templateName: "* Template name can't be empty." })
+                // _validationError.templateName = "* Template name can't be empty."
+            }
+            else {
+                setvalidatoinError({ ...validationError, templateName: null })
+            }
+        }
+
+    }, [templateName])
+
+
+    useEffect(() => {
+
+        if (isreadyToValidate.templateName) {
+            if (selectedDoctors.length <= 0) {
+
+                setvalidatoinError({ ...validationError, doctors: "*Please select doctors." })
+                // _validationError.templateName = "* Template name can't be empty."
+            }
+            else {
+                setvalidatoinError({ ...validationError, doctors: null })
+            }
+        }
+
+    }, [selectedDoctors.length])
+
+    useEffect(() => {
+
+        if (isreadyToValidate.templateName) {
+            if (!selectedDepartmentName) {
+
+                setvalidatoinError({ ...validationError, department: "* Please select department." })
+                // _validationError.templateName = "* Template name can't be empty."
+            }
+            else {
+                setvalidatoinError({ ...validationError, department: null })
+            }
+        }
+
+    }, [selectedDepartmentName])
+
+
+
+
+
+
     let EmptySpace = () => {
         return (
             <span>&nbsp;&nbsp;</span>
@@ -1435,6 +1514,16 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
     }
 
+    let handleTemplateNameChange = (e) => {
+
+        setTemplateName(e.target.value)
+
+
+    }
+
+
+    console.log(selectedDoctors.length, selectedDepartmentName);
+
     return (
         <div className="prescription-form-main-container">
 
@@ -1449,7 +1538,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                         // onScroll={(e) => { setScrollAmount(e.target.scrollTop) }}
                         className="prescription-form-content" ref={ScrollElement}>
 
-                       
+
 
 
 
@@ -1507,20 +1596,22 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                                         <span className='form-caption'></span>
                                     </div>
 
-                                    <div className={`form-light-background ${validationError.department ? "form-error" : null}`}>
+                                    <Tooltip title={selectedDepartmentName}>
+                                        <div className={`form-light-background ${validationError.department ? "form-error" : null}`}>
 
 
-                                        <MuiAutoComplete
-                                            placeholder="Select speciality"
-                                            // id={key}
-                                            isSpeciality
-                                            value={selectedDepartmentName}
-                                            data={departmentsArray.length > 0 ? departmentObjectToArray(departmentsArray) : []}
-                                            onChange={handleDepartmentOnChange}
-                                            name='name' />
+                                            <MuiAutoComplete
+                                                placeholder="Select speciality"
+                                                // id={key}
+                                                isSpeciality
+                                                value={selectedDepartmentName}
+                                                data={departmentsArray.length > 0 ? departmentObjectToArray(departmentsArray) : []}
+                                                onChange={handleDepartmentOnChange}
+                                                name='name' />
 
 
-                                    </div>
+                                        </div>
+                                    </Tooltip>
                                     <span className='prescription-form-error'>
                                         {validationError.department ? validationError.department : <EmptySpace />}
                                     </span>
@@ -1569,11 +1660,11 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                                     <div className={`form-light-background ${validationError.templateName ? "form-error" : "form-ok"}`}>
                                         <input
                                             value={templateName}
-                                            onChange={(e) => { setTemplateName(e.target.value) }}
+                                            onChange={(e) => { handleTemplateNameChange(e) }}
                                             type="text"
                                             className='form-input-text'
                                             placeholder='Enter template name'
-                                            style={{ width: "299px" }}
+                                            style={{ width: "364px" }}
                                         />
 
 
@@ -1703,7 +1794,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                             </div>
 
 
-                          
+
                             {finalInvestigations.length > 0 ?
 
 
@@ -1797,7 +1888,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
 
                                                         <textarea
-                                                            
+
                                                             rows={1}
                                                             value={obj.comment ? obj.comment : ""}
                                                             placeholder='Type here'
