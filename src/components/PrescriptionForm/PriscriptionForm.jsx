@@ -1030,12 +1030,12 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
             });
 
 
-            loadDoctors(preloadPrescription.department.Id)
+            loadDoctors(preloadPrescription.department.Id,getElementArray(preloadPrescription?.doctors, "Id"))
 
-            dispatch({
-                type: SET_SELECTED_DOCTORS,
-                payload: getElementArray(preloadPrescription?.doctors, "Id")
-            });
+            // dispatch({
+            //     type: SET_SELECTED_DOCTORS,
+            //     payload: getElementArray(preloadPrescription?.doctors, "Id")
+            // });
 
             setTemplateName(preloadPrescription.basicinfo.templateName)
 
@@ -1154,7 +1154,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
     }
 
-    let loadDoctors = (_id) => {
+    let loadDoctors = (_id,selected) => {
 
         dispatch(getDoctors({ department_id: _id })).then((res) => {
 
@@ -1162,7 +1162,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
             dispatch({
                 type: SET_SELECTED_DOCTORS,
-                payload: doctorObjectToArray(res)
+                payload:selected?selected: doctorObjectToArray(res)
             });
 
 
