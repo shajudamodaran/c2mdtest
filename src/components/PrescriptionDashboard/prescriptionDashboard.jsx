@@ -263,6 +263,7 @@ function PrescriptionDashboard() {
                     <RangePicker
                         style={{ width: "250px" }}
                         // open={isOpen}
+                       
                         inputReadOnly
                         format="DD-MMM-YYYY"
                         ref={dateRef}
@@ -291,7 +292,7 @@ function PrescriptionDashboard() {
                 <table className='appoinment-table'>
                     <tr>
                         <th>App Id</th>
-                        <th style={{ width: "230px" }}>Patient</th>
+                        <th className='patient-name-head'>Patient</th>
                         <th>Doctor</th>
                         <th>App Date & Time</th>
                         {/* <th>Appointment Time</th> */}
@@ -321,7 +322,7 @@ function PrescriptionDashboard() {
                                                 {element.appointmentID}
 
                                             </td>
-                                            <td>{element.patientName}</td>
+                                            <td >{element.patientName}</td>
                                             <td>{element.doctorname}</td>
                                             <td>{`${element.appointmentDate}, ${element.appointmentTime}`}</td>
                                             <td>

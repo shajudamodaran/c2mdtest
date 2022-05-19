@@ -410,4 +410,16 @@
 }
 
 
-  
+.patient-name-head{
+  width: 200px;
+}
+
+.filter-button{
+  z-index: 10000;
+}
+.ant-picker{
+  z-index: 10000;
+}
+.ant-picker-dropdown{
+  z-index: 10000;
+}
