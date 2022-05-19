@@ -107,7 +107,7 @@ function PrescriptionDashboard() {
 
         }
 
-// pp dashboard
+// pp dashboards
     }
 
     let downloadReport = (startDate, endDate) => {
