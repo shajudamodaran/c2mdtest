@@ -727,7 +727,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                             // }, 3000);
 
                         }
-                        else if (result.data.data.info === "Prescription already Saved. No changes Found") {
+                        else if (result.data.data.info === "Prescription already saved. No changes found") {
 
                             //  setSuccess(false)
                             setLoading(false)
