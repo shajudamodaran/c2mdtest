@@ -1,5 +1,5 @@
 import loginedApi from "../apis";
-import authHeader from './auth-header';
+//import authHeader from './auth-header';
 import { convertDateToString } from "../Helpers/dateFunctions";
 import { INTERBRANCH_ADMIN_DASHBOARD, REDUX_LOADING, SET_CR_DASHBOARD, UPDATE_REDUX_PRESCRIPTION } from "./type";
 import { USER_DATA } from "../constants/const";
@@ -24,14 +24,14 @@ export const getDepartments = () => async dispatch => {
     let params = {
         requestType: "1062",
         browserTimeZone: "",
-        "version": "2",
+        //"version": "2",
         data: {
             type: "department"
         },
     };
 
 
-    const response = await loginedApi.post("getdepartments", params, { headers: authHeader() });
+    const response = await loginedApi.post("getdepartments", params);
 
 
     if (response.status == "200") {
@@ -69,7 +69,7 @@ export const getDoctors = ({ department_id }) => async dispatch => {
     let params = {
         requestType: "1063",
         browserTimeZone: "",
-        "version": "2",
+       // "version": "2",
         data: {
             "type": "doctor",
             "departmentId": department_id
@@ -77,7 +77,7 @@ export const getDoctors = ({ department_id }) => async dispatch => {
     };
 
 
-    const response = await loginedApi.post("getdoctors", params, { headers: authHeader() });
+    const response = await loginedApi.post("getdoctors", params);
 
     if (response.status == "200") {
 
@@ -113,7 +113,7 @@ export const getTemplateList = ({ offset }) => async dispatch => {
     let params = {
         requestType: "1070",
         browserTimeZone: "",
-        "version": "2",
+       //"version": "2",
         data: {
             type: "templatelist",
             offset: offset ? offset : 0
@@ -121,7 +121,7 @@ export const getTemplateList = ({ offset }) => async dispatch => {
     };
 
 
-    const response = await loginedApi.post("gettemplates", params, { headers: authHeader() });
+    const response = await loginedApi.post("gettemplates", params);
 
     if (response.status == "200") {
 
@@ -166,10 +166,12 @@ export const viewTemplate = (par_tempId) => async dispatch => {
     // });
 
 
-    let params = { "data": { "templateId": par_tempId }, "browserTimeZone": "", "requestType": 1068, "version": "2" };
+    let params = { "data": { "templateId": par_tempId }, "browserTimeZone": "", "requestType": 1068, 
+   // "version": "2" 
+};
 
 
-    const response = await loginedApi.post("viewtemplate", params, { headers: authHeader() });
+    const response = await loginedApi.post("viewtemplate", params);
 
     if (response.status == "200") {
 
@@ -220,12 +222,12 @@ export const FETCH_PR_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
             offset: _para?.offset ? _para.offset : "0"
         },
         "browserTimeZone": "",
-        "version": "2",
+       // "version": "2",
         "requestType": 236
     }
 
 
-    let responce = await loginedApi.post("getbethanyprescriptions", params, { headers: authHeader() })
+    let responce = await loginedApi.post("getbethanyprescriptions", params)
 
     console.log("getbethanyprescriptionlist responce ->", responce);
 
@@ -276,10 +278,12 @@ export const syncLabAndMedicine = () => async dispatch => {
     // });
 
 
-    let params = { "data": { "userID": userId, "browserTimeZone": "GMT+05:30" }, "browserTimeZone": "", "requestType": 238, "version": "2" }
+    let params = { "data": { "userID": userId, "browserTimeZone": "GMT+05:30" }, "browserTimeZone": "", "requestType": 238,
+    // "version": "2" 
+}
 
 
-    const response = await loginedApi.post("bethanysynclabmedicine", params, { headers: authHeader() });
+    const response = await loginedApi.post("bethanysynclabmedicine", params);
 
     if (response.status == "200") {
 
@@ -318,9 +322,11 @@ export const pushToHisCall = (_id) => async dispatch => {
     // });
 
 
-    let params = { "data": { "userID": userId, "listid": _id }, "browserTimeZone": "", "requestType": 237, "version": "2" }
+    let params = { "data": { "userID": userId, "listid": _id }, "browserTimeZone": "", "requestType": 237,
+   // "version": "2" 
+}
 
-    const response = await loginedApi.post("bethanysynclabmedicine", params, { headers: authHeader() });
+    const response = await loginedApi.post("bethanysynclabmedicine", params);
 
     if (response.status == "200") {
 

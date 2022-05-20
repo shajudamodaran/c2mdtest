@@ -34,7 +34,7 @@ import FailiureModal from './Components/FailiureModal/FailiureModal';
 import { CLEAR_PRESCRIPTION, SET_DOCTORS, SET_SELECTED_DEPARTMENT, SET_SELECTED_DOCTORS, SET_SUBMISSION_DATA_PRESCRIPTION, UPDATE_INVESTIGATION_TABLE_DATA, UPDATE_MEDICINE_TABLE_DATA, UPDATE_REDUX_PRESCRIPTION } from '../../actions/type';
 import { getDepartments, getDoctors } from '../../actions/PrescriptionFormActions';
 import AutoCompleteWithCheckbox from './Components/CustomeComponents/AutoCompleteWithCheckbox';
-import authHeader from '../../actions/auth-header';
+//import authHeader from '../../actions/auth-header';
 // import NetworkErrorModal from './Components/NetworkErrorModal/NetworkErrorModal';
 
 
@@ -1310,7 +1310,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                     "browserTimeZone": ""
                 },
                 "browserTimeZone": "",
-                "version":"2",
+               // "version":"2",
                 "requestType": preloadData ? 1066 : 1061
             }
 
@@ -1320,7 +1320,8 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
             }
 
             try {
-                axios.post(`https://uat.c2mdr.com/c2mydrrestuat/v1/c2mdapi/${preloadData ? "updatetemplate" : "createtemplate"}`, dataToSubmit, { headers: authHeader() })
+        axios.post(`https://uat.c2mdr.com/c2mydrrestuat/v1/c2mdapi/${preloadData ? "updatetemplate" : "createtemplate"}`, dataToSubmit)
+               //  { headers: authHeader() })
                     .then((result) => {
 
                         console.log(result);
