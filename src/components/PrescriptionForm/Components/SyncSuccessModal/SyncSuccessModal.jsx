@@ -22,7 +22,7 @@ function SyncSuccessModal({ state, setState, onOk }) {
 
                         <div className="modal-content-prescription content">
                             <CompletedGreen />
-                            <span className='syncsuccessmodal-message'> Data successfully sync...</span>
+                            <span className='syncsuccessmodal-message'>Data updated successfully</span>
                         </div>
 
                         <div onClick={handleOk} className="syncsuccessmodal-footer">

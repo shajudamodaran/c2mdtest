@@ -1037,7 +1037,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
             //     payload: getElementArray(preloadPrescription?.doctors, "Id")
             // });
 
-            setTemplateName(preloadPrescription.basicinfo.templateName)
+            setTemplateName(preloadPrescription.templateName)
 
 
             setParams(
@@ -1215,7 +1215,11 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
 
     let handleDepartmentOnChange = (data) => {
-        console.log(data.data);
+
+        console.log();
+
+        if(data.data)
+        {
 
         let dep_id = departmentsArray.filter((element) => element.departmentName == data.data)
 
@@ -1223,9 +1227,35 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
             type: SET_SELECTED_DEPARTMENT,
             payload: dep_id[0]
         });
+
         setSelectedDepartmentName(dep_id[0].departmentName)
 
         loadDoctors(dep_id[0].departmentId)
+
+        }
+        else{
+            console.log("Empty speciality..........");
+
+            dispatch({
+                type: SET_SELECTED_DEPARTMENT,
+                payload: null
+            });
+
+            setSelectedDepartmentName(null)
+           
+            dispatch({
+                type: SET_SELECTED_DOCTORS,
+                payload:[]
+            });
+
+
+            dispatch({
+                type: SET_DOCTORS,
+                payload: []
+            });
+        }
+
+
 
 
     }
@@ -1525,7 +1555,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
     }
 
 
-    console.log(selectedDoctors.length, selectedDepartmentName);
+    console.log(preloadPrescription);
 
     return (
         <div className="prescription-form-main-container">

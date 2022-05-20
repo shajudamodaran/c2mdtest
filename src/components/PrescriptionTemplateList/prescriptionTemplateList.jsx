@@ -90,7 +90,7 @@ function TemplateList() {
 
     let handleEditOnClick = (rowData, element) => {
 
-        setEditMode({ ...rowData, tempId: element.tempId, departmentName: element.assignedDepartments, doctors: element.Doctors, department: element.Departments[0] })
+        setEditMode({ ...rowData,templateName:element?.tempName, tempId: element.tempId, departmentName: element.assignedDepartments, doctors: element.Doctors, department: element.Departments[0] })
         //console.log(rowData);
 
     }

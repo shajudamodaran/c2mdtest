@@ -1041,3 +1041,14 @@ th {
 
 }
 
+.form-light-background  .ant-select-selection-item{
+
+  max-width: 190px;
+
+}
+
+textarea{
+  font-family: "IBM Plex Sans", sans-serif !important;
+}
+
+
