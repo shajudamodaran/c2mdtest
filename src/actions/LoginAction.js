@@ -93,6 +93,7 @@ export const loginAction =
         if(res.data?.data?.clinicId==BETHANY_CLINIC_ID)
         {
           history.push("/admindashboard");
+          //history.push("/dashboard");
         }
         else{
           history.push("/dashboard");

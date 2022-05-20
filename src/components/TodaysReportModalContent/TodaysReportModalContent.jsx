@@ -47,7 +47,7 @@ function TodaysReportModalContent() {
                         <tr>
                             <td className='cell1 even'>Booked from*</td>
 
-                            <td className='cell3 even'>{appointmentDetails?.bookedfrom}</td>
+                            <td className='cell3 even'>{appointmentDetails?.booked_from}</td>
                         </tr>
 
 
@@ -70,7 +70,7 @@ function TodaysReportModalContent() {
                         </tr>
 
                         <tr>
-                            <td className='cell1 even'>Session ID (TokBox)</td>
+                            <td className='cell1 even'>Session ID (TokBox)*</td>
 
                             <td className='cell3 even'>{appointmentDetails?.sessionId}</td>
                         </tr>
@@ -104,21 +104,21 @@ function TodaysReportModalContent() {
 
                         <tr>
 
-                            <td className='cell1 odd'>Patient*</td>
+                            <td className='cell1 odd'>Patient</td>
 
                             <td className='cell3 odd'>
 
-                                Email sent date: {appointmentDetails?.Patient_Email_sent_Date}<br />
-                                Email sent time: {appointmentDetails?.Patient_Email_sent_Time} <br />
+                                Email sent date: {appointmentDetails?.emailPatientDate}<br />
+                                Email sent time: {appointmentDetails?.emailPatientTime} <br />
                             </td>
                         </tr>
 
                         <tr>
-                            <td className='cell1 even'>Doctor*</td>
+                            <td className='cell1 even'>Doctor</td>
 
                             <td className='cell3 even'>
-                                Email sent date: {appointmentDetails?.Doctor_Email_sent_Date} <br />
-                                Email sent time: {appointmentDetails?.Doctor_Email_sent_Time} <br />
+                                Email sent date: {appointmentDetails?.emailDoctorDate} <br />
+                                Email sent time: {appointmentDetails?.emailDoctorTime} <br />
                             </td>
                         </tr>
 
@@ -140,7 +140,7 @@ function TodaysReportModalContent() {
                         </tr>
 
                         <tr>
-                            <td className='cell1 even'>New/Existing*</td>
+                            <td className='cell1 even'>New/Existing</td>
                             <td className='cell3 even'>{appointmentDetails?.NewOrExisting}</td>
                         </tr>
 
@@ -150,27 +150,27 @@ function TodaysReportModalContent() {
                         </tr>
 
                         <tr>
-                            <td className='cell1 even'>Location*</td>
-                            <td className='cell3 even'>{appointmentDetails?.Location}</td>
+                            <td className='cell1 even'>Location</td>
+                            <td className='cell3 even'>{appointmentDetails?.PatientLocation}</td>
                         </tr>
 
                         <tr>
-                            <td className='cell1 odd'>Email ID*</td>
+                            <td className='cell1 odd'>Email ID</td>
                             <td className='cell3 odd'>{appointmentDetails?.PatientEmail}</td>
                         </tr>
 
                         <tr>
-                            <td className='cell1 even'>Phone Number*</td>
-                            <td className='cell3 even'>{appointmentDetails?.PatientPhonenumber}</td>
+                            <td className='cell1 even'>Phone Number</td>
+                            <td className='cell3 even'>{appointmentDetails?.PatientMobile}</td>
                         </tr>
 
                         <tr>
-                            <td className='cell1 odd'>Timezone*</td>
+                            <td className='cell1 odd'>Timezone</td>
                             <td className='cell3 odd'>{appointmentDetails?.PatientTimeZone}</td>
                         </tr>
 
                         <tr>
-                            <td className='cell1 even'>Booked By (For Loved One)</td>
+                            <td className='cell1 even'>Booked By (For Loved One)*</td>
                             <td className='cell3 even'>{appointmentDetails?.bookedby}</td>
                         </tr>
 
@@ -201,17 +201,17 @@ function TodaysReportModalContent() {
                         </tr>
 
                         <tr>
-                            <td className='cell1 even'>Hospital Name</td>
+                            <td className='cell1 even'>Hospital Name*</td>
                             <td className='cell3 even'>{appointmentDetails?.Hospital}</td>
                         </tr>
 
                         <tr>
-                            <td className='cell1 odd'>Email ID*</td>
+                            <td className='cell1 odd'>Email ID</td>
                             <td className='cell3 odd'>{appointmentDetails?.DoctorEmail}</td>
                         </tr>
 
                         <tr>
-                            <td className='cell1 even'>Phone Number*</td>
+                            <td className='cell1 even'>Phone Number</td>
                             <td className='cell3 even'>{appointmentDetails?.DoctorMobile}</td>
                         </tr>
 
@@ -239,7 +239,7 @@ function TodaysReportModalContent() {
                         </tr>
 
                         <tr>
-                            <td className='cell1 odd'>Refund ID</td>
+                            <td className='cell1 odd'>Refund ID*</td>
                             <td className='cell3 odd'>{appointmentDetails?.refundid}</td>
                         </tr>
 
@@ -249,8 +249,8 @@ function TodaysReportModalContent() {
                         </tr>
 
                         <tr>
-                            <td className='cell1 odd'>Payment Mode*</td>
-                            <td className='cell3 odd'>{appointmentDetails?.payment_mode}</td>
+                            <td className='cell1 odd'>Payment Mode</td>
+                            <td className='cell3 odd'>{appointmentDetails?.paymentMode}</td>
                         </tr>
 
                     </tbody>
