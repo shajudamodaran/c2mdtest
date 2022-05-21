@@ -38,6 +38,8 @@ function ViewPrescription({ location }) {
 
         dispatch(viewTemplate(prname)).then((res) => {
 
+            console.log(res);
+
             if (res) {
                 setFinalInvestigationData(res[0]?.tempData?.consultationDetails?.labTest)
                 setFinalMedicinesdata(res[0]?.tempData?.consultationDetails?.medicine)
@@ -212,7 +214,7 @@ function ViewPrescription({ location }) {
                                     <div className='form-light-background-big'>
                                         <input id="releventPoint"
                                             style={{ width: "290px" }}
-                                            value={template?.tempData?.basicinfo?.templateName}
+                                            value={template?.tempName}
                                             className='form-input-text'
 
                                             readOnly

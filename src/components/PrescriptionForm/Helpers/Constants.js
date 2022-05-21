@@ -26,7 +26,6 @@ export const getNumberOfDays = (max) => {
 
     let result=[]
 
-
     for (let i = 1; i <= max; i++) 
     {
        result.push(i)

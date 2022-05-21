@@ -251,7 +251,7 @@ function PrescriptionDashboard() {
 
             <div className="header">
 
-                <button onClick={syncTM}>
+                <button className='header_button' onClick={syncTM}>
 
                     <div className={`icon ${isSyncing ? "rotate" : ""}`}><i class="far fa-sync"></i></div>{isSyncing ? "Syncing..." : "Sync Lab Test & Medicine"}</button>
 
@@ -263,7 +263,7 @@ function PrescriptionDashboard() {
                     <RangePicker
                         style={{ width: "250px" }}
                         // open={isOpen}
-                       
+                        getPopupContainer={trigger => trigger.parentElement}
                         inputReadOnly
                         format="DD-MMM-YYYY"
                         ref={dateRef}
@@ -289,7 +289,7 @@ function PrescriptionDashboard() {
                 </div> */}
 
 
-                <table className='appoinment-table'>
+                <table className='appoinment-table clinic-dashboard-table'>
                     <tr>
                         <th>App Id</th>
                         <th className='patient-name-head'>Patient</th>

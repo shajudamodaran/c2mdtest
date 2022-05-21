@@ -225,8 +225,10 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
         }
     )
 
+    let whenData = ['Before Food', 'After Food', 'SOS']
+    let [daysCount,setdaysCount]=useState(getNumberOfDays(120))
 
-    let selectedDoctor = []
+
 
 
 
@@ -1030,7 +1032,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
             });
 
 
-            loadDoctors(preloadPrescription.department.Id,getElementArray(preloadPrescription?.doctors, "Id"))
+            loadDoctors(preloadPrescription.department.Id, getElementArray(preloadPrescription?.doctors, "Id"))
 
             // dispatch({
             //     type: SET_SELECTED_DOCTORS,
@@ -1154,7 +1156,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
     }
 
-    let loadDoctors = (_id,selected) => {
+    let loadDoctors = (_id, selected) => {
 
         dispatch(getDoctors({ department_id: _id })).then((res) => {
 
@@ -1162,7 +1164,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
             dispatch({
                 type: SET_SELECTED_DOCTORS,
-                payload:selected?selected: doctorObjectToArray(res)
+                payload: selected ? selected : doctorObjectToArray(res)
             });
 
 
@@ -1218,22 +1220,21 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
         console.log();
 
-        if(data.data)
-        {
+        if (data.data) {
 
-        let dep_id = departmentsArray.filter((element) => element.departmentName == data.data)
+            let dep_id = departmentsArray.filter((element) => element.departmentName == data.data)
 
-        dispatch({
-            type: SET_SELECTED_DEPARTMENT,
-            payload: dep_id[0]
-        });
+            dispatch({
+                type: SET_SELECTED_DEPARTMENT,
+                payload: dep_id[0]
+            });
 
-        setSelectedDepartmentName(dep_id[0].departmentName)
+            setSelectedDepartmentName(dep_id[0].departmentName)
 
-        loadDoctors(dep_id[0].departmentId)
+            loadDoctors(dep_id[0].departmentId)
 
         }
-        else{
+        else {
             console.log("Empty speciality..........");
 
             dispatch({
@@ -1242,10 +1243,10 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
             });
 
             setSelectedDepartmentName(null)
-           
+
             dispatch({
                 type: SET_SELECTED_DOCTORS,
-                payload:[]
+                payload: []
             });
 
 
@@ -1340,7 +1341,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                     "browserTimeZone": ""
                 },
                 "browserTimeZone": "",
-               // "version":"2",
+                // "version":"2",
                 "requestType": preloadData ? 1066 : 1061
             }
 
@@ -1350,8 +1351,8 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
             }
 
             try {
-        axios.post(`https://uat.c2mdr.com/c2mydrrestuat/v1/c2mdapi/${preloadData ? "updatetemplate" : "createtemplate"}`, dataToSubmit)
-               //  { headers: authHeader() })
+                axios.post(`https://uat.c2mdr.com/c2mydrrestuat/v1/c2mdapi/${preloadData ? "updatetemplate" : "createtemplate"}`, dataToSubmit)
+                    //  { headers: authHeader() })
                     .then((result) => {
 
                         console.log(result);
@@ -1666,7 +1667,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                                             placeholder="Select doctor"
                                             data={['Data 1', 'Data 2', 'Data 3']}
                                             name=""
-                                        //onChange={onChangeSubmissiondataHeightWidthUnit} 
+                                        //onChange={onChangeSubmissiondataHeightWidthUnit}
                                         /> */}
                                         <AutoCompleteWithCheckbox
                                             data={doctorsArray.length > 0 ? doctorObjectToArray(doctorsArray) : []}
@@ -1854,9 +1855,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                                                 <tr>
                                                     <td>{key + 1}</td>
                                                     <td>
-                                                        {/* <Select
-
-
+                                                        <Select
 
                                                             getPopupContainer={trigger => trigger.parentNode}
                                                             style={{ position: "absolute" }}
@@ -1877,7 +1876,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                                                             }
 
 
-                                                            placeholder="Select investigation" style={{ width: "100%" }}
+                                                            placeholder="Select investigation"
 
 
                                                             onChange={(e) => {
@@ -1905,16 +1904,16 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                                                             }
 
 
-                                                        </Select> */}
+                                                        </Select>
 
 
-                                                        <MuiAutoComplete
+                                                        {/* <MuiAutoComplete
                                                             placeholder="Select investigation"
                                                             id={key}
                                                             value={obj.name}
                                                             data={test ? test : []}
                                                             onChange={test && updateInvestigationTable}
-                                                            name='name' />
+                                                            name='name' /> */}
                                                     </td>
                                                     <td>
 
@@ -2026,15 +2025,65 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
                                                                 {
 
+                                                                    <Select
 
-
-                                                                    <MuiAutoComplete
-                                                                        placeholder="Select medicine"
-                                                                        id={key}
+                                                                        getPopupContainer={trigger => trigger.parentNode}
                                                                         value={obj.name}
-                                                                        data={medicine ? medicine : []}
-                                                                        onChange={updateMedicineTable}
-                                                                        name='name' />
+
+
+                                                                        optionFilterProp="children"
+                                                                        showSearch
+
+                                                                        filterOption={(input, option) =>
+                                                                            option.children.toLowerCase().startsWith(input.toLowerCase()) ? true : false
+                                                                        }
+
+                                                                        filterSort={(optionA, optionB) =>
+                                                                            optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
+                                                                        }
+
+
+                                                                        placeholder="Select medicine"
+                                                                        onChange={(e) => { updateMedicineTable({ data: e, id: key, key: "name", state: medicinesData }) }}
+                                                                        name='name'
+
+
+                                                                    // onChange={(e) => {
+
+                                                                    //     // InvestigationNameOnChange({ data: e, id: obj.id })
+                                                                    //     // setLabtest([...labtest, {
+                                                                    //     //     testType: "",
+                                                                    //     //     testNames: e,
+                                                                    //     //     comment: "",
+                                                                    //     //     id: key + 1
+                                                                    //     // }])
+                                                                    //     updateInvestigationTable({ data: e, id: key, key: "name", state: investigationData })
+
+
+                                                                    // }}
+                                                                    >
+                                                                        {
+                                                                            medicine ? medicine.map((obj2, key) => {
+
+                                                                                return (
+                                                                                    <Option value={obj2}>{obj2}</Option>
+                                                                                )
+
+                                                                            }) : null
+                                                                        }
+
+
+                                                                    </Select>
+
+
+
+                                                                    // <MuiAutoComplete
+                                                                    //     placeholder="Select medicine"
+                                                                    //     id={key}
+                                                                    //     value={obj.name}
+                                                                    //     data={medicine ? medicine : []}
+                                                                    //     onChange={updateMedicineTable}
+                                                                    //     name='name' />
 
 
 
@@ -2043,31 +2092,108 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                                                             <td>
                                                                 {
 
-                                                                    <MuiDropdown
-                                                                        placeholder="When to have"
-                                                                        id={key}
-                                                                        data={['Before Food', 'After Food', 'SOS']}
-                                                                        name="when"
+                                                                    <Select
+
+                                                                        getPopupContainer={trigger => trigger.parentNode}
+
                                                                         value={obj.when}
-                                                                        onChange={updateMedicineTable}
-                                                                        isMedTable
-                                                                    />
+
+                                                                        optionFilterProp="children"
+
+                                                                        placeholder="When to have"
+
+                                                                        onChange={(e) => { updateMedicineTable({ data: e, id: key, key: "when", state: medicinesData }) }}
+                                                                        name='name'
+
+                                                                    >
+                                                                        {
+                                                                            ['Before Food', 'After Food', 'SOS'].map((obj2, key) => {
+
+                                                                                return (
+                                                                                    <Option value={obj2}>{obj2}</Option>
+                                                                                )
+
+                                                                            })
+                                                                        }
+
+
+                                                                    </Select>
+
+                                                                    // <MuiDropdown
+                                                                    //     placeholder="When to have"
+                                                                    //     id={key}
+                                                                    //     data={['Before Food', 'After Food', 'SOS']}
+                                                                    //     name="when"
+                                                                    //     value={obj.when}
+                                                                    //     onChange={updateMedicineTable}
+                                                                    //     isMedTable
+                                                                    // />
 
                                                                 }
                                                             </td>
                                                             <td>
                                                                 {
 
+                                                                    <Select
 
-                                                                    <MuiDropdown
+                                                                        getPopupContainer={trigger => trigger.parentNode}
                                                                         value={obj.freequancy}
+
+
+                                                                        optionFilterProp="children"
+                                                                        showSearch
+
+                                                                        filterOption={(input, option) =>
+                                                                            option.children.toLowerCase().startsWith(input.toLowerCase()) ? true : false
+                                                                        }
+
+                                                                        filterSort={(optionA, optionB) =>
+                                                                            optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
+                                                                        }
+
+
                                                                         placeholder="Select frequency"
-                                                                        id={key}
-                                                                        data={frequecny ? frequecny : []}
-                                                                        name="freequancy"
-                                                                        onChange={updateMedicineTable}
-                                                                        isMedTable
-                                                                    />
+                                                                        onChange={(e) => { updateMedicineTable({ data: e, id: key, key: "freequancy", state: medicinesData }) }}
+                                                                        name='name'
+
+
+                                                                    // onChange={(e) => {
+
+                                                                    //     // InvestigationNameOnChange({ data: e, id: obj.id })
+                                                                    //     // setLabtest([...labtest, {
+                                                                    //     //     testType: "",
+                                                                    //     //     testNames: e,
+                                                                    //     //     comment: "",
+                                                                    //     //     id: key + 1
+                                                                    //     // }])
+                                                                    //     updateInvestigationTable({ data: e, id: key, key: "name", state: investigationData })
+
+
+                                                                    // }}
+                                                                    >
+                                                                        {
+                                                                            frequecny ? frequecny.map((obj2, key) => {
+
+                                                                                return (
+                                                                                    <Option value={obj2}>{obj2}</Option>
+                                                                                )
+
+                                                                            }) : null
+                                                                        }
+
+
+                                                                    </Select>
+
+
+                                                                    // <MuiDropdown
+                                                                    //     value={obj.freequancy}
+                                                                    //     placeholder="Select frequency"
+                                                                    //     id={key}
+                                                                    //     data={frequecny ? frequecny : []}
+                                                                    //     name="freequancy"
+                                                                    //     onChange={updateMedicineTable}
+                                                                    //     isMedTable
+                                                                    // />
 
 
                                                                 }
@@ -2086,7 +2212,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
                                                             <td>
 
-
+                                                                {/* 
                                                                 <MuiDropdown
                                                                     value={obj.unit}
                                                                     placeholder="Select unit"
@@ -2095,7 +2221,57 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                                                                     name="unit"
                                                                     onChange={updateMedicineTable}
                                                                     isMedTable
-                                                                />
+                                                                /> */}
+
+                                                                <Select
+
+                                                                    getPopupContainer={trigger => trigger.parentNode}
+                                                                    value={obj.unit}
+
+
+                                                                    optionFilterProp="children"
+                                                                    showSearch
+
+                                                                    filterOption={(input, option) =>
+                                                                        option.children.toLowerCase().startsWith(input.toLowerCase()) ? true : false
+                                                                    }
+
+                                                                    filterSort={(optionA, optionB) =>
+                                                                        optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
+                                                                    }
+
+
+                                                                    placeholder="Select unit"
+                                                                    onChange={(e) => { updateMedicineTable({ data: e, id: key, key: "unit", state: medicinesData }) }}
+                                                                    name='name'
+
+
+                                                                // onChange={(e) => {
+
+                                                                //     // InvestigationNameOnChange({ data: e, id: obj.id })
+                                                                //     // setLabtest([...labtest, {
+                                                                //     //     testType: "",
+                                                                //     //     testNames: e,
+                                                                //     //     comment: "",
+                                                                //     //     id: key + 1
+                                                                //     // }])
+                                                                //     updateInvestigationTable({ data: e, id: key, key: "name", state: investigationData })
+
+
+                                                                // }}
+                                                                >
+                                                                    {
+                                                                     units ? units.map((obj2, key) => {
+
+                                                                            return (
+                                                                                <Option value={obj2}>{obj2}</Option>
+                                                                            )
+
+                                                                        }) : null
+                                                                    }
+
+
+                                                                </Select>
 
 
                                                             </td>
@@ -2116,15 +2292,59 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                                                             <td>
                                                                 {
 
-                                                                    <MuiDropdown
-                                                                        value={obj.days}
-                                                                        placeholder="Select days"
-                                                                        id={key}
-                                                                        data={getNumberOfDays(120)}
-                                                                        name="days"
-                                                                        onChange={updateMedicineTable}
-                                                                        isMedTable
-                                                                    />
+                                                                    // <MuiDropdown
+                                                                    //     value={obj.days}
+                                                                    //     placeholder="Select days"
+                                                                    //     id={key}
+                                                                    //     data={getNumberOfDays(120)}
+                                                                    //     name="days"
+                                                                    //     onChange={updateMedicineTable}
+                                                                    //     isMedTable
+                                                                    // />
+
+                                                                    <Select
+
+                                                                    getPopupContainer={trigger => trigger.parentNode}
+                                                                    value={obj.days}
+
+
+                                                                    optionFilterProp="children"
+                                                                    showSearch
+
+
+
+                                                                    placeholder="Select days"
+                                                                    onChange={(e) => { updateMedicineTable({ data: e, id: key, key: "days", state: medicinesData }) }}
+                                                                    name='days'
+
+
+                                                                // onChange={(e) => {
+
+                                                                //     // InvestigationNameOnChange({ data: e, id: obj.id })
+                                                                //     // setLabtest([...labtest, {
+                                                                //     //     testType: "",
+                                                                //     //     testNames: e,
+                                                                //     //     comment: "",
+                                                                //     //     id: key + 1
+                                                                //     // }])
+                                                                //     updateInvestigationTable({ data: e, id: key, key: "name", state: investigationData })
+
+
+                                                                // }}
+                                                                >
+                                                                    {
+                                                                        
+                                                                        daysCount&&daysCount.length>0?daysCount.map((obj2, key) => {
+
+                                                                            return (
+                                                                                <Option value={obj2}>{obj2}</Option>
+                                                                            )
+
+                                                                        }) :null
+                                                                    }
+
+
+                                                                </Select>
 
 
                                                                 }

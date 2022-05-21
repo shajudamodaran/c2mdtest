@@ -105,7 +105,7 @@
             justify-content: space-between;
   }
   
-  .mis_report_container .header button {
+  .mis_report_container .header_button {
     padding: 0.5rem 1rem;
     font-size: 16px;
     font-weight: normal;
@@ -129,7 +129,7 @@
     border: 0px;
   }
   
-  .mis_report_container .header button .icon {
+  .mis_report_container .header_button .icon {
     border-radius: 100px;
     background-color: white;
     height: 35px;
@@ -175,6 +175,8 @@
         -ms-flex-pack: start;
             justify-content: flex-start;
     cursor: pointer;
+
+    position: relative;
   }
   
   .mis_report_container .filter-button .icon {
@@ -422,4 +424,34 @@
 }
 .ant-picker-dropdown{
   z-index: 10000;
+}
+
+
+.clinic-dashboard-table th{
+
+  min-width: 200px !important;
+  max-width: 200px !important;
+
+}
+
+.clinic-dashboard-table tr td{
+
+  white-space: pre-wrap !important;
+  min-width: 200px !important;
+  max-width: 200px !important;
+
+}
+
+.clinic-dashboard-table tr :nth-child(4){
+
+  min-width: 200px !important;
+  max-width: 200px !important;
+
+}
+
+.clinic-dashboard-table tr :nth-child(5){
+
+  min-width: 200px !important;
+  max-width: 200px !important;
+
 }

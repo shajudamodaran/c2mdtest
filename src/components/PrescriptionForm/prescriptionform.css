@@ -488,6 +488,7 @@
   overflow-y: hidden;
   z-index: 100;
   min-height: 300px;
+  position: relative;
 }
 
 .medicine-table ::placeholder {
@@ -528,6 +529,7 @@
   margin-top: 0.8rem;
   border-collapse: collapse;
   margin-bottom: 2rem;
+  z-index: 100000;
 }
 
 .medicine-table tr {
@@ -578,7 +580,7 @@
 }
 
 .medicine-table tr td:nth-child(3) {
-  min-width: 129px;
+  min-width: 147px;
   max-width: 90px !important;
 }
 
@@ -593,7 +595,7 @@
 }
 
 .medicine-table tr td:nth-child(8) {
-  min-width: 100px;
+  min-width: 131px;
   max-width: 180px;
 }
 
@@ -1052,3 +1054,47 @@ textarea{
 }
 
 
+.ant-picker-range-separator {
+  align-items: center;
+  line-height: .5;
+  padding: 0 48px;
+}
+
+
+.ant-select{
+
+  position: relative !important;
+  width: 95%;
+  border: 0px;
+  box-shadow: none;
+}
+
+.ant-select-selector{
+
+  border: 0px !important;
+  box-shadow: none !important;
+
+}
+
+.ant-select-selection-search-input{
+  text-align: start;
+}
+
+.ant-select-item-option-content{
+  text-align: start;
+}
+
+
+
+.ant-select-focused .ant-select-selector,
+.ant-select-selector:focus,
+.ant-select-selector:active,
+.ant-select-open .ant-select-selector {
+  border:none !important;
+  box-shadow: none !important;
+  background-color: red;
+}
+
+.ant-select-single.ant-select-show-arrow .ant-select-selection-item, .ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder{
+  text-align: start;
+}
