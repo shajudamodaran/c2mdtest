@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+import { CLINIC_ADMIN_USER, USER_DATA } from '../../constants/const'
 import './index.css'
 
 function TodaysReportModalContent() {
 
 
-    let appointmentDetails=useSelector(state=>state.interbranchAdmin.dashboardSelected)
+    let appointmentDetails = useSelector(state => state.interbranchAdmin.dashboardSelected)
+    let [userType, setUserType] = useState(JSON.parse(localStorage.getItem(USER_DATA))?.userType)
 
     console.log(appointmentDetails);
 
@@ -35,17 +37,17 @@ function TodaysReportModalContent() {
                         <tr>
                             <td className='cell1 even'>Appointment Date</td>
 
-                            <td className='cell3 even'>{appointmentDetails?.appointmentdate}</td>
+                            <td className='cell3 even'>{appointmentDetails?.appointmentdate?.split(' ')[0]}</td>
                         </tr>
 
                         <tr>
-                            <td className='cell1 odd'>Appointment Time*</td>
+                            <td className='cell1 odd'>Appointment Time</td>
 
-                            <td className='cell3 odd'>{appointmentDetails?.appointmenttime}</td>
+                            <td className='cell3 odd'>{appointmentDetails?.appointmentdate?.split(" ")[1]} {appointmentDetails?.appointmentdate?.split(" ")[2]}</td>
                         </tr>
 
                         <tr>
-                            <td className='cell1 even'>Booked from*</td>
+                            <td className='cell1 even'>Booked from</td>
 
                             <td className='cell3 even'>{appointmentDetails?.booked_from}</td>
                         </tr>
@@ -64,13 +66,13 @@ function TodaysReportModalContent() {
 
                         <tr>
 
-                            <td className='cell1 odd'>Status*</td>
+                            <td className='cell1 odd'>Status</td>
 
-                            <td className='cell3 odd'>{appointmentDetails?.consultationstatus}</td>
+                            <td className='cell3 odd'>{appointmentDetails?.status}</td>
                         </tr>
 
                         <tr>
-                            <td className='cell1 even'>Session ID (TokBox)*</td>
+                            <td className='cell1 even'>Session ID (TokBox)</td>
 
                             <td className='cell3 even'>{appointmentDetails?.sessionId}</td>
                         </tr>
@@ -145,8 +147,8 @@ function TodaysReportModalContent() {
                         </tr>
 
                         <tr>
-                            <td className='cell1 odd'>MRN Number*</td>
-                            <td className='cell3 odd'>{appointmentDetails?.MRNnumber}</td>
+                            <td className='cell1 odd'>MRN Number</td>
+                            <td className='cell3 odd'>{appointmentDetails?.MRNNumber}</td>
                         </tr>
 
                         <tr>
@@ -170,7 +172,7 @@ function TodaysReportModalContent() {
                         </tr>
 
                         <tr>
-                            <td className='cell1 even'>Booked By (For Loved One)*</td>
+                            <td className='cell1 even'>Booked By (For Loved One)</td>
                             <td className='cell3 even'>{appointmentDetails?.bookedby}</td>
                         </tr>
 
@@ -196,14 +198,18 @@ function TodaysReportModalContent() {
                         </tr>
 
                         <tr>
-                            <td className='cell1 odd'>Specialty*</td>
-                            <td className='cell3 odd'>{appointmentDetails?.doctor_speciality}</td>
+                            <td className='cell1 odd'>Specialty</td>
+                            <td className='cell3 odd'>{appointmentDetails?.speciality}</td>
                         </tr>
 
-                        <tr>
-                            <td className='cell1 even'>Hospital Name*</td>
-                            <td className='cell3 even'>{appointmentDetails?.Hospital}</td>
-                        </tr>
+                        {
+                            userType == CLINIC_ADMIN_USER ? null :
+                                <tr>
+                                    <td className='cell1 even'>Hospital Name</td>
+                                    <td className='cell3 even'>{appointmentDetails?.Hospital}</td>
+                                </tr>
+                        }
+
 
                         <tr>
                             <td className='cell1 odd'>Email ID</td>
@@ -224,13 +230,13 @@ function TodaysReportModalContent() {
 
                         <tr>
                             <td className='title' colSpan={2}>Fees Calculation</td>
-                           
+
                         </tr>
 
                         <tr>
-                         
-                            <td className='cell1 odd'>Status*</td>
-                            <td className='cell3 odd'>{appointmentDetails?.Fees_status}</td>
+
+                            <td className='cell1 odd'>Status</td>
+                            <td className='cell3 odd'>{appointmentDetails?.paymentStatus}</td>
                         </tr>
 
                         <tr>
@@ -239,13 +245,13 @@ function TodaysReportModalContent() {
                         </tr>
 
                         <tr>
-                            <td className='cell1 odd'>Refund ID*</td>
+                            <td className='cell1 odd'>Refund ID</td>
                             <td className='cell3 odd'>{appointmentDetails?.refundid}</td>
                         </tr>
 
                         <tr>
-                            <td className='cell1 even'>Fees Paid*</td>
-                            <td className='cell3 even'>{appointmentDetails?.patient_fee_received}</td>
+                            <td className='cell1 even'>Fees Paid</td>
+                            <td className='cell3 even'>{appointmentDetails?.fees}</td>
                         </tr>
 
                         <tr>

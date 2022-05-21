@@ -30,6 +30,8 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
                 "browserTimeZone": "GMT+05:30",
                 "startDate": todayDate,
                 "endDate": todayDate,
+                // "startDate": "20-May-2022",
+                // "endDate": "21-May-2022",
                 "Type": "excel",
             }
         }
@@ -61,6 +63,8 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
                 "operation": "find",
                 "startDate": todayDate,
                 "endDate": todayDate,
+                // "startDate": "20-May-2022",
+                // "endDate": "21-May-2022",
                 "browserTimeZone": "GMT+05:30",
                 "clinicId": clinicId
             },
