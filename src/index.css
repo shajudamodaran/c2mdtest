@@ -294,10 +294,3 @@ select {
   justify-content: center;
 }
 
-.ant-picker-range-separator {
-  align-items: center;
-  line-height: .5;
-  padding: 0 
-48px
-;
-}

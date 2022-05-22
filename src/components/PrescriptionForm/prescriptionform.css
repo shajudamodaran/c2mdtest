@@ -1057,7 +1057,14 @@ textarea{
 .ant-picker-range-separator {
   align-items: center;
   line-height: .5;
-  padding: 0 48px;
+
+  
+}
+
+.ant-picker-input :nth-child(1){
+
+cursor: pointer !important;
+ 
 }
 
 

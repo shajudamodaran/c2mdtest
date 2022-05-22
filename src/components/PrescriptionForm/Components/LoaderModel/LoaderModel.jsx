@@ -15,7 +15,7 @@ function LoaderModel({ state, setState }) {
                     <div className="modal-body-prescription">
                         <div className="modal-content-prescription">
                             {/* when loader starts, cant able to call the API again even again clicks on the SAVE button */}
-                            Saving prescription. Please wait ...
+                            Saving Template. Please wait ...
 
                             
                         </div>

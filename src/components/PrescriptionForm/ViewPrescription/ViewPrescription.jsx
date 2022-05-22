@@ -96,7 +96,7 @@ function ViewPrescription({ location }) {
             if (data) {
                 return data.split(",")
             }
-            else return[]
+            else return []
         }
 
 
@@ -114,7 +114,7 @@ function ViewPrescription({ location }) {
                         // onScroll={(e) => { setScrollAmount(e.target.scrollTop) }}
                         className="prescription-form-content">
 
-                        
+
 
 
 
@@ -166,21 +166,21 @@ function ViewPrescription({ location }) {
                                         <span className='form-caption' ></span>
                                     </div>
 
-                                    <Popover overlayClassName="wrapper-popover-view" content={  convertToArray(template?.assignedDoctors).length>1?<Content data={template?.assignedDoctors} />:null} 
-                                    title={convertToArray(template?.assignedDoctors).length>1?`Doctors list (${template?.assignedDoctors.split(",").length})`:null}>
+                                    <Popover overlayClassName="wrapper-popover-view" content={convertToArray(template?.assignedDoctors).length > 1 ? <Content data={template?.assignedDoctors} /> : null}
+                                        title={convertToArray(template?.assignedDoctors).length > 1 ? `Doctors list (${template?.assignedDoctors.split(",").length})` : null}>
                                         <div className='form-light-background-big'>
                                             <input id="releventPoint"
                                                 style={{ maxWidth: "290px", minWidth: "290px" }}
                                                 // value={template?.assignedDoctors.toString()}
                                                 value={
 
-                                                    convertToArray(template?.assignedDoctors).length>1?
-                                                    `${convertToArray(template?.assignedDoctors, "first")}, + ${convertToArray(template?.assignedDoctors)?.length - 1}`
-                                                    : `${convertToArray(template?.assignedDoctors, "first")}`
+                                                    convertToArray(template?.assignedDoctors).length > 1 ?
+                                                        `${convertToArray(template?.assignedDoctors, "first")}, + ${convertToArray(template?.assignedDoctors)?.length - 1}`
+                                                        : `${convertToArray(template?.assignedDoctors, "first")}`
 
 
-                                                    
-                                                    }
+
+                                                }
                                                 className='form-input-text'
 
                                                 readOnly
@@ -341,6 +341,7 @@ function ViewPrescription({ location }) {
 
 
 
+                            <span className='form-heading-2' style={{ marginTop: "1rem" }}>Investigations</span>
 
                             {finalInvestigations.length > 0 ?
 
@@ -391,6 +392,7 @@ function ViewPrescription({ location }) {
 
                             <div className="separator"></div>
 
+                            <span className='form-heading-2' style={{ marginTop: "1rem" }}>Medicines</span>
 
                             {
                                 finalMedicinesdata.length > 0 ?

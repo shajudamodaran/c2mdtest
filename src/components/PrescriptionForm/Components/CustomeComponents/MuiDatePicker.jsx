@@ -79,15 +79,15 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-function MuiDatePicker({ onChange, name, isMedTable, id, maxDate, minDate, placeholder,_value }) {
+function MuiDatePicker({ onChange, name, isMedTable, id, maxDate, minDate, placeholder, _value, error }) {
 
     const [value, setValue] = React.useState(null);
     const classes = useStyles();
 
     const menu = (
         <Menu>
-            <Menu.Item onClick={()=>{setValue(null)}} key="1">Clear date</Menu.Item>
-           
+            <Menu.Item onClick={() => { setValue(null) }} key="1">Clear date</Menu.Item>
+
         </Menu>
     );
 
@@ -107,7 +107,7 @@ function MuiDatePicker({ onChange, name, isMedTable, id, maxDate, minDate, place
         else {
 
             // setState(newValue);
-            onChange(name,convertDate(newValue))
+            onChange(name, convertDate(newValue))
 
         }
 
@@ -134,6 +134,8 @@ function MuiDatePicker({ onChange, name, isMedTable, id, maxDate, minDate, place
             <Dropdown overlay={menu} trigger={['contextMenu']}>
 
                 <DatePicker
+                    error={error}
+                    helperText={null}
                     autoOk
                     classes={classes}
                     InputProps={{
@@ -143,7 +145,7 @@ function MuiDatePicker({ onChange, name, isMedTable, id, maxDate, minDate, place
                     minDate={minDate}
                     placeholder={placeholder}
                     variant="inline"
-                    value={_value?moment(_value):null}
+                    value={_value ? moment(_value) : null}
                     onChange={handleChange}
                     disableToolbar={false}
                     format={'dd-MMM-yyyy'}
