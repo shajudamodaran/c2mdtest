@@ -1,4 +1,4 @@
-import { DatePicker, Modal, Pagination, Tooltip } from 'antd';
+import { DatePicker, Modal, Pagination, Popover, Tooltip } from 'antd';
 import React, { useRef, useState, useEffect } from 'react'
 import moment from "moment"
 import './prescriptiondashboard.css'
@@ -18,7 +18,7 @@ const { RangePicker } = DatePicker;
 function PrescriptionDashboard() {
 
     const dateRef = useRef(null)
-    const { crDashboard,crDashboardTotal, isLoading } = useSelector((state) => state.presctiptionFormReducer)
+    const { crDashboard, crDashboardTotal, isLoading } = useSelector((state) => state.presctiptionFormReducer)
 
     let [isOpen, setOpen] = useState(false)
     let [searchKey, setSearchKey] = useState(null)
@@ -31,11 +31,11 @@ function PrescriptionDashboard() {
     let [individualSync, setIndividualSync] = useState(null)
 
     let [pagination, setPagination] = useState(0)
-    let [dateRange,setDaterange]=useState({fromDate: "", toDate: ""})
+    let [dateRange, setDaterange] = useState({ fromDate: "", toDate: "" })
 
-    let [isInitialLoading,setInitialLoading]=useState(true)
-   
-    
+    let [isInitialLoading, setInitialLoading] = useState(true)
+
+
 
 
 
@@ -107,7 +107,7 @@ function PrescriptionDashboard() {
 
         }
 
-// pp dashboards
+        // pp dashboards
     }
 
     let downloadReport = (startDate, endDate) => {
@@ -117,19 +117,18 @@ function PrescriptionDashboard() {
     }
 
 
-//dashboard
+    //dashboard
     useEffect(() => {
-        setFilterData(crDashboard?.prescriptionlist?crDashboard?.prescriptionlist:[])
+        setFilterData(crDashboard?.prescriptionlist ? crDashboard?.prescriptionlist : [])
     }, [crDashboard])
 
 
     useEffect(() => {
 
-        if(crDashboard?.prescriptionlist)
-        {
+        if (crDashboard?.prescriptionlist) {
             handleSearch(searchKey ? searchKey : null)
         }
-       
+
 
     }, [searchKey])
 
@@ -216,13 +215,13 @@ function PrescriptionDashboard() {
 
     let reloadData = () => {
 
-        dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT({...dateRange,offset:pagination}))
+        dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT({ ...dateRange, offset: pagination }))
 
     }
 
     let handlePaginationChange = (e, s) => {
 
-        dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT({...dateRange,offset:e-1})).then((res) => {
+        dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT({ ...dateRange, offset: e - 1 })).then((res) => {
 
             setPagination(e - 1)
 
@@ -238,11 +237,23 @@ function PrescriptionDashboard() {
 
 
     useEffect(() => {
-        
-        return () => {
-            dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT())
-        }
+
+        // console.log("dashboard loading..........................");
+        dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT())
+
     }, [])
+
+
+    let HisPushPopup = ({sendTime,receiveTime}) =>{
+
+        return(
+            <div style={{display:"flex", flexDirection:"column"}}>
+                <span><b>Send Time :</b> {sendTime?sendTime:"-"}</span>
+                <span><b>Received Time :</b> {receiveTime?receiveTime:"-"}</span>
+            </div>
+        )
+
+    }
 
 
 
@@ -309,26 +320,27 @@ function PrescriptionDashboard() {
                     <tbody>
 
                         {
-                           
 
 
 
-                                filterData.length>0?filterData.map((element, key) => {
 
-                                    return (
+                            filterData.length > 0 ? filterData.map((element, key) => {
 
-                                        <tr>
-                                            <td>
-                                                {element.appointmentID}
+                                return (
 
-                                            </td>
-                                            <td >{element.patientName}</td>
-                                            <td>{element.doctorname}</td>
-                                            <td>{`${element.appointmentDate}, ${element.appointmentTime}`}</td>
-                                            <td>
-                                                <div onClick={() => { handleDownloadClick(element.prescriptionFile) }} className="link-style">Download</div>
-                                            </td>
-                                            <td >
+                                    <tr>
+                                        <td>
+                                            {element.appointmentID}
+
+                                        </td>
+                                        <td >{element.patientName}</td>
+                                        <td>{element.doctorname}</td>
+                                        <td>{`${element.appointmentDate}, ${element.appointmentTime}`}</td>
+                                        <td>
+                                            <div onClick={() => { handleDownloadClick(element.prescriptionFile) }} className="link-style">Download</div>
+                                        </td>
+                                        <td >
+                                            <Popover  content={<HisPushPopup  sendTime={element.createdat} receiveTime={element.Responsetime}/>}>
                                                 <div style={{
                                                     display: "flex",
                                                     flexDirection: "row",
@@ -336,7 +348,6 @@ function PrescriptionDashboard() {
                                                 }}>
                                                     <div className="prescription_sync_status_indicator ">
                                                         <div className={`${element.pushstatus === "true" ? "completed" : "pending"}`}></div>
-
                                                     </div>
 
                                                     &nbsp; &nbsp;
@@ -349,12 +360,13 @@ function PrescriptionDashboard() {
                                                                 <span onClick={() => { pushToHis(element.id) }} className="link-style">Push to HIS</span>
                                                     }
                                                 </div>
-                                            </td>
-                                        </tr>
+                                            </Popover>
+                                        </td>
+                                    </tr>
 
-                                    )
+                                )
 
-                                })
+                            })
 
 
                                 : <tr>

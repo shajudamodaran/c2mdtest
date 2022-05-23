@@ -1630,7 +1630,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
                                         <span className='form-caption'></span>
                                     </div>
 
-                                    <Tooltip title={selectedDepartmentName}>
+                                    <Tooltip getPopupContainer={trigger => trigger.parentNode} title={selectedDepartmentName}>
                                         <div className={`form-light-background ${validationError.department ? "form-error" : null}`}>
 
 
@@ -1815,7 +1815,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
                                         :
 
-                                        <Popover trigger="click" content={isReadyToAddInvestigation ? null : noInvestigationPopOver}>
+                                        <Popover getPopupContainer={trigger => trigger.parentNode} trigger="click" content={isReadyToAddInvestigation ? null : noInvestigationPopOver}>
 
                                             <button className={isReadyToAddInvestigation ? "add-investigation-btn" : "add-investigation-btn-disabled"} onClick={() => { addInvestigation() }}>
                                                 <AddIcon_Prescription /> {getAddInvestigationButtonText(investigationData.length)}
@@ -1968,7 +1968,7 @@ function PriscriptionForm({ preloadData, backAction, setEditMode }) {
 
                                         :
 
-                                        <Popover trigger="click" content={noMedicinePopOver}>
+                                        <Popover getPopupContainer={trigger => trigger.parentNode} trigger="click" content={noMedicinePopOver}>
                                             <button className={isReadtToAddMedicine.status ? 'add-investigation-btn' : 'add-investigation-btn-disabled'} > <AddIcon_Prescription />  Add Medicines</button>
                                         </Popover>
 

@@ -281,7 +281,7 @@ function TemplateList() {
                                     <th>Template Name</th>
                                     <th>Speciality</th>
                                     <th>Created On</th>
-                                    <th>Last Updated On</th>
+                                    <th><div className='center'>Last Updated On</div></th>
                                     {/* <th>Template Files</th> */}
                                     <th>Assigned To</th>
                                     {/* 
@@ -306,7 +306,7 @@ function TemplateList() {
                                                 <td>{element.tempName}</td>
                                                 <td>{element.Departments[0]?.Name}</td>
                                                 <td>{element.createdDate}</td>
-                                                <td>{element.updatedDate ? element.updatedDate : "No Data Available"}</td>
+                                                <td><div className='center'>{element.updatedDate ? element.updatedDate : "No Data Available"}</div></td>
                                                 <td>{element.assignedDoctors ?
                                                     convertToArray(element.assignedDoctors).length > 1 ?
 

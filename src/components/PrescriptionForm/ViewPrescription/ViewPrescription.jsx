@@ -1,4 +1,4 @@
-import { Popover } from 'antd'
+import { Popover, Tooltip } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -148,6 +148,7 @@ function ViewPrescription({ location }) {
                                         <span className='form-caption'></span>
                                     </div>
 
+                                    <Tooltip getPopupContainer={trigger => trigger.parentNode} title={template?.assignedDepartments}>
                                     <div className='form-light-background-big'>
                                         <input id="releventPoint"
                                             style={{ width: "290px" }}
@@ -156,6 +157,7 @@ function ViewPrescription({ location }) {
                                             readOnly
                                         />
                                     </div>
+                                    </Tooltip>
 
 
                                 </li>
@@ -166,7 +168,7 @@ function ViewPrescription({ location }) {
                                         <span className='form-caption' ></span>
                                     </div>
 
-                                    <Popover overlayClassName="wrapper-popover-view" content={convertToArray(template?.assignedDoctors).length > 1 ? <Content data={template?.assignedDoctors} /> : null}
+                                    <Popover getPopupContainer={trigger => trigger.parentNode} overlayClassName="wrapper-popover-view" content={convertToArray(template?.assignedDoctors).length > 1 ? <Content data={template?.assignedDoctors} /> : null}
                                         title={convertToArray(template?.assignedDoctors).length > 1 ? `Doctors list (${template?.assignedDoctors.split(",").length})` : null}>
                                         <div className='form-light-background-big'>
                                             <input id="releventPoint"

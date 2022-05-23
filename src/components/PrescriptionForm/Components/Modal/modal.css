@@ -60,7 +60,7 @@
 .modal-content-prescription{
     padding: .5rem .5rem;
     margin-bottom: 1rem;
-    font-size: 14px;
+    font-size: 14px !important;
     font-weight: 500;
     color: rgb(73, 73, 73);
 
