@@ -248,8 +248,8 @@ function PrescriptionDashboard() {
 
         return(
             <div style={{display:"flex", flexDirection:"column"}}>
-                <span><b>Send Time :</b> {sendTime?sendTime:"-"}</span>
-                <span><b>Received Time :</b> {receiveTime?receiveTime:"-"}</span>
+                <span><b>Sent Time :</b> {sendTime?sendTime:"-"}</span>
+                <span><b>Received Time :</b> {receiveTime!=" "?receiveTime:"HIS has not received this file"}</span>
             </div>
         )
 
