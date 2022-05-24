@@ -77,7 +77,9 @@ function Index() {
                         </TittleCard>
                     </div>
 
-                    <div className="tittle" onClick={() => { setActiveleft({ menu: "dashboard", option: 0 }) }} style={{ fontWeight: activeLeft.menu == "dashboard" ? "bold" : "normal", cursor: "pointer" }} >Dashboard</div>
+                    <div className="tittle" onClick={() => { 
+                         dispatch(FETCH_PR_ADMIN_DASHBOARD_REPORT())
+                        setActiveleft({ menu: "dashboard", option: 0 }) }} style={{ fontWeight: activeLeft.menu == "dashboard" ? "bold" : "normal", cursor: "pointer" }} >Dashboard</div>
 
 
                     {

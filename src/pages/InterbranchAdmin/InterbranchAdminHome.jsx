@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { FETCH_ADMIN_DASHBOARD_REPORT, FETCH_ADMIN_DETAILED_REPORT, FETCH_CONSOLIDATED_REPORTS } from '../../actions/InterbranchAdminActions'
+import { FETCH_PR_ADMIN_DASHBOARD_REPORT } from '../../actions/PrescriptionFormActions'
 import CustomeModal from '../../components/CustomeModal/CustomeModal'
 import MisReportModalContent from '../../components/MisReportModal/MisReportModalContent'
 import TodaysReport from '../../components/TodaysReport/TodaysReport'
@@ -28,7 +29,7 @@ function InterbranchAdminHome() {
     useEffect(() => {
 
         dispatch(FETCH_ADMIN_DASHBOARD_REPORT())
-        dispatch(FETCH_ADMIN_DETAILED_REPORT({context:"Admin Home useEffect"}))
+        dispatch(FETCH_ADMIN_DETAILED_REPORT({ context: "Admin Home useEffect" }))
         dispatch(FETCH_CONSOLIDATED_REPORTS())
 
     }, [])
@@ -44,7 +45,10 @@ function InterbranchAdminHome() {
                         &nbsp;
                     </div>
 
-                    <div className="tittle" onClick={() => { setActiveleft({ menu: "dashboard", option: 0 }) }} style={{ fontWeight: activeLeft.menu == "dashboard" ? "bold" : "normal", cursor: "pointer" }} >Dashboard</div>
+                    <div className="tittle" onClick={() => {
+                       
+                        setActiveleft({ menu: "dashboard", option: 0 })
+                    }} style={{ fontWeight: activeLeft.menu == "dashboard" ? "bold" : "normal", cursor: "pointer" }} >Dashboard</div>
 
 
                     {
@@ -62,7 +66,10 @@ function InterbranchAdminHome() {
                                             {
                                                 object.options.map((element, optionKey) => {
                                                     return (
-                                                        <li key={optionKey}  className={activeLeft.menu === menuKey && activeLeft.option === optionKey ? "active" : null} onClick={() => {
+                                                        <li key={optionKey} className={activeLeft.menu === menuKey && activeLeft.option === optionKey ? "active" : null} onClick={() => {
+
+
+
                                                             setActiveleft({ menu: menuKey, option: optionKey })
                                                             // dispatch(setSelectedAppointmentRedux(null))
 
@@ -128,7 +135,7 @@ function InterbranchAdminHome() {
                         isRight
                     />
 
-                    
+
 
                     <CustomeModal
                         width={700}

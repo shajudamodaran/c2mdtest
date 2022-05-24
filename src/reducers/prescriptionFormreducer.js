@@ -196,7 +196,8 @@ export default (state = INITIAL_STATE, { type, payload }) => {
             return {
                 ...state,
                 crDashboard: payload.data,
-                crDashboardTotal:payload.total
+                crDashboardTotal:payload.total,
+                isFresh:payload.isFresh
 
             };
 

@@ -18,7 +18,7 @@ const { RangePicker } = DatePicker;
 function PrescriptionDashboard() {
 
     const dateRef = useRef(null)
-    const { crDashboard, crDashboardTotal, isLoading } = useSelector((state) => state.presctiptionFormReducer)
+    const { crDashboard, crDashboardTotal, isLoading, isFresh } = useSelector((state) => state.presctiptionFormReducer)
 
     let [isOpen, setOpen] = useState(false)
     let [searchKey, setSearchKey] = useState(null)
@@ -32,9 +32,18 @@ function PrescriptionDashboard() {
 
     let [pagination, setPagination] = useState(0)
     let [dateRange, setDaterange] = useState({ fromDate: "", toDate: "" })
+    let [selectedRange, setSelectedrange] = useState(null)
 
     let [isInitialLoading, setInitialLoading] = useState(true)
 
+
+    useEffect(() => {
+
+        if (isFresh) {
+            setSelectedrange(null)
+        }
+
+    }, [isFresh])
 
 
 
@@ -66,6 +75,7 @@ function PrescriptionDashboard() {
     let handledateChange = (e) => {
 
 
+        setSelectedrange(e)
 
         if (e) {
             let [startDate, endDate] = e
@@ -244,12 +254,12 @@ function PrescriptionDashboard() {
     }, [])
 
 
-    let HisPushPopup = ({sendTime,receiveTime}) =>{
+    let HisPushPopup = ({ sendTime, receiveTime }) => {
 
-        return(
-            <div style={{display:"flex", flexDirection:"column"}}>
-                <span><b>Sent Time :</b> {sendTime?sendTime:"-"}</span>
-                <span><b>Received Time :</b> {receiveTime!=" "?receiveTime:"HIS has not received this file"}</span>
+        return (
+            <div style={{ display: "flex", flexDirection: "column" }}>
+                <span><b>Sent Time :</b> {sendTime ? sendTime : "-"}</span>
+                <span><b>Received Time :</b> {receiveTime != " " ? receiveTime : "HIS has not received this file"}</span>
             </div>
         )
 
@@ -272,6 +282,7 @@ function PrescriptionDashboard() {
 
 
                     <RangePicker
+                        value={selectedRange}
                         style={{ width: "250px" }}
                         // open={isOpen}
                         getPopupContainer={trigger => trigger.parentElement}
@@ -340,7 +351,7 @@ function PrescriptionDashboard() {
                                             <div onClick={() => { handleDownloadClick(element.prescriptionFile) }} className="link-style">Download</div>
                                         </td>
                                         <td >
-                                            <Popover  content={<HisPushPopup  sendTime={element.createdat} receiveTime={element.Responsetime}/>}>
+                                            <Popover content={<HisPushPopup sendTime={element.createdat} receiveTime={element.Responsetime} />}>
                                                 <div style={{
                                                     display: "flex",
                                                     flexDirection: "row",

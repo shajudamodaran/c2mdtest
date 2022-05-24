@@ -196,6 +196,8 @@ export const viewTemplate = (par_tempId) => async dispatch => {
 
 export const FETCH_PR_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
 
+    console.log("Calling");
+
     let userData = await getFromLocalStorage(USER_DATA)
     userData = JSON.parse(userData)
     let { userType, clinicId, userId } = userData
@@ -239,7 +241,8 @@ export const FETCH_PR_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
                 type: SET_CR_DASHBOARD,
                 payload: {
                     data: responce.data.data,
-                    total: responce.data.data.totalNumberOfPages
+                    total: responce.data.data.totalNumberOfPages,
+                    isFresh:fromDate?false:true
                 }
             });
 
