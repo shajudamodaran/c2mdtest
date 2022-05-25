@@ -1,7 +1,7 @@
 import { DatePicker, Pagination } from 'antd'
 import TextArea from 'antd/lib/input/TextArea'
 import moment from 'moment'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { FETCH_CONSOLIDATED_REPORTS, updateConsolodatedReportComment, updateMisReportAttachments } from '../../actions/InterbranchAdminActions'
 import { AddIconV2 } from '../../assets/Logos/Icons'
@@ -15,6 +15,7 @@ function ConsolidatedReport() {
 
     let [selectedDate, setSelectedDate] = useState({ from: null, to: null })
     let [pagination, setPagination] = useState(null)
+
 
 
     let appointmentDetails = useSelector(state => state.interbranchAdmin.consolidatedreport)

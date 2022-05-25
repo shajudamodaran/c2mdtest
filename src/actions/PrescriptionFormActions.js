@@ -242,7 +242,7 @@ export const FETCH_PR_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
                 payload: {
                     data: responce.data.data,
                     total: responce.data.data.totalNumberOfPages,
-                    isFresh:fromDate?false:true
+                    isFresh:_para?.offset ?false:true
                 }
             });
 

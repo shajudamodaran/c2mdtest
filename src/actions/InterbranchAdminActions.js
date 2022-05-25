@@ -255,7 +255,7 @@ export const FETCH_CONSOLIDATED_REPORTS = (_para) => async dispatch => {
         }
     }
 
-    if (clinicId) {
+    if (userType==CLINIC_ADMIN_USER) {
         params.data.clinic = clinicId
     }
 

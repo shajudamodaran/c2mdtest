@@ -76,7 +76,7 @@ export const loginAction =
       await localStorage.setItem("userData", JSON.stringify(res.data.data));
      
       if (res.data?.data?.userType == "Patient") {
-        console.log(backupData);
+       
         if (backupData && backupData?.redirection) {
           history.push(backupData?.redirection);
         } else if (history?.location?.state?.redirection) {

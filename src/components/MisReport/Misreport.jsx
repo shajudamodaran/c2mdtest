@@ -29,13 +29,14 @@ function Misreport() {
 
     const dispatch = useDispatch()
 
-
     let misReports = useSelector(state => state.interbranchAdmin.detailedReportTable)
     let misReportsPageLength = useSelector(state => state.interbranchAdmin.detailedReportTableTotalPages)
 
     let userData = localStorage.getItem(USER_DATA)
     userData = JSON.parse(userData)
     let { userType } = userData
+
+  
 
 
     let handleTableClick = (_id) => {

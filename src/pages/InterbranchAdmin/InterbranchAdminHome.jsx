@@ -1,24 +1,30 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { FETCH_ADMIN_DASHBOARD_REPORT, FETCH_ADMIN_DETAILED_REPORT, FETCH_CONSOLIDATED_REPORTS } from '../../actions/InterbranchAdminActions'
+import { logoutAction } from '../../actions/LoginAction'
 import { FETCH_PR_ADMIN_DASHBOARD_REPORT } from '../../actions/PrescriptionFormActions'
 import CustomeModal from '../../components/CustomeModal/CustomeModal'
 import MisReportModalContent from '../../components/MisReportModal/MisReportModalContent'
 import TodaysReport from '../../components/TodaysReport/TodaysReport'
 import TodaysReportModalContent from '../../components/TodaysReportModalContent/TodaysReportModalContent'
 import { interbranchAdminSideMenu } from './constants'
+import { useHistory } from "react-router-dom";
 import './interbranchadminhome.css'
 
 function InterbranchAdminHome() {
 
     //Declerations..............................................................................
     let dispatch = useDispatch()
+    let history = useHistory()
 
     //States....................................................................................
     let [activeLeft, setActiveleft] = useState({ menu: "dashboard", option: 0 })
 
     const { ApointmentHistoryModal, ViewFileModal, deleteFileModel, commonDeleteModal, PatientDetailsModal, todaysReportModal, misReportModal } = useSelector((state) => state.interbranchModal)
 
+    const userData = useSelector(
+        (state) => state.login.user
+    );
 
     //Refs......................................................................................
     const ref = useRef(null)
@@ -34,6 +40,27 @@ function InterbranchAdminHome() {
 
     }, [])
 
+    let logoutFunction = () => {
+
+        dispatch(
+            logoutAction(userData)
+        );
+
+        history.push("/signin")
+
+    }
+
+    let onChangeLeftOptions = ({ menu, option }) => {
+
+        if (menu == 1 && option == 0) {
+            dispatch(FETCH_ADMIN_DETAILED_REPORT({ context: "Dashboard click" }))
+        }
+        else if (menu == 1 && option == 1) {
+            dispatch(FETCH_CONSOLIDATED_REPORTS())
+        }
+
+    }
+
 
 
     return (
@@ -46,7 +73,8 @@ function InterbranchAdminHome() {
                     </div>
 
                     <div className="tittle" onClick={() => {
-                       
+
+                        dispatch(FETCH_ADMIN_DASHBOARD_REPORT())
                         setActiveleft({ menu: "dashboard", option: 0 })
                     }} style={{ fontWeight: activeLeft.menu == "dashboard" ? "bold" : "normal", cursor: "pointer" }} >Dashboard</div>
 
@@ -69,7 +97,7 @@ function InterbranchAdminHome() {
                                                         <li key={optionKey} className={activeLeft.menu === menuKey && activeLeft.option === optionKey ? "active" : null} onClick={() => {
 
 
-
+                                                            onChangeLeftOptions({ menu: menuKey, option: optionKey })
                                                             setActiveleft({ menu: menuKey, option: optionKey })
                                                             // dispatch(setSelectedAppointmentRedux(null))
 
@@ -99,7 +127,7 @@ function InterbranchAdminHome() {
                 </div>
 
 
-                <div className="header-card logout">
+                <div className="header-card logout" onClick={logoutFunction}>
                     <div className="icon">&nbsp;</div>
                     SIGN OUT
                 </div>
