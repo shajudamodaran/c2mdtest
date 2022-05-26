@@ -1,0 +1,203 @@
+$small: 300px;
+$banner_image_medium: 1390px;
+
+.c2md-home-banner {
+    // height: calc(100vh - 100px);
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 1rem;
+
+}
+
+.c2md-home-banner-element {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &_body {
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        transition-duration: .5s;
+
+
+        &_text-container {
+
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            margin-right: 6rem;
+
+            @media screen and (max-width: $banner_image_medium) {
+                margin-right:5vw;
+            }
+
+            .hash-tag {
+                letter-spacing: 0.25px;
+                color: #208CE1;
+                text-transform: capitalize;
+                font-weight: 500;
+                font-size: 23px;
+                margin-bottom: 1rem;
+            }
+
+            .home-banner-title-container {
+
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+                margin-bottom: 2rem;
+
+                
+
+                div {
+
+                    letter-spacing: 0.62px;
+                    color: #0C1E4E;
+                    font-size: 60px;
+                    font-weight: 700;
+                    line-height: 70px;
+
+                    @media screen and (max-width: $banner_image_medium) {
+
+                        font-size: 45px;
+                        font-weight: 700;
+                        line-height: 53px;
+
+                    }
+
+                }
+
+            }
+
+            .home-banner-caption-container {
+
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+                margin-bottom: 3rem;
+
+                div {
+
+                    letter-spacing: 0.62px;
+                    color: #0C1E4E;
+                    font-size: 19px;
+                    font-weight: 300;
+                    line-height: 30px;
+                    letter-spacing: 0px;
+                    color: #0C1E4E;
+                    opacity: 0.9;
+                    white-space: nowrap;
+
+                }
+
+            }
+
+            .home-banner-more-button {
+
+                width: 239px;
+                height: 55px;
+                /* UI Properties */
+                background: #208CE1 0% 0% no-repeat padding-box;
+                border-radius: 5px;
+                color: white;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+
+                
+
+            }
+
+            .banner-slider-dot {
+
+                padding: 0px;
+                list-style: none;
+                display: flex;
+                flex-direction: row;
+                margin-top: 3rem;
+
+
+                li {
+                    height: 10px;
+                    width: 10px;
+                    border-radius: 100px;
+                    background: #D8D8D8 0% 0% no-repeat padding-box;
+                    margin-right: .7rem;
+                }
+
+                .active{
+                    background-color: #208CE1;
+                }
+
+            }
+
+
+        }
+
+        &_image-container {
+
+            .banner-image-home {
+                width: 697px;
+                 height: 628px;
+                background-color: #208de13f;
+
+                @media screen and (max-width: $banner_image_medium) {
+                    //do Smth
+                    width: 40vw;
+                     min-height: 228px;
+                    height: auto;
+                  }
+            }
+
+        }
+
+
+    }
+
+    &_footer {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+       
+        width: 100%;
+        margin-top: 3rem;
+
+        &_caption{
+
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #EBEBEB;
+        }
+
+        &_hospital-logos{
+
+            width: 100%;
+            padding: .5rem 1rem;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+
+}

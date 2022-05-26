@@ -68,8 +68,17 @@ function InterbranchAdminHome() {
             <div className="left-container" >
 
                 <div className="letf-top">
-                    <div className="header-card" style={{ marginBottom: "2.5rem" }}>
-                        &nbsp;
+                    <div className="header-card" style={{
+                        marginBottom: "2.5rem",
+                        width: "100%",
+                        height: "79.14px",
+                        color: "rgba(0, 0, 0, 0.85)",
+                        display:"flex",
+                        flexDirection:"column",
+                        alignItems:"center"
+                    }}>
+                        <div className="dr-name-home text-center w-100" style={{ fontWeight: "500" }} >{userData ? userData.profileName : "---"}</div>
+                        <div className="dr-id-home text-center w-100" style={{ fontWeight: "500" }}>ID: {userData ? userData.profileId : "---"}</div>
                     </div>
 
                     <div className="tittle" onClick={() => {

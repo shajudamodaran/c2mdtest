@@ -72,6 +72,8 @@ const PartnerPage = React.lazy(() => import("../pages/PartnerPage"));
 const PrescriptionCrPage = React.lazy(() => import("../pages/PriscriptionCr/Index"));
 const ViewPrescription = React.lazy(() => import("../components/PrescriptionForm/ViewPrescription/ViewPrescription"));
 
+const C2mdHome = React.lazy(() => import("../pages/HomePage/Homepage"));
+
 
 
 
@@ -151,7 +153,7 @@ function App() {
               <Route
                 exact
                 path="/"
-                component={Homepage}
+                component={C2mdHome}
               />
 
 

@@ -1,0 +1,95 @@
+.c2md-header-container {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: red;
+    padding: 1rem 3.5rem;
+
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #0000000D;
+}
+
+.c2md-header-image-container {
+
+    &_left {
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    &_nav {
+
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        padding: 0px;
+        margin:0px;
+        margin-left: 1rem;
+
+        li {
+            margin-left: 18px;
+            font-size: 14px;
+            color: #0C1E4E;
+            font-weight: 400;
+        }
+    }
+}
+
+.c2md-header-buttons-container {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-items: flex-end;
+    font-size: 14px;
+
+    .c2md-header-signin-button {
+
+        width: 150px;
+        height: 40px;
+        /* UI Properties */
+        background: transparent;
+        border: 1px solid #0C1E4E;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+    }
+
+    .download_app_container{
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        height: 40px;
+        margin-left: 15px;
+
+        .download-app-text{
+
+           flex-wrap: nowrap;
+        }
+
+        &_icon_container{
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+
+            .download_app_icon{
+                margin-left: 15px;
+            }
+
+        }
+    }
+
+}

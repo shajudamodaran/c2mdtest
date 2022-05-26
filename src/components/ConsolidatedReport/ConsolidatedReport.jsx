@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { FETCH_CONSOLIDATED_REPORTS, updateConsolodatedReportComment, updateMisReportAttachments } from '../../actions/InterbranchAdminActions'
 import { AddIconV2 } from '../../assets/Logos/Icons'
+import { CLINIC_ADMIN_USER, USER_DATA } from '../../constants/const'
 import { convertDateToString } from '../../Helpers/dateFunctions'
 import EmptyTableData from '../Common/EmptyTableData/EmptyTableData'
 import './consolidatedreport.css'
@@ -15,6 +16,7 @@ function ConsolidatedReport() {
 
     let [selectedDate, setSelectedDate] = useState({ from: null, to: null })
     let [pagination, setPagination] = useState(null)
+    let [userType, setUserType] = useState(JSON.parse(localStorage.getItem(USER_DATA))?.userType)
 
 
 
@@ -158,6 +160,9 @@ function ConsolidatedReport() {
                 <table className='appoinment-table consolidated-table'>
                     <tr>
                         <th>Month - Year</th>
+                        {
+                            userType == CLINIC_ADMIN_USER ? null : <th>Hospital Name</th>
+                        }
                         <th>Number of Appointments</th>
                         <th>International</th>
                         <th>Domestic</th>
@@ -188,6 +193,9 @@ function ConsolidatedReport() {
 
                                                 <tr key={key}>
                                                     <td>{element["Month-Year"]}</td>
+                                                    {
+                                                        userType == CLINIC_ADMIN_USER ? null : <td>{element.Hospital}</td>
+                                                    }
                                                     <td>{element.Number_Of_appointments}</td>
                                                     <td>{element.International}</td>
                                                     <td>{element.Domestic}</td>

@@ -1,0 +1,159 @@
+.c2md-download-app-home {
+  width: 100%;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-top: 6rem;
+  padding-bottom: 5rem;
+}
+
+.c2md-download-app-home_left {
+  margin-right: 6rem;
+}
+
+.c2md-download-app-home_left .image {
+  width: 50vw;
+}
+
+.c2md-download-app-home_right_title {
+  max-width: 290px;
+  font-weight: 600;
+  font-size: 26px;
+  font: normal normal 600 26px/26px IBM Plex Sans;
+  letter-spacing: 0px;
+  color: #0C1E4E;
+}
+
+.c2md-download-app-home_right_caption {
+  max-width: 390px;
+  color: #000000;
+  font-size: 14.5px;
+  line-height: 1.7;
+  margin-top: 1.4rem;
+}
+
+.c2md-download-app-home_right_options ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  margin-top: 1.4rem;
+}
+
+.c2md-download-app-home_right_options ul li {
+  color: #000000;
+  font-size: 14.5px;
+  line-height: 1.7;
+  font-weight: 500;
+  margin-bottom: .6rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.c2md-download-app-home_right_options ul li .icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-right: .7rem;
+}
+
+.c2md-download-app-home_right_options .apple {
+  background: transparent -webkit-gradient(linear, right top, left top, from(#EBF6FF), to(#F2F9FF)) 0% 0% no-repeat padding-box;
+  background: transparent linear-gradient(270deg, #EBF6FF 0%, #F2F9FF 100%) 0% 0% no-repeat padding-box;
+}
+
+.c2md-download-app-home_right_options .android {
+  background: transparent -webkit-gradient(linear, right top, left top, from(#EAFCF5), to(#EFFFF7)) 0% 0% no-repeat padding-box;
+  background: transparent linear-gradient(270deg, #EAFCF5 0%, #EFFFF7 100%) 0% 0% no-repeat padding-box;
+}
+
+.c2md-download-app-home .c2md-download-app-qr {
+  padding: .9rem;
+  border-radius: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  width: 300px;
+  margin-top: .6rem;
+}
+
+.c2md-download-app-home .c2md-download-app-qr_qrcode {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-right: 1rem;
+}
+
+.c2md-download-app-home .c2md-download-app-qr_qrcode_caption {
+  font-size: 13px;
+  font-weight: 400;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.c2md-download-app-home .c2md-download-app-qr_qrcode_caption_icon {
+  margin-left: .5rem;
+}
+/*# sourceMappingURL=downloadapphome.css.map */

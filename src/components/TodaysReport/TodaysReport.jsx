@@ -211,7 +211,6 @@ function TodaysReport() {
                                         <th>Appointment Time</th>
                                         <th>Patient Name</th>
                                         <th>Doctor Name</th>
-
                                         <th>Fees Paid</th>
                                         <th>Consultation Status</th>
                                         <th>Next Steps</th>

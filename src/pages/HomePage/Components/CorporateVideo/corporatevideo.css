@@ -1,0 +1,124 @@
+.c2md-corporate-video-container {
+  height: 90vh;
+  width: 100%;
+  background-image: url("../../../../assets/HomepageAssets/Corporate Video/corporate-video-b-l.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.c2md-corporate-video-container_left {
+  margin-right: 117px;
+}
+
+.c2md-corporate-video-container_left_head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-bottom: 35px;
+}
+
+.c2md-corporate-video-container_left_caption {
+  font-size: 17px;
+  font-weight: normal;
+  width: 550px;
+  color: white;
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+.c2md-corporate-video-container_left_footer {
+  margin-top: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.c2md-corporate-video-container_left_footer .c2md-corporate-video-about-us-btn {
+  width: 190px;
+  height: 55px;
+  /* UI Properties */
+  border: 2px solid var(--white-ffffff-);
+  border: 2px solid #FFFFFF;
+  border-radius: 5px;
+  outline: 0px;
+  background-color: transparent;
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+}
+
+.c2md-corporate-video-container_left_footer .c2md-corporate-video-play-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-left: 2rem;
+}
+
+.c2md-corporate-video-container_left_footer .c2md-corporate-video-play-container span {
+  font-size: 20px;
+  color: white;
+  font-weight: 500;
+  letter-spacing: 1.8px;
+  margin-left: 20px;
+}
+
+.c2md-corporate-video-container_left_footer .c2md-corporate-video-play-container .icon {
+  margin-left: 10px;
+}
+
+.c2md-corporate-video-container_left h1 {
+  margin: 0px;
+  color: white;
+  font-size: 55px;
+  font-weight: 600;
+  margin-bottom: .2rem;
+}
+
+.c2md-corporate-video-container_right .image img {
+  width: 40vw;
+  height: auto;
+}
+/*# sourceMappingURL=corporatevideo.css.map */
