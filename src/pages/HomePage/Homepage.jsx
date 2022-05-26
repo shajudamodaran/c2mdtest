@@ -1,6 +1,7 @@
 import React from 'react'
 import CorporateVideo from './Components/CorporateVideo/CorporateVideo'
 import DownloadAppHome from './Components/DownloadAppHome/DownloadAppHome'
+import KnowMore from './Components/DownloadAppHome/KnowMore'
 import Header from './Components/Header/Header'
 import HomeBanner from './Components/HomeBanner/HomeBanner'
 import HomeMenu from './Components/HomeMenu/HomeMenu'
@@ -15,6 +16,7 @@ function Homepage() {
         <HomeMenu/>
         <DownloadAppHome/>
         <CorporateVideo/>
+        <KnowMore/>
       
         
     </div>

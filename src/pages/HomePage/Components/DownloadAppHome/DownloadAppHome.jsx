@@ -27,11 +27,11 @@ function DownloadAppHome() {
               Verified specialist profiles</li>
 
               <li>
-                <DownloadQrCode variant="android"/>
+                <DownloadQrCode text="For Pateints" variant="android"/>
               </li>
 
               <li>
-                <DownloadQrCode variant="apple"/>
+                <DownloadQrCode text="For Doctor" variant="apple"/>
               </li>
           </ul>
         </div>
