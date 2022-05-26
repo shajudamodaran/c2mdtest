@@ -90,15 +90,9 @@ export const loginAction =
       }
       else if ( res.data?.data?.userType == CLINIC_ADMIN_USER ) {
 
-        if(res.data?.data?.clinicId==BETHANY_CLINIC_ID)
-        {
-          history.push("/admindashboard");
-         // history.push("/dashboard");
-        }
-        else{
           history.push("/dashboard");
 
-        }
+        
         
       }
       // else if ( res.data?.data?.userType == CLINIC_ADMIN_USER) {
