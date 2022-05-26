@@ -85,16 +85,10 @@ export const loginAction =
           history.push("/dashboard");
         }
       }
-      else if ( res.data?.data?.userType == ADMIN_USER ) {
+      else if ( res.data?.data?.userType == ADMIN_USER ||  res.data?.data?.userType == CLINIC_ADMIN_USER ) {
         history.push("/dashboard");
       }
-      else if ( res.data?.data?.userType == CLINIC_ADMIN_USER ) {
-
-          history.push("/dashboard");
-
-        
-        
-      }
+     
       // else if ( res.data?.data?.userType == CLINIC_ADMIN_USER) {
       //   history.push("/admindashboard");
       // }
