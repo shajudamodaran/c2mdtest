@@ -36,10 +36,11 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
             }
         }
 
+       // console.log("Calling getappointments................................................................... ->");
 
         let responce = await loginedApi.post("getappointments", params, { headers: authHeader() })
 
-        console.log("getappointments responce ->", responce.data.data);
+        //console.log("getappointments responce ->", responce.data.data);
 
         if (responce.status == 200) {
 
@@ -75,7 +76,7 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
 
         let responce = await loginedApi.post("getclinicappointments", params, { headers: authHeader() })
 
-        console.log("getclinicappointments responce ->", responce.data.data);
+        //console.log("getclinicappointments responce ->", responce.data.data);
 
         if (responce.status == 200) {
 
@@ -105,6 +106,8 @@ export const FETCH_ADMIN_DETAILED_REPORT = (_para) => async (dispatch) => {
     let todayDate = convertDateToString(new Date())
     let fromDate = _para?.fromDate ? convertDateToString(_para.fromDate) : null
     let toDate = _para?.toDate ? convertDateToString(_para.toDate) : null
+
+    //console.log("Calling getsummaryreport................................................................... ->");
 
     let params = {
         "token": "token",
@@ -138,7 +141,7 @@ export const FETCH_ADMIN_DETAILED_REPORT = (_para) => async (dispatch) => {
 
     let responce = await loginedApi.post("getsummaryreport", params, { headers: authHeader() })
 
-    console.log("getsummaryreport responce ->", responce.data.data);
+    //console.log("getsummaryreport responce ->", responce.data.data);
 
     if (responce.status == 200) {
 
@@ -174,7 +177,7 @@ export const FETCH_DASHBOARD_MORE = (_id) => async dispatch => {
 
     let responce = await c2mdApi.post("getdetailreport", params, { headers: authHeader() })
 
-    console.log(responce.data.data);
+    //console.log(responce.data.data);
 
 
     if (responce.status == 200) {
@@ -233,7 +236,7 @@ export const FETCH_CONSOLIDATED_REPORTS = (_para) => async dispatch => {
     userData = JSON.parse(userData)
     let { userType, clinicId } = userData
 
-    console.log(_para);
+    //console.log(_para);
 
 
     let todayDate = convertDateToString(new Date())
@@ -261,7 +264,7 @@ export const FETCH_CONSOLIDATED_REPORTS = (_para) => async dispatch => {
 
     let responce = await c2mdApi.post("getconsolidatedreport", params, { headers: authHeader() })
 
-    console.log("getconsolidatedreport responce ->", responce.data.data);
+    //console.log("getconsolidatedreport responce ->", responce.data.data);
 
     if (responce.status == 200) {
 
@@ -357,15 +360,15 @@ export const updateConsolodatedReportComment = (_id, value) => async dispatch =>
 export const downloadSummaryReport = (_para) => async (dispatch) => {
 
 
-    let fromDate = _para?.fromDate ? convertDateToString(_para.fromDate) : null
-    let toDate = _para?.toDate ? convertDateToString(_para.toDate) : null
+    let fromDate = _para?.fromDate ? convertDateToString(_para.fromDate) : convertDateToStringThreeMonthBack(convertDateToString(new Date()))
+    let toDate = _para?.toDate ? convertDateToString(_para.toDate) : convertDateToString(new Date())
 
     let userData = await getFromLocalStorage(USER_DATA)
     userData = JSON.parse(userData)
     let { userType, clinicId } = userData
 
 
-    console.log(fromDate, toDate);
+    //console.log(fromDate, toDate);
 
     let params = {
         "token": "token",
@@ -375,15 +378,23 @@ export const downloadSummaryReport = (_para) => async (dispatch) => {
             "operation": "find",
             "browserTimeZone": "GMT+05:30",
             "Type": "excel",
-            "startDate": fromDate ? fromDate : "16-Mar-2022",
-            "endDate": toDate ? toDate : "17-Mar-2022",
-            "clinic": clinicId,
+            "startDate": fromDate, 
+            "endDate": toDate 
+
         }
+    }
+
+    if (userType == ADMIN_USER) {
+    }
+    else if (userType == CLINIC_ADMIN_USER) {
+
+        params.data.clinic = clinicId
+
     }
 
     let responce = await loginedApi.post("getsummaryreport", params, { headers: authHeader() })
 
-    console.log("getsummaryreport responce ->", responce.data.data);
+    //console.log("getsummaryreport responce ->", responce.data.data);
 
     if (responce.status == 200) {
 
