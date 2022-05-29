@@ -1,0 +1,219 @@
+$margin-minimum: 16px;
+$margin-max: 15vw;
+
+@import '../../../../styles/common.scss';
+
+.c2md-home-footer {
+
+    width: 100%;
+    min-height: 150px;
+    background-color: white;
+    padding-top: 4.5rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+
+    &_body {
+
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 3rem;
+
+
+
+        @media screen and (min-width: $tab_size) {
+
+            width: 90%;
+            padding: 0px 4vw;
+        }
+
+        @media screen and (max-width: $tab_size) {
+
+            // margin-right: calc(max(1vw, 14px));
+            // margin-left: calc(max(1vw, 14px));
+            width: 100%;
+            padding: 0px 1vw;
+        }
+
+        @media (min-width: 1100px) and (max-width: 1300px) {
+
+            // margin-right: calc(max(1vw, 14px));
+            // margin-left: calc(max(1vw, 14px));
+            width: 100%;
+            padding: 0px 1vw;
+        }
+
+        ul {
+            padding: 0px;
+            margin: 0px;
+            list-style: none;
+            font: normal normal normal 16px/20px IBM Plex Sans;
+            letter-spacing: 0.16px;
+            color: #0C1E4E;
+            opacity: 1;
+
+
+
+
+
+
+            @media screen and (min-width: $tab_size) {
+
+                // margin-right: calc(max(1vw, 14px));
+                // margin-left: calc(max(1vw, 14px));
+
+            }
+
+            @media screen and (max-width: $tab_size) {}
+
+            li {
+                margin-bottom: 20px;
+                flex-wrap: nowrap;
+                white-space: nowrap;
+
+
+                .footer-social-container {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: flex-start;
+
+                    .logo {
+                        margin-right: 15px;
+                    }
+                }
+
+                .accred-container {
+
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: flex-start;
+
+                    img {
+                        width: 8vw;
+                        max-width: 120px;
+
+                    }
+
+                    .image1 {
+
+                        margin-right: 17px;
+                    }
+
+                }
+            }
+        }
+
+        .title {
+
+            font: normal normal bold 18px/23px IBM Plex Sans;
+            letter-spacing: 0.18px;
+            color: #0C1E4E;
+            opacity: 1;
+            margin-bottom: 35px;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+
+        }
+
+        .title-social {
+            margin-top: 32px;
+            margin-bottom: 20px;
+        }
+
+        .accred-container {}
+
+
+
+    }
+
+    &_footer {
+
+        width: 100%;
+        border-top: 2px solid #dcdfe93a;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 0px;
+
+        &_left {
+
+            .main-logo {
+                width: 130px;
+            }
+
+            .copyright {
+                font: normal normal normal 13px/17px IBM Plex Sans;
+                letter-spacing: 0.13px;
+                color: #0C1E4E;
+                margin-left: 20px;
+            }
+
+
+        }
+
+        &_right {
+
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+
+            .title {
+
+                font: normal normal medium 14px/22px IBM Plex Sans;
+                letter-spacing: 0.14px;
+                color: #0C1E4E;
+                opacity: 1;
+                font-weight: 500;
+            }
+
+            .caption {
+
+                font: normal normal normal 14px/18px IBM Plex Sans;
+                letter-spacing: 0.14px;
+                color: #0C1E4E;
+                opacity: 0.43;
+                margin-top: 5px;
+
+            }
+
+        }
+
+
+
+
+
+        @media screen and (min-width: $tab_size) {
+
+            width: 83%;
+            margin: 0px 4vw;
+        }
+
+        @media screen and (max-width: $tab_size) {
+
+            // margin-right: calc(max(1vw, 14px));
+            // margin-left: calc(max(1vw, 14px));
+            width: 100%;
+            padding: 15px 1vw;
+        }
+
+        @media (min-width: 1100px) and (max-width: 1300px) {
+
+            // margin-right: calc(max(1vw, 14px));
+            // margin-left: calc(max(1vw, 14px));
+            width: 100%;
+            padding: 15px 1vw;
+        }
+
+
+
+    }
+}
