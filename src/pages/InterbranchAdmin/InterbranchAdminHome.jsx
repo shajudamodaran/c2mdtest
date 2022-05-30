@@ -42,6 +42,7 @@ function InterbranchAdminHome() {
 
     let logoutFunction = () => {
 
+        console.log("Logging out...............");
         dispatch(
             logoutAction(userData)
         );
