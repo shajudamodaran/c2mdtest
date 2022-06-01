@@ -33,13 +33,13 @@ export default (state = INITIAL_STATE, { type, payload }) => {
       };
 
 
-    case LOG_OUT_ACTION:
-      return {
-        ...state,
-        login: false,
-        user: {},
-        logout:payload
-      };
+    // case LOG_OUT_ACTION:
+    //   return {
+    //     ...state,
+    //     login: false,
+    //     user: {},
+    //     logout:payload
+    //   };
     case SIGNUP_SUCCESS_ACTION:
       return {
         ...state,
