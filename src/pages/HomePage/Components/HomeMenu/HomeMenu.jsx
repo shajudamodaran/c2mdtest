@@ -1,5 +1,7 @@
 import React,{useState} from 'react'
 import { ArrowRightGreen } from '../../../../assets/Logos/Icons'
+import PartnerHospitals from '../Partner Hospitals/PartnerHospitals'
+import HomePageSpecialityList from '../Specialities/HomePageSpecialityList'
 
 import './homemenu.css'
 
@@ -66,7 +68,9 @@ function HomeMenu() {
 
             <div className='c2md-home-menu-container_right'>
 
-                <div className='c2md-home-menu-container_right_image'>&nbsp;</div>
+                <div className='c2md-home-menu-container_right_image'>
+                    <PartnerHospitals/>
+                </div>
 
             </div>
 

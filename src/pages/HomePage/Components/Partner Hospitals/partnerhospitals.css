@@ -1,0 +1,128 @@
+.partner-hospitals-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+}
+
+.partner-hospitals-container .plus-vector-back1 {
+  position: absolute;
+  top: 3%;
+  left: -3%;
+}
+
+.partner-hospitals-container .partner-hospitals-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 2;
+}
+
+.partner-hospitals-container .partner-hospital-button {
+  width: 220px;
+  height: 78px;
+  background: white;
+  -webkit-box-shadow: 0px 4px 5px #1389FF1A;
+          box-shadow: 0px 4px 5px #1389FF1A;
+  border-radius: 10px;
+  opacity: 1;
+  margin: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.partner-hospitals-container .partner-hospital-button:hover img {
+  -webkit-filter: grayscale(0%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.partner-hospitals-container .partner-hospital-button img {
+  max-width: 70%;
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+  opacity: .5;
+  -webkit-transition-duration: .5s;
+          transition-duration: .5s;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.partner-hospitals-container .partner-hospital-button img:hover {
+  -webkit-filter: grayscale(0%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.partner-hospitals-container .partner-hospital-button .hash-overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(124, 124, 124, 0.473);
+  border-radius: 10px;
+}
+
+.partner-hospitals-container .view-all-hospitals {
+  background-color: #3E97DE;
+  color: white;
+}
+
+.partner-hospitals-container .view-all-hospitals .text {
+  margin-right: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.partner-hospitals-container .view-all-hospitals .text .icon {
+  margin-left: 10px;
+}
+/*# sourceMappingURL=partnerhospitals.css.map */

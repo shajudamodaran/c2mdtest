@@ -1,0 +1,114 @@
+.home-speciality-list-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  position: relative;
+}
+
+.home-speciality-list-container .plus-vector-back1 {
+  position: absolute;
+  left: 13%;
+  top: 10%;
+}
+
+.home-speciality-list-container .plus-vector-back2 {
+  position: absolute;
+  right: 16%;
+  top: 10%;
+  height: 77px;
+}
+
+.home-speciality-list-container .home-speciality-column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 2;
+}
+
+.home-speciality-list-container .home-speciality-column .vector-container {
+  width: 100%;
+  text-align: end;
+  padding-right: 10px;
+}
+
+.home-speciality-list-container .home-page-speciality-button {
+  width: 150px;
+  height: 140px;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 0px 4px 5px #1389FF1A;
+          box-shadow: 0px 4px 5px #1389FF1A;
+  border-radius: 10px;
+  opacity: 1;
+  margin: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+  -webkit-transition-duration: .5s;
+          transition-duration: .5s;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.home-speciality-list-container .home-page-speciality-button:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+
+.home-speciality-list-container .home-page-speciality-button_text {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.18px;
+  color: #162D43;
+  max-width: 110px;
+  line-height: 1.25;
+  margin-top: 5px;
+}
+
+.home-speciality-list-container .home-page-speciality-button .icon {
+  margin-top: 10px;
+}
+
+.home-speciality-list-container .view-all-speciality-button {
+  background-color: #3E97DE;
+}
+
+.home-speciality-list-container .view-all-speciality-button .home-page-speciality-button_text {
+  color: white;
+}
+/*# sourceMappingURL=homepagespecialitylist.css.map */

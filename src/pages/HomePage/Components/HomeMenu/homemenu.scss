@@ -70,8 +70,12 @@
     &_right {
         &_image {
             width: 50vw;
-            height: 450px;
-            background-color: white;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            padding: 15px 0px;
         }
     }
 

@@ -1,0 +1,105 @@
+.partner-hospitals-container {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    .plus-vector-back1 {
+        position: absolute;
+        top: 3%;
+        left: -3%;
+    }
+
+    .partner-hospitals-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+
+    }
+
+
+
+    .partner-hospital-button {
+        width: 220px;
+        height: 78px;
+
+        background: white;
+        box-shadow: 0px 4px 5px #1389FF1A;
+        border-radius: 10px;
+        opacity: 1;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        cursor: pointer;
+
+        &:hover {
+            img {
+                -webkit-filter: grayscale(0%);
+                /* Safari 6.0 - 9.0 */
+                filter: grayscale(0%);
+                opacity: 1;
+            }
+        }
+
+        img {
+
+
+            max-width: 70%;
+            -webkit-filter: grayscale(100%);
+            /* Safari 6.0 - 9.0 */
+            filter: grayscale(100%);
+            opacity: .5;
+            transition-duration: .5s;
+            object-fit: cover;
+
+            &:hover {
+
+                -webkit-filter: grayscale(0%);
+                /* Safari 6.0 - 9.0 */
+                filter: grayscale(0%);
+                opacity: 1;
+
+            }
+        }
+
+
+        .hash-overlay {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(124, 124, 124, 0.473);
+            border-radius: 10px;
+        }
+
+
+    }
+
+    .view-all-hospitals {
+        background-color: #3E97DE;
+        color: white;
+
+        .text {
+            margin-right: 10px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 600;
+
+            .icon {
+                margin-left: 10px;
+            }
+        }
+
+
+    }
+}

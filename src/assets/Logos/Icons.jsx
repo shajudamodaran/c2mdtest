@@ -1445,6 +1445,19 @@ export const LinkedinFooterLogo = () => {
     )
 }
 
+export const ArrowRightWhite = () => {
+    return (
+
+        <svg width="19" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 6.81091H19.132" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12.182 12.621L19.132 6.811L12.182 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+
+
+    )
+}
+
+
 
 
 
