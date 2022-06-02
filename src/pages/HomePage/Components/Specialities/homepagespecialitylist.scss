@@ -6,17 +6,18 @@
     justify-content: center;
     width: 100%;
     position: relative;
+    animation: zoomIn .5s none;
 
     .plus-vector-back1 {
         position: absolute;
-        left: 13%;
+        right: 65%;
         top: 10%
     }
 
     .plus-vector-back2 {
 
         position: absolute;
-        right: 16%;
+        right: 20%;
         top: 10%;
         height: 77px;
     }
@@ -84,5 +85,14 @@
         .home-page-speciality-button_text {
             color: white;
         }
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
     }
 }

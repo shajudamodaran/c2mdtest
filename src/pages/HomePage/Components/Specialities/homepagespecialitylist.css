@@ -14,17 +14,19 @@
           justify-content: center;
   width: 100%;
   position: relative;
+  -webkit-animation: zoomIn .5s none;
+          animation: zoomIn .5s none;
 }
 
 .home-speciality-list-container .plus-vector-back1 {
   position: absolute;
-  left: 13%;
+  right: 65%;
   top: 10%;
 }
 
 .home-speciality-list-container .plus-vector-back2 {
   position: absolute;
-  right: 16%;
+  right: 20%;
   top: 10%;
   height: 77px;
 }
@@ -110,5 +112,27 @@
 
 .home-speciality-list-container .view-all-speciality-button .home-page-speciality-button_text {
   color: white;
+}
+
+@-webkit-keyframes zoomIn {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
 /*# sourceMappingURL=homepagespecialitylist.css.map */

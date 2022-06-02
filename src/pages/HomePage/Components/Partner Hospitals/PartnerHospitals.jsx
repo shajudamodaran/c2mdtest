@@ -16,8 +16,8 @@ import h11 from '../../../../assets/HomepageAssets/PartnerHospitals/h11.png'
 import h12 from '../../../../assets/HomepageAssets/PartnerHospitals/h12.png'
 
 import grid from '../../../../assets/HomepageAssets/Speciality/grid.svg'
-import health from '../../../assets/HomepageAssets/Speciality/health.svg'
-import heart2 from '../../../assets/HomepageAssets/Speciality/heart2.svg'
+import health from '../../../../assets/HomepageAssets/Speciality/health.svg'
+import heart2 from '../../../../assets/HomepageAssets/Speciality/heart2.svg'
 
 function PartnerHospitals() {
 
@@ -42,9 +42,9 @@ function PartnerHospitals() {
                 <PartnerHospitalButton icon={h5} />
 
                 <div className="vector-container">
-                    <img src={heart2} alt="" />
+                    <img src={health} alt="" />
                 </div>
-                
+
             </div>
 
             <div className="partner-hospitals-row">
@@ -54,6 +54,10 @@ function PartnerHospitals() {
             </div>
 
             <div className="partner-hospitals-row">
+
+                <div className="vector-container2">
+                    <img src={heart2} alt="" />
+                </div>
                 <PartnerHospitalButton icon={h9} />
                 <PartnerHospitalButton icon={h10} />
             </div>

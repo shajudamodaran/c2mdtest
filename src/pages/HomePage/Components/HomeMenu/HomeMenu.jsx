@@ -69,7 +69,11 @@ function HomeMenu() {
             <div className='c2md-home-menu-container_right'>
 
                 <div className='c2md-home-menu-container_right_image'>
-                    <PartnerHospitals/>
+                    {
+                        activeMenu==0?<HomePageSpecialityList/>:
+                        activeMenu==1?<PartnerHospitals/>:null
+                    }
+                    
                 </div>
 
             </div>
