@@ -1,5 +1,6 @@
-import React,{useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { ArrowRightGreen } from '../../../../assets/Logos/Icons'
+import FindDoctorFormHome from '../FindDoctorFormHome/FindDoctorFormHome'
 import PartnerHospitals from '../Partner Hospitals/PartnerHospitals'
 import HomePageSpecialityList from '../Specialities/HomePageSpecialityList'
 
@@ -8,6 +9,49 @@ import './homemenu.css'
 function HomeMenu() {
 
     let [activeMenu, setActiveMenu] = useState(0)
+
+    let [count, setCounter] = useState(0)
+    let [activeNumber, setActiveNumber] = useState(0)
+
+    useEffect(() => {
+
+        // manageCount()
+
+    }, [])
+
+
+    let manageCount = async () => {
+
+        let res = await startCount()
+        console.log(res);
+
+    }
+
+
+
+    let startCount = async () => {
+
+        var seconds = 10;
+        var timer = setInterval(function () {
+            seconds--;
+            if (seconds == 0) {
+                clearInterval(timer);
+
+            } else {
+                setCounter((10 - seconds) * 10)
+            }
+        }, 1000);
+
+
+        return setTimeout(function () {
+            return true
+        }, 10000);
+
+
+
+
+
+    }
 
 
     let options = [
@@ -32,6 +76,9 @@ function HomeMenu() {
 
     ]
 
+
+    console.log(count);
+
     return (
         <div className='c2md-home-menu-container'>
 
@@ -44,7 +91,9 @@ function HomeMenu() {
                         options.map((element, key) => {
 
                             return (
-                                <li className={activeMenu===key?"c2md-home-menu-list-active":null} onClick={()=>{setActiveMenu(key)}}>
+                                <li 
+                                // style={{ width: `${count}%` }} 
+                                className={activeMenu === key ? "c2md-home-menu-list-active" : null} onClick={() => { setActiveMenu(key) }}>
                                     <div className="flex-row">
                                         <div>
                                             <h2 className="c2md-home-menu-list_title">{element.name}</h2>
@@ -53,7 +102,7 @@ function HomeMenu() {
                                             </div>
                                         </div>
                                         {
-                                            activeMenu===key&&<ArrowRightGreen />
+                                            activeMenu === key && <ArrowRightGreen />
                                         }
                                     </div>
                                 </li>
@@ -70,10 +119,11 @@ function HomeMenu() {
 
                 <div className='c2md-home-menu-container_right_image'>
                     {
-                        activeMenu==0?<HomePageSpecialityList/>:
-                        activeMenu==1?<PartnerHospitals/>:null
+                        activeMenu == 0 ? <HomePageSpecialityList /> :
+                            activeMenu == 1 ? <PartnerHospitals /> :
+                                activeMenu == 2 ? <FindDoctorFormHome /> : null
                     }
-                    
+
                 </div>
 
             </div>

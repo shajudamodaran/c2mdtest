@@ -1,0 +1,240 @@
+.find-doctor-home {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    animation: zoomIn .5s none;
+    position: relative;
+
+
+
+
+    .grid-icon{
+
+        position: absolute;
+        right: 79%;
+        bottom: -5%;
+        z-index: 1;
+
+        img {
+            height: 100px;
+        }
+    }
+
+
+    &_form_container{
+
+        width: 50%;
+
+    }
+
+
+    &_form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        min-width: 480px;
+        padding: 3rem 2.8rem;
+
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 20px #0000000A;
+        border-radius: 3px 0px 3px 3px;
+        opacity: 1;
+        z-index: 2;
+        position: relative;
+
+        .dr-online-icon {
+            position: absolute;
+            left: -27%;
+            top: 13%;
+
+            img {
+                height: 100px;
+            }
+        }
+
+
+
+        .health-icon {
+
+            position: absolute;
+            left: -20%;
+            top: 60%;
+
+            img {
+                height: 60px;
+            }
+
+        }
+
+        .search-icon {
+            position: absolute;
+            right: -20%;
+            top: 29%;
+
+            img {
+                height: 70px;
+            }
+        }
+
+        .patient-icon {
+            position: absolute;
+            right: -20%;
+            top: 80%;
+
+            img {
+                height: 70px;
+            }
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            width: 100%;
+
+            .title {
+
+                font-size: 24px;
+                font-weight: 600;
+                letter-spacing: 0px;
+                color: #0C1E4E;
+
+            }
+
+            .caption {
+                color: #0C1E4E;
+                font-size: 14px;
+            }
+        }
+
+        .body {
+
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            width: 100%;
+            margin-top: 1.5rem;
+
+            .form-item {
+                width: 100%;
+                margin-bottom: 1.8rem;
+
+                .ant-select-selector,
+                .ant-select-focused .ant-select-selector,
+                .ant-select-selector:focus,
+                .ant-select-selector:active,
+                .ant-select-open .ant-select-selector {
+                    border: 0px !important;
+                    box-shadow: none !important;
+                    outline: 0px !important;
+                    border-bottom: 1px solid #ECECEC !important;
+                }
+
+                .ant-select-selector {
+                    height: 50px;
+                    padding: 0px;
+                }
+
+                .ant-select-selection-search {
+
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: center;
+
+                }
+
+                .ant-select-selection-placeholder {
+                    margin-top: 10px;
+                    width: 100% !important;
+                    font-weight: 500;
+                    font-size: 14px;
+                    padding: 0px 5px;
+                }
+
+                .ant-select-selection-item {
+
+                    margin-top: 10px;
+                    width: 100% !important;
+                    font-weight: 500;
+                    font-size: 14px;
+                    padding: 0px 5px;
+                    color: #162D43;
+                }
+
+                .ant-select-arrow {
+                    margin-top: -3px;
+                }
+
+                .ant-input {
+
+                    border: 0px;
+                    box-shadow: none;
+                    border-bottom: 1px solid #ECECEC !important;
+
+                    padding: 10px 5px;
+                    border-bottom: 1px solid #ECECEC;
+                    font-weight: 500;
+                    color: #162D43;
+                    font-size: 14px;
+
+                }
+
+                .ant-input:focus {
+                    border: 0px;
+                    box-shadow: none;
+                }
+
+                .submit-btn {
+
+                    width: 100%;
+                    height: 55px;
+                    /* UI Properties */
+                    background: #208CE1 0% 0% no-repeat padding-box;
+                    border-radius: 3px;
+                    opacity: 1;
+                    color: white;
+                    font-size: 17.5px;
+                    font-weight: 600;
+                    outline: 0px;
+                    border: 0px;
+                    margin-top: 1rem;
+                }
+
+
+
+                input {
+                    width: 100%;
+                }
+
+                // .find-doctor-home_form_input_text {
+                //     border: 0px;
+                //     padding: 10px 5px;
+                //     font-weight: 500;
+                //     color: #162D43;
+                //     font-size: 14px;
+                //     width: 100%;
+                // }
+            }
+
+        }
+    }
+
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

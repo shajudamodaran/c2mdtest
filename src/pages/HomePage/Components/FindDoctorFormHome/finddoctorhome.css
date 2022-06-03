@@ -1,0 +1,266 @@
+.find-doctor-home {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  -webkit-animation: zoomIn .5s none;
+          animation: zoomIn .5s none;
+  position: relative;
+}
+
+.find-doctor-home .grid-icon {
+  position: absolute;
+  right: 79%;
+  bottom: -5%;
+  z-index: 1;
+}
+
+.find-doctor-home .grid-icon img {
+  height: 100px;
+}
+
+.find-doctor-home_form_container {
+  width: 50%;
+}
+
+.find-doctor-home_form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: white;
+  min-width: 480px;
+  padding: 3rem 2.8rem;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  -webkit-box-shadow: 0px 3px 20px #0000000A;
+          box-shadow: 0px 3px 20px #0000000A;
+  border-radius: 3px 0px 3px 3px;
+  opacity: 1;
+  z-index: 2;
+  position: relative;
+}
+
+.find-doctor-home_form .dr-online-icon {
+  position: absolute;
+  left: -27%;
+  top: 13%;
+}
+
+.find-doctor-home_form .dr-online-icon img {
+  height: 100px;
+}
+
+.find-doctor-home_form .health-icon {
+  position: absolute;
+  left: -20%;
+  top: 60%;
+}
+
+.find-doctor-home_form .health-icon img {
+  height: 60px;
+}
+
+.find-doctor-home_form .search-icon {
+  position: absolute;
+  right: -20%;
+  top: 29%;
+}
+
+.find-doctor-home_form .search-icon img {
+  height: 70px;
+}
+
+.find-doctor-home_form .patient-icon {
+  position: absolute;
+  right: -20%;
+  top: 80%;
+}
+
+.find-doctor-home_form .patient-icon img {
+  height: 70px;
+}
+
+.find-doctor-home_form .header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+
+.find-doctor-home_form .header .title {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0px;
+  color: #0C1E4E;
+}
+
+.find-doctor-home_form .header .caption {
+  color: #0C1E4E;
+  font-size: 14px;
+}
+
+.find-doctor-home_form .body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.find-doctor-home_form .body .form-item {
+  width: 100%;
+  margin-bottom: 1.8rem;
+}
+
+.find-doctor-home_form .body .form-item .ant-select-selector,
+.find-doctor-home_form .body .form-item .ant-select-focused .ant-select-selector,
+.find-doctor-home_form .body .form-item .ant-select-selector:focus,
+.find-doctor-home_form .body .form-item .ant-select-selector:active,
+.find-doctor-home_form .body .form-item .ant-select-open .ant-select-selector {
+  border: 0px !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  outline: 0px !important;
+  border-bottom: 1px solid #ECECEC !important;
+}
+
+.find-doctor-home_form .body .form-item .ant-select-selector {
+  height: 50px;
+  padding: 0px;
+}
+
+.find-doctor-home_form .body .form-item .ant-select-selection-search {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.find-doctor-home_form .body .form-item .ant-select-selection-placeholder {
+  margin-top: 10px;
+  width: 100% !important;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 0px 5px;
+}
+
+.find-doctor-home_form .body .form-item .ant-select-selection-item {
+  margin-top: 10px;
+  width: 100% !important;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 0px 5px;
+  color: #162D43;
+}
+
+.find-doctor-home_form .body .form-item .ant-select-arrow {
+  margin-top: -3px;
+}
+
+.find-doctor-home_form .body .form-item .ant-input {
+  border: 0px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-bottom: 1px solid #ECECEC !important;
+  padding: 10px 5px;
+  border-bottom: 1px solid #ECECEC;
+  font-weight: 500;
+  color: #162D43;
+  font-size: 14px;
+}
+
+.find-doctor-home_form .body .form-item .ant-input:focus {
+  border: 0px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.find-doctor-home_form .body .form-item .submit-btn {
+  width: 100%;
+  height: 55px;
+  /* UI Properties */
+  background: #208CE1 0% 0% no-repeat padding-box;
+  border-radius: 3px;
+  opacity: 1;
+  color: white;
+  font-size: 17.5px;
+  font-weight: 600;
+  outline: 0px;
+  border: 0px;
+  margin-top: 1rem;
+}
+
+.find-doctor-home_form .body .form-item input {
+  width: 100%;
+}
+
+@-webkit-keyframes zoomIn {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+/*# sourceMappingURL=finddoctorhome.css.map */

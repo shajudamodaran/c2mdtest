@@ -54,8 +54,8 @@
   padding: 2rem 0px;
   border-bottom: 3px solid #EAEEF1;
   cursor: pointer;
-  -webkit-transition-duration: .5s;
-          transition-duration: .5s;
+  -webkit-transition-duration: 2s;
+          transition-duration: 2s;
 }
 
 .c2md-home-menu-container_left .c2md-home-menu-list .c2md-home-menu-list-active {
