@@ -8,48 +8,45 @@ import './homemenu.css'
 
 function HomeMenu() {
 
-    let [activeMenu, setActiveMenu] = useState(0)
+    let [activeMenu, setActiveMenu] = useState(null)
 
-    let [count, setCounter] = useState(0)
     let [activeNumber, setActiveNumber] = useState(0)
 
     useEffect(() => {
 
         // manageCount()
+        startCount()
 
     }, [])
 
 
-    let manageCount = async () => {
-
-        let res = await startCount()
-        console.log(res);
-
+    let startCount=()=>{
+        count()
+        setInterval(count, 30000)
     }
 
 
 
-    let startCount = async () => {
 
-        var seconds = 10;
-        var timer = setInterval(function () {
-            seconds--;
-            if (seconds == 0) {
-                clearInterval(timer);
+    let count = async () => {
 
-            } else {
-                setCounter((10 - seconds) * 10)
+        if(!activeMenu)
+        {
+            setActiveMenu(0)
+        }
+        
+        var time = activeMenu?0:1;
+
+
+        var interval = setInterval(function () {
+            if (time <= 2) {
+                setActiveMenu(time)
+                time++;
             }
-        }, 1000);
-
-
-        return setTimeout(function () {
-            return true
+            else {
+                clearInterval(interval);
+            }
         }, 10000);
-
-
-
-
 
     }
 
@@ -77,7 +74,6 @@ function HomeMenu() {
     ]
 
 
-    console.log(count);
 
     return (
         <div className='c2md-home-menu-container'>
@@ -91,9 +87,9 @@ function HomeMenu() {
                         options.map((element, key) => {
 
                             return (
-                                <li 
-                                // style={{ width: `${count}%` }} 
-                                className={activeMenu === key ? "c2md-home-menu-list-active" : null} onClick={() => { setActiveMenu(key) }}>
+                                <li
+                                    // style={{ width: `${count}%` }} 
+                                    className={activeMenu === key ? "c2md-home-menu-list-active" : null} onClick={() => { setActiveMenu(key) }}>
                                     <div className="flex-row">
                                         <div>
                                             <h2 className="c2md-home-menu-list_title">{element.name}</h2>
@@ -105,6 +101,11 @@ function HomeMenu() {
                                             activeMenu === key && <ArrowRightGreen />
                                         }
                                     </div>
+
+                                    <div className="loader-container">
+                                        <div className="loader">&nbsp;</div>
+                                    </div>
+
                                 </li>
                             )
 
