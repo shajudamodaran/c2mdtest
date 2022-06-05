@@ -2,14 +2,55 @@ $small: 300px;
 $banner_image_medium: 1390px;
 
 .c2md-home-banner {
-    // height: calc(100vh - 100px);
+    // height: calc(100vh - 130px);
     width: 100%;
+    padding-top: 2rem;
+    margin-bottom: 2rem;
+  
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    margin-top: 1rem;
+    .slick-slider {
+        height: fit-content;
+
+    }
+
+    .slick-list {
+
+        height: fit-content;
+
+
+    }
+
+    .slick-track {
+        height: fit-content;
+    }
+
+    .slick-slide {
+
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        height: fit-content;
+
+
+    }
+
+    .slick-slide  {
+
+
+        // &:first-child {
+        //     div
+        //     {
+        //         width: 100% !important;
+        //         height: 90vh;
+        //         background-color: red;
+        //     }          
+        //  }
+
+     
+
+
+    }
 
 }
 
@@ -38,7 +79,7 @@ $banner_image_medium: 1390px;
             margin-right: 6rem;
 
             @media screen and (max-width: $banner_image_medium) {
-                margin-right:5vw;
+                margin-right: 5vw;
             }
 
             .hash-tag {
@@ -57,7 +98,7 @@ $banner_image_medium: 1390px;
                 justify-content: center;
                 margin-bottom: 2rem;
 
-                
+
 
                 div {
 
@@ -116,7 +157,7 @@ $banner_image_medium: 1390px;
                 justify-content: center;
                 cursor: pointer;
 
-                
+
 
             }
 
@@ -137,7 +178,7 @@ $banner_image_medium: 1390px;
                     margin-right: .7rem;
                 }
 
-                .active{
+                .active {
                     background-color: #208CE1;
                 }
 
@@ -149,16 +190,20 @@ $banner_image_medium: 1390px;
         &_image-container {
 
             .banner-image-home {
-                width: 697px;
-                 height: 628px;
-                background-color: #208de13f;
+               
+                // background-color: #208de13f;
+
+                img{
+
+                    width: 40vw;
+                }
 
                 @media screen and (max-width: $banner_image_medium) {
                     //do Smth
                     width: 40vw;
-                     min-height: 228px;
+                    min-height: 228px;
                     height: auto;
-                  }
+                }
             }
 
         }
@@ -172,11 +217,11 @@ $banner_image_medium: 1390px;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-       
+
         width: 100%;
         margin-top: 3rem;
 
-        &_caption{
+        &_caption {
 
             width: 100%;
             display: flex;
@@ -187,7 +232,7 @@ $banner_image_medium: 1390px;
             border-bottom: 1px solid #EBEBEB;
         }
 
-        &_hospital-logos{
+        &_hospital-logos {
 
             width: 100%;
             padding: .5rem 1rem;

@@ -6,7 +6,7 @@ import h3 from '../../../../../assets/HomepageAssets/Banner Footer/h3.png'
 import h4 from '../../../../../assets/HomepageAssets/Banner Footer/h4.png'
 import h5 from '../../../../../assets/HomepageAssets/Banner Footer/h5.png'
 
-function Banner1() {
+function Banner1({image,index}) {
 
     
 
@@ -35,9 +35,9 @@ function Banner1() {
 
 
                     <ul className='banner-slider-dot'>
-                        <li className='active'></li>
-                        <li></li>
-                        <li></li>
+                        <li className={index==0?"active":null}></li>
+                        <li className={index==1?"active":null}></li>
+                        <li className={index==2?"active":null}></li>
                     </ul>
 
 
@@ -48,7 +48,7 @@ function Banner1() {
                 <div className="c2md-home-banner-element_body_image-container">
 
                     <div className="banner-image-home">
-                        s
+                        <img src={image} alt="" />
                     </div>
 
                 </div>

@@ -3,44 +3,58 @@ import Banner1 from './Banners/Banner1'
 import './homebanner.css'
 import Slider from "react-slick";
 
+import image1 from '../../../../assets/HomepageAssets/HomeBanner/banner1.png'
+import image2 from '../../../../assets/HomepageAssets/HomeBanner/banner2.png'
+import image3 from '../../../../assets/HomepageAssets/HomeBanner/banner3.png'
+
+
 function HomeBanner() {
 
     const settings = {
-        dots: true,
+        dots: false,
         infinite: true,
-        speed: 500,
+        speed: 2500,
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        autoplay:true,
+        autoplaySpeed: 1500
     };
 
 
     return (
-        <div className='c2md-home-banner'>
-            {/* <Banner1/> */}
+        // <div className='c2md-home-banner'>
 
-            <div>
-                <h2> Single Item</h2>
-                <Slider {...settings}>
-                    <div style={{backgroundColor:"red"}}>
-                        <h3>1</h3>
-                    </div>
-                    <div>
-                        <h3>2</h3>
-                    </div>
-                    <div>
-                        <h3>3</h3>
-                    </div>
-                    <div>
-                        <h3>4</h3>
-                    </div>
-                    <div>
-                        <h3>5</h3>
-                    </div>
-                    <div>
-                        <h3>6</h3>
-                    </div>
-                </Slider>
-            </div>
+        //     <Slider {...settings}>
+        //         <div style={{ backgroundColor: "red", height: "50vh", width: "100vw" }}>
+        //             shaju
+        //         </div>
+        //         <div style={{ backgroundColor: "red", height: "50vh", width: "100vw" }}>
+        //             shaju
+        //         </div>
+
+
+        //     </Slider>
+
+        // </div>
+
+        <div className='c2md-home-banner'>
+            <Slider arrows={false} {...settings}>
+
+                <div style={{ width: "100%", height: "90vh", backgroundColor:"red !important" }}>
+                    <Banner1 image={image1} index={0} />
+                </div>
+
+                <div style={{ width: "100%", height: "90vh", backgroundColor:"red !important" }}>
+                    <Banner1 image={image2} index={1}/>
+                </div>
+
+                <div style={{ width: "100%", height: "90vh", backgroundColor:"red !important" }}>
+                    <Banner1 image={image3} index={2}/>
+                </div>
+               
+
+
+            </Slider>
         </div>
     )
 }

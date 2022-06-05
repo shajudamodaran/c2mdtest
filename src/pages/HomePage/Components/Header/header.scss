@@ -10,6 +10,39 @@
 
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px #0000000D;
+
+    $small: 1245px;
+    $medium: 1270px;
+
+
+    @media screen and (max-width: $medium) {
+
+
+        .for-web {
+            display: none !important;
+        }
+
+        .for-tablet {
+            display: flex !important;
+
+        }
+    }
+
+    @media screen and (min-width: $medium) {
+
+        .for-web {
+            display: flex !important;
+        }
+
+        .for-tablet {
+            display: none !important;
+
+        }
+
+
+    }
+
+   
 }
 
 .c2md-header-image-container {
@@ -20,6 +53,11 @@
         flex-direction: row;
         align-items: center;
         justify-content: flex-start;
+
+        .hamburger-header {
+            margin-right: 20px;
+            cursor: pointer;
+        }
     }
 
     &_nav {
@@ -28,7 +66,7 @@
         flex-direction: row;
         list-style: none;
         padding: 0px;
-        margin:0px;
+        margin: 0px;
         margin-left: 1rem;
 
         li {
@@ -64,7 +102,7 @@
 
     }
 
-    .download_app_container{
+    .download_app_container {
 
         display: flex;
         flex-direction: row;
@@ -73,23 +111,31 @@
         height: 40px;
         margin-left: 15px;
 
-        .download-app-text{
+        .download-app-text {
 
-           flex-wrap: nowrap;
+            flex-wrap: nowrap;
         }
 
-        &_icon_container{
+        &_icon_container {
 
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: flex-start;
 
-            .download_app_icon{
+            .download_app_icon {
                 margin-left: 15px;
             }
 
         }
     }
+
+}
+
+.hamburger-menu {
+    font-size: 14px;
+    color: #0C1E4E;
+    font-weight: 400;
+    cursor: pointer;
 
 }

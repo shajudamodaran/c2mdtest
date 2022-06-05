@@ -22,6 +22,28 @@
           box-shadow: 0px 3px 6px #0000000D;
 }
 
+@media screen and (max-width: 1270px) {
+  .c2md-header-container .for-web {
+    display: none !important;
+  }
+  .c2md-header-container .for-tablet {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+  }
+}
+
+@media screen and (min-width: 1270px) {
+  .c2md-header-container .for-web {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+  }
+  .c2md-header-container .for-tablet {
+    display: none !important;
+  }
+}
+
 .c2md-header-image-container_left {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -36,6 +58,11 @@
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
+}
+
+.c2md-header-image-container_left .hamburger-header {
+  margin-right: 20px;
+  cursor: pointer;
 }
 
 .c2md-header-image-container_nav {
@@ -140,5 +167,12 @@
 
 .c2md-header-buttons-container .download_app_container_icon_container .download_app_icon {
   margin-left: 15px;
+}
+
+.hamburger-menu {
+  font-size: 14px;
+  color: #0C1E4E;
+  font-weight: 400;
+  cursor: pointer;
 }
 /*# sourceMappingURL=header.css.map */

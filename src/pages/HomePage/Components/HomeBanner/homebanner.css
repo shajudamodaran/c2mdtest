@@ -1,19 +1,44 @@
 .c2md-home-banner {
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  margin-top: 1rem;
+  padding-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.c2md-home-banner .slick-slider {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c2md-home-banner .slick-list {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c2md-home-banner .slick-track {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c2md-home-banner .slick-slide {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: horizontal !important;
+  -webkit-box-direction: normal !important;
+      -ms-flex-direction: row !important;
+          flex-direction: row !important;
+  -webkit-box-align: center !important;
+      -ms-flex-align: center !important;
+          align-items: center !important;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .c2md-home-banner-element {
@@ -186,10 +211,8 @@
   background-color: #208CE1;
 }
 
-.c2md-home-banner-element_body_image-container .banner-image-home {
-  width: 697px;
-  height: 628px;
-  background-color: #208de13f;
+.c2md-home-banner-element_body_image-container .banner-image-home img {
+  width: 40vw;
 }
 
 @media screen and (max-width: 1390px) {

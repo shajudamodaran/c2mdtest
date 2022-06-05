@@ -4,7 +4,7 @@ import './customersays.css'
 import image from '../../../../assets/HomepageAssets/Customer Comments/customer-lady.png'
 import RatingComponent from '../../../../components/RatingComponent/RatingComponent'
 
-function CustomerSays() {
+function CustomerSays({index}) {
     return (
         <div className='c2md-customer-says-container'>
 
@@ -45,9 +45,9 @@ function CustomerSays() {
                         </div>
 
                         <ul className='customer-says-slider-dot'>
-                            <li className='active'></li>
-                            <li></li>
-                            <li></li>
+                            <li className={index==0&&"active"}></li>
+                            <li className={index==1&&"active"}></li>
+                            <li className={index==2&&"active"}></li>
                         </ul>
                         
                     </div>

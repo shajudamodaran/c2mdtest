@@ -2,6 +2,7 @@ import React from 'react'
 import BookAppointmentHome from './Components/BookAppointmentHome/BookAppointmentHome'
 import CorporateVideo from './Components/CorporateVideo/CorporateVideo'
 import CustomerSays from './Components/CustomerSays/CustomerSays'
+import CustomerSaysBanner from './Components/CustomerSays/CustomerSaysBanner/CustomerSaysBanner'
 import DownloadAppHome from './Components/DownloadAppHome/DownloadAppHome'
 import KnowMore from './Components/DownloadAppHome/KnowMore'
 import FeaturedIn from './Components/FeaturedIn/FeaturedIn'
@@ -21,7 +22,7 @@ function Homepage() {
         <DownloadAppHome/>
         <CorporateVideo/>
         <KnowMore/>
-        <CustomerSays/>
+        <CustomerSaysBanner/>
         <FeaturedIn/>
         <BookAppointmentHome/>
         <HomeFooter/>
