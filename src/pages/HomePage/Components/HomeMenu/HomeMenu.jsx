@@ -9,44 +9,61 @@ import './homemenu.css'
 function HomeMenu() {
 
     let [activeMenu, setActiveMenu] = useState(null)
-
     let [activeNumber, setActiveNumber] = useState(0)
+    let [isPaused, setPause] = useState(true)
+
 
     useEffect(() => {
 
         // manageCount()
-        startCount()
+        count()
+        setInterval(count, 30000)
+        startCounting()
 
+    
     }, [])
 
 
-    let startCount=()=>{
-        count()
-        setInterval(count, 30000)
+    let startCounting = ()=>
+    {
+      
     }
-
-
 
 
     let count = async () => {
 
-        if(!activeMenu)
-        {
-            setActiveMenu(0)
+        if (!activeMenu) {
+            changeMenu(0)
         }
-        
-        var time = activeMenu?0:1;
 
+        var time = activeMenu ? 0 : 1;
 
         var interval = setInterval(function () {
+
             if (time <= 2) {
-                setActiveMenu(time)
+
+                changeMenu(time)
                 time++;
             }
             else {
+
                 clearInterval(interval);
             }
+
+
         }, 10000);
+
+    }
+
+
+    let changeMenu = (index) => {
+
+        console.log(index, "isPaused---",isPaused);
+
+        if(!isPaused)
+        {
+            setActiveMenu(index)
+        }
 
     }
 
@@ -73,7 +90,7 @@ function HomeMenu() {
 
     ]
 
-
+   
 
     return (
         <div className='c2md-home-menu-container'>
@@ -118,7 +135,10 @@ function HomeMenu() {
 
             <div className='c2md-home-menu-container_right'>
 
-                <div className='c2md-home-menu-container_right_image'>
+                <div className='c2md-home-menu-container_right_image'
+                    onMouseEnter={() => { setPause(true) }}
+                    onClick={() => { setPause(!isPaused) }}
+                >
                     {
                         activeMenu == 0 ? <HomePageSpecialityList /> :
                             activeMenu == 1 ? <PartnerHospitals /> :

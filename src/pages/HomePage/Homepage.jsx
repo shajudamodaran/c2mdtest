@@ -7,6 +7,7 @@ import DownloadAppHome from './Components/DownloadAppHome/DownloadAppHome'
 import KnowMore from './Components/DownloadAppHome/KnowMore'
 import FeaturedIn from './Components/FeaturedIn/FeaturedIn'
 import Header from './Components/Header/Header'
+import Banner1 from './Components/HomeBanner/Banners/Banner1'
 import HomeBanner from './Components/HomeBanner/HomeBanner'
 import HomeFooter from './Components/HomeFooter/HomeFooter'
 import HomeMenu from './Components/HomeMenu/HomeMenu'
@@ -17,7 +18,7 @@ function Homepage() {
     <div className='c2md-home-container'>
 
         <Header/>
-        <HomeBanner/>
+        <Banner1 index={0}/>
         <HomeMenu/>
         <DownloadAppHome/>
         <CorporateVideo/>

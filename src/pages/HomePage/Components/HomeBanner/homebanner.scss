@@ -6,7 +6,7 @@ $banner_image_medium: 1390px;
     width: 100%;
     padding-top: 2rem;
     margin-bottom: 2rem;
-  
+
 
     .slick-slider {
         height: fit-content;
@@ -35,7 +35,7 @@ $banner_image_medium: 1390px;
 
     }
 
-    .slick-slide  {
+    .slick-slide {
 
 
         // &:first-child {
@@ -47,7 +47,7 @@ $banner_image_medium: 1390px;
         //     }          
         //  }
 
-     
+
 
 
     }
@@ -60,6 +60,7 @@ $banner_image_medium: 1390px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 4rem;
 
     &_body {
 
@@ -77,6 +78,7 @@ $banner_image_medium: 1390px;
             align-items: flex-start;
             justify-content: center;
             margin-right: 6rem;
+            animation: fade-in 1s ease;
 
             @media screen and (max-width: $banner_image_medium) {
                 margin-right: 5vw;
@@ -127,6 +129,8 @@ $banner_image_medium: 1390px;
                 justify-content: center;
                 margin-bottom: 3rem;
 
+
+
                 div {
 
                     letter-spacing: 0.62px;
@@ -159,6 +163,7 @@ $banner_image_medium: 1390px;
 
 
 
+
             }
 
             .banner-slider-dot {
@@ -176,6 +181,7 @@ $banner_image_medium: 1390px;
                     border-radius: 100px;
                     background: #D8D8D8 0% 0% no-repeat padding-box;
                     margin-right: .7rem;
+                    cursor: pointer !important;
                 }
 
                 .active {
@@ -190,13 +196,23 @@ $banner_image_medium: 1390px;
         &_image-container {
 
             .banner-image-home {
-               
+
                 // background-color: #208de13f;
 
-                img{
+                .c2md-banner-image {
 
                     width: 40vw;
+                    animation: zoom-out 1s ease;
+
+
+                    -webkit-user-drag: none;
+                    user-select: none;
+                    -moz-user-select: none;
+                    -webkit-user-select: none;
+                    -ms-user-select: none;
                 }
+
+
 
                 @media screen and (max-width: $banner_image_medium) {
                     //do Smth
@@ -244,5 +260,29 @@ $banner_image_medium: 1390px;
         }
     }
 
+
+}
+
+@keyframes zoom-out {
+    0% {
+        transform: scale(1.2, 1.2);
+    }
+
+    100% {
+        transform: scale(1, 1);
+    }
+
+}
+
+@keyframes fade-in {
+    0% {
+        // transform: scale(.9, .9);
+        opacity: 0;
+    }
+
+    100% {
+        // transform: scale(1, 1);
+        opacity: 1;
+    }
 
 }
