@@ -40,7 +40,7 @@ function Header({ showFilter, setShowFilter, searchDoctor, setSearchDoctor }) {
     if(clientDetails.logo==undefined)
     {
       dispatch(
-        fetch_clientDetails(clinicId == undefined ? "babymemorial" : clinicId)
+        fetch_clientDetails(clinicId == undefined ? "" : clinicId)
       );
     }
   },[])
