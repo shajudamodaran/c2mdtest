@@ -61,13 +61,13 @@ function Banner1() {
 
     useEffect(() => {
 
-        const myTimeout = setTimeout(incrementIndex, 5000);
+        const myTimeout = setTimeout(incrementIndex, 6000);
 
     }, [])
 
     useEffect(() => {
 
-        const myTimeout = setTimeout(incrementIndex, 5000);
+        const myTimeout = setTimeout(incrementIndex, 6000);
 
     }, [index])
 
