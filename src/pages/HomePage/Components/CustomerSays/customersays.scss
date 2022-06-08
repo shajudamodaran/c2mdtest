@@ -43,6 +43,7 @@
         &_left {
 
             margin-right: 8rem;
+            animation: fade-in 1s ease;
 
             .comment-container {
 
@@ -109,6 +110,7 @@
 
                     position: absolute;
                     background-color: transparent;
+                    animation: zoom-out 1s ease;
 
                     .customer-says-content_right_note{
                         width: 100%;
@@ -193,6 +195,7 @@
             border-radius: 100px;
             background: #D8D8D8 0% 0% no-repeat padding-box;
             margin-right: .7rem;
+            cursor: pointer !important;
         }
 
         .active{
@@ -200,4 +203,28 @@
         }
 
     }
+}
+
+@keyframes zoom-out {
+    0% {
+        transform: scale(1.2, 1.2);
+    }
+
+    100% {
+        transform: scale(1, 1);
+    }
+
+}
+
+@keyframes fade-in {
+    0% {
+        // transform: scale(.9, .9);
+        opacity: 0;
+    }
+
+    100% {
+        // transform: scale(1, 1);
+        opacity: 1;
+    }
+
 }

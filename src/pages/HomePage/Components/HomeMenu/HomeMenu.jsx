@@ -8,64 +8,90 @@ import './homemenu.css'
 
 function HomeMenu() {
 
-    let [activeMenu, setActiveMenu] = useState(null)
-    let [activeNumber, setActiveNumber] = useState(0)
-    let [isPaused, setPause] = useState(true)
-
+    let [activeMenu, setActiveMenu] = useState(0)
+    let [isPausedHover, setPauseHover] = useState(false)
+    let [isPausedClick, setPauseClick] = useState(false)
 
     useEffect(() => {
 
-        // manageCount()
-        count()
-        setInterval(count, 30000)
-        startCounting()
+        const myTimeout = setTimeout(incrementIndex, 10000);
 
-    
     }, [])
 
+    useEffect(() => {
 
-    let startCounting = ()=>
-    {
-      
-    }
-
-
-    let count = async () => {
-
-        if (!activeMenu) {
-            changeMenu(0)
+        if(!isPausedClick)
+        {
+            const myTimeout = setTimeout(incrementIndex, 10000);
         }
+       
 
-        var time = activeMenu ? 0 : 1;
+    }, [activeMenu])
 
-        var interval = setInterval(function () {
+    let incrementIndex = () => {
 
-            if (time <= 2) {
-
-                changeMenu(time)
-                time++;
+        if(!isPausedClick)
+        {
+            if (activeMenu >= 2) {
+                setActiveMenu(0)
             }
             else {
-
-                clearInterval(interval);
+                setActiveMenu(activeMenu + 1)
             }
-
-
-        }, 10000);
-
-    }
-
-
-    let changeMenu = (index) => {
-
-        console.log(index, "isPaused---",isPaused);
-
-        if(!isPaused)
-        {
-            setActiveMenu(index)
         }
 
+        
+
     }
+
+    console.log(isPausedClick);
+
+
+    // useEffect(() => {
+
+    //     // manageCount()
+    //     count()
+    //     setInterval(count, 30000)
+       
+
+    
+    // }, [])
+
+
+    // let count = async () => {
+
+    //     if (!activeMenu) {
+    //         changeMenu(0)
+    //     }
+
+    //     var time = activeMenu ? 0 : 1;
+
+    //     var interval = setInterval(function () {
+
+    //         if (time <= 2) {
+
+    //             changeMenu(time)
+    //             time++;
+    //         }
+    //         else {
+
+    //             clearInterval(interval);
+    //         }
+
+
+    //     }, 10000);
+
+    // }
+
+
+    // let changeMenu = (index) => {
+
+    //     if(!isPaused)
+    //     {
+    //         setActiveMenu(index)
+    //     }
+
+    // }
 
 
     let options = [
@@ -136,8 +162,9 @@ function HomeMenu() {
             <div className='c2md-home-menu-container_right'>
 
                 <div className='c2md-home-menu-container_right_image'
-                    onMouseEnter={() => { setPause(true) }}
-                    onClick={() => { setPause(!isPaused) }}
+                    // onMouseEnter={() => { setPause(true) }}
+                    // onMouseLeave={() => { setPause(false) }}
+                    // onClick={() => { setPauseClick(!isPausedClick) }}
                 >
                     {
                         activeMenu == 0 ? <HomePageSpecialityList /> :

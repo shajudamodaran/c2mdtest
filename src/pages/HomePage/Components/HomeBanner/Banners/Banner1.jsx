@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSwipeable } from 'react-swipeable'
 
 
@@ -16,13 +16,13 @@ import image3 from '../../../../../assets/HomepageAssets/HomeBanner/banner3.png'
 function Banner1() {
 
 
-    let [index,setActiveIndex]=useState(0)
-    let images=[image1,image2,image3]
+    let [index, setActiveIndex] = useState(0)
+    let images = [image1, image2, image3]
 
 
     //Functions...................................
 
-    let handleDotClick=(count)=>{
+    let handleDotClick = (count) => {
 
 
         setActiveIndex(count)
@@ -34,39 +34,51 @@ function Banner1() {
         swipeDuration: 500,
         preventScrollOnSwipe: true,
         trackMouse: true
-      });
+    });
 
 
-      let incrementIndex =()=>{
+    let incrementIndex = () => {
 
-        if(index>=2)
-        {
+        if (index >= 2) {
             setActiveIndex(0)
         }
-        else{
-            setActiveIndex(index+1)
-        }
-
-      }
-
-      let decrementIndex =()=>{
-
-        if(index<=0)
-        {
-            setActiveIndex(2)
-        }
-        else{
-            setActiveIndex(index-1)
+        else {
+            setActiveIndex(index + 1)
         }
 
     }
-    
 
-    
+    let decrementIndex = () => {
+
+        if (index <= 0) {
+            setActiveIndex(2)
+        }
+        else {
+            setActiveIndex(index - 1)
+        }
+
+    }
+
+    useEffect(() => {
+
+        const myTimeout = setTimeout(incrementIndex, 5000);
+
+    }, [])
+
+    useEffect(() => {
+
+        const myTimeout = setTimeout(incrementIndex, 5000);
+
+    }, [index])
+
+
+
+
+
 
     return (
         <div {...handlers} className='c2md-home-banner-element'>
-           
+
             <div className="c2md-home-banner-element_body">
 
                 <div className="c2md-home-banner-element_body_text-container" key={Math.random()} >
@@ -89,9 +101,9 @@ function Banner1() {
 
 
                     <ul className='banner-slider-dot'>
-                        <li onClick={()=>{handleDotClick(0)}} className={index==0?"active":null}></li>
-                        <li onClick={()=>{handleDotClick(1)}} className={index==1?"active":null}></li>
-                        <li onClick={()=>{handleDotClick(2)}} className={index==2?"active":null}></li>
+                        <li onClick={() => { handleDotClick(0) }} className={index == 0 ? "active" : null}></li>
+                        <li onClick={() => { handleDotClick(1) }} className={index == 1 ? "active" : null}></li>
+                        <li onClick={() => { handleDotClick(2) }} className={index == 2 ? "active" : null}></li>
                     </ul>
 
 
@@ -102,13 +114,13 @@ function Banner1() {
                 <div className="c2md-home-banner-element_body_image-container">
 
                     <div className={`banner-image-home`}>
-                       
-                       {
-                           index===0?<img key={Math.random()} className='c2md-banner-image' src={images[index]} alt="C2md banner image"/>:
-                           index===1?<img key={Math.random()} className='c2md-banner-image' src={images[index]} alt="C2md banner image"/>:
-                           index===2?<img key={Math.random()} className='c2md-banner-image' src={images[index]} alt="C2md banner image"/>:null
-                       }
-                       
+
+                        {
+                            index === 0 ? <img key={Math.random()} className='c2md-banner-image' src={images[index]} alt="C2md banner image" /> :
+                                index === 1 ? <img key={Math.random()} className='c2md-banner-image' src={images[index]} alt="C2md banner image" /> :
+                                    index === 2 ? <img key={Math.random()} className='c2md-banner-image' src={images[index]} alt="C2md banner image" /> : null
+                        }
+
                     </div>
 
                 </div>
@@ -122,11 +134,11 @@ function Banner1() {
 
                 <div className="c2md-home-banner-element_footer_hospital-logos">
 
-                    <img src={h1}alt="" />
-                    <img src={h2}alt="" />
-                    <img src={h3}alt="" />
-                    <img src={h4}alt="" />
-                    <img src={h5}alt="" />
+                    <img src={h1} alt="" />
+                    <img src={h2} alt="" />
+                    <img src={h3} alt="" />
+                    <img src={h4} alt="" />
+                    <img src={h5} alt="" />
 
                 </div>
 

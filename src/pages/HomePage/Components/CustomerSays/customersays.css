@@ -66,6 +66,8 @@
 
 .c2md-customer-says-container .customer-says-content_left {
   margin-right: 8rem;
+  -webkit-animation: fade-in 1s ease;
+          animation: fade-in 1s ease;
 }
 
 .c2md-customer-says-container .customer-says-content_left .comment-container .comment {
@@ -136,6 +138,8 @@
 .c2md-customer-says-container .customer-says-content_right_image_container .image-layer {
   position: absolute;
   background-color: transparent;
+  -webkit-animation: zoom-out 1s ease;
+          animation: zoom-out 1s ease;
 }
 
 .c2md-customer-says-container .customer-says-content_right_image_container .image-layer .customer-says-content_right_note {
@@ -207,9 +211,50 @@
   border-radius: 100px;
   background: #D8D8D8 0% 0% no-repeat padding-box;
   margin-right: .7rem;
+  cursor: pointer !important;
 }
 
 .c2md-customer-says-container .customer-says-slider-dot .active {
   background-color: #208CE1;
+}
+
+@-webkit-keyframes zoom-out {
+  0% {
+    -webkit-transform: scale(1.2, 1.2);
+            transform: scale(1.2, 1.2);
+  }
+  100% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+}
+
+@keyframes zoom-out {
+  0% {
+    -webkit-transform: scale(1.2, 1.2);
+            transform: scale(1.2, 1.2);
+  }
+  100% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 /*# sourceMappingURL=customersays.css.map */
