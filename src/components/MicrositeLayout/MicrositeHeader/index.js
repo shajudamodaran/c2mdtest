@@ -48,7 +48,7 @@ function MicrositeHeader({ clientDetails }) {
             >
               {clientDetails.logo && (
                 <img
-                  src={clientDetails.logo}
+                  src={clientDetails && clientDetails.logo != "" ? clientDetails.logo : Assets.logo}
                   alt="Connect2MyDoctor"
                   className={Style.logoImg}
                 />
@@ -57,7 +57,7 @@ function MicrositeHeader({ clientDetails }) {
           ) : (
             <Link to="/" className="navbar-brand">
               <img
-                src={Assets.logo}
+                src={clientDetails && clientDetails.logo!=""?clientDetails.logo:Assets.logo}
                 alt="Connect2MyDoctor"
                 className={Style.logoImg}
               />
@@ -105,7 +105,7 @@ function MicrositeHeader({ clientDetails }) {
               // </Button>
               <>
                 <div onClick={logout} className={Style.siginup_Btn_v2}>Logout</div>
-                <div className={Style.siginup_Btn_v2} style={{fontSize:"18px"}}>|</div>
+                <div className={Style.siginup_Btn_v2} style={{ fontSize: "18px" }}>|</div>
                 <div onClick={() => { history.push("/dashboard") }} className={Style.siginup_Btn_v2}>Go to Dashboard</div>
               </>
 
@@ -114,9 +114,9 @@ function MicrositeHeader({ clientDetails }) {
 
               <div
                 onClick={() => {
-                      history.push("/signup");
-                    }}
-                  className = { Style.siginup_Btn_v2 } > Sign in / Sign up</div >
+                  history.push("/signup");
+                }}
+                className={Style.siginup_Btn_v2} > Sign in / Sign up</div >
               // <Button
               //   style={{ marginRight: 30 }}
               //   variant="outline-secondary"
@@ -132,32 +132,32 @@ function MicrositeHeader({ clientDetails }) {
               {/* <span>Download Our App :</span> */}
 
               {
-                clientDetails.androidapp ? 
-                <a
-                href={
-                  clientDetails.androidapp
-                    ? clientDetails.androidapp
-                    : `https://play.google.com/store/apps/details?id=com.neevlabs.connect2mydoctorpatient&hl=en`
-                }
-                target="_blank"
-              >
-                <img src={Assets.google_play_icon} alt="appStoreIcon" />
-              </a>
-                 : null
+                clientDetails.androidapp ?
+                  <a
+                    href={
+                      clientDetails.androidapp
+                        ? clientDetails.androidapp
+                        : `https://play.google.com/store/apps/details?id=com.neevlabs.connect2mydoctorpatient&hl=en`
+                    }
+                    target="_blank"
+                  >
+                    <img src={Assets.google_play_icon} alt="appStoreIcon" />
+                  </a>
+                  : null
               }
 
               {
-                clientDetails.iosapp ? 
-                <a
-                href={
-                  clientDetails.iosapp
-                    ? clientDetails.iosapp
-                    : `https://apps.apple.com/au/app/connect2mydoctor-for-patients/id1490627746`
-                }
-                target="_blank"
-              >
-                <img src={Assets.app_store_icon} alt="appStoreIcon" />
-                </a> : null
+                clientDetails.iosapp ?
+                  <a
+                    href={
+                      clientDetails.iosapp
+                        ? clientDetails.iosapp
+                        : `https://apps.apple.com/au/app/connect2mydoctor-for-patients/id1490627746`
+                    }
+                    target="_blank"
+                  >
+                    <img src={Assets.app_store_icon} alt="appStoreIcon" />
+                  </a> : null
               }
 
 

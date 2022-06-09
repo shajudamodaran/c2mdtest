@@ -5,9 +5,12 @@ import c2mLogo from '../../../../assets/Logos/c2mdBlue.svg'
 import { AndroidIcon, HamburgerIcon, IphoneIcon } from '../../../../assets/Logos/Icons'
 
 import { Drawer } from 'antd';
+import { useHistory } from 'react-router-dom';
 
 
 function Header() {
+
+  let history=useHistory()
 
 
   let [isDrawerVisible,setDrawerVisibility]=useState(false)
@@ -41,7 +44,7 @@ function Header() {
 
       <div className="c2md-header-buttons-container">
 
-        <button className='c2md-header-signin-button'>Sign in / Sign up</button>
+        <button className='c2md-header-signin-button' onClick={()=>{history.push('/signin')}}>Sign in / Sign up</button>
 
 
         <div className="download_app_container">

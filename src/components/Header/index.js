@@ -192,7 +192,7 @@ function Header({ showFilter, setShowFilter, searchDoctor, setSearchDoctor }) {
           <Link to="/">
             {" "}
             <img
-              src={clientDetails && clientDetails.logo!=""?clientDetails.logo:Assets.logo}
+              src={ clientDetails.logo?clientDetails.logo:Assets.logo}
               alt="Connect2MyDoctor"
               className={Style.logoImg}
             />

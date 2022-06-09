@@ -36,7 +36,7 @@ function Misreport() {
     userData = JSON.parse(userData)
     let { userType } = userData
 
-  
+
 
 
     let handleTableClick = (_id) => {
@@ -226,7 +226,7 @@ function Misreport() {
                                                     <td>{element.feesPaid}</td>
                                                     <td>{element.c2mdFees}</td>
                                                     <td>{element.nettFees}</td>
-                                                    <td><StatusBadge text="Completed" varient="completed" /></td>
+                                                    <td><StatusBadge text={element.consultationStatus} varient={"completed"} /></td>
                                                     <td>{element.paymentStatus}</td>
                                                     <td><AdminTextArea
                                                         value={element.Comments}
@@ -274,7 +274,12 @@ function Misreport() {
             <div className="pagination-container-mis-report">
 
                 &nbsp;
-                <Pagination onChange={handlePaginationChange} defaultCurrent={1} total={misReportsPageLength ? misReportsPageLength * 8 : 0} />
+                <Pagination
+                    showSizeChanger={false}
+                    pageSize={8}
+                    onChange={handlePaginationChange}
+                    defaultCurrent={1}
+                    total={misReportsPageLength ? misReportsPageLength * 8 : 0} />
             </div>
 
 
