@@ -17,6 +17,28 @@
           animation: zoomIn .5s none;
 }
 
+@media screen and (max-width: 965px) {
+  .partner-hospitals-container .for-web {
+    display: none !important;
+  }
+  .partner-hospitals-container .for-tablet {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+  }
+}
+
+@media screen and (min-width: 965px) {
+  .partner-hospitals-container .for-web {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+  }
+  .partner-hospitals-container .for-tablet {
+    display: none !important;
+  }
+}
+
 .partner-hospitals-container .plus-vector-back1 {
   position: absolute;
   top: 3%;

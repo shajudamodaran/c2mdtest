@@ -1,3 +1,6 @@
+$tablet-screen: 1145px;
+
+$tablet-screen-small: 1017px;
 .home-speciality-list-container {
 
     display: flex;
@@ -62,6 +65,7 @@
 
         }
 
+       
         &_text {
 
             text-align: center;
@@ -77,6 +81,37 @@
         .icon {
             margin-top: 10px;
         }
+
+        @media screen and (max-width: $tablet-screen) {
+
+            width: 120px;
+            height: 100px;
+            padding: 5px;
+
+            &_text {
+
+               
+                font-size: 11px;
+               
+            }
+          
+        }
+
+        @media screen and (max-width: $tablet-screen-small) {
+
+            width: 100px;
+            height: 100px;
+            padding: 5px;
+
+            &_text {
+
+               
+                font-size: 11px;
+               
+            }
+          
+        }
+
     }
 
     .view-all-speciality-button {

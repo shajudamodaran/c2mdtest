@@ -1,6 +1,9 @@
 $small: 300px;
 $banner_image_medium: 1390px;
 
+$smallScreen: 871px;
+$mobileScreen: 871px;
+
 .c2md-home-banner {
     // height: calc(100vh - 130px);
     width: 100%;
@@ -62,6 +65,10 @@ $banner_image_medium: 1390px;
     justify-content: center;
     margin-top: 4rem;
 
+    @media screen and (max-width: $mobileScreen) {
+        margin-top: 2rem;
+    }
+
     &_body {
 
         display: flex;
@@ -69,6 +76,7 @@ $banner_image_medium: 1390px;
         align-items: center;
         justify-content: center;
         transition-duration: .5s;
+        box-sizing: border-box;
 
 
         &_text-container {
@@ -82,6 +90,23 @@ $banner_image_medium: 1390px;
 
             @media screen and (max-width: $banner_image_medium) {
                 margin-right: 5vw;
+            }
+
+            @media screen and (max-width: $mobileScreen) {
+
+                margin-right: 0px !important;
+
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+
+                box-sizing: border-box;
+                width: 90%;
+                overflow: hidden;
+
+
+
             }
 
             .hash-tag {
@@ -118,6 +143,15 @@ $banner_image_medium: 1390px;
 
                     }
 
+                    @media screen and (max-width: $mobileScreen) {
+
+                        font-size: 30px;
+                        font-weight: 700;
+                        line-height: 37px;
+
+
+                    }
+
                 }
 
             }
@@ -128,10 +162,16 @@ $banner_image_medium: 1390px;
                 align-items: flex-start;
                 justify-content: center;
                 margin-bottom: 3rem;
+                max-width: 36vw;
+
+                @media screen and (max-width: $mobileScreen) {
+                    max-width: 98vw;
+                }
 
 
 
-                div {
+
+                span {
 
                     letter-spacing: 0.62px;
                     color: #0C1E4E;
@@ -141,7 +181,27 @@ $banner_image_medium: 1390px;
                     letter-spacing: 0px;
                     color: #0C1E4E;
                     opacity: 0.9;
-                    white-space: nowrap;
+                    max-width: 350px;
+                    white-space: normal !important;
+                    word-wrap: break-word;
+
+                    @media screen and (max-width: $mobileScreen) {
+
+                        letter-spacing: 0.62px;
+                        color: #0C1E4E;
+                        font-size: 16px;
+                        font-weight: 300;
+                        line-height: 30px;
+                        letter-spacing: 0px;
+                        color: #0C1E4E;
+                        opacity: 0.9;
+                        max-width: 100%;
+                        word-wrap: break-word;
+                        white-space: normal !important;
+
+
+
+                    }
 
                 }
 
@@ -160,6 +220,11 @@ $banner_image_medium: 1390px;
                 align-items: center;
                 justify-content: center;
                 cursor: pointer;
+
+                @media screen and (max-width: $mobileScreen) {
+                    width: 139px;
+                    height: 45px;
+                }
 
 
 
@@ -199,6 +264,10 @@ $banner_image_medium: 1390px;
 
                 // background-color: #208de13f;
 
+                @media screen and (max-width: $mobileScreen) {
+                    margin-left: -6px;
+                }
+
                 .c2md-banner-image {
 
                     width: 40vw;
@@ -233,9 +302,80 @@ $banner_image_medium: 1390px;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-
         width: 100%;
         margin-top: 3rem;
+
+        .slick-slider {
+            height: fit-content;
+
+        }
+
+        .slick-list {
+
+            height: fit-content;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: center flex-start;
+
+
+        }
+
+        .slick-track {
+            height: fit-content;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .slick-slide {
+
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: center !important;
+            height: fit-content;
+            width: 25% !important;
+            min-width: 200px !important;
+
+            @media screen and (max-width: $mobileScreen) {
+                width: fit-content !important;
+                min-width: 0px !important;
+            }
+
+
+            img {
+
+
+                width: 10vw;
+                min-width: 200px;
+              
+
+                @media screen and (max-width: $mobileScreen) {
+                    width: 9vw;
+                    min-width: 100px;
+                    margin: 0px 15px;
+                }
+            }
+
+
+
+        }
+
+        .slick-slide {
+
+
+            &:first-child {
+                div {}
+            }
+
+
+
+
+        }
 
         &_caption {
 
@@ -286,3 +426,117 @@ $banner_image_medium: 1390px;
     }
 
 }
+
+
+
+//For Small screen CSS
+@media screen and (max-width: $smallScreen) {
+
+    .c2md-home-banner {
+        // height: calc(100vh - 130px);
+        width: 100%;
+        padding-top: 2rem;
+        margin-bottom: 2rem;
+
+
+
+
+
+    }
+
+    .c2md-home-banner-element {
+
+
+
+        &_body {
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+
+
+            &_text-container {
+
+
+
+                @media screen and (max-width: $banner_image_medium) {
+                    margin-right: 5vw;
+                }
+
+                .hash-tag {}
+
+                .home-banner-title-container {
+
+
+                    div {}
+
+                }
+
+                .home-banner-caption-container {
+
+
+
+
+                    div {}
+
+                }
+
+                .home-banner-more-button {}
+
+                .banner-slider-dot {
+
+
+
+
+                    li {}
+
+                    .active {}
+
+                }
+
+
+            }
+
+            &_image-container {
+                width: 80vw;
+
+                .banner-image-home {
+                    width: 80vw;
+
+                    // background-color: #208de13f;
+
+                    .c2md-banner-image {
+
+                        width: 80vw;
+
+                    }
+
+
+
+
+                }
+
+            }
+
+
+        }
+
+        &_footer {
+
+
+
+            &_caption {}
+
+            &_hospital-logos {}
+        }
+
+
+    }
+}
+
+
+// @media screen and (min-width: $medium) {
+//     //do Smth
+// }

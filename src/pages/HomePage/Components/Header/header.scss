@@ -1,3 +1,10 @@
+$small: 300px;
+$banner_image_medium: 1390px;
+
+$smallScreen: 965px;
+$mobileScreen: 965px;
+
+
 .c2md-header-container {
     box-sizing: border-box;
     width: 100%;
@@ -42,7 +49,13 @@
 
     }
 
-   
+    @media screen and (max-width: $mobileScreen) {
+        padding: 1rem 1rem;
+
+
+    }
+
+
 }
 
 .c2md-header-image-container {
@@ -57,6 +70,13 @@
         .hamburger-header {
             margin-right: 20px;
             cursor: pointer;
+        }
+
+        img {
+            @media screen and (max-width: $mobileScreen) {
+                width: 6rem;
+
+            }
         }
     }
 
@@ -86,6 +106,10 @@
     align-items: flex-end;
     font-size: 14px;
 
+    @media screen and (max-width: $mobileScreen) {
+        display: none;
+    }
+
     .c2md-header-signin-button {
 
         width: 150px;
@@ -99,6 +123,11 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
+
+        @media screen and (max-width: $mobileScreen) {
+            display: none;
+
+        }
 
     }
 

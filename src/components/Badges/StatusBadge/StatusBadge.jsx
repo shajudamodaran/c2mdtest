@@ -9,14 +9,17 @@ function StatusBadge({ text, varient }) {
 
   useEffect(() => {
 
-    if (varient == "completed") {
+    if (varient == "Completed") {
       setStyle('completed-badge')
     }
-    else if (varient == "ongoing") {
-      setStyle('ongoing-badge')
+    else if (varient == "Pending") {
+      setStyle('pending-badge')
+    }
+    else if (varient == "Upcoming") {
+      setStyle('upcoming-badge')
     }
     else {
-      setStyle('normal-badge')
+      setStyle('error-badge')
     }
 
   }, [varient])

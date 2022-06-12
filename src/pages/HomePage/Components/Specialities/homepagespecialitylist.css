@@ -106,6 +106,28 @@
   margin-top: 10px;
 }
 
+@media screen and (max-width: 1145px) {
+  .home-speciality-list-container .home-page-speciality-button {
+    width: 120px;
+    height: 100px;
+    padding: 5px;
+  }
+  .home-speciality-list-container .home-page-speciality-button_text {
+    font-size: 11px;
+  }
+}
+
+@media screen and (max-width: 1017px) {
+  .home-speciality-list-container .home-page-speciality-button {
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+  }
+  .home-speciality-list-container .home-page-speciality-button_text {
+    font-size: 11px;
+  }
+}
+
 .home-speciality-list-container .view-all-speciality-button {
   background-color: #3E97DE;
 }

@@ -44,6 +44,12 @@
   }
 }
 
+@media screen and (max-width: 965px) {
+  .c2md-header-container {
+    padding: 1rem 1rem;
+  }
+}
+
 .c2md-header-image-container_left {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -63,6 +69,12 @@
 .c2md-header-image-container_left .hamburger-header {
   margin-right: 20px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 965px) {
+  .c2md-header-image-container_left img {
+    width: 6rem;
+  }
 }
 
 .c2md-header-image-container_nav {
@@ -103,6 +115,12 @@
   font-size: 14px;
 }
 
+@media screen and (max-width: 965px) {
+  .c2md-header-buttons-container {
+    display: none;
+  }
+}
+
 .c2md-header-buttons-container .c2md-header-signin-button {
   width: 150px;
   height: 40px;
@@ -124,6 +142,12 @@
       -ms-flex-pack: center;
           justify-content: center;
   cursor: pointer;
+}
+
+@media screen and (max-width: 965px) {
+  .c2md-header-buttons-container .c2md-header-signin-button {
+    display: none;
+  }
 }
 
 .c2md-header-buttons-container .download_app_container {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSwipeable } from 'react-swipeable'
+import Slider from "react-slick";
 
 
 import h1 from '../../../../../assets/HomepageAssets/Banner Footer/h1.png'
@@ -61,15 +62,26 @@ function Banner1() {
 
     useEffect(() => {
 
-        const myTimeout = setTimeout(incrementIndex, 6000);
+        // const myTimeout = setTimeout(incrementIndex, 6000);
 
     }, [])
 
     useEffect(() => {
 
-        const myTimeout = setTimeout(incrementIndex, 6000);
+        // const myTimeout = setTimeout(incrementIndex, 6000);
 
     }, [index])
+
+    const settings = {
+        dots: false,
+        infinite: true,
+        slidesToShow:2,
+        slidesToScroll: 1,
+        autoplay: true,
+        speed: 5000,
+        autoplaySpeed: 5000,
+        cssEase: "linear"
+    };
 
 
 
@@ -77,9 +89,9 @@ function Banner1() {
 
 
     return (
-        <div {...handlers} className='c2md-home-banner-element'>
+        <div  className='c2md-home-banner-element'>
 
-            <div className="c2md-home-banner-element_body">
+            <div {...handlers} className="c2md-home-banner-element_body">
 
                 <div className="c2md-home-banner-element_body_text-container" key={Math.random()} >
 
@@ -92,8 +104,8 @@ function Banner1() {
                     </div>
 
                     <div className="home-banner-caption-container" >
-                        <div>Virtual primary care and mental health treatment when you</div>
-                        <div>lorem ipsum doler set ament smartphone.</div>
+                        <span>Virtual primary care and mental health treatment when you  lorem ipsum doler set ament smartphone.</span>
+
                     </div>
 
 
@@ -134,11 +146,32 @@ function Banner1() {
 
                 <div className="c2md-home-banner-element_footer_hospital-logos">
 
-                    <img src={h1} alt="" />
-                    <img src={h2} alt="" />
-                    <img src={h3} alt="" />
-                    <img src={h4} alt="" />
-                    <img src={h5} alt="" />
+                <img src={h1} alt="" />
+                <img src={h2} alt="" />
+                <img src={h3} alt="" />
+                <img src={h4} alt="" />
+
+                    {/* {
+                        <div style={{width:"100%"}}>
+
+                            <Slider {...settings}>
+                                <div>
+                                    <img src={h1} alt="" />
+                                </div>
+                                <div>
+                                <img src={h2} alt="" />
+                                </div>
+                                <div>
+                                <img src={h3} alt="" />
+                                </div>
+                                <div>
+                                <img src={h4} alt="" />
+                                </div>
+                                
+                            </Slider>
+                        </div>
+                    } */}
+                   
 
                 </div>
 

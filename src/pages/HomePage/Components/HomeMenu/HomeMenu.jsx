@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { createRef, useEffect, useRef, useState } from 'react'
 import { ArrowRightGreen } from '../../../../assets/Logos/Icons'
 import FindDoctorFormHome from '../FindDoctorFormHome/FindDoctorFormHome'
 import PartnerHospitals from '../Partner Hospitals/PartnerHospitals'
 import HomePageSpecialityList from '../Specialities/HomePageSpecialityList'
+import useDynamicRefs from 'use-dynamic-refs';
 
 import './homemenu.css'
 
@@ -12,26 +13,11 @@ function HomeMenu() {
     let [isPausedHover, setPauseHover] = useState(false)
     let [isPausedClick, setPauseClick] = useState(false)
 
-    useEffect(() => {
-
-        const myTimeout = setTimeout(incrementIndex, 10000);
-
-    }, [])
-
-    useEffect(() => {
-
-        if(!isPausedClick)
-        {
-            const myTimeout = setTimeout(incrementIndex, 10000);
-        }
-       
-
-    }, [activeMenu])
+    
 
     let incrementIndex = () => {
 
-        if(!isPausedClick)
-        {
+        if (!isPausedClick) {
             if (activeMenu >= 2) {
                 setActiveMenu(0)
             }
@@ -40,58 +26,9 @@ function HomeMenu() {
             }
         }
 
-        
+
 
     }
-
-    console.log(isPausedClick);
-
-
-    // useEffect(() => {
-
-    //     // manageCount()
-    //     count()
-    //     setInterval(count, 30000)
-       
-
-    
-    // }, [])
-
-
-    // let count = async () => {
-
-    //     if (!activeMenu) {
-    //         changeMenu(0)
-    //     }
-
-    //     var time = activeMenu ? 0 : 1;
-
-    //     var interval = setInterval(function () {
-
-    //         if (time <= 2) {
-
-    //             changeMenu(time)
-    //             time++;
-    //         }
-    //         else {
-
-    //             clearInterval(interval);
-    //         }
-
-
-    //     }, 10000);
-
-    // }
-
-
-    // let changeMenu = (index) => {
-
-    //     if(!isPaused)
-    //     {
-    //         setActiveMenu(index)
-    //     }
-
-    // }
 
 
     let options = [
@@ -116,7 +53,98 @@ function HomeMenu() {
 
     ]
 
-   
+
+
+    //V2 Counter....................................................................
+
+    let [counter, setCounter] = useState(0)
+
+    let _refsArray = ["0", "1", "2"]
+    const [getRef, setRef] = useDynamicRefs();
+
+    let maxCount = 9
+
+
+    useEffect(() => {
+
+        // increaseCounter()
+
+    }, [])
+
+    useEffect(() => {
+
+        const loaderRef = getRef(activeMenu.toString());
+
+
+        if (isPausedHover && loaderRef) {
+
+            loaderRef.current.style.webkitAnimationPlayState = "paused"
+            //loaderRef.current.style.backgroundColor="red"
+        }
+        else {
+            loaderRef.current.style.webkitAnimationPlayState = "running"
+            //loaderRef.current.style.backgroundColor="green"
+        }
+
+    }, [isPausedHover])
+
+
+
+    let increaseCounter = () => {
+
+        const timer = setTimeout(() => {
+
+            if (counter >= maxCount) {
+                setCounter(0)
+            }
+            else {
+
+                setCounter(counter + 1)
+            }
+
+
+        }, 1000);
+
+    }
+
+
+    useEffect(() => {
+
+        // if (!isPausedHover) {
+
+        //     increaseCounter()
+
+        //     if (counter >= maxCount) {
+        //         changeActivemenu()
+        //     }
+
+        // }
+
+
+
+
+    }, [counter])
+
+
+    let changeActivemenu = () => {
+
+        if (activeMenu >= 2) {
+            setActiveMenu(0)
+        }
+        else {
+
+            setActiveMenu(activeMenu + 1)
+        }
+    }
+
+
+    let handlePause = () => {
+
+        setPauseClick(true)
+
+    }
+
+
 
     return (
         <div className='c2md-home-menu-container'>
@@ -130,9 +158,14 @@ function HomeMenu() {
                         options.map((element, key) => {
 
                             return (
-                                <li
+                                <>
+                                 <li
                                     // style={{ width: `${count}%` }} 
-                                    className={activeMenu === key ? "c2md-home-menu-list-active" : null} onClick={() => { setActiveMenu(key) }}>
+                                    className={activeMenu === key ? "c2md-home-menu-list-active" : null} onClick={() => {
+                                        setActiveMenu(key)
+                                        setPauseClick(false)
+                                        setCounter(0)
+                                    }}>
                                     <div className="flex-row">
                                         <div>
                                             <h2 className="c2md-home-menu-list_title">{element.name}</h2>
@@ -146,10 +179,16 @@ function HomeMenu() {
                                     </div>
 
                                     <div className="loader-container">
-                                        <div className="loader">&nbsp;</div>
+                                        <div ref={setRef(key.toString())} className={`loader ${isPausedHover ? "pause" : null}`} >&nbsp;</div>
                                     </div>
 
                                 </li>
+
+                                <div className='mobile-menu-container for-tablet'>Shaju</div>
+                                </>
+                               
+
+
                             )
 
                         })
@@ -162,9 +201,12 @@ function HomeMenu() {
             <div className='c2md-home-menu-container_right'>
 
                 <div className='c2md-home-menu-container_right_image'
-                    // onMouseEnter={() => { setPause(true) }}
-                    // onMouseLeave={() => { setPause(false) }}
-                    // onClick={() => { setPauseClick(!isPausedClick) }}
+                    onMouseEnter={() => { setPauseHover(true) }}
+                    onMouseLeave={() => {
+                        setPauseHover(false)
+                        increaseCounter()
+                    }}
+                    onClick={handlePause}
                 >
                     {
                         activeMenu == 0 ? <HomePageSpecialityList /> :

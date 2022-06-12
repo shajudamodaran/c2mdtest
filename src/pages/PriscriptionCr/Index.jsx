@@ -57,7 +57,6 @@ function Index() {
 
     }
 
-    console.log();
 
     return (
         <div className='interbranch-container'>

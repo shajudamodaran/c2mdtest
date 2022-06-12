@@ -1,6 +1,6 @@
 .badge-container {
   padding: .4rem .3rem;
-  width: 85px;
+  width: 115px;
   border-radius: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -19,6 +19,12 @@
   font-weight: 500;
   font-size: 13px;
   color: #292929;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  white-space: normal;
+  text-align: center;
+  line-height: 15px;
+  min-height: 40px;
 }
 
 .completed-badge {
@@ -27,9 +33,21 @@
   color: white;
 }
 
-.ongoing-badge {
+.pending-badge {
   background-color: #FFCF23;
   border-color: #FFCF23;
+  color: #ffffff;
+}
+
+.upcoming-badge {
+  background-color: #FFCF23;
+  border-color: #FFCF23;
+  color: #ffffff;
+}
+
+.error-badge {
+  background-color: #d80000;
+  border-color: #d80000;
   color: #ffffff;
 }
 /*# sourceMappingURL=badges.css.map */

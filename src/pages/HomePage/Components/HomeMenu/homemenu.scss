@@ -1,3 +1,6 @@
+$smallScreen: 965px;
+$tablet-screen: 1145px;
+
 .c2md-home-menu-container {
 
     width: 100%;
@@ -10,8 +13,52 @@
     padding-top: 6rem;
     padding-bottom: 5rem;
 
+    @media screen and (max-width: $smallScreen) {
+
+        // display: flex;
+        // flex-direction: column;
+        // align-items: center;
+        // justify-content: center;
+
+    }
+
+    @media screen and (max-width: $smallScreen) {
+
+
+        .for-web {
+            display: none !important;
+        }
+
+        .for-tablet {
+            display: flex !important;
+
+        }
+    }
+
+    @media screen and (min-width: $smallScreen) {
+
+
+        .for-web {
+            display: flex !important;
+        }
+
+        .for-tablet {
+            display: none !important;
+
+        }
+    }
+
     &_left {
         margin-right: 6rem;
+
+        @media screen and (max-width: $smallScreen) {
+
+            margin-right: 2rem;
+        }
+    
+
+
+    
 
         .c2md-home-menu-list {
             padding: 0px;
@@ -52,7 +99,7 @@
                 cursor: pointer;
                 margin-top: 42px;
 
-                .loader-container{
+                .loader-container {
 
                     width: 100%;
                     height: 3px;
@@ -73,7 +120,9 @@
 
             .c2md-home-menu-list-active {
                 .loader {
-                
+
+
+
                     background-color: #208CE1;
                     animation: Loading 10s none;
                     animation-timing-function: linear;
@@ -100,6 +149,12 @@
         }
     }
 
+    .mobile-menu-container{
+
+        margin-top: 1rem;
+
+    }
+
 
 
 }
@@ -111,6 +166,8 @@
     align-items: center;
 }
 
+
+
 @keyframes Loading {
 
 
@@ -119,7 +176,7 @@
             // do special stuff
             width: #{$i * 1%};
 
-          
+
         }
     }
 

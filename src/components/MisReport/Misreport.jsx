@@ -13,6 +13,7 @@ import { getFromLocalStorage } from '../../Helpers/localStorageHelper';
 import { ADMIN_USER, USER_DATA } from '../../constants/const';
 import { FolderEmpty } from '../../assets/Logos/Icons';
 import EmptyTableData from '../Common/EmptyTableData/EmptyTableData';
+import { getConsultationStatusFlag } from '../../Helpers/ClinicAdminHelper';
 
 const { TextArea } = Input;
 
@@ -226,7 +227,7 @@ function Misreport() {
                                                     <td>{element.feesPaid}</td>
                                                     <td>{element.c2mdFees}</td>
                                                     <td>{element.nettFees}</td>
-                                                    <td><StatusBadge text={element.consultationStatus} varient={"completed"} /></td>
+                                                    <td><StatusBadge text={element.consultationStatus} varient={getConsultationStatusFlag(element.consultationStatus)} /></td>
                                                     <td>{element.paymentStatus}</td>
                                                     <td><AdminTextArea
                                                         value={element.Comments}

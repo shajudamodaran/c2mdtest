@@ -1,7 +1,7 @@
 .badge-container{
 
     padding: .4rem .3rem;
-    width: 85px;
+    width: 115px;
     border-radius: 5px;
     display: flex;
     flex-direction: row;
@@ -11,6 +11,11 @@
     font-weight: 500;
     font-size: 13px;
     color: rgb(41, 41, 41);
+    flex-wrap: wrap;
+    white-space: normal;
+    text-align: center;
+    line-height: 15px;
+    min-height: 40px;
     
     
     
@@ -24,10 +29,26 @@
    
 }
 
-.ongoing-badge{
+.pending-badge{
 
     background-color: #FFCF23;
     border-color: #FFCF23;
+    color: #ffffff;
+   
+}
+
+.upcoming-badge{
+
+    background-color: #FFCF23;
+    border-color: #FFCF23;
+    color: #ffffff;
+   
+}
+
+.error-badge{
+
+    background-color: #d80000;
+    border-color: #d80000;
     color: #ffffff;
    
 }
