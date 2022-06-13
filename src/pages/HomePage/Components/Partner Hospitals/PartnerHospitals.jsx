@@ -24,50 +24,102 @@ function PartnerHospitals() {
 
 
     return (
-        <div className='partner-hospitals-container'>
+        <>
 
-            <div className="plus-vector-back1">
-                <img src={grid} alt="" />
-            </div>
+            <div className='partner-hospitals-container for-web'>
 
-
-            <div className="partner-hospitals-row">
-                <PartnerHospitalButton icon={nsh} />
-                <PartnerHospitalButton icon={h2} />
-                <PartnerHospitalButton icon={h3} />
-            </div>
-
-            <div className="partner-hospitals-row">
-                <PartnerHospitalButton icon={h4} />
-                <PartnerHospitalButton icon={h5} />
-
-                <div className="vector-container">
-                    <img src={health} alt="" />
+                <div className="plus-vector-back1">
+                    <img src={grid} alt="" />
                 </div>
 
-            </div>
 
-            <div className="partner-hospitals-row">
-                <PartnerHospitalButton icon={h6} />
-                <PartnerHospitalButton icon={h7} />
-                <PartnerHospitalButton icon={h8} />
-            </div>
-
-            <div className="partner-hospitals-row">
-
-                <div className="vector-container2">
-                    <img src={heart2} alt="" />
+                <div className="partner-hospitals-row">
+                    <PartnerHospitalButton icon={nsh} />
+                    <PartnerHospitalButton icon={h2} />
+                    <PartnerHospitalButton icon={h3} />
                 </div>
-                <PartnerHospitalButton icon={h9} />
-                <PartnerHospitalButton icon={h10} />
+
+                <div className="partner-hospitals-row">
+                    <PartnerHospitalButton icon={h4} />
+                    <PartnerHospitalButton icon={h5} />
+
+                    <div className="vector-container">
+                        <img src={health} alt="" />
+                    </div>
+
+                </div>
+
+                <div className="partner-hospitals-row">
+                    <PartnerHospitalButton icon={h6} />
+                    <PartnerHospitalButton icon={h7} />
+                    <PartnerHospitalButton icon={h8} />
+                </div>
+
+                <div className="partner-hospitals-row">
+
+                    <div className="vector-container2">
+                        <img src={heart2} alt="" />
+                    </div>
+                    <PartnerHospitalButton icon={h9} />
+                    <PartnerHospitalButton icon={h10} />
+                </div>
+
+                <div className="partner-hospitals-row">
+                    <PartnerHospitalButton icon={h11} />
+                    <PartnerHospitalButton icon={h12} />
+                    <PartnerHospitalButton isViewAll />
+                </div>
             </div>
 
-            <div className="partner-hospitals-row">
-                <PartnerHospitalButton icon={h11} />
-                <PartnerHospitalButton icon={h12} />
-                <PartnerHospitalButton isViewAll />
+            <div className='partner-hospitals-container for-mobile'>
+
+                <div className="plus-vector-back1">
+                    <img src={grid} alt="" />
+                </div>
+
+
+                <div className="partner-hospitals-row">
+                    <PartnerHospitalButton icon={nsh} />
+                    <PartnerHospitalButton icon={h2} />
+                    <PartnerHospitalButton icon={h3} />
+                </div>
+
+                <div className="partner-hospitals-row">
+                    <PartnerHospitalButton icon={h4} />
+                    <PartnerHospitalButton icon={h5} />
+                    <PartnerHospitalButton icon={h6} />
+
+                    {/* <div className="vector-container">
+                        <img src={health} alt="" />
+                    </div> */}
+
+                </div>
+
+                <div className="partner-hospitals-row">
+                    
+                    <PartnerHospitalButton icon={h7} />
+                    <PartnerHospitalButton icon={h8} />
+                    <PartnerHospitalButton icon={h9} />
+                </div>
+
+                <div className="partner-hospitals-row">
+
+                    {/* <div className="vector-container2">
+                        <img src={heart2} alt="" />
+                    </div> */}
+                   
+                    <PartnerHospitalButton icon={h10} />
+                    <PartnerHospitalButton icon={h11} />
+                    <PartnerHospitalButton icon={h12} />
+                </div>
+
+                <div className="partner-hospitals-row">
+                   
+                    <PartnerHospitalButton isViewAll />
+                </div>
             </div>
-        </div>
+        </>
+
     )
 }
 

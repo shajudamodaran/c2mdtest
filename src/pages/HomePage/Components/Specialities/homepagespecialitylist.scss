@@ -1,6 +1,8 @@
 $tablet-screen: 1145px;
-
 $tablet-screen-small: 1017px;
+
+@import '../../../../styles/variables';
+
 .home-speciality-list-container {
 
     display: flex;
@@ -41,13 +43,15 @@ $tablet-screen-small: 1017px;
 
     .home-page-speciality-button {
 
-        width: 150px;
-        height: 140px;
+        width: 125px;
+        height: 125px;
         background-color: #FFFFFF;
         box-shadow: 0px 4px 5px #1389FF1A;
         border-radius: 10px;
         opacity: 1;
         margin: 15px;
+        padding: 15px;
+        box-sizing: border-box;
 
         display: flex;
         flex-direction: column;
@@ -69,7 +73,7 @@ $tablet-screen-small: 1017px;
         &_text {
 
             text-align: center;
-            font-size: 15px;
+            font-size: 13px;
             font-weight: 600;
             letter-spacing: 0.18px;
             color: #162D43;
@@ -98,6 +102,21 @@ $tablet-screen-small: 1017px;
         }
 
         @media screen and (max-width: $tablet-screen-small) {
+
+            width: 100px;
+            height: 100px;
+            padding: 5px;
+
+            &_text {
+
+               
+                font-size: 11px;
+               
+            }
+          
+        }
+
+        @media screen and (max-width:$mobileScreen) {
 
             width: 100px;
             height: 100px;

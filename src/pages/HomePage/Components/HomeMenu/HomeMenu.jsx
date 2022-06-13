@@ -13,7 +13,7 @@ function HomeMenu() {
     let [isPausedHover, setPauseHover] = useState(false)
     let [isPausedClick, setPauseClick] = useState(false)
 
-    
+
 
     let incrementIndex = () => {
 
@@ -159,34 +159,50 @@ function HomeMenu() {
 
                             return (
                                 <>
-                                 <li
-                                    // style={{ width: `${count}%` }} 
-                                    className={activeMenu === key ? "c2md-home-menu-list-active" : null} onClick={() => {
-                                        setActiveMenu(key)
-                                        setPauseClick(false)
-                                        setCounter(0)
-                                    }}>
-                                    <div className="flex-row">
-                                        <div>
-                                            <h2 className="c2md-home-menu-list_title">{element.name}</h2>
-                                            <div className="c2md-home-menu-list_caption">
-                                                {element.caption}
+                                    <li
+                                        // style={{ width: `${count}%` }} 
+                                        className={activeMenu === key ? "c2md-home-menu-list-active" : null} onClick={() => {
+                                            setActiveMenu(key)
+                                            setPauseClick(false)
+                                            setCounter(0)
+                                        }}>
+                                        <div className="flex-row">
+                                            <div>
+                                                <h2 className="c2md-home-menu-list_title">{element.name}</h2>
+                                                <div className="c2md-home-menu-list_caption">
+                                                    {element.caption}
+                                                </div>
                                             </div>
+                                            {
+                                                activeMenu === key && <ArrowRightGreen />
+                                            }
                                         </div>
-                                        {
-                                            activeMenu === key && <ArrowRightGreen />
-                                        }
+
+                                        <div className="loader-container">
+                                            <div ref={setRef(key.toString())} className={`loader ${isPausedHover ? "pause" : null}`} >&nbsp;</div>
+                                        </div>
+
+                                    </li>
+
+                                    <div className='mobile-menu-container for-mobile'>
+                                        <div className='c2md-home-menu-container_right_image'
+                                            onMouseEnter={() => { setPauseHover(true) }}
+                                            onMouseLeave={() => {
+                                                setPauseHover(false)
+                                                increaseCounter()
+                                            }}
+                                            onClick={handlePause}
+                                        >
+                                            {
+                                                activeMenu == 0 &&  activeMenu == key? <HomePageSpecialityList /> :
+                                                    activeMenu == 1 &&  activeMenu == key ? <PartnerHospitals /> :
+                                                        activeMenu == 2  &&  activeMenu == key? <FindDoctorFormHome /> : null
+                                            }
+
+                                        </div>
                                     </div>
-
-                                    <div className="loader-container">
-                                        <div ref={setRef(key.toString())} className={`loader ${isPausedHover ? "pause" : null}`} >&nbsp;</div>
-                                    </div>
-
-                                </li>
-
-                                <div className='mobile-menu-container for-tablet'>Shaju</div>
                                 </>
-                               
+
 
 
                             )
@@ -198,7 +214,7 @@ function HomeMenu() {
 
             </div>
 
-            <div className='c2md-home-menu-container_right'>
+            <div className='c2md-home-menu-container_right for-web'>
 
                 <div className='c2md-home-menu-container_right_image'
                     onMouseEnter={() => { setPauseHover(true) }}

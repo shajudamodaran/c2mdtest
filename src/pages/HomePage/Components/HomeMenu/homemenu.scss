@@ -1,6 +1,8 @@
 $smallScreen: 965px;
 $tablet-screen: 1145px;
 
+@import '../../../../styles/variables';
+
 .c2md-home-menu-container {
 
     width: 100%;
@@ -22,6 +24,7 @@ $tablet-screen: 1145px;
 
     }
 
+  
     @media screen and (max-width: $smallScreen) {
 
 
@@ -31,6 +34,10 @@ $tablet-screen: 1145px;
 
         .for-tablet {
             display: flex !important;
+
+        }
+        .for-mobile {
+            display: none !important;
 
         }
     }
@@ -46,7 +53,32 @@ $tablet-screen: 1145px;
             display: none !important;
 
         }
+        .for-mobile {
+            display: none !important;
+
+        }
     }
+
+    @media screen and (max-width: $mobileScreen) {
+
+
+        .for-web {
+            display: none !important;
+        }
+
+        .for-tablet {
+            display: none !important;
+
+        }
+
+        .for-mobile {
+            display: flex !important;
+
+        }
+    }
+
+
+
 
     &_left {
         margin-right: 6rem;
@@ -54,6 +86,11 @@ $tablet-screen: 1145px;
         @media screen and (max-width: $smallScreen) {
 
             margin-right: 2rem;
+        }
+
+        @media screen and (max-width: $mobileScreen) {
+
+            margin-right: 0px;
         }
     
 
@@ -146,6 +183,12 @@ $tablet-screen: 1145px;
             justify-content: center;
 
             padding: 15px 0px;
+
+            @media screen and (max-width: $mobileScreen) {
+
+                width: 100%;
+            }
+        
         }
     }
 

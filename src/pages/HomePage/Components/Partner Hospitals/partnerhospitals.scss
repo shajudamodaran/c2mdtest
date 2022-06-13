@@ -1,6 +1,8 @@
 $smallScreen: 965px;
 $mobileScreen: 965px;
 
+
+
 .partner-hospitals-container {
 
     display: flex;
@@ -96,6 +98,9 @@ $mobileScreen: 965px;
                 filter: grayscale(0%);
                 opacity: 1;
             }
+
+
+
         }
 
         img {
@@ -128,12 +133,22 @@ $mobileScreen: 965px;
             border-radius: 10px;
         }
 
+        @media screen and (max-width: $mobileScreen) {
+
+
+            width: 100px;
+            height: 60px;
+
+        }
+
 
     }
 
     .view-all-hospitals {
         background-color: #3E97DE;
         color: white;
+
+
 
         .text {
             margin-right: 10px;
@@ -144,8 +159,33 @@ $mobileScreen: 965px;
             font-size: 15px;
             font-weight: 600;
 
+            @media screen and (max-width: $mobileScreen) {
+
+
+                font-size: 12px;
+                line-height: 12px;
+
+
+                margin-right: 0px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                max-width: 90%;
+
+                span {
+                    text-align: center;
+                }
+
+            }
+
             .icon {
                 margin-left: 10px;
+
+                @media screen and (max-width: $mobileScreen) {
+                    margin-left: 0px;
+                    margin-top: 5px;
+                }
             }
         }
 

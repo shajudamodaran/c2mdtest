@@ -158,6 +158,13 @@
   border-radius: 10px;
 }
 
+@media screen and (max-width: 965px) {
+  .partner-hospitals-container .partner-hospital-button {
+    width: 100px;
+    height: 60px;
+  }
+}
+
 .partner-hospitals-container .view-all-hospitals {
   background-color: #3E97DE;
   color: white;
@@ -182,8 +189,40 @@
   font-weight: 600;
 }
 
+@media screen and (max-width: 965px) {
+  .partner-hospitals-container .view-all-hospitals .text {
+    font-size: 12px;
+    line-height: 12px;
+    margin-right: 0px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    max-width: 90%;
+  }
+  .partner-hospitals-container .view-all-hospitals .text span {
+    text-align: center;
+  }
+}
+
 .partner-hospitals-container .view-all-hospitals .text .icon {
   margin-left: 10px;
+}
+
+@media screen and (max-width: 965px) {
+  .partner-hospitals-container .view-all-hospitals .text .icon {
+    margin-left: 0px;
+    margin-top: 5px;
+  }
 }
 
 @-webkit-keyframes zoomIn {

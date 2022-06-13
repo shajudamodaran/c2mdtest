@@ -55,14 +55,17 @@
 }
 
 .home-speciality-list-container .home-page-speciality-button {
-  width: 150px;
-  height: 140px;
+  width: 125px;
+  height: 125px;
   background-color: #FFFFFF;
   -webkit-box-shadow: 0px 4px 5px #1389FF1A;
           box-shadow: 0px 4px 5px #1389FF1A;
   border-radius: 10px;
   opacity: 1;
   margin: 15px;
+  padding: 15px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -93,7 +96,7 @@
 
 .home-speciality-list-container .home-page-speciality-button_text {
   text-align: center;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.18px;
   color: #162D43;
@@ -118,6 +121,17 @@
 }
 
 @media screen and (max-width: 1017px) {
+  .home-speciality-list-container .home-page-speciality-button {
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+  }
+  .home-speciality-list-container .home-page-speciality-button_text {
+    font-size: 11px;
+  }
+}
+
+@media screen and (max-width: 768px) {
   .home-speciality-list-container .home-page-speciality-button {
     width: 100px;
     height: 100px;

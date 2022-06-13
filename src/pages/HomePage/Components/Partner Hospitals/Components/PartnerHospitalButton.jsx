@@ -6,7 +6,7 @@ function PartnerHospitalButton({icon, isViewAll}) {
     <div className={`partner-hospital-button ${isViewAll&&'view-all-hospitals'}`}>
         
         {
-            isViewAll?<div className='text'>View all hospitals <div className="icon"><ArrowRightWhite/></div></div>:<img src={icon} alt="" />
+            isViewAll?<div className='text'><span>View all hospitals </span><div className="icon"><ArrowRightWhite/></div></div>:<img src={icon} alt="" />
         }
     </div>
   )

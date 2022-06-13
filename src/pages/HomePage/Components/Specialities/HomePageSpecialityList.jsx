@@ -20,71 +20,146 @@ function HomePageSpecialityList() {
 
 
     return (
-        <div className='home-speciality-list-container'>
+        <>
+            <div className='home-speciality-list-container for-web'>
 
-            <div className="plus-vector-back1">
-                <img src={grid} alt="" />
-            </div>
-
-            <div className="plus-vector-back2">
-                <img src={grid2} alt="" />
-            </div>
-
-            <div className="home-speciality-column">
-                <SpecialityButton
-                    icon={liver}
-                    text="Andrology- Male Infertility"
-                />
-                <SpecialityButton
-                    icon={liver2}
-                    text="Endocrine Surgery"
-                />
-                <SpecialityButton
-                    icon={liver}
-                    text="Andrology- Male Infertility"
-                />
-            </div>
-            <div className="home-speciality-column">
-
-                <div className="vector-container">
-                    <img src={heart2} alt="" />
+                <div className="plus-vector-back1">
+                    <img src={grid} alt="" />
                 </div>
 
-                <SpecialityButton
-                    icon={heart}
-                    text="Cardiac Anaesthesiology"
-                />
-                <SpecialityButton
-                    icon={liver}
-                    text="Andrology- Male Infertility"
-                />
+                <div className="plus-vector-back2">
+                    <img src={grid2} alt="" />
+                </div>
 
-                <div className="vector-container">
-                    <img src={health} alt="" />
+                <div className="home-speciality-column">
+                    <SpecialityButton
+                        icon={liver}
+                        text="Andrology- Male Infertility"
+                    />
+                    <SpecialityButton
+                        icon={liver2}
+                        text="Endocrine Surgery"
+                    />
+                    <SpecialityButton
+                        icon={liver}
+                        text="Andrology- Male Infertility"
+                    />
+                </div>
+                <div className="home-speciality-column">
+
+                    <div className="vector-container">
+                        <img src={heart2} alt="" />
+                    </div>
+
+                    <SpecialityButton
+                        icon={heart}
+                        text="Cardiac Anaesthesiology"
+                    />
+                    <SpecialityButton
+                        icon={liver}
+                        text="Andrology- Male Infertility"
+                    />
+
+                    <div className="vector-container">
+                        <img src={health} alt="" />
+                    </div>
+
+                </div>
+                <div className="home-speciality-column">
+                    <SpecialityButton
+                        icon={liver}
+                        text="Andrology- Male Infertility" />
+                    <SpecialityButton
+                        icon={ent}
+                        text="Ear Nose and Throat (ENT)" />
+                    <SpecialityButton
+                        icon={dental}
+                        text="Dental Sciences" />
+                </div>
+
+                <div className="home-speciality-column">
+                    <SpecialityButton
+                        icon={metabolic}
+                        text="Bariatric & Metabolic Surgery"
+                    />
+                    <SpecialityButton text="View all specialities" isViewAll={true} />
                 </div>
 
             </div>
-            <div className="home-speciality-column">
-                <SpecialityButton
-                    icon={liver}
-                    text="Andrology- Male Infertility" />
-                <SpecialityButton
-                    icon={ent}
-                    text="Ear Nose and Throat (ENT)" />
-                <SpecialityButton
-                    icon={dental}
-                    text="Dental Sciences" />
-            </div>
 
-            <div className="home-speciality-column">
-                <SpecialityButton
-                    icon={metabolic}
-                    text="Bariatric & Metabolic Surgery"
-                />
-                <SpecialityButton text="View all specialities" isViewAll={true} />
-            </div>
+            <div className='home-speciality-list-container for-mobile'>
 
-        </div>
+                <div className="plus-vector-back1">
+                    <img src={grid} alt="" />
+                </div>
+
+                <div className="plus-vector-back2">
+                    <img src={grid2} alt="" />
+                </div>
+
+                <div className="home-speciality-column">
+                    <SpecialityButton
+                        icon={liver}
+                        text="Andrology- Male Infertility"
+                    />
+                    <SpecialityButton
+                        icon={liver2}
+                        text="Endocrine Surgery"
+                    />
+                    <SpecialityButton
+                        icon={liver}
+                        text="Andrology- Male Infertility"
+                    />
+
+                    <SpecialityButton
+                        icon={heart}
+                        text="Cardiac Anaesthesiology"
+                    />
+                </div>
+                <div className="home-speciality-column">
+
+                    <div className="vector-container">
+                        <img src={heart2} alt="" />
+                    </div>
+
+
+                    <SpecialityButton
+                        icon={liver}
+                        text="Andrology- Male Infertility"
+                    />
+                    <SpecialityButton
+                        icon={liver}
+                        text="Andrology- Male Infertility" />
+
+                    <SpecialityButton
+                        icon={ent}
+                        text="Ear Nose and Throat (ENT)" />
+
+                    <SpecialityButton
+                        icon={dental}
+                        text="Dental Sciences" />
+
+                    <div className="vector-container">
+                        <img src={health} alt="" />
+                    </div>
+
+                </div>
+                <div className="home-speciality-column">
+
+
+
+
+                    <SpecialityButton
+                        icon={metabolic}
+                        text="Bariatric & Metabolic Surgery"
+                    />
+                    <SpecialityButton text="View all specialities" isViewAll={true} />
+                </div>
+
+
+
+            </div>
+        </>
     )
 }
 
