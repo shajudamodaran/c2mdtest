@@ -63,6 +63,24 @@ function InterbranchAdminHome() {
     }
 
 
+    //For Session handling...................................................................................
+
+    const isSessionActive = useSelector(
+        (state) => state.login.isSessionActive
+    );
+   
+
+    useEffect(() => {
+
+
+        if (!isSessionActive || !userData.token) {
+            history.push("/sessionExpired")
+        }
+        
+
+    }, [isSessionActive,userData])
+
+
 
     return (
         <div className='interbranch-container'>
