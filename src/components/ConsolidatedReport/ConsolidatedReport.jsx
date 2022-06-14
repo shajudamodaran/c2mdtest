@@ -10,6 +10,9 @@ import { convertDateToString } from '../../Helpers/dateFunctions'
 import EmptyTableData from '../Common/EmptyTableData/EmptyTableData'
 import './consolidatedreport.css'
 
+import { Select } from 'antd';
+const { Option } = Select;
+
 const { RangePicker } = DatePicker;
 
 function ConsolidatedReport() {
@@ -17,6 +20,8 @@ function ConsolidatedReport() {
     let [selectedDate, setSelectedDate] = useState({ from: null, to: null })
     let [pagination, setPagination] = useState(null)
     let [userType, setUserType] = useState(JSON.parse(localStorage.getItem(USER_DATA))?.userType)
+
+    const monthFormat = 'MMM-YYYY';
 
 
 
@@ -114,7 +119,7 @@ function ConsolidatedReport() {
     return (
         <div className='appontment-history-container'>
 
-            <div className="header">
+            <div className="header consolidated-report-header">
 
 
                 {/* &nbsp; */}
@@ -136,10 +141,36 @@ function ConsolidatedReport() {
 
                 <div className="filter-button" >
 
-                    <div className="icon"><i class="far fa-calendar-alt"></i></div>
+                    <div className="icon"><i class="far fa-filter"></i></div>
 
+                    <Select
+                        showSearch
+                        style={{
+                            width: 200,
+                        }}
+                        placeholder="Filter by hospital name"
+                        optionFilterProp="children"
+                        filterOption={(input, option) => option.children.includes(input)}
+                        filterSort={(optionA, optionB) =>
+                            optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
+                        }
+                    >
+                        <Option value="1">Not Identified</Option>
+                        <Option value="2">Closed</Option>
+                        <Option value="3">Communicated</Option>
+                        <Option value="4">Identified</Option>
+                        <Option value="5">Resolved</Option>
+                        <Option value="6">Cancelled</Option>
+                    </Select>
+                </div>
 
-                    <RangePicker
+                <div className="filter-button" >
+
+                    <div className="icon"><i class="far fa-filter"></i></div>
+
+                    <DatePicker className="date-picker" placeholder='Filter by month and year' format={monthFormat} picker="month" />
+
+                    {/* <RangePicker
                         // open={isOpen}
                         bordered={false}
                         className="date-picker"
@@ -150,7 +181,7 @@ function ConsolidatedReport() {
                         //     //  moment().add(1, 'month')  <= current;
                         // }}
                         onChange={handledateChange}
-                    />
+                    /> */}
                 </div>
 
             </div>
@@ -187,66 +218,66 @@ function ConsolidatedReport() {
 
 
 
-                                       
-
-                                            return (
-
-                                                <tr key={key}>
-                                                    <td>{element["Month-Year"]}</td>
-                                                    {
-                                                        userType == CLINIC_ADMIN_USER ? null : <td>{element.Hospital}</td>
-                                                    }
-                                                    <td>{element.Number_Of_appointments}</td>
-                                                    <td>{element.International}</td>
-                                                    <td>{element.Domestic}</td>
-                                                    <td>{element.Number_Of_doctors}</td>
-                                                    <td>{element.Hospital_Gross_Fees}</td>
-                                                    <td>{element.TDS}</td>
-                                                    <td>{element.Hospital_Net_Fees}</td>
-                                                    <td><textArea onBlur={(e) => { handleCommentChange(element.recordId, e) }} rows={1} >{element.Adjustments}</textArea></td>
-                                                    <td>
-                                                        <ul className='consolidated-table-report'>
-
-                                                            {
-                                                                element.uploadedFile.split(',').length > 0 ?
-
-                                                                    element.uploadedFile.split(',').map((file, key) => {
-
-                                                                        if (file && file !== "null") {
-                                                                            return (
-
-                                                                                <>
-                                                                                    <li>Rpt{key + 1}</li>
-                                                                                    {key + 1 == element.uploadedFile.split(',').lenhth ? "" : <li>|</li>}
-                                                                                </>
-
-                                                                            )
-
-                                                                        }
-
-                                                                    })
 
 
-                                                                    : null
-                                                            }
+                                        return (
+
+                                            <tr key={key}>
+                                                <td>{element["Month-Year"]}</td>
+                                                {
+                                                    userType == CLINIC_ADMIN_USER ? null : <td>{element.Hospital}</td>
+                                                }
+                                                <td>{element.Number_Of_appointments}</td>
+                                                <td>{element.International}</td>
+                                                <td>{element.Domestic}</td>
+                                                <td>{element.Number_Of_doctors}</td>
+                                                <td>{element.Hospital_Gross_Fees}</td>
+                                                <td>{element.TDS}</td>
+                                                <td>{element.Hospital_Net_Fees}</td>
+                                                <td><textArea onBlur={(e) => { handleCommentChange(element.recordId, e) }} rows={1} >{element.Adjustments}</textArea></td>
+                                                <td>
+                                                    <ul className='consolidated-table-report'>
+
+                                                        {
+                                                            element.uploadedFile.split(',').length > 0 ?
+
+                                                                element.uploadedFile.split(',').map((file, key) => {
+
+                                                                    if (file && file !== "null") {
+                                                                        return (
+
+                                                                            <>
+                                                                                <li>Rpt{key + 1}</li>
+                                                                                {key + 1 == element.uploadedFile.split(',').lenhth ? "" : <li>|</li>}
+                                                                            </>
+
+                                                                        )
+
+                                                                    }
+
+                                                                })
+
+
+                                                                : null
+                                                        }
 
 
 
 
-                                                            <label className="add-report" htmlFor={element.recordId}>
-                                                                <AddIconV2 />
-                                                                &nbsp;Add new
-                                                                <input onChange={(e) => { handleFileOnChnage(element.recordId, e) }} id={element.recordId} style={{ display: "none" }} type="file" name="" />
-                                                            </label>
-                                                        </ul>
-                                                    </td>
+                                                        <label className="add-report" htmlFor={element.recordId}>
+                                                            <AddIconV2 />
+                                                            &nbsp;Add new
+                                                            <input onChange={(e) => { handleFileOnChnage(element.recordId, e) }} id={element.recordId} style={{ display: "none" }} type="file" name="" />
+                                                        </label>
+                                                    </ul>
+                                                </td>
 
 
-                                                </tr>
+                                            </tr>
 
-                                            )
+                                        )
 
-                                        
+
 
 
 
