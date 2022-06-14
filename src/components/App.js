@@ -73,6 +73,8 @@ const PrescriptionCrPage = React.lazy(() => import("../pages/PriscriptionCr/Inde
 const ViewPrescription = React.lazy(() => import("../components/PrescriptionForm/ViewPrescription/ViewPrescription"));
 
 const C2mdHome = React.lazy(() => import("../pages/HomePage/Homepage"));
+const SessionExpired = React.lazy(() => import("../pages/SessionExpired/SessionExpired"));
+
 
 
 
@@ -82,9 +84,9 @@ function App() {
   const customTheme = createMuiTheme({
 
 
-    overrides: 
+    overrides:
     {
-      MuiInput: 
+      MuiInput:
       {
         input: {
           "&::placeholder": {
@@ -95,7 +97,7 @@ function App() {
           color: "black", // if you also want to change the color of the input, this is the prop you'd use
         }
       },
-      MuiAutoComplete: 
+      MuiAutoComplete:
       {
         input: {
           "&::placeholder": {
@@ -106,7 +108,7 @@ function App() {
           color: "black", // if you also want to change the color of the input, this is the prop you'd use
         }
       },
-  
+
       MuiPickersToolbar: {
         toolbar: {
           backgroundColor: "#0a8ce0",
@@ -123,142 +125,148 @@ function App() {
           color: "#0a8ce0",
         },
         daySelected: {
-          backgroundColor:'#0a8ce0',
-  
-          '&:hover':{
-  
-            backgroundColor:'#0a8ce0',
-  
+          backgroundColor: '#0a8ce0',
+
+          '&:hover': {
+
+            backgroundColor: '#0a8ce0',
+
           }
         },
-       
+
       },
-     
+
     }
   });
 
 
   return (
     <>
-    <ThemeProvider theme={customTheme}>
-      {/* <Router basename={'/ROOT/'}> */}
-      <Router basename={"/c2mydruat/"}>
-        <div>
-          <Suspense fallback={<></>}>
-            <ScrollToTop />
-            <ToastContainer style={{ zIndex: 20000 }} limit={1} />
-            <Switch>
-              {/* <Route exact path="/" component={MobileDashboardPage} /> */}
+      <ThemeProvider theme={customTheme}>
+        {/* <Router basename={'/ROOT/'}> */}
+        <Router basename={"/c2mydruat/"}>
+          <div>
+            <Suspense fallback={<></>}>
+              <ScrollToTop />
+              <ToastContainer style={{ zIndex: 20000 }} limit={1} />
+              <Switch>
+                {/* <Route exact path="/" component={MobileDashboardPage} /> */}
 
-              <Route
-                exact
-                path="/"
-                component={C2mdHome}
-              />
+                <Route
+                  exact
+                  path="/"
+                  component={C2mdHome}
+                />
+
+                <Route
+                  exact
+                  path="/sessionExpired"
+                  component={SessionExpired}
+                />
 
 
-              <Route exact path="/speciality" component={SpecialityPage} />
-              <Route
-                exact
-                path="/doctorProfile/:doctorid"
-                component={DoctorProfileSchedulePage}
-              />
-              <Route exact path="/signup" component={SignupPage} />
-              <Route
-                exact
-                path="/signup/verify"
-                component={VerificationCodePage}
-              />
+                <Route exact path="/speciality" component={SpecialityPage} />
+                <Route
+                  exact
+                  path="/doctorProfile/:doctorid"
+                  component={DoctorProfileSchedulePage}
+                />
+                <Route exact path="/signup" component={SignupPage} />
+                <Route
+                  exact
+                  path="/signup/verify"
+                  component={VerificationCodePage}
+                />
 
-              <Route exact path="/admin" component={AdminHome} />
-              <Route exact path="/admindashboard" component={PrescriptionCrPage} />
-              <Route exact path="/viewprescription/:prname" component={ViewPrescription} />
+                <Route exact path="/admin" component={AdminHome} />
+                <Route exact path="/admindashboard" component={PrescriptionCrPage} />
+                <Route exact path="/viewprescription/:prname" component={ViewPrescription} />
 
-              <Route path="/partner-with-us" component={PartnerPage} />
-              <Route path="/forpatients" component={ForPatient} />
-              <Route path="/termsofUse/:typeId" component={TermsandConditions} />
-              <Route path="/termsofUse" component={TermsandConditions} />
-              <Route path="/signin" component={SigninPage} />
-              <Route path="/login" component={SigninPage} />
-              <Route path="/reset" component={ResetPasswordPage} />
-              <Route path="/dashboard" component={Dashboard} />
-              <Route path="/meet" component={MeetPage} />
-              <Route path="/faq" component={Faq} />
-              <Route path="/meet_dr" component={MeetPage_Dr} />
-              <Route path="/meet_pt/:appointmentId" component={MeetPage_Pt} />
-              <Route
-                exact
-                path="/prescriptionpolicy"
-                component={PrescriptionPolicyPage}
-              />
-              <Route
-                exact
-                path="/confirmpassword"
-                component={ConfirmPasswordPage}
-              />
-              <Route
-                exact
-                path="/passwordchange"
-                component={PasswordChangePage}
-              />
-              <Route
-                exact
-                path="/DoctorListing"
-                component={DoctorListingPage}
-              />
-              <Route
-                exact
-                path="/DoctorListing/:clinicId"
-                component={DoctorListingPage}
-              />
-              <Route
-                exact
-                path="/DoctorListing/:clinicId/:speciality"
-                component={DoctorListingPage}
-              />
-              <Route
-                exact
-                path="/BookAppointment/:doctorId"
-                component={BookAppointmentPage}
-              />
-              <Route exact path="/Aboutus" component={AboutUsPage} />
-              <Route
-                exact
-                path="/mircrosite/:clinicId"
-                component={MicrositePage}
-              />
-              {/* <Route exact path="/mircrosite/:clinicId" component={OurDoctorPage}/> */}
-              <Route
-                exact
-                path="/mircrosite/:clinicId/contactus"
-                component={ContactUsPage}
-              />
-              <Route
-                exact
-                path="/mircrosite/:clinicId/treatment"
-                component={TreatmentPage}
-              />
-              <Route
-                exact
-                path="/mircrosite/:clinicId/ourdoctor"
-                component={OurDoctorPage}
-              />
-              <Route
-                exact
-                path="/mircrosite/:clinicId/ourdoctor/:speciality"
-                component={OurDoctorPage}
-              />
-              <Route exact path="/:clinicId" component={DoctorListingPage} />
-              <Route
-                exact
-                path="/:clinicId/:speciality"
-                component={DoctorListingPage}
-              />
-              {/* <Route path="/termsofUse" component={TermsandConditions} /> */}
-            </Switch>
-          </Suspense>
-        </div>
-      </Router>
+                <Route path="/partner-with-us" component={PartnerPage} />
+                <Route path="/forpatients" component={ForPatient} />
+                <Route path="/termsofUse/:typeId" component={TermsandConditions} />
+                <Route path="/termsofUse" component={TermsandConditions} />
+                <Route path="/signin" component={SigninPage} />
+                <Route path="/login" component={SigninPage} />
+                <Route path="/reset" component={ResetPasswordPage} />
+                <Route path="/dashboard" component={Dashboard} />
+                <Route path="/meet" component={MeetPage} />
+                <Route path="/faq" component={Faq} />
+                <Route path="/meet_dr" component={MeetPage_Dr} />
+                <Route path="/meet_pt/:appointmentId" component={MeetPage_Pt} />
+                <Route
+                  exact
+                  path="/prescriptionpolicy"
+                  component={PrescriptionPolicyPage}
+                />
+                <Route
+                  exact
+                  path="/confirmpassword"
+                  component={ConfirmPasswordPage}
+                />
+                <Route
+                  exact
+                  path="/passwordchange"
+                  component={PasswordChangePage}
+                />
+                <Route
+                  exact
+                  path="/DoctorListing"
+                  component={DoctorListingPage}
+                />
+                <Route
+                  exact
+                  path="/DoctorListing/:clinicId"
+                  component={DoctorListingPage}
+                />
+                <Route
+                  exact
+                  path="/DoctorListing/:clinicId/:speciality"
+                  component={DoctorListingPage}
+                />
+                <Route
+                  exact
+                  path="/BookAppointment/:doctorId"
+                  component={BookAppointmentPage}
+                />
+                <Route exact path="/Aboutus" component={AboutUsPage} />
+                <Route
+                  exact
+                  path="/mircrosite/:clinicId"
+                  component={MicrositePage}
+                />
+                {/* <Route exact path="/mircrosite/:clinicId" component={OurDoctorPage}/> */}
+                <Route
+                  exact
+                  path="/mircrosite/:clinicId/contactus"
+                  component={ContactUsPage}
+                />
+                <Route
+                  exact
+                  path="/mircrosite/:clinicId/treatment"
+                  component={TreatmentPage}
+                />
+                <Route
+                  exact
+                  path="/mircrosite/:clinicId/ourdoctor"
+                  component={OurDoctorPage}
+                />
+                <Route
+                  exact
+                  path="/mircrosite/:clinicId/ourdoctor/:speciality"
+                  component={OurDoctorPage}
+                />
+                <Route exact path="/:clinicId" component={DoctorListingPage} />
+                <Route
+                  exact
+                  path="/:clinicId/:speciality"
+                  component={DoctorListingPage}
+                />
+                {/* <Route path="/termsofUse" component={TermsandConditions} /> */}
+              </Switch>
+            </Suspense>
+          </div>
+        </Router>
       </ThemeProvider>
     </>
   );

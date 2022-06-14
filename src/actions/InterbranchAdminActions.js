@@ -3,7 +3,7 @@ import loginedApi, { c2mdApi } from "../apis"
 import { convertDateToString, convertDateToStringOneYear, convertDateToStringThreeMonthBack } from "../Helpers/dateFunctions";
 import { getFromLocalStorage } from "../Helpers/localStorageHelper";
 import authHeader from "./AuthHeader";
-import { INTERBRANCH_ADMIN_CONSOLIDATED, INTERBRANCH_ADMIN_DASHBOARD, INTERBRANCH_ADMIN_DASHBOARD_SELECTED, INTERBRANCH_ADMIN_DASHBOARD_SELECTED_v2, INTERBRANCH_ADMIN_DETAILED, INTERBRANCH_ADMIN_DETAILED_SELECTED } from "./type";
+import { INTERBRANCH_ADMIN_CONSOLIDATED, INTERBRANCH_ADMIN_DASHBOARD, INTERBRANCH_ADMIN_DASHBOARD_SELECTED, INTERBRANCH_ADMIN_DASHBOARD_SELECTED_v2, INTERBRANCH_ADMIN_DETAILED, INTERBRANCH_ADMIN_DETAILED_SELECTED, MANAGE_SESSION } from "./type";
 
 import { ADMIN_USER, CLINIC_ADMIN_USER, USER_DATA } from '../constants/const'
 
@@ -22,7 +22,7 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
 
         let params =
         {
-            "token": "token",
+
             "requestType": 509,
             "version": "2.0",
             "data": {
@@ -38,22 +38,29 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
 
         // console.log("Calling getappointments................................................................... ->");
 
-        let responce = await loginedApi.post("getappointments", params, { headers: authHeader() })
-
-        
+        let response = await loginedApi.post("getappointments", params, { headers: authHeader() })
 
 
-        if (responce.status == 200) {
+        if (response.status == "200") {
 
-            dispatch({
-                type: INTERBRANCH_ADMIN_DASHBOARD,
-                payload: {
-                    data: responce.data.data,
-                    totalPages: responce.data.totalNumberOfPages
-                }
-            });
+            if (response.data.errorType != "FAILURE" && response.data?.data) {
 
+                dispatch({
+                    type: INTERBRANCH_ADMIN_DASHBOARD,
+                    payload: {
+                        data: response.data.data,
+                        totalPages: response.data.totalNumberOfPages
+                    }
+                });
+            }
+            else {
+
+                dispatch({ type: MANAGE_SESSION, payload: { isSessionActive: false } });
+            }
         }
+
+
+
 
     }
     else if (userType == CLINIC_ADMIN_USER) {
@@ -75,28 +82,32 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
             "version": "2.0"
         }
 
-        let responce = await loginedApi.post("getclinicappointments", params, { headers: authHeader() })
+        let response = await loginedApi.post("getclinicappointments", params, { headers: authHeader() })
 
         //console.log("getclinicappointments responce ->", responce.data.data);
 
-        if (responce.status == 200) {
+        if (response.status == "200") {
 
-            dispatch({
-                type: INTERBRANCH_ADMIN_DASHBOARD,
-                payload: {
-                    data: responce.data.data,
-                    totalPages: responce.data.totalNumberOfPages
-                }
-            });
+            if (response.data.errorType != "FAILURE" && response.data?.data) {
 
+                dispatch({
+                    type: INTERBRANCH_ADMIN_DASHBOARD,
+                    payload: {
+                        data: response.data.data,
+                        totalPages: response.data.totalNumberOfPages
+                    }
+                });
+
+            }
+            else {
+
+                dispatch({ type: MANAGE_SESSION, payload: { isSessionActive: false } });
+            }
         }
 
 
 
     }
-
-
-
 
 
 }
@@ -144,23 +155,33 @@ export const FETCH_ADMIN_DETAILED_REPORT = (_para) => async (dispatch) => {
 
 
 
-    let responce = await loginedApi.post("getsummaryreport", params, { headers: authHeader() })
+    let response = await loginedApi.post("getsummaryreport", params, { headers: authHeader() })
 
     //console.log("getsummaryreport responce ->", responce.data.data);
 
-    if (responce.status == 200) {
+
+    if (response.status == "200") {
+
+        if (response.data.errorType != "FAILURE" && response.data?.data) {
 
 
-        dispatch({
-            type: INTERBRANCH_ADMIN_DETAILED,
-            payload: {
-                data: responce.data.data.data,
-                totalPages: responce.data.data.totalNumberOfPages
-            }
-        });
+            dispatch({
+                type: INTERBRANCH_ADMIN_DETAILED,
+                payload: {
+                    data: response.data.data.data,
+                    totalPages: response.data.data.totalNumberOfPages
+                }
+            });
 
 
+        }
+        else {
+
+            dispatch({ type: MANAGE_SESSION, payload: { isSessionActive: false } });
+        }
     }
+
+
 
 
 }
@@ -175,22 +196,31 @@ export const FETCH_DASHBOARD_MORE = (_id) => async dispatch => {
 
     // console.log("Calling getappointments................................................................... ->");
 
-    let responce = await loginedApi.post("getappointmentsdetails", params, { headers: authHeader() })
-
-    console.log(responce.data.data);
+    let response = await loginedApi.post("getappointmentsdetails", params, { headers: authHeader() })
 
 
-    if (responce.status == 200) {
+    if (response.status == "200") {
 
-        dispatch({
-            type: INTERBRANCH_ADMIN_DASHBOARD_SELECTED_v2,
-            payload: responce.data.data[0]
-        });
+        if (response.data.errorType != "FAILURE" && response.data?.data) {
 
-        //    console.log(responce.data.data);
-        //    dispatch(setSelectedDash(responce.data.data))
 
+            dispatch({
+                type: INTERBRANCH_ADMIN_DASHBOARD_SELECTED_v2,
+                payload: response.data.data[0]
+            });
+
+
+        }
+        else {
+
+            dispatch({ type: MANAGE_SESSION, payload: { isSessionActive: false } });
+        }
     }
+
+
+
+
+
 
 
 }
@@ -209,21 +239,27 @@ export const FETCH_DETAILED_MORE = (_id) => async dispatch => {
         }
     }
 
-    let responce = await c2mdApi.post("getdetailreport", params, { headers: authHeader() })
+    let response = await c2mdApi.post("getdetailreport", params, { headers: authHeader() })
 
 
 
-    if (responce.status == 200) {
+    if (response.status == "200") {
 
-        dispatch({
-            type: INTERBRANCH_ADMIN_DETAILED_SELECTED,
-            payload: responce.data.data
-        });
+        if (response.data.errorType != "FAILURE" && response.data?.data) {
 
-        //    console.log(responce.data.data);
-        //    dispatch(setSelectedDash(responce.data.data))
 
+            dispatch({
+                type: INTERBRANCH_ADMIN_DETAILED_SELECTED,
+                payload: response.data.data
+            });
+
+        }
+        else {
+
+            dispatch({ type: MANAGE_SESSION, payload: { isSessionActive: false } });
+        }
     }
+
 
 
 }
@@ -262,24 +298,32 @@ export const FETCH_CONSOLIDATED_REPORTS = (_para) => async dispatch => {
         params.data.clinic = clinicId
     }
 
-    let responce = await c2mdApi.post("getconsolidatedreport", params, { headers: authHeader() })
+    let response = await c2mdApi.post("getconsolidatedreport", params, { headers: authHeader() })
 
     //console.log("getconsolidatedreport responce ->", responce.data.data);
 
-    if (responce.status == 200) {
+    if (response.status == "200") {
 
-        dispatch({
-            type: INTERBRANCH_ADMIN_CONSOLIDATED,
-            payload: {
-                data: responce.data.data.data,
-                totalPages: responce.data.data.totalNumberOfPages
-            }
-        });
+        if (response.data.errorType != "FAILURE" && response.data?.data) {
 
-        //    console.log(responce.data.data);
-        //    dispatch(setSelectedDash(responce.data.data))
 
+            dispatch({
+                type: INTERBRANCH_ADMIN_CONSOLIDATED,
+                payload: {
+                    data: response.data.data.data,
+                    totalPages: response.data.data.totalNumberOfPages
+                }
+            });
+
+
+        }
+        else {
+
+            dispatch({ type: MANAGE_SESSION, payload: { isSessionActive: false } });
+        }
     }
+
+
 
 
 }
@@ -297,13 +341,27 @@ export const updateMisReportComment = (_id, value) => async dispatch => {
         }
     }
 
-    let responce = await c2mdApi.post("updatereportdata", params)
+    let response = await c2mdApi.post("updatereportdata", params)
 
-    if (responce.status == 200 && responce.data.data.info === "Successfully Updated") {
+    if (response.status == "200") {
 
-        return true
+        if (response.data.errorType != "FAILURE" && response.data?.data) {
 
+            if (response.status == 200 && response.data.data.info === "Successfully Updated") {
+
+                return true
+
+            }
+
+        }
+        else {
+
+            dispatch({ type: MANAGE_SESSION, payload: { isSessionActive: false } });
+        }
     }
+
+
+
 
 
 }
@@ -322,13 +380,27 @@ export const updateMisReportAttachments = (_id, value) => async dispatch => {
         }
     }
 
-    let responce = await c2mdApi.post("updateconsolreport", params)
+    let response = await c2mdApi.post("updateconsolreport", params)
 
-    if (responce.status == 200 && responce.data.data.info === "Successfully Updated") {
+    if (response.status == "200") {
 
-        return true
+        if (response.data.errorType != "FAILURE" && response.data?.data) {
 
+
+            if (response.status == 200 && response.data.data.info === "Successfully Updated") {
+
+                return true
+
+            }
+
+        }
+        else {
+
+            dispatch({ type: MANAGE_SESSION, payload: { isSessionActive: false } });
+        }
     }
+
+
 
 
 }
@@ -346,13 +418,27 @@ export const updateConsolodatedReportComment = (_id, value) => async dispatch =>
         }
     }
 
-    let responce = await c2mdApi.post("updateconsolreport", params)
+    let response = await c2mdApi.post("updateconsolreport", params)
 
-    if (responce.status == 200 && responce.data.data.info === "Successfully Updated") {
+    if (response.status == "200") {
 
-        return true
+        if (response.data.errorType != "FAILURE" && response.data?.data) {
 
+
+            if (response.status == 200 && response.data.data.info === "Successfully Updated") {
+
+                return true
+
+            }
+
+
+        }
+        else {
+
+            dispatch({ type: MANAGE_SESSION, payload: { isSessionActive: false } });
+        }
     }
+
 
 
 }
@@ -392,19 +478,28 @@ export const downloadSummaryReport = (_para) => async (dispatch) => {
 
     }
 
-    let responce = await loginedApi.post("getsummaryreport", params, { headers: authHeader() })
+    let response = await loginedApi.post("getsummaryreport", params, { headers: authHeader() })
 
     //console.log("getsummaryreport responce ->", responce.data.data);
 
-    if (responce.status == 200) {
+    if (response.status == "200") {
 
-        if (responce.data?.data?.filename) {
-            return `https://uat.c2mdr.com/c2mydruat/Connect2MyDoctorRequest?requestType=256&uploadBy=ConsultationProcess&name=${responce.data?.data?.filename}&type=Attachement&uploadRefId=123&from=web`
+        if (response.data.errorType != "FAILURE" && response.data?.data) {
+
+
+            if (response.data?.data?.filename) {
+                return `https://uat.c2mdr.com/c2mydruat/Connect2MyDoctorRequest?requestType=256&uploadBy=ConsultationProcess&name=${response.data?.data?.filename}&type=Attachement&uploadRefId=123&from=web`
+            }
+
+
         }
+        else {
 
-
-
+            dispatch({ type: MANAGE_SESSION, payload: { isSessionActive: false } });
+        }
     }
+
+
 
 
 }
