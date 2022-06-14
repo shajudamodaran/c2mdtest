@@ -192,7 +192,7 @@ export const FETCH_DASHBOARD_MORE = (_id) => async dispatch => {
 
 
 
-    let params = { "token": "token", "requestType": "1101", "data": { "appointmentId": _id, "browserTimeZone": "GMT+05:30" } }
+    let params = { "token": "token", "version": "2.0", "requestType": "1101", "data": { "appointmentId": _id, "browserTimeZone": "GMT+05:30" } }
 
     // console.log("Calling getappointments................................................................... ->");
 
@@ -335,13 +335,14 @@ export const updateMisReportComment = (_id, value) => async dispatch => {
     let params = {
 
         "requestType": "1046",
+        "version": "2.0",
         "data": {
             "appointmentId": _id,
             "notes": value
         }
     }
 
-    let response = await c2mdApi.post("updatereportdata", params)
+    let response = await c2mdApi.post("updatereportdata", params,{ headers: authHeader() })
 
     if (response.status == "200") {
 
@@ -374,13 +375,14 @@ export const updateMisReportAttachments = (_id, value) => async dispatch => {
     let params = {
 
         "requestType": "1046",
+        "version": "2.0",
         "data": {
             "consolReportId": _id,
             "uploadedFile": value
         }
     }
 
-    let response = await c2mdApi.post("updateconsolreport", params)
+    let response = await c2mdApi.post("updateconsolreport", params,{ headers: authHeader() })
 
     if (response.status == "200") {
 
@@ -411,14 +413,14 @@ export const updateConsolodatedReportComment = (_id, value) => async dispatch =>
     let params = {
 
         "requestType": "1046",
-        // "version": 2,
+        "version": "2.0",
         "data": {
             "consolReportId": _id,
             "adjustments": value
         }
     }
 
-    let response = await c2mdApi.post("updateconsolreport", params)
+    let response = await c2mdApi.post("updateconsolreport", params,{ headers: authHeader() })
 
     if (response.status == "200") {
 

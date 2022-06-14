@@ -33,7 +33,7 @@ function Signin() {
   const dispatch = useDispatch();
   const responseGoogle = (response) => {
 
-    let profileData=response?response.profileObj:null
+    let profileData = response ? response.profileObj : null
 
 
     if (response?.profileObj) {
@@ -43,7 +43,7 @@ function Signin() {
         if (res.info) {
           setErrorMsg(res.info);
 
-          
+
         }
       });
     }
@@ -78,10 +78,19 @@ function Signin() {
     ).then((res) => {
 
       if (res.info) {
-        let text = values.loginType === "email" ? "email id" : "mobile number";
-        setErrorMsg(
-          `You have entered an invalid username(${text}) or password`
-        );
+
+        if (res.info == "The user is already logged in. Please logout the session or try after sometime") {
+          setErrorMsg("The user is already logged in. Please logout the session or try after sometime")
+        }
+        else {
+
+          let text = values.loginType === "email" ? "email id" : "mobile number";
+          setErrorMsg(
+            `You have entered an invalid username(${text}) or password`
+          );
+
+        }
+
       }
     });
 
@@ -178,7 +187,7 @@ function Signin() {
         {<div>
           <p></p>
           <p className={Style.signin_text_option}>Or</p>
-        </div> }
+        </div>}
         <div>
           <Formik
             initialValues={{
@@ -301,7 +310,7 @@ function Signin() {
                           className={`${Style.siginin_mobile}${" "}${touched.mobile && errors.mobile ? "is-invalid" : ""
                             }`}
                         >
-                         <CustomPhoneInput
+                          <CustomPhoneInput
                             country={"in"}
                             value={values.mobile?.slice(values.dial_code?.length)}
                             name="mobile"
