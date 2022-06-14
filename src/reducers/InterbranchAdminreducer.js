@@ -1,4 +1,4 @@
-import { DOCTOR_LISTING, INTERBRANCH_ADMIN_CONSOLIDATED, INTERBRANCH_ADMIN_DASHBOARD, INTERBRANCH_ADMIN_DASHBOARD_SELECTED, INTERBRANCH_ADMIN_DETAILED, INTERBRANCH_ADMIN_DETAILED_SELECTED, INTERBRANCH_MODAL, REDUX_LOADING } from "../actions/type";
+import { DOCTOR_LISTING, INTERBRANCH_ADMIN_CONSOLIDATED, INTERBRANCH_ADMIN_DASHBOARD, INTERBRANCH_ADMIN_DASHBOARD_SELECTED, INTERBRANCH_ADMIN_DASHBOARD_SELECTED_v2, INTERBRANCH_ADMIN_DETAILED, INTERBRANCH_ADMIN_DETAILED_SELECTED, INTERBRANCH_MODAL, REDUX_LOADING } from "../actions/type";
 
 const INITIAL_STATE = {
 
@@ -7,6 +7,7 @@ const INITIAL_STATE = {
     detailedReportTable: [],
     detailedReportTableTotalPages: 0,
     dashboardSelected: null,
+    dashboardSelectedV2:null,
     detaiedSelected: null,
     consolidatedreport: [],
     consolidatedreportTotalPages: 0
@@ -40,6 +41,14 @@ export default (state = INITIAL_STATE, { type, payload }) => {
                 dashboardSelected: payload
             };
 
+            case INTERBRANCH_ADMIN_DASHBOARD_SELECTED_v2:
+
+                return {
+                    ...state,
+                    dashboardSelectedV2: payload
+                };
+    
+    
 
         case INTERBRANCH_ADMIN_DETAILED_SELECTED:
 

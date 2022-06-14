@@ -3,7 +3,7 @@ import loginedApi, { c2mdApi } from "../apis"
 import { convertDateToString, convertDateToStringOneYear, convertDateToStringThreeMonthBack } from "../Helpers/dateFunctions";
 import { getFromLocalStorage } from "../Helpers/localStorageHelper";
 import authHeader from "./AuthHeader";
-import { INTERBRANCH_ADMIN_CONSOLIDATED, INTERBRANCH_ADMIN_DASHBOARD, INTERBRANCH_ADMIN_DASHBOARD_SELECTED, INTERBRANCH_ADMIN_DETAILED, INTERBRANCH_ADMIN_DETAILED_SELECTED } from "./type";
+import { INTERBRANCH_ADMIN_CONSOLIDATED, INTERBRANCH_ADMIN_DASHBOARD, INTERBRANCH_ADMIN_DASHBOARD_SELECTED, INTERBRANCH_ADMIN_DASHBOARD_SELECTED_v2, INTERBRANCH_ADMIN_DETAILED, INTERBRANCH_ADMIN_DETAILED_SELECTED } from "./type";
 
 import { ADMIN_USER, CLINIC_ADMIN_USER, USER_DATA } from '../constants/const'
 
@@ -36,11 +36,12 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
             }
         }
 
-       // console.log("Calling getappointments................................................................... ->");
+        // console.log("Calling getappointments................................................................... ->");
 
         let responce = await loginedApi.post("getappointments", params, { headers: authHeader() })
 
-        //console.log("getappointments responce ->", responce.data.data);
+        
+
 
         if (responce.status == 200) {
 
@@ -93,6 +94,10 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
 
 
     }
+
+
+
+
 
 }
 
@@ -165,26 +170,21 @@ export const FETCH_DASHBOARD_MORE = (_id) => async dispatch => {
 
 
 
-    let params = {
-        "token": "token",
-        "requestType": "1041",
-        "version": "2.0",
-        "data": {
-            "appointmentId": _id,
-            "browserTimeZone": "GMT+05:30"
-        }
-    }
 
-    let responce = await c2mdApi.post("getdetailreport", params, { headers: authHeader() })
+    let params = { "token": "token", "requestType": "1101", "data": { "appointmentId": _id, "browserTimeZone": "GMT+05:30" } }
 
-    //console.log(responce.data.data);
+    // console.log("Calling getappointments................................................................... ->");
+
+    let responce = await loginedApi.post("getappointmentsdetails", params, { headers: authHeader() })
+
+    console.log(responce.data.data);
 
 
     if (responce.status == 200) {
 
         dispatch({
-            type: INTERBRANCH_ADMIN_DASHBOARD_SELECTED,
-            payload: responce.data.data
+            type: INTERBRANCH_ADMIN_DASHBOARD_SELECTED_v2,
+            payload: responce.data.data[0]
         });
 
         //    console.log(responce.data.data);
@@ -258,7 +258,7 @@ export const FETCH_CONSOLIDATED_REPORTS = (_para) => async dispatch => {
         }
     }
 
-    if (userType==CLINIC_ADMIN_USER) {
+    if (userType == CLINIC_ADMIN_USER) {
         params.data.clinic = clinicId
     }
 
@@ -378,8 +378,8 @@ export const downloadSummaryReport = (_para) => async (dispatch) => {
             "operation": "find",
             "browserTimeZone": "GMT+05:30",
             "Type": "excel",
-            "startDate": fromDate, 
-            "endDate": toDate 
+            "startDate": fromDate,
+            "endDate": toDate
 
         }
     }

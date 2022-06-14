@@ -7,8 +7,8 @@ function MisReportModalContent() {
 
     let appointmentDetails=useSelector(state=>state.interbranchAdmin.detaiedSelected)
 
-    let openFile = () => {
-        window.open("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", "_blank")
+    let openFile = (file) => {
+        window.open(file, "_blank")
     }
 
     console.log(appointmentDetails);
@@ -184,7 +184,7 @@ function MisReportModalContent() {
 
                         <tr>
                             <td className='cell1 odd'>Invoice file</td>
-                            <td className='cell3 odd'><span className='file_open_link' onClick={() => { openFile() }}> {appointmentDetails?.Invoice_File}</span></td>
+                            <td className='cell3 odd'><span className='file_open_link' onClick={() => { openFile(appointmentDetails?.Invoice_File_Link) }}> {appointmentDetails?.Invoice_File?appointmentDetails.Invoice_File:"-"}</span></td>
                         </tr>
 
                         <tr>

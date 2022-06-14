@@ -35,16 +35,16 @@ function TodaysReport() {
 
 
 
-    let handleTableClick = (data) => {
+    let handleTableClick = (eachRow) => {
 
-        console.log(data);
+     
 
         dispatch({
             type: INTERBRANCH_ADMIN_DASHBOARD_SELECTED,
-            payload: data
+            payload: eachRow
         });
 
-        // dispatch(FETCH_DASHBOARD_MORE(_id))
+        dispatch(FETCH_DASHBOARD_MORE(eachRow.appointmentId))
 
         dispatch({
             type: INTERBRANCH_MODAL,

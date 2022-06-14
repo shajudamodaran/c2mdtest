@@ -7,9 +7,11 @@ function TodaysReportModalContent() {
 
 
     let appointmentDetails = useSelector(state => state.interbranchAdmin.dashboardSelected)
+    let appointmentDetailsV2 = useSelector(state => state.interbranchAdmin.dashboardSelectedV2)
+    
     let [userType, setUserType] = useState(JSON.parse(localStorage.getItem(USER_DATA))?.userType)
 
-    console.log(appointmentDetails);
+    // console.log(appointmentDetails);
 
 
     return (
@@ -43,13 +45,13 @@ function TodaysReportModalContent() {
                         <tr>
                             <td className='cell1 odd'>Appointment Time</td>
 
-                            <td className='cell3 odd'>{appointmentDetails?.appointmentdate?.split(" ")[1]} {appointmentDetails?.appointmentdate?.split(" ")[2]}</td>
+                            <td className='cell3 odd'>{appointmentDetails?.appointmenttime}</td>
                         </tr>
 
                         <tr>
                             <td className='cell1 even'>Booked from</td>
 
-                            <td className='cell3 even'>{appointmentDetails?.booked_from}</td>
+                            <td className='cell3 even'>{appointmentDetailsV2?.booked_from}</td>
                         </tr>
 
 
@@ -110,8 +112,8 @@ function TodaysReportModalContent() {
 
                             <td className='cell3 odd'>
 
-                                Email sent date: {appointmentDetails?.emailPatientDate}<br />
-                                Email sent time: {appointmentDetails?.emailPatientTime} <br />
+                                Email sent date: {appointmentDetailsV2?.emailPatientDate}<br />
+                                Email sent time: {appointmentDetailsV2?.emailPatientTime} <br />
                             </td>
                         </tr>
 
@@ -119,8 +121,8 @@ function TodaysReportModalContent() {
                             <td className='cell1 even'>Doctor</td>
 
                             <td className='cell3 even'>
-                                Email sent date: {appointmentDetails?.emailDoctorDate} <br />
-                                Email sent time: {appointmentDetails?.emailDoctorTime} <br />
+                                Email sent date: {appointmentDetailsV2?.emailDoctorDate} <br />
+                                Email sent time: {appointmentDetailsV2?.emailDoctorTime} <br />
                             </td>
                         </tr>
 
@@ -143,32 +145,32 @@ function TodaysReportModalContent() {
 
                         <tr>
                             <td className='cell1 even'>New/Existing</td>
-                            <td className='cell3 even'>{appointmentDetails?.NewOrExisting}</td>
+                            <td className='cell3 even'>{appointmentDetailsV2?.NewOrExisting}</td>
                         </tr>
 
                         <tr>
                             <td className='cell1 odd'>MRN Number</td>
-                            <td className='cell3 odd'>{appointmentDetails?.MRNNumber}</td>
+                            <td className='cell3 odd'>{appointmentDetailsV2?.MRNNumber}</td>
                         </tr>
 
                         <tr>
                             <td className='cell1 even'>Location</td>
-                            <td className='cell3 even'>{appointmentDetails?.PatientLocation}</td>
+                            <td className='cell3 even'>{appointmentDetailsV2?.PatientLocation}</td>
                         </tr>
 
                         <tr>
                             <td className='cell1 odd'>Email ID</td>
-                            <td className='cell3 odd'>{appointmentDetails?.PatientEmail}</td>
+                            <td className='cell3 odd'>{appointmentDetailsV2?.PatientEmail}</td>
                         </tr>
 
                         <tr>
                             <td className='cell1 even'>Phone Number</td>
-                            <td className='cell3 even'>{appointmentDetails?.PatientMobile}</td>
+                            <td className='cell3 even'>{appointmentDetailsV2?.PatientMobile}</td>
                         </tr>
 
                         <tr>
                             <td className='cell1 odd'>Timezone</td>
-                            <td className='cell3 odd'>{appointmentDetails?.PatientTimeZone}</td>
+                            <td className='cell3 odd'>{appointmentDetailsV2?.PatientTimeZone}</td>
                         </tr>
 
                         <tr>
@@ -199,7 +201,7 @@ function TodaysReportModalContent() {
 
                         <tr>
                             <td className='cell1 odd'>Specialty</td>
-                            <td className='cell3 odd'>{appointmentDetails?.speciality}</td>
+                            <td className='cell3 odd'>{appointmentDetailsV2?.speciality}</td>
                         </tr>
 
                         {
@@ -213,12 +215,12 @@ function TodaysReportModalContent() {
 
                         <tr>
                             <td className='cell1 odd'>Email ID</td>
-                            <td className='cell3 odd'>{appointmentDetails?.DoctorEmail}</td>
+                            <td className='cell3 odd'>{appointmentDetailsV2?.DoctorEmail}</td>
                         </tr>
 
                         <tr>
                             <td className='cell1 even'>Phone Number</td>
-                            <td className='cell3 even'>{appointmentDetails?.DoctorMobile}</td>
+                            <td className='cell3 even'>{appointmentDetailsV2?.DoctorMobile}</td>
                         </tr>
 
 
