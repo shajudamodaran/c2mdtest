@@ -207,8 +207,7 @@ function TodaysReport() {
                                 <thead>
                                     <tr>
                                         <th>Appointment ID</th>
-                                        <th>Appoinment Date</th>
-                                        <th>Appointment Time</th>
+                                        <th>Appoinment Date & Time</th>
                                         <th>Patient Name</th>
                                         <th>Doctor Name</th>
                                         <th>Fees Paid</th>
@@ -229,8 +228,14 @@ function TodaysReport() {
 
                                                             <tr>
                                                                 <td>{eachRow.appointmentId}</td>
-                                                                <td>{separaetdateAndTime(eachRow.appointmentdate)?.date}</td>
-                                                                <td>{separaetdateAndTime(eachRow.appointmentdate)?.time} (GMT+05:30)</td>
+                                                                 <td>
+                                                                     <div className='dashboard-appointment-date-time'>
+                                                                        <span>{eachRow.appointmentdate} {eachRow.appointmenttime} (P)</span>
+                                                                        <span>{eachRow.doctorappointmentdate} {eachRow.timezone} (D)</span>
+                                                                     </div>
+                                                                 </td>
+                                                                {/* <td>{separaetdateAndTime(eachRow.appointmentdate)?.date}</td> */}
+                                                                {/* <td>{separaetdateAndTime(eachRow.appointmentdate)?.time} (GMT+05:30)</td> */}
                                                                 <td>{eachRow.patientname}</td>
                                                                 <td>{eachRow.doctorname}</td>
                                                                 <td>{eachRow.fees}</td>

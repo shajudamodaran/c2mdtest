@@ -20,6 +20,10 @@ function ConsolidatedReport() {
     let [selectedDate, setSelectedDate] = useState({ from: null, to: null })
     let [pagination, setPagination] = useState(null)
     let [userType, setUserType] = useState(JSON.parse(localStorage.getItem(USER_DATA))?.userType)
+    let [filterData, setFilterData] = useState({
+        date: null,
+        hospital: null
+    })
 
     const monthFormat = 'MMM-YYYY';
 
@@ -27,6 +31,7 @@ function ConsolidatedReport() {
 
     let appointmentDetails = useSelector(state => state.interbranchAdmin.consolidatedreport)
     let consolidatedreportTotalPages = useSelector(state => state.interbranchAdmin.consolidatedreportTotalPages)
+    let hospitalsList = useSelector(state => state.interbranchAdmin.hospitalsList)
 
     let dispatch = useDispatch()
 
@@ -67,50 +72,27 @@ function ConsolidatedReport() {
 
         // console.log(e-1);
         setPagination(e - 1)
-        dispatch(FETCH_CONSOLIDATED_REPORTS({ offset: e - 1, fromDate: selectedDate.from, toDate: selectedDate.to }))
+        dispatch(FETCH_CONSOLIDATED_REPORTS({ offset: e - 1, fromDate: selectedDate.from, toDate: selectedDate.to, filterData }))
     }
 
-    let handledateChange = (e) => {
+    let handleMonthFilter = (e, f) => {
 
-
-        if (e) {
-            let [startDate, endDate] = e
-
-            let prevDate = moment().subtract(3, 'months')
-
-            console.log(convertDateToString(prevDate));
-
-            setSelectedDate({ from: startDate, to: endDate })
-            dispatch(FETCH_CONSOLIDATED_REPORTS({ fromDate: startDate, toDate: endDate, offset: pagination, context: "Date Change" }))
-            // downloadReport(startDate, endDate)
-
-
-            if (startDate < prevDate) {
-
-                // Modal.confirm({
-                //     title: 'Confirm',
-                //     // icon: <ExclamationCircleOutlined />,
-                //     content: 'You can only view report within a 3 month span. Do you want to download the report before 3 months?',
-                //     okText: 'Download Report',
-                //     cancelText: 'cancel',
-                //     onOk() {
-                //         downloadReport()
-                //     },
-                // });
-            }
-            else {
-
-                //setSelectedDate({ from: startDate, to: endDate })
-                //dispatch(FETCH_ADMIN_DETAILED_REPORT({ fromDate: startDate, toDate: endDate, offset: pagination, context: "Date Change" }))
-                //downloadReport(startDate, endDate)
-            }
-
-
-
-        }
-
-
+        //"f" is the date in string.
+        setFilterData({ ...filterData, date: f })
     }
+
+
+    let handleHospitalFilter = (value) => {
+
+        setFilterData({ ...filterData, hospital: value })
+    }
+
+
+    useEffect(() => {
+
+        dispatch(FETCH_CONSOLIDATED_REPORTS({ filterData }))
+
+    }, [filterData])
 
 
 
@@ -144,23 +126,33 @@ function ConsolidatedReport() {
                     <div className="icon"><i class="far fa-filter"></i></div>
 
                     <Select
+                        allowClear
+                        onChange={handleHospitalFilter}
                         showSearch
                         style={{
                             width: 200,
                         }}
                         placeholder="Filter by hospital name"
                         optionFilterProp="children"
-                        filterOption={(input, option) => option.children.includes(input)}
+                        filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
                         filterSort={(optionA, optionB) =>
                             optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
                         }
                     >
-                        <Option value="1">Not Identified</Option>
-                        <Option value="2">Closed</Option>
-                        <Option value="3">Communicated</Option>
-                        <Option value="4">Identified</Option>
-                        <Option value="5">Resolved</Option>
-                        <Option value="6">Cancelled</Option>
+
+                        {
+                            hospitalsList && hospitalsList.length > 0 ?
+
+                                hospitalsList.map((each_hospitals) => {
+
+                                    return (
+                                        <Option value={each_hospitals.clinicname}>{each_hospitals.clinicname}</Option>
+                                    )
+
+                                })
+                                : null
+                        }
+
                     </Select>
                 </div>
 
@@ -168,20 +160,9 @@ function ConsolidatedReport() {
 
                     <div className="icon"><i class="far fa-filter"></i></div>
 
-                    <DatePicker className="date-picker" placeholder='Filter by month and year' format={monthFormat} picker="month" />
+                    <DatePicker onChange={handleMonthFilter} className="date-picker" placeholder='Filter by month and year' format={monthFormat} picker="month" />
 
-                    {/* <RangePicker
-                        // open={isOpen}
-                        bordered={false}
-                        className="date-picker"
-                        suffixIcon={null}
-                        // disabledDate={(current) => {
-                        //     return moment().add(-3, 'month') >= current
-                        //     // ||
-                        //     //  moment().add(1, 'month')  <= current;
-                        // }}
-                        onChange={handledateChange}
-                    /> */}
+
                 </div>
 
             </div>
@@ -201,7 +182,8 @@ function ConsolidatedReport() {
                         <th>Hospital Gross Fees</th>
                         <th>Tax</th>
                         <th>Hospital Nett Fees</th>
-
+                        <th>Testing Appointments</th>
+                        <th>Refunds</th>
                         <th>Comments</th>
                         <th>Attachments</th>
 
@@ -234,6 +216,8 @@ function ConsolidatedReport() {
                                                 <td>{element.Hospital_Gross_Fees}</td>
                                                 <td>{element.TDS}</td>
                                                 <td>{element.Hospital_Net_Fees}</td>
+                                                <td>{element.TestingAppointments}</td>
+                                                <td>{element.Refunds}</td>
                                                 <td><textArea onBlur={(e) => { handleCommentChange(element.recordId, e) }} rows={1} >{element.Adjustments}</textArea></td>
                                                 <td>
                                                     <ul className='consolidated-table-report'>
@@ -299,12 +283,16 @@ function ConsolidatedReport() {
                 </table>
 
             </div>
-            <div className="pagination-container-mis-report">
+            {
+                consolidatedreportTotalPages && consolidatedreportTotalPages > 0 ?
+                    <div className="pagination-container-mis-report">
 
-                &nbsp;
-                <Pagination onChange={handlePaginationChange} defaultCurrent={1} total={consolidatedreportTotalPages ? consolidatedreportTotalPages * 8 : 0} />
+                        &nbsp;
+                        <Pagination onChange={handlePaginationChange} defaultCurrent={1} total={consolidatedreportTotalPages ? consolidatedreportTotalPages * 8 : 0} />
 
-            </div>
+                    </div> : null
+            }
+
 
         </div>
     )

@@ -3,7 +3,7 @@ import loginedApi, { c2mdApi } from "../apis"
 import { convertDateToString, convertDateToStringOneYear, convertDateToStringThreeMonthBack } from "../Helpers/dateFunctions";
 import { getFromLocalStorage } from "../Helpers/localStorageHelper";
 import authHeader from "./AuthHeader";
-import { INTERBRANCH_ADMIN_CONSOLIDATED, INTERBRANCH_ADMIN_DASHBOARD, INTERBRANCH_ADMIN_DASHBOARD_SELECTED, INTERBRANCH_ADMIN_DASHBOARD_SELECTED_v2, INTERBRANCH_ADMIN_DETAILED, INTERBRANCH_ADMIN_DETAILED_SELECTED, MANAGE_SESSION } from "./type";
+import { INTERBRANCH_ADMIN_CONSOLIDATED, INTERBRANCH_ADMIN_DASHBOARD, INTERBRANCH_ADMIN_DASHBOARD_SELECTED, INTERBRANCH_ADMIN_DASHBOARD_SELECTED_v2, INTERBRANCH_ADMIN_DETAILED, INTERBRANCH_ADMIN_DETAILED_SELECTED, MANAGE_HOSPITALS_LIST, MANAGE_SESSION } from "./type";
 
 import { ADMIN_USER, CLINIC_ADMIN_USER, USER_DATA } from '../constants/const'
 
@@ -36,9 +36,11 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
             }
         }
 
-        // console.log("Calling getappointments................................................................... ->");
+        
 
         let response = await loginedApi.post("getappointments", params, { headers: authHeader() })
+
+        console.log("getappointments..........",response);
 
 
         if (response.status == "200") {
@@ -84,7 +86,7 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
 
         let response = await loginedApi.post("getclinicappointments", params, { headers: authHeader() })
 
-        //console.log("getclinicappointments responce ->", responce.data.data);
+        console.log("getclinicappointments responce ->", response.data.data);
 
         if (response.status == "200") {
 
@@ -280,16 +282,17 @@ export const FETCH_CONSOLIDATED_REPORTS = (_para) => async dispatch => {
     let fromDate = _para?.fromDate ? convertDateToString(_para.fromDate) : convertDateToStringOneYear(todayDate)
     let toDate = _para?.endDate ? convertDateToString(_para.endDate) : todayDate
 
+    console.log(_para.filterData);
+
     let params = {
         "token": "token",
         "requestType": "1040",
         "version": "2.0",
         "data": {
-            "operation": "search",
+            // "operation": _para.filterData.date || _para.filterData.hospital? "filter" : "search",
+            "operation":"filter",
             "browserTimeZone": "GMT+05:30",
             "Type": "excel",
-            "startDate": fromDate,
-            "endDate": toDate,
             "offset": _para?.offset ? _para.offset.toString() : "0"
         }
     }
@@ -298,9 +301,28 @@ export const FETCH_CONSOLIDATED_REPORTS = (_para) => async dispatch => {
         params.data.clinic = clinicId
     }
 
+    if (_para?.filterData) {
+
+        if (_para.filterData.date && _para.filterData.hospital) {
+
+            params.data["filterType"] = "all"
+            params.data["filterMonthYear"] = _para.filterData.date
+            params.data["filterHospital"] = _para.filterData.hospital
+        }
+        else if (_para.filterData.date) {
+            params.data["filterType"] = "monthYear"
+            params.data["filterMonthYear"] = _para.filterData.date
+        }
+
+        else if (_para.filterData.hospital) {
+            params.data["filterType"] = "hospital"
+            params.data["filterHospital"] = _para.filterData.hospital
+        }
+    }
+
     let response = await c2mdApi.post("getconsolidatedreport", params, { headers: authHeader() })
 
-    //console.log("getconsolidatedreport responce ->", responce.data.data);
+    console.log("getconsolidatedreport responce ->", response.data.data);
 
     if (response.status == "200") {
 
@@ -342,7 +364,7 @@ export const updateMisReportComment = (_id, value) => async dispatch => {
         }
     }
 
-    let response = await c2mdApi.post("updatereportdata", params,{ headers: authHeader() })
+    let response = await c2mdApi.post("updatereportdata", params, { headers: authHeader() })
 
     if (response.status == "200") {
 
@@ -382,7 +404,7 @@ export const updateMisReportAttachments = (_id, value) => async dispatch => {
         }
     }
 
-    let response = await c2mdApi.post("updateconsolreport", params,{ headers: authHeader() })
+    let response = await c2mdApi.post("updateconsolreport", params, { headers: authHeader() })
 
     if (response.status == "200") {
 
@@ -420,7 +442,7 @@ export const updateConsolodatedReportComment = (_id, value) => async dispatch =>
         }
     }
 
-    let response = await c2mdApi.post("updateconsolreport", params,{ headers: authHeader() })
+    let response = await c2mdApi.post("updateconsolreport", params, { headers: authHeader() })
 
     if (response.status == "200") {
 
@@ -501,6 +523,31 @@ export const downloadSummaryReport = (_para) => async (dispatch) => {
         }
     }
 
+
+
+
+}
+
+
+export const getHospitalsList = () => async (dispatch) => {
+
+
+
+    let params = {
+        "token": "token",
+        "requestType": "1111",
+        "data": { "browserTimeZone": "GMT+05:30" }
+    }
+
+
+    let response = await loginedApi.post("gethospitals", params, { headers: authHeader() })
+
+    // console.log("gethospitals response===>", response);
+
+    dispatch({
+        type: MANAGE_HOSPITALS_LIST,
+        payload: response.data.data
+    });
 
 
 

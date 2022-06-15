@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { FETCH_ADMIN_DASHBOARD_REPORT, FETCH_ADMIN_DETAILED_REPORT, FETCH_CONSOLIDATED_REPORTS } from '../../actions/InterbranchAdminActions'
+import { FETCH_ADMIN_DASHBOARD_REPORT, FETCH_ADMIN_DETAILED_REPORT, FETCH_CONSOLIDATED_REPORTS, getHospitalsList } from '../../actions/InterbranchAdminActions'
 import { logoutAction } from '../../actions/LoginAction'
 import { FETCH_PR_ADMIN_DASHBOARD_REPORT } from '../../actions/PrescriptionFormActions'
 import CustomeModal from '../../components/CustomeModal/CustomeModal'
@@ -37,17 +37,19 @@ function InterbranchAdminHome() {
         dispatch(FETCH_ADMIN_DASHBOARD_REPORT())
         dispatch(FETCH_ADMIN_DETAILED_REPORT({ context: "Admin Home useEffect" }))
         dispatch(FETCH_CONSOLIDATED_REPORTS())
+        dispatch(getHospitalsList())
 
     }, [])
 
     let logoutFunction = () => {
 
-        console.log("Logging out...............");
-        dispatch(
-            logoutAction(userData)
-        );
 
-        history.push("/signin")
+        dispatch(logoutAction(userData, history)).then((res) => {
+            if (res) {
+                history.push("/signin")
+            }
+        });
+        // history.push("/signin")
 
     }
 
@@ -68,7 +70,7 @@ function InterbranchAdminHome() {
     const isSessionActive = useSelector(
         (state) => state.login.isSessionActive
     );
-   
+
 
     useEffect(() => {
 
@@ -76,9 +78,9 @@ function InterbranchAdminHome() {
         if (!isSessionActive || !userData.token) {
             history.push("/sessionExpired")
         }
-        
 
-    }, [isSessionActive,userData])
+
+    }, [isSessionActive, userData])
 
 
 
@@ -92,9 +94,9 @@ function InterbranchAdminHome() {
                         width: "100%",
                         height: "79.14px",
                         color: "rgba(0, 0, 0, 0.85)",
-                        display:"flex",
-                        flexDirection:"column",
-                        alignItems:"center"
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center"
                     }}>
                         <div className="dr-name-home text-center w-100" style={{ fontWeight: "500" }} >{userData ? userData.profileName : "---"}</div>
                         <div className="dr-id-home text-center w-100" style={{ fontWeight: "500" }}>ID: {userData ? userData.profileId : "---"}</div>

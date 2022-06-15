@@ -139,6 +139,17 @@
     border-collapse:collapse;
     font-size: 13px;
 
+    .dashboard-appointment-date-time{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      span{
+        margin: 5px 0px ;
+      }
+
+    }
+
     tr:nth-child(even) {
         background-color: #F5F7FB;
 
