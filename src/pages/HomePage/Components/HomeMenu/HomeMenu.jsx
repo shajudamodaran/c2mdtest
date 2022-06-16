@@ -67,7 +67,7 @@ function HomeMenu() {
 
     useEffect(() => {
 
-        // increaseCounter()
+        increaseCounter()
 
     }, [])
 
@@ -110,15 +110,15 @@ function HomeMenu() {
 
     useEffect(() => {
 
-        // if (!isPausedHover) {
+        if (!isPausedHover) {
 
-        //     increaseCounter()
+            increaseCounter()
 
-        //     if (counter >= maxCount) {
-        //         changeActivemenu()
-        //     }
+            if (counter >= maxCount) {
+                changeActivemenu()
+            }
 
-        // }
+        }
 
 
 

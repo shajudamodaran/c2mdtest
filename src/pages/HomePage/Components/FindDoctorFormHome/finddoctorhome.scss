@@ -1,3 +1,6 @@
+@import '../../../../styles/variables';
+
+
 .find-doctor-home {
 
     display: flex;
@@ -44,6 +47,11 @@
         opacity: 1;
         z-index: 2;
         position: relative;
+
+        @media screen and (max-width:$mobileScreen) {
+
+            min-width: 250px;
+        }
 
         .dr-online-icon {
             position: absolute;
@@ -204,6 +212,13 @@
                     outline: 0px;
                     border: 0px;
                     margin-top: 1rem;
+
+                    @media screen and (max-width:$mobileScreen) {
+
+                        width: 100%;
+                        height: 44px;
+                        font-size: 15.5px;
+                    }
                 }
 
 

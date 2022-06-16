@@ -19,8 +19,36 @@
           justify-content: center;
 }
 
+@media screen and (max-width: 768px) {
+  .c2md-corporate-video-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+}
+
 .c2md-corporate-video-container_left {
   margin-right: 117px;
+}
+
+@media screen and (max-width: 768px) {
+  .c2md-corporate-video-container_left {
+    margin: 0px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 
 .c2md-corporate-video-container_left_head {
@@ -40,6 +68,19 @@
   margin-bottom: 35px;
 }
 
+@media screen and (max-width: 768px) {
+  .c2md-corporate-video-container_left_head {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-bottom: 25px;
+    margin-top: 35px;
+  }
+  .c2md-corporate-video-container_left_head h1 {
+    font-size: 39px !important;
+  }
+}
+
 .c2md-corporate-video-container_left_caption {
   font-size: 17px;
   font-weight: normal;
@@ -47,6 +88,13 @@
   color: white;
   line-height: 1.8;
   font-weight: 400;
+}
+
+@media screen and (max-width: 768px) {
+  .c2md-corporate-video-container_left_caption {
+    font-size: 13px;
+    text-align: center;
+  }
 }
 
 .c2md-corporate-video-container_left_footer {
@@ -64,6 +112,15 @@
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
+}
+
+@media screen and (max-width: 768px) {
+  .c2md-corporate-video-container_left_footer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
 }
 
 .c2md-corporate-video-container_left_footer .c2md-corporate-video-about-us-btn {
@@ -97,6 +154,13 @@
   margin-left: 2rem;
 }
 
+@media screen and (max-width: 768px) {
+  .c2md-corporate-video-container_left_footer .c2md-corporate-video-play-container {
+    margin-left: 0rem;
+    margin-bottom: 2rem;
+  }
+}
+
 .c2md-corporate-video-container_left_footer .c2md-corporate-video-play-container span {
   font-size: 20px;
   color: white;
@@ -120,5 +184,12 @@
 .c2md-corporate-video-container_right .image img {
   width: 40vw;
   height: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .c2md-corporate-video-container_right .image img {
+    width: 69vw;
+    height: auto;
+  }
 }
 /*# sourceMappingURL=corporatevideo.css.map */

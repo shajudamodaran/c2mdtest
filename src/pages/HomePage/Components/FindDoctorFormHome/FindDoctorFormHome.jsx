@@ -17,7 +17,7 @@ function FindDoctorFormHome() {
 
 
 
-            <div className="grid-icon">
+            <div className="grid-icon for-web">
                 <img src={grid} alt="" />
             </div>
 
@@ -25,19 +25,19 @@ function FindDoctorFormHome() {
 
             <div className="find-doctor-home_form">
 
-                <div className="dr-online-icon">
+                <div className="dr-online-icon for-web">
                     <img src={doctor} alt="" />
                 </div>
 
-                <div className="health-icon">
+                <div className="health-icon for-web">
                     <img src={health} alt="" />
                 </div>
 
-                <div className="search-icon">
+                <div className="search-icon for-web">
                     <img src={search} alt="" />
                 </div>
 
-                <div className="patient-icon">
+                <div className="patient-icon for-web">
                     <img src={patient} alt="" />
                 </div>
 
