@@ -37,7 +37,7 @@ function TodaysReport() {
 
     let handleTableClick = (eachRow) => {
 
-     
+
 
         dispatch({
             type: INTERBRANCH_ADMIN_DASHBOARD_SELECTED,
@@ -87,6 +87,9 @@ function TodaysReport() {
         // }
 
     }
+
+  
+
 
     return (
         <div className='appontment-history-container'>
@@ -160,16 +163,32 @@ function TodaysReport() {
 
                                                 dashboardData.map((eachRow, key) => {
 
-                                                    if ( eachRow.appointmentId) {
+                                                    if (eachRow.appointmentId) {
                                                         return (
 
                                                             <tr>
                                                                 <td>{eachRow.appointmentId}</td>
                                                                 <td>{eachRow.doctorname}</td>
-                                                                <td>{eachRow.patientname}</td>
-                                                                <td>{eachRow.doctorappointmentdate} ({eachRow.timezone})</td>
+                                                                <td>
+                                                                    <div className='dashboard-appointment-date-time-2'>
+                                                                        <span>{eachRow.patientname}</span>
+                                                                        <span>{eachRow.timezone}</span>
+                                                                    </div>
+
+                                                                </td>
+                                                                <td>
+                                                                    <div className='dashboard-appointment-date-time'>
+                                                                        <span>{eachRow.appointmentdate} (P)</span>
+                                                                        <span>{eachRow.doctorappointmentdate} (D)</span>
+                                                                    </div>
+                                                                </td>
                                                                 <td>{eachRow.duration} Minutes</td>
-                                                                <td>{eachRow.fees}</td>
+                                                                <td>
+                                                                    <div className='dashboard-appointment-date-time'>
+                                                                        <span>{eachRow.fees}</span>
+                                                                        <span>{eachRow.paymentgatway}</span>
+                                                                    </div>
+                                                                </td>
                                                                 <td>{eachRow.paymentId}</td>
                                                                 <td>{eachRow.Hospitalid}</td>
                                                                 <td>{eachRow.appointmentStatus}</td>
@@ -228,17 +247,28 @@ function TodaysReport() {
 
                                                             <tr>
                                                                 <td>{eachRow.appointmentId}</td>
-                                                                 <td>
-                                                                     <div className='dashboard-appointment-date-time'>
-                                                                        <span>{eachRow.appointmentdate} {eachRow.appointmenttime} (P)</span>
-                                                                        <span>{eachRow.doctorappointmentdate} {eachRow.timezone} (D)</span>
-                                                                     </div>
-                                                                 </td>
+                                                                <td>
+                                                                    <div className='dashboard-appointment-date-time'>
+                                                                        <span>{eachRow.appointmentdate} (P)</span>
+                                                                        <span>{eachRow.doctorappointmentdate} (D)</span>
+                                                                    </div>
+                                                                </td>
                                                                 {/* <td>{separaetdateAndTime(eachRow.appointmentdate)?.date}</td> */}
                                                                 {/* <td>{separaetdateAndTime(eachRow.appointmentdate)?.time} (GMT+05:30)</td> */}
-                                                                <td>{eachRow.patientname}</td>
+                                                                <td>
+                                                                    <div className='dashboard-appointment-date-time-2'>
+                                                                        <span>{eachRow.patientname}</span>
+                                                                        <span>{eachRow.timezone}</span>
+                                                                    </div>
+                                                                </td>
                                                                 <td>{eachRow.doctorname}</td>
-                                                                <td>{eachRow.fees}</td>
+                                                                <td>
+
+                                                                    <div className='dashboard-appointment-date-time'>
+                                                                        <span>{eachRow.fees}</span>
+                                                                        <span>{eachRow.paymentgatway}</span>
+                                                                    </div>
+                                                                </td>
                                                                 <td>{eachRow.appointmentStatus}</td>
                                                                 <td>{eachRow.followupdetails}</td>
                                                                 <td ><button onClick={() => { handleTableClick(eachRow) }} className='more-btn' >More</button></td>
@@ -256,10 +286,10 @@ function TodaysReport() {
                                                 })
 
                                                 : <tr>
-                                                <td colSpan={9}>
-                                                    <EmptyTableData />
-                                                </td>
-                                            </tr>
+                                                    <td colSpan={9}>
+                                                        <EmptyTableData />
+                                                    </td>
+                                                </tr>
                                             : null
                                     }
 

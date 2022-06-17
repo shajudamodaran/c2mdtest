@@ -10,6 +10,7 @@ import TodaysReportModalContent from '../../components/TodaysReportModalContent/
 import { interbranchAdminSideMenu } from './constants'
 import { useHistory } from "react-router-dom";
 import './interbranchadminhome.css'
+import { CLEAR_INTERBRANCH_ADMIN } from '../../actions/type'
 
 function InterbranchAdminHome() {
 
@@ -46,6 +47,7 @@ function InterbranchAdminHome() {
 
         dispatch(logoutAction(userData, history)).then((res) => {
             if (res) {
+                dispatch({ type: CLEAR_INTERBRANCH_ADMIN });
                 history.push("/signin")
             }
         });
@@ -124,7 +126,7 @@ function InterbranchAdminHome() {
                                             {
                                                 object.options.map((element, optionKey) => {
                                                     return (
-                                                        <li key={optionKey} className={activeLeft.menu === menuKey && activeLeft.option === optionKey ? "active" : null} onClick={() => {
+                                                        <li key={optionKey} className={activeLeft.menu === menuKey && activeLeft.option === optionKey ? "interbranch-active" : null} onClick={() => {
 
 
                                                             onChangeLeftOptions({ menu: menuKey, option: optionKey })

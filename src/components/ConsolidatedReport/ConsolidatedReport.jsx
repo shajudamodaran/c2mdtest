@@ -1,19 +1,16 @@
 import { DatePicker, Pagination } from 'antd'
-import TextArea from 'antd/lib/input/TextArea'
 import moment from 'moment'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { FETCH_CONSOLIDATED_REPORTS, updateConsolodatedReportComment, updateMisReportAttachments } from '../../actions/InterbranchAdminActions'
-import { AddIconV2 } from '../../assets/Logos/Icons'
+import { AddIconV2, ClearFilterIcon } from '../../assets/Logos/Icons'
 import { CLINIC_ADMIN_USER, USER_DATA } from '../../constants/const'
-import { convertDateToString } from '../../Helpers/dateFunctions'
 import EmptyTableData from '../Common/EmptyTableData/EmptyTableData'
 import './consolidatedreport.css'
-
 import { Select } from 'antd';
+
 const { Option } = Select;
 
-const { RangePicker } = DatePicker;
 
 function ConsolidatedReport() {
 
@@ -95,6 +92,18 @@ function ConsolidatedReport() {
     }, [filterData])
 
 
+    let clearDatePicker = () => {
+        if (filterData.date) {
+            setFilterData({ ...filterData, date: null })
+        }
+    }
+
+    let clearHcoPicker = () => {
+        if (filterData.hospital) {
+            setFilterData({ ...filterData, hospital: null })
+        }
+    }
+
 
 
 
@@ -121,46 +130,77 @@ function ConsolidatedReport() {
                 </Tooltip> */}
                 <div>&nbsp;</div>
 
+                {
+                    userType !== "ClinicAdmin" ?
+                        <div className="filter-button" >
+
+                            <div className="icon" onClick={clearHcoPicker}>
+
+                                {
+                                    filterData.hospital ?
+
+                                        <ClearFilterIcon />
+
+                                        : <i class="far fa-filter"></i>
+                                }
+
+
+
+                            </div>
+
+                            <Select
+                                allowClear
+                                value={filterData.hospital?filterData.hospital:[]}
+                                onChange={handleHospitalFilter}
+                                showSearch
+                                style={{
+                                    width: 200,
+                                }}
+                                placeholder="Filter by hospital name"
+                                optionFilterProp="children"
+                                filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
+                                filterSort={(optionA, optionB) =>
+                                    optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
+                                }
+                            >
+
+                                {
+                                    hospitalsList && hospitalsList.length > 0 ?
+
+                                        hospitalsList.map((each_hospitals) => {
+
+                                            return (
+                                                <Option value={each_hospitals.clinicname}>{each_hospitals.clinicname}</Option>
+                                            )
+
+                                        })
+                                        : null
+                                }
+
+                            </Select>
+                        </div> : null
+                }
+
+
+
                 <div className="filter-button" >
 
-                    <div className="icon"><i class="far fa-filter"></i></div>
+                    <div className="icon" onClick={clearDatePicker}>
 
-                    <Select
-                        allowClear
-                        onChange={handleHospitalFilter}
-                        showSearch
-                        style={{
-                            width: 200,
-                        }}
-                        placeholder="Filter by hospital name"
-                        optionFilterProp="children"
-                        filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
-                        filterSort={(optionA, optionB) =>
-                            optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
-                        }
-                    >
+
 
                         {
-                            hospitalsList && hospitalsList.length > 0 ?
+                            filterData.date ?
 
-                                hospitalsList.map((each_hospitals) => {
+                                <ClearFilterIcon />
 
-                                    return (
-                                        <Option value={each_hospitals.clinicname}>{each_hospitals.clinicname}</Option>
-                                    )
-
-                                })
-                                : null
+                                : <i class="far fa-filter"></i>
                         }
 
-                    </Select>
-                </div>
 
-                <div className="filter-button" >
+                    </div>
 
-                    <div className="icon"><i class="far fa-filter"></i></div>
-
-                    <DatePicker onChange={handleMonthFilter} className="date-picker" placeholder='Filter by month and year' format={monthFormat} picker="month" />
+                    <DatePicker value={filterData.date && moment(filterData?.date, "MMM-YYYY")} onChange={handleMonthFilter} className="date-picker" placeholder='Filter by month and year' format={monthFormat} picker="month" />
 
 
                 </div>

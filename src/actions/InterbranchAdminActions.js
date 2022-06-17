@@ -282,7 +282,7 @@ export const FETCH_CONSOLIDATED_REPORTS = (_para) => async dispatch => {
     let fromDate = _para?.fromDate ? convertDateToString(_para.fromDate) : convertDateToStringOneYear(todayDate)
     let toDate = _para?.endDate ? convertDateToString(_para.endDate) : todayDate
 
-    console.log(_para.filterData);
+    console.log(_para?.filterData);
 
     let params = {
         "token": "token",

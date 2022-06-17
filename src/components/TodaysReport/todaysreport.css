@@ -217,6 +217,23 @@
   margin: 5px 0px;
 }
 
+.todays_report_table_container .appoinment-table .dashboard-appointment-date-time-2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.todays_report_table_container .appoinment-table .dashboard-appointment-date-time-2 span {
+  margin: 0px 0px;
+}
+
 .todays_report_table_container .appoinment-table tr:nth-child(even) {
   background-color: #F5F7FB;
 }

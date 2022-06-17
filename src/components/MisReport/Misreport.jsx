@@ -138,7 +138,7 @@ function Misreport() {
 
 
 
-
+console.log(misReports)
 
 
 
@@ -181,8 +181,7 @@ function Misreport() {
                 <table className='appoinment-table'>
                     <tr>
                         <th>Appoinment ID</th>
-                        <th>Appoinment Date</th>
-                        <th>Appointment Time</th>
+                        <th>Appoinment Date & Time</th>
                         <th>Patient Name</th>
                         <th>Doctor Name</th>
                         {
@@ -216,8 +215,7 @@ function Misreport() {
 
                                                 <tr>
                                                     <td>{element.appointmentId}</td>
-                                                    <td>{element.appointmentDate}</td>
-                                                    <td>{element.appointmentTime}</td>
+                                                    <td>{element.appointmentDate} {element.appointmentTime}</td>
                                                     <td>{element.patientName}</td>
                                                     <td>{element.doctorName}</td>
                                                     {
