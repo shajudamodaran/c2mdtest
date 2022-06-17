@@ -18,6 +18,13 @@
   padding-bottom: 6rem;
 }
 
+@media screen and (max-width: 768px) {
+  .c2md-customer-says-container {
+    padding: 1rem 0px;
+    padding-bottom: 2rem;
+  }
+}
+
 .c2md-customer-says-container .customer-says-title {
   width: 100%;
   display: -webkit-box;
@@ -39,6 +46,12 @@
   color: #0C1E4E;
   letter-spacing: 0px;
   font: normal normal 600 35px/35px IBM Plex Sans;
+}
+
+@media screen and (max-width: 768px) {
+  .c2md-customer-says-container .customer-says-title h2 {
+    font-size: 25px;
+  }
 }
 
 .c2md-customer-says-container .customer-says-title .customer-says-underline {
@@ -64,10 +77,45 @@
   margin-top: 4rem;
 }
 
+@media screen and (max-width: 768px) {
+  .c2md-customer-says-container .customer-says-content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    margin-top: 1rem;
+  }
+}
+
 .c2md-customer-says-container .customer-says-content_left {
   margin-right: 8rem;
   -webkit-animation: fade-in 1s ease;
           animation: fade-in 1s ease;
+}
+
+@media screen and (max-width: 768px) {
+  .c2md-customer-says-container .customer-says-content_left {
+    margin-right: 0rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .c2md-customer-says-container .customer-says-content_left .comment-container {
+    width: 95%;
+  }
 }
 
 .c2md-customer-says-container .customer-says-content_left .comment-container .comment {
@@ -77,6 +125,13 @@
   font-size: 30px;
   font-weight: 300;
   text-align: start;
+}
+
+@media screen and (max-width: 768px) {
+  .c2md-customer-says-container .customer-says-content_left .comment-container .comment {
+    font-size: 20px;
+    text-align: center;
+  }
 }
 
 .c2md-customer-says-container .customer-says-content_left .comment-container .logo-top {
@@ -113,6 +168,18 @@
   margin-top: -10px;
 }
 
+@media screen and (max-width: 768px) {
+  .c2md-customer-says-container .customer-says-content_left .comment-container .logo-bottom {
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .c2md-customer-says-container .customer-says-content_left .comment-footer {
+    width: 92%;
+  }
+}
+
 .c2md-customer-says-container .customer-says-content_left .comment-footer .name {
   font-size: 20px;
   font-weight: 600;
@@ -129,10 +196,35 @@
   margin-top: 0px;
 }
 
+@media screen and (max-width: 768px) {
+  .c2md-customer-says-container .customer-says-content_right {
+    width: 100%;
+  }
+}
+
 .c2md-customer-says-container .customer-says-content_right_image_container {
   width: 35vw;
   height: 400px;
   position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .c2md-customer-says-container .customer-says-content_right_image_container {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 
 .c2md-customer-says-container .customer-says-content_right_image_container .image-layer {
@@ -166,6 +258,12 @@
   max-width: 446px;
   max-height: 446px;
   margin-left: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .c2md-customer-says-container .customer-says-content_right_image_container .image-layer-middle img {
+    max-width: 316px;
+  }
 }
 
 .c2md-customer-says-container .customer-says-content_right_image_container .image-layer-top {

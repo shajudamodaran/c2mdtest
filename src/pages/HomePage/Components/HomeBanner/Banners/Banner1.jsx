@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useSwipeable } from 'react-swipeable'
 import Slider from "react-slick";
 
@@ -19,6 +19,10 @@ function Banner1() {
 
     let [index, setActiveIndex] = useState(0)
     let images = [image1, image2, image3]
+
+    let [scroll,setScroll]=useState(0)
+
+    const first = useRef()
 
 
     //Functions...................................
@@ -72,24 +76,21 @@ function Banner1() {
 
     }, [index])
 
-    const settings = {
-        dots: false,
-        infinite: true,
-        slidesToShow:2,
-        slidesToScroll: 1,
-        autoplay: true,
-        speed: 5000,
-        autoplaySpeed: 5000,
-        cssEase: "linear"
-    };
 
 
+    let testScroll = () =>{
+
+
+       
+
+       first.current.scrollTo({top: 0, left: 500, behavior: 'smooth' })
+    }
 
 
 
 
     return (
-        <div  className='c2md-home-banner-element'>
+        <div className='c2md-home-banner-element'>
 
             <div {...handlers} className="c2md-home-banner-element_body">
 
@@ -144,36 +145,15 @@ function Banner1() {
                 <div className="c2md-home-banner-element_footer_caption">Trusted by &nbsp;<b> 200+ </b> &nbsp;hospitals</div>
 
 
-                <div className="c2md-home-banner-element_footer_hospital-logos">
+                <div ref={first} className="c2md-home-banner-element_footer_hospital-logos">
 
-                <img src={h1} alt="" />
-                <img src={h2} alt="" />
-                <img src={h3} alt="" />
-                <img src={h4} alt="" />
-
-                    {/* {
-                        <div style={{width:"100%"}}>
-
-                            <Slider {...settings}>
-                                <div>
-                                    <img src={h1} alt="" />
-                                </div>
-                                <div>
-                                <img src={h2} alt="" />
-                                </div>
-                                <div>
-                                <img src={h3} alt="" />
-                                </div>
-                                <div>
-                                <img src={h4} alt="" />
-                                </div>
-                                
-                            </Slider>
-                        </div>
-                    } */}
-                   
+                    <img src={h1} alt="" />
+                    <img src={h2} alt="" />
+                    <img src={h3} alt="" />
+                    <img src={h4} alt="" />
 
                 </div>
+
 
             </div>
 

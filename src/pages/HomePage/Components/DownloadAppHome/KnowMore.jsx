@@ -1,6 +1,7 @@
 import React from 'react'
 import './downloadapphome.css'
 import Image from '../../../../assets/HomepageAssets/KnowMore/c2md-dr-l.png'
+import Image2 from '../../../../assets/HomepageAssets/KnowMore/Group 43124.png'
 import { GreenCheckSmall, OnlineIndicatorWithBorder } from '../../../../assets/Logos/Icons'
 import DownloadQrCode from './DownloadQrCode/DownloadQrCode'
 
@@ -10,7 +11,7 @@ function KnowMore() {
 
             <div className='c2md-download-app-home_left know-more-left'>
 
-                <div className="top-count">
+                {/* <div className="top-count">
                     <div className="top-count_left">
 
                         <OnlineIndicatorWithBorder />
@@ -21,11 +22,11 @@ function KnowMore() {
                         <div className="head">100+</div>
                         <div className="caption">Lorem Ipsumdoler</div>
                     </div>
-                </div>
+                </div> */}
 
-                <img className='know-more-image' src={Image} alt="" />
+                <img className='know-more-image' src={Image2} alt="" />
 
-                <div className="bottom-count">
+                {/* <div className="bottom-count">
 
                     <div className="bottom-count_left">
 
@@ -50,7 +51,7 @@ function KnowMore() {
 
 
 
-                </div>
+                </div> */}
 
 
             </div>

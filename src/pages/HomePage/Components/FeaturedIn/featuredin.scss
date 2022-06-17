@@ -1,4 +1,6 @@
-.featured-in-container{
+@import '../../../../styles/variables';
+
+.featured-in-container {
 
     margin-top: 6rem;
     margin-bottom: 6rem;
@@ -6,6 +8,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    @media screen and (max-width: $mobileScreen) {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
 
     .featured-in-title {
 
@@ -20,6 +27,11 @@
             color: #0C1E4E;
             letter-spacing: 0px;
             font: normal normal 600 35px/35px IBM Plex Sans;
+
+            @media screen and (max-width: $mobileScreen) {
+                font: normal normal 600 30px IBM Plex Sans;
+
+            }
         }
 
         .featured-in-underline {
@@ -30,7 +42,7 @@
         }
     }
 
-    .featured-in-image-container{
+    .featured-in-image-container {
 
         display: flex;
         flex-direction: row;
@@ -38,11 +50,26 @@
         justify-content: center;
         margin-top: 4rem;
 
-        img{
+        @media screen and (max-width: $mobileScreen) {
+            margin-top: 1rem;
+            max-width: 100vw;
+            overflow: auto;
+            padding-bottom: 10px;
+            justify-content: start;
+
+        }
+
+        img {
             margin-right: 1rem;
             width: 12.5vw;
             min-width: 179px;
             margin: 0px 3vw;
+
+            @media screen and (max-width: $mobileScreen) {
+                width: 3.5vw;
+                min-width: 130px;
+
+            }
         }
 
     }

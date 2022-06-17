@@ -11,49 +11,8 @@ $mobileScreen: 871px;
     margin-bottom: 2rem;
 
 
-    .slick-slider {
-        height: fit-content;
-
-    }
-
-    .slick-list {
-
-        height: fit-content;
 
 
-    }
-
-    .slick-track {
-        height: fit-content;
-    }
-
-    .slick-slide {
-
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: center !important;
-        height: fit-content;
-
-
-    }
-
-    .slick-slide {
-
-
-        // &:first-child {
-        //     div
-        //     {
-        //         width: 100% !important;
-        //         height: 90vh;
-        //         background-color: red;
-        //     }          
-        //  }
-
-
-
-
-    }
 
 }
 
@@ -305,77 +264,7 @@ $mobileScreen: 871px;
         width: 100%;
         margin-top: 3rem;
 
-        .slick-slider {
-            height: fit-content;
 
-        }
-
-        .slick-list {
-
-            height: fit-content;
-            display: flex !important;
-            flex-direction: row !important;
-            align-items: center !important;
-            justify-content: center flex-start;
-
-
-        }
-
-        .slick-track {
-            height: fit-content;
-
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-
-        }
-
-        .slick-slide {
-
-            display: flex !important;
-            flex-direction: row !important;
-            align-items: center !important;
-            justify-content: center !important;
-            height: fit-content;
-            width: 25% !important;
-            min-width: 200px !important;
-
-            @media screen and (max-width: $mobileScreen) {
-                width: fit-content !important;
-                min-width: 0px !important;
-            }
-
-
-            img {
-
-
-                width: 10vw;
-                min-width: 200px;
-              
-
-                @media screen and (max-width: $mobileScreen) {
-                    width: 9vw;
-                    min-width: 100px;
-                    margin: 0px 15px;
-                }
-            }
-
-
-
-        }
-
-        .slick-slide {
-
-
-            &:first-child {
-                div {}
-            }
-
-
-
-
-        }
 
         &_caption {
 
@@ -397,9 +286,15 @@ $mobileScreen: 871px;
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
+            transition-duration: 10s;
+            max-width: 100vw;
+            overflow: auto;
+
+            
         }
     }
 
+    
 
 }
 
@@ -535,6 +430,7 @@ $mobileScreen: 871px;
 
     }
 }
+
 
 
 // @media screen and (min-width: $medium) {

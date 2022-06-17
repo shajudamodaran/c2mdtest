@@ -1,3 +1,5 @@
+@import '../../../../styles/variables';
+
 .c2md-book-appointment-home-container {
 
     width: 100%;
@@ -13,11 +15,22 @@
     justify-content: center;
     padding-left: 100px;
 
+    @media screen and (max-width:$mobileScreen) {
+
+        height: 250px;
+        padding-left: 25px;
+    }
+
     .title {
         font: normal normal bold 60px/75px IBM Plex Sans;
         padding: 0px;
         line-height: 1.2;
         color: #0C1E4E;
+
+        @media screen and (max-width:$mobileScreen) {
+
+            font: normal normal bold 25px IBM Plex Sans;
+        }
     }
 
     p {
@@ -27,6 +40,12 @@
         opacity: 0.9;
         font: normal normal normal 20px/33px IBM Plex Sans;
         margin-top: 1rem;
+
+
+        @media screen and (max-width:$mobileScreen) {
+
+            font: normal normal normal 15px IBM Plex Sans;
+        }
     }
 
     .book-appointment-home-btn {
@@ -41,5 +60,12 @@
         border: 0px;
         font-weight: 500;
         margin-top: 1rem;
+
+        @media screen and (max-width:$mobileScreen) {
+
+            width: 139px;
+            height: 38px;
+            font-size: 12px;
+        }
     }
 }

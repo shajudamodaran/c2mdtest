@@ -1,8 +1,11 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { HeartVectorUserComment, LikeVectorUserComment, PlusGrid, QuotesEnd, QuotesStart, StarVectorUserComment } from '../../../../assets/Logos/Icons'
 import './customersays.css'
 import image from '../../../../assets/HomepageAssets/Customer Comments/customer-lady.png'
 import image2 from '../../../../assets/HomepageAssets/Customer Comments/customer-lady2.webp'
+
+import image3 from '../../../../assets/HomepageAssets/Customer Comments/Group 43126.png'
+
 import RatingComponent from '../../../../components/RatingComponent/RatingComponent'
 
 import { useSwipeable } from 'react-swipeable'
@@ -50,13 +53,13 @@ function CustomerSays() {
 
     useEffect(() => {
 
-        const myTimeout = setTimeout(incrementIndex, 6000);
+        // const myTimeout = setTimeout(incrementIndex, 6000);
 
     }, [])
 
     useEffect(() => {
 
-        const myTimeout = setTimeout(incrementIndex, 6000);
+        // const myTimeout = setTimeout(incrementIndex, 6000);
 
     }, [index])
 
@@ -101,9 +104,9 @@ function CustomerSays() {
                         </div>
 
                         <ul className='customer-says-slider-dot'>
-                            <li onClick={()=>{handleDotClick(0)}} className={index == 0 && "active"}></li>
-                            <li onClick={()=>{handleDotClick(1)}} className={index == 1 && "active"}></li>
-                            <li onClick={()=>{handleDotClick(2)}} className={index == 2 && "active"}></li>
+                            <li onClick={() => { handleDotClick(0) }} className={index == 0 && "active"}></li>
+                            <li onClick={() => { handleDotClick(1) }} className={index == 1 && "active"}></li>
+                            <li onClick={() => { handleDotClick(2) }} className={index == 2 && "active"}></li>
                         </ul>
 
                     </div>
@@ -112,23 +115,23 @@ function CustomerSays() {
 
                 <div className="customer-says-content_right">
 
-                   {
-                       index>=0? <div className="customer-says-content_right_image_container" key={Math.random()}>
-
+                    {
+                        index >= 0 ? <div className="customer-says-content_right_image_container" key={Math.random()}>
+                            {/* 
                        <div className="image-layer-under image-layer">
                            <PlusGrid />
-                       </div>
+                       </div> */}
 
-                       <div className="image-layer-middle image-layer">
-                           
-                           <img src={image} alt="" />
+                            <div className="image-layer-middle image-layer">
 
-                           <div className="customer-says-content_right_note">
-                               *Identity modified for privacy reasons
-                           </div>
-                       </div>
+                                <img src={image3} alt="" />
 
-                       <div className="image-layer-top image-layer" >
+                                {/* <div className="customer-says-content_right_note">
+                                    *Identity modified for privacy reasons
+                                </div> */}
+                            </div>
+
+                            {/* <div className="image-layer-top image-layer" >
 
                            <div className="star-vector">
                                <StarVectorUserComment />
@@ -142,12 +145,12 @@ function CustomerSays() {
                                <HeartVectorUserComment />
                            </div>
 
-                       </div>
+                       </div> */}
 
 
 
-                   </div>:null
-                   }
+                        </div> : null
+                    }
 
 
 

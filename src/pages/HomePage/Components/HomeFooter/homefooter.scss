@@ -2,6 +2,7 @@ $margin-minimum: 16px;
 $margin-max: 15vw;
 
 @import '../../../../styles/common.scss';
+@import '../../../../styles/variables';
 
 .c2md-home-footer {
 
@@ -15,6 +16,13 @@ $margin-max: 15vw;
     align-items: center;
     justify-content: center;
 
+    @media screen and (max-width: $mobileScreen) {
+        width: 97%;
+    }
+
+
+
+
 
     &_body {
 
@@ -23,6 +31,8 @@ $margin-max: 15vw;
         align-items: flex-start;
         justify-content: space-between;
         margin-bottom: 3rem;
+
+        flex-wrap: wrap;
 
 
 
@@ -48,6 +58,29 @@ $margin-max: 15vw;
             padding: 0px 1vw;
         }
 
+        @media screen and (max-width: $mobileScreen) {
+            margin-bottom: 0rem;
+        }
+    
+
+        // @media screen and (max-width: $mobileScreen) {
+
+        //     flex-direction: column;
+        // }
+
+        .mobile-home-footer-column {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: flex-start;
+            width: 100%;
+
+            ul {
+                margin-right: 37px;
+               
+            }
+        }
+
         ul {
             padding: 0px;
             margin: 0px;
@@ -56,10 +89,8 @@ $margin-max: 15vw;
             letter-spacing: 0.16px;
             color: #0C1E4E;
             opacity: 1;
-
-
-
-
+            margin-bottom: 15px;
+            
 
 
             @media screen and (min-width: $tab_size) {
@@ -69,7 +100,9 @@ $margin-max: 15vw;
 
             }
 
-            @media screen and (max-width: $tab_size) {}
+            @media screen and (max-width: $tab_size) {
+                margin-right: 10px;
+            }
 
             li {
                 margin-bottom: 20px;
@@ -106,6 +139,20 @@ $margin-max: 15vw;
                         margin-right: 17px;
                     }
 
+                    @media screen and (max-width: $mobileScreen) {
+
+                        img {
+                            width: 15vw;
+                            max-width: 120px;
+
+                        }
+
+                        .image1 {
+
+                            margin-right: 17px;
+                        }
+                    }
+
                 }
             }
         }
@@ -119,6 +166,10 @@ $margin-max: 15vw;
             margin-bottom: 35px;
             flex-wrap: nowrap;
             white-space: nowrap;
+
+            @media screen and (max-width: $mobileScreen) {
+                margin-bottom: 15px;
+            }
 
         }
 
@@ -154,6 +205,10 @@ $margin-max: 15vw;
                 letter-spacing: 0.13px;
                 color: #0C1E4E;
                 margin-left: 20px;
+
+                @media screen and (max-width: $mobileScreen) {
+                    margin-left: 0px;
+                }
             }
 
 
@@ -215,5 +270,27 @@ $margin-max: 15vw;
 
 
 
+    }
+
+    .for-web {
+        display: flex !important;
+    }
+
+    .for-mobile {
+        display: none !important;
+
+    }
+
+    @media screen and (max-width: $mobileScreen) {
+
+
+        .for-web {
+            display: none !important;
+        }
+
+        .for-mobile {
+            display: flex !important;
+
+        }
     }
 }

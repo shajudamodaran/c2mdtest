@@ -21,11 +21,24 @@
   padding-left: 100px;
 }
 
+@media screen and (max-width: 768px) {
+  .c2md-book-appointment-home-container {
+    height: 250px;
+    padding-left: 25px;
+  }
+}
+
 .c2md-book-appointment-home-container .title {
   font: normal normal bold 60px/75px IBM Plex Sans;
   padding: 0px;
   line-height: 1.2;
   color: #0C1E4E;
+}
+
+@media screen and (max-width: 768px) {
+  .c2md-book-appointment-home-container .title {
+    font: normal normal bold 25px IBM Plex Sans;
+  }
 }
 
 .c2md-book-appointment-home-container p {
@@ -35,6 +48,12 @@
   opacity: 0.9;
   font: normal normal normal 20px/33px IBM Plex Sans;
   margin-top: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .c2md-book-appointment-home-container p {
+    font: normal normal normal 15px IBM Plex Sans;
+  }
 }
 
 .c2md-book-appointment-home-container .book-appointment-home-btn {
@@ -49,5 +68,13 @@
   border: 0px;
   font-weight: 500;
   margin-top: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .c2md-book-appointment-home-container .book-appointment-home-btn {
+    width: 139px;
+    height: 38px;
+    font-size: 12px;
+  }
 }
 /*# sourceMappingURL=bookappointmenthome.css.map */
