@@ -54,10 +54,12 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
                         totalPages: response.data.totalNumberOfPages
                     }
                 });
+                return true
             }
             else {
-
                 dispatch({ type: MANAGE_SESSION, payload: { isSessionActive: false } });
+               
+              
             }
         }
 
@@ -99,6 +101,7 @@ export const FETCH_ADMIN_DASHBOARD_REPORT = (_para) => async dispatch => {
                         totalPages: response.data.totalNumberOfPages
                     }
                 });
+                return true
 
             }
             else {
@@ -174,6 +177,8 @@ export const FETCH_ADMIN_DETAILED_REPORT = (_para) => async (dispatch) => {
                     totalPages: response.data.data.totalNumberOfPages
                 }
             });
+
+            return true
 
 
         }
@@ -336,6 +341,8 @@ export const FETCH_CONSOLIDATED_REPORTS = (_para) => async dispatch => {
                     totalPages: response.data.data.totalNumberOfPages
                 }
             });
+
+            return true
 
 
         }

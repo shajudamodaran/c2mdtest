@@ -35,10 +35,9 @@ function InterbranchAdminHome() {
 
     useEffect(() => {
 
-        dispatch(FETCH_ADMIN_DASHBOARD_REPORT())
-        dispatch(FETCH_ADMIN_DETAILED_REPORT({ context: "Admin Home useEffect" }))
-        dispatch(FETCH_CONSOLIDATED_REPORTS())
-        dispatch(getHospitalsList())
+
+
+
 
     }, [])
 
@@ -78,6 +77,8 @@ function InterbranchAdminHome() {
 
 
         if (!isSessionActive || !userData.token) {
+
+            console.log("Session out............................................");
             history.push("/sessionExpired")
         }
 
@@ -98,10 +99,23 @@ function InterbranchAdminHome() {
                         color: "rgba(0, 0, 0, 0.85)",
                         display: "flex",
                         flexDirection: "column",
-                        alignItems: "center"
+                        alignItems: "center",
+                        justifyContent:"center"
                     }}>
-                        <div className="dr-name-home text-center w-100" style={{ fontWeight: "500" }} >{userData ? userData.profileName : "---"}</div>
-                        <div className="dr-id-home text-center w-100" style={{ fontWeight: "500" }}>ID: {userData ? userData.profileId : "---"}</div>
+                        {
+                            userData.userType == "C2MDAdmin" ?
+
+                            <div className="dr-name-home text-center w-100" style={{ fontWeight: "500" }} >C2MDAdmin</div>
+
+                            :
+                                <>
+                                    <div className="dr-name-home text-center w-100" style={{ fontWeight: "500" }} >{userData ? userData.profileName : "---"}</div>
+                                    <div className="dr-id-home text-center w-100" style={{ fontWeight: "500" }}>ID: {userData ? userData.profileId : "---"}</div>
+                                </>
+                        }
+
+
+
                     </div>
 
                     <div className="tittle" onClick={() => {

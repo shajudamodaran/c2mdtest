@@ -37,6 +37,20 @@ function Misreport() {
     userData = JSON.parse(userData)
     let { userType } = userData
 
+    let [isLoading,setLoading]=useState(true)
+
+
+    useEffect(() => {
+     
+        dispatch(FETCH_ADMIN_DETAILED_REPORT({ context: "Admin Home useEffect" })).then((res)=>{
+
+            if(res)setLoading(false)
+
+        })
+
+    }, [])
+    
+
 
 
 
@@ -243,7 +257,7 @@ console.log(misReports)
 
                                     : <tr>
                                         <td colSpan={12}>
-                                            <EmptyTableData />
+                                            <EmptyTableData isLoading={isLoading} />
                                         </td>
                                     </tr>
                                 : console.log("no mis report")

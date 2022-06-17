@@ -2,12 +2,12 @@ import React from 'react'
 import { ClipLoader, PuffLoader } from 'react-spinners'
 import { FolderEmpty } from '../../../assets/Logos/Icons'
 
-function EmptyTableData({ isLoading,marginTop }) {
+function EmptyTableData({ isLoading, marginTop, text, caption, haveButton, onButtonClick }) {
     return (
         <div className="empty-table-data top-margin-50">
             <div className="empty-table-body" style={{
-                height:isLoading&&70,
-                width:isLoading&&70
+                height: isLoading && 70,
+                width: isLoading && 70
             }} >
                 {
                     isLoading ?
@@ -22,14 +22,24 @@ function EmptyTableData({ isLoading,marginTop }) {
             <div className="empty-table-footer">
                 <span className="title">
                     {
-                        isLoading ? "Loading data please wait..." : "No Results Found."
+                        isLoading ? "Loading data please wait..." : text ? text : "No Results Found."
                     }
                 </span>
                 <span className="caption">
                     {
-                        isLoading ? null : "Try adjusting your search or filter to find what you are looking for."
+                        isLoading ? null : caption ? caption : "Try adjusting your search or filter to find what you are looking for."
                     }
                 </span>
+
+                {
+                    haveButton && !isLoading ?
+                        <div className="button">
+                            <button onClick={onButtonClick}>CREATE TEMPLATE</button>
+                        </div>
+                        : null
+                }
+
+
             </div>
         </div>
     )

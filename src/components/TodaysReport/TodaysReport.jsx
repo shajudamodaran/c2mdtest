@@ -21,10 +21,20 @@ function TodaysReport() {
 
     let dashboardData = useSelector(state => state.interbranchAdmin.dashboardTable)
 
-
     let [isOpen, setOpen] = useState(false)
     let [pagination, setPagination] = useState(1)
     let [userType, setUserType] = useState(JSON.parse(localStorage.getItem(USER_DATA))?.userType)
+
+    let [isLoading,setLoading]=useState(true)
+
+    useEffect(() => {
+        
+        dispatch(FETCH_ADMIN_DASHBOARD_REPORT()).then((res)=>{
+            if(res) setLoading(false)
+        })
+     
+    }, [])
+    
 
 
     useEffect(() => {
@@ -211,7 +221,7 @@ function TodaysReport() {
 
                                                 : <tr>
                                                     <td colSpan={13}>
-                                                        <EmptyTableData />
+                                                        <EmptyTableData isLoading={isLoading} />
                                                     </td>
                                                 </tr>
                                             : null
@@ -287,7 +297,7 @@ function TodaysReport() {
 
                                                 : <tr>
                                                     <td colSpan={9}>
-                                                        <EmptyTableData />
+                                                        <EmptyTableData isLoading={isLoading} />
                                                     </td>
                                                 </tr>
                                             : null

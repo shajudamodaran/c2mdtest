@@ -1,8 +1,8 @@
-import { DatePicker, Pagination } from 'antd'
+import { DatePicker, Pagination, Tooltip } from 'antd'
 import moment from 'moment'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { FETCH_CONSOLIDATED_REPORTS, updateConsolodatedReportComment, updateMisReportAttachments } from '../../actions/InterbranchAdminActions'
+import { FETCH_CONSOLIDATED_REPORTS, getHospitalsList, updateConsolodatedReportComment, updateMisReportAttachments } from '../../actions/InterbranchAdminActions'
 import { AddIconV2, ClearFilterIcon } from '../../assets/Logos/Icons'
 import { CLINIC_ADMIN_USER, USER_DATA } from '../../constants/const'
 import EmptyTableData from '../Common/EmptyTableData/EmptyTableData'
@@ -21,8 +21,21 @@ function ConsolidatedReport() {
         date: null,
         hospital: null
     })
+    let [isLoading, setLoading] = useState(true)
 
     const monthFormat = 'MMM-YYYY';
+
+    useEffect(() => {
+
+        dispatch(getHospitalsList())
+        dispatch(FETCH_CONSOLIDATED_REPORTS()).then((res) => {
+
+            if (res) setLoading(false)
+
+        })
+
+
+    }, [])
 
 
 
@@ -134,23 +147,27 @@ function ConsolidatedReport() {
                     userType !== "ClinicAdmin" ?
                         <div className="filter-button" >
 
-                            <div className="icon" onClick={clearHcoPicker}>
+                            {/* <Tooltip placement="topLeft" title={filterData.hospital && "Clear hospital filter"}> */}
 
-                                {
-                                    filterData.hospital ?
+                                <div className="icon" onClick={clearHcoPicker}>
 
-                                        <ClearFilterIcon />
-
-                                        : <i class="far fa-filter"></i>
-                                }
+                                    {
+                                        filterData.hospital ?
 
 
+                                            <ClearFilterIcon />
 
-                            </div>
 
+                                            : <i class="far fa-filter"></i>
+                                    }
+
+
+
+                                </div>
+                            {/* </Tooltip> */}
                             <Select
                                 allowClear
-                                value={filterData.hospital?filterData.hospital:[]}
+                                value={filterData.hospital ? filterData.hospital : []}
                                 onChange={handleHospitalFilter}
                                 showSearch
                                 style={{
@@ -185,20 +202,21 @@ function ConsolidatedReport() {
 
                 <div className="filter-button" >
 
-                    <div className="icon" onClick={clearDatePicker}>
+                    {/* <Tooltip placement="topLeft" title={filterData.date && "Clear date range filter"}> */}
+
+                        <div className="icon" onClick={clearDatePicker}>
+
+                            {
+                                filterData.date ?
+
+                                    <ClearFilterIcon />
+
+                                    : <i class="far fa-filter"></i>
+                            }
 
 
-
-                        {
-                            filterData.date ?
-
-                                <ClearFilterIcon />
-
-                                : <i class="far fa-filter"></i>
-                        }
-
-
-                    </div>
+                        </div>
+                    {/* </Tooltip> */}
 
                     <DatePicker value={filterData.date && moment(filterData?.date, "MMM-YYYY")} onChange={handleMonthFilter} className="date-picker" placeholder='Filter by month and year' format={monthFormat} picker="month" />
 
@@ -206,6 +224,8 @@ function ConsolidatedReport() {
                 </div>
 
             </div>
+
+
 
             <div className="todays_report_table_container">
 
@@ -309,7 +329,7 @@ function ConsolidatedReport() {
 
                                     : <tr>
                                         <td colSpan={12}>
-                                            <EmptyTableData />
+                                            <EmptyTableData isLoading={isLoading} />
                                         </td>
                                     </tr>
                                 : null
