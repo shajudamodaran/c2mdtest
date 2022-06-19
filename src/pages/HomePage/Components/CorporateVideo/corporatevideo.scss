@@ -1,5 +1,11 @@
 @import '../../../../styles/variables';
 
+
+$tab-min: 768px;
+$tab-max: 1161px;
+
+
+
 .c2md-corporate-video-container {
     height: 90vh;
     width: 100%;
@@ -22,6 +28,12 @@
 
         margin-right: 117px;
 
+        @media screen and (max-width: $tab-max) {
+
+            margin-right: 15px;
+
+        }
+
         @media screen and (max-width: $mobileScreen) {
             margin: 0px;
 
@@ -40,6 +52,23 @@
             justify-content: flex-start;
             margin-bottom: 35px;
 
+
+            h1 {
+                margin: 0px;
+                color: white;
+                font-size: 55px;
+                font-weight: 600;
+                margin-bottom: .2rem;
+
+
+                @media screen and (max-width: $tab-max) {
+
+                    font-size: 40px;
+
+                }
+
+            }
+
             @media screen and (max-width: $mobileScreen) {
 
                 justify-content: center;
@@ -50,6 +79,8 @@
                     font-size: 39px !important;
                 }
             }
+
+
 
 
 
@@ -68,6 +99,13 @@
                 font-size: 13px;
                 text-align: center;
             }
+
+            @media screen and (max-width: $tab-max) {
+
+                font-size: 14px;
+                width: fit-content;
+
+            }
         }
 
         &_footer {
@@ -82,8 +120,8 @@
             @media screen and (max-width: $mobileScreen) {
 
                 flex-direction: column-reverse;
-                
-        
+
+
             }
 
             .c2md-corporate-video-about-us-btn {
@@ -130,14 +168,8 @@
             }
         }
 
-        h1 {
-            margin: 0px;
-            color: white;
-            font-size: 55px;
-            font-weight: 600;
-            margin-bottom: .2rem;
 
-        }
+
 
     }
 
@@ -159,6 +191,7 @@
                 img {
 
                     width: 69vw;
+                    max-width: 357px;
                     height: auto;
                 }
 
