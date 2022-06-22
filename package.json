@@ -2,7 +2,7 @@
     "name": "connect2mydoctor",
     "version": "0.1.0",
     "private": true,
-    "homepage": "c2mydrnew/microsites/",
+    "homepage": "https://c2mdtest.vercel.app",
     "dependencies": {
         "@ant-design/icons": "^4.7.0",
         "@culturehq/add-to-calendar": "^1.1.2",
